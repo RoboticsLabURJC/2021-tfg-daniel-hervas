@@ -11,6 +11,4 @@ sidebar:
   nav: "docs"
 ---
 
-## Working with Posts
-
-Here are all my posts
+## Here are all my posts

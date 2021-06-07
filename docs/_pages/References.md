@@ -8,7 +8,9 @@ sidebar:
 
 ## TFGs
 
-  -[Angel Perea's TFG](https://gsyc.urjc.es/jmplaza/students/tfg-kibotics-analytics-angel_perea-2020.pdf).
+  -[Pablo Moreno's TFM](https://gsyc.urjc.es/jmplaza/students/tfm-kibotics-torneos-pablo_moreno-2020.pdf).
+
+
 ## Programs
 ## Examples
 ## Web sites
