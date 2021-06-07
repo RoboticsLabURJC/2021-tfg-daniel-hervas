@@ -1,6 +1,6 @@
 ---
 title: "Week 0. Hello World"
-excerpt: "Introduce to myself"
+excerpt: "My first post"
 
 sidebar:
   nav: "docs"
