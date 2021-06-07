@@ -38,9 +38,10 @@ youTube_id: ID7qaEcIu4k
 
 {% include feature_row %}
 
-Hello, everybody.
+Hello all!
 
-My name is Claudia and this will be my blog, where you can see the progress and improvements made each week.
+My name is Daniel Hervás Rodao and this will be the blog where I will post updates from my TFG every week.
+I will try my best for the quality of my posts.
 
 TFG Tutor: [Jose Maria Cañas](https://gsyc.urjc.es/jmplaza/)
 
