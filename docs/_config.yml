@@ -19,7 +19,7 @@ minimal_mistakes_skin    : "neon"
 title                    : "TFG Blog"
 title_separator          : "-"
 subtitle                 : TFG title
-name                     : "Claudia Álvarez"
+name                     : "Daniel Hervás"
 description              : "Programming Robot Intelligence"
 url                      : http://jderobot.github.io
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -122,24 +122,24 @@ analytics:
 # PROFILE
 # Site Author
 author:
-  name             : "Claudia Álvarez Bravo"
-  avatar           : "/assets/images/profile.jpg"
-  bio              : "Engineering student in audiovisual and multimedia systems"
-  location         : "Brunete, Madrid"
- # email            : c.alvarezb.2016@alumnos.urjc.es
+  name             : "Daniel Hervás Rodao"
+  avatar           : "/assets/images/profile.png"
+  bio              : "Telematics Engineering Student"
+  location         : "Móstoles, Madrid"
+ # email            : d.hervas.2017@alumnos.urjc.es
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: c.alvarezb.2016@alumnos.urjc@alumnos.urjc.es
+      url: d.hervas.2017@alumnos.urjc@alumnos.urjc.es
    # - label: "About Me"
    #   icon: "fas fa-fw fa-link"
-    #  url: "yoursite.com"
+    #  url: "dhrodao.github.io"
    # - label: "Twitter"
      # icon: "fab fa-fw fa-twitter-square"
     #  url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/claualbra"
+      url: "https://github.com/dhrodao"
     #- label: "Youtube"
     #  icon: "fab fa-fw fa-youtube"
     #  url: "https://www.youtube.com/channel/UCgmUgpircYAv_QhLQziHJOQ"
