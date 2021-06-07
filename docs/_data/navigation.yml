@@ -4,9 +4,6 @@ main:
   - title: LogBook
     url: /logbook/
 
-  - title: Installation
-    url: /install/
-
   - title: References
     url: /references/
 
@@ -16,11 +13,6 @@ docs:
     children:
       - title: Check it out
         url: /logbook/
-
-  - title: Installation
-    children: 
-    - title: How to install
-      url: /install/
 
   - title: About
     children:
