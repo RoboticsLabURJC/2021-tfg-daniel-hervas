@@ -1,7 +1,7 @@
 # Django researchs
 
 ## Crear espacio de trabajo
-		django-admin startproject <nombre>
+	django-admin startproject <nombre>
 
 ## Estructura de directorios
 	mysite/
@@ -37,10 +37,10 @@ directorio debería ser considerado como un paquete Python.
 
 
 ## Lanzar servidor de desarrollo
-		python manage.py runserver
+	python manage.py runserver
 		
 ## Crear una aplicación
-		python manage.py startapp polls
+	python manage.py startapp polls
 		
 Esto crea un directiorio llamando polls:
 	polls/
@@ -66,4 +66,4 @@ Sirve para indicar a Django que hemos realizado cambios en los modelos de
 la aplicación, esto genera las tablas necesarias para los modelos.
 
 ### Superuser
-		python manage.py createsuperuser
+	python manage.py createsuperuser
