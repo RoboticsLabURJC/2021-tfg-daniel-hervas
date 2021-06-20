@@ -1,4 +1,5 @@
 # Django researchs
+
 ## Crear espacio de trabajo
 		django-admin startproject <nombre>
 
@@ -65,4 +66,4 @@ Sirve para indicar a Django que hemos realizado cambios en los modelos de
 la aplicación, esto genera las tablas necesarias para los modelos.
 
 ### Superuser
-	python manage.py createsuperuser
+		python manage.py createsuperuser
