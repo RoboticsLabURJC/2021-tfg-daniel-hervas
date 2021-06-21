@@ -16,6 +16,7 @@ I wrote my first consumer. Consumers are written at "consumers.py" file. After w
 Finally, at "asgi.py", just need to insert a websocket key. Not needed on Django 2.2 as ProtocolTypeRouter uses Channel's AsgiHandler. 
 
 - asgy.py works as follows:
+
 This root routing configuration specifies that when a connection is made to the Channels development server, the ProtocolTypeRouter will first inspect the type of connection. If it is a WebSocket connection (ws:// or wss://), the connection will be given to the AuthMiddlewareStack.
 
 The AuthMiddlewareStack will populate the connection’s scope with a reference to the currently authenticated user, similar to how Django’s AuthenticationMiddleware populates the request object of a view function with the currently authenticated user. (Scopes will be discussed later in this tutorial.) Then the connection will be given to the URLRouter.
