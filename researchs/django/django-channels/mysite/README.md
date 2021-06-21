@@ -28,7 +28,7 @@ If we have 2 tabs opened in the same lobby, the message sent in one tab wont app
     docker run -p 6379:6379 -d redis:5
 
 ## Tutorial part 3: Asincronous chat server
-
+Addapted ChatConsumer functions to AsyncWebsocketConsumer.
 
 ## Theory
 - ASGI (Asynchronous Server Gateway Interface): provide a standard interface between async-capable Python web servers, frameworks and aplications.
