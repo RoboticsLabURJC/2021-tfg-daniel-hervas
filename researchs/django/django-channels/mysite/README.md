@@ -5,3 +5,8 @@ For this project I will be following the tutorial offered by the [official docum
 Here I have just created the paths for the urls, the views and also the index.html template, just the basics of a Django project.
 
 After all the basic setup, I started creating the chat lobby template, in order that when the user types a lobby name and gets redirected to the lobby url it doesnt get an error message, and a template is rendered.
+
+Finally, I set up Django Channels.
+
+## Definitions
+- ASGI (Asynchronous Server Gateway Interface): provide a standard interface between async-capable Python web servers, frameworks and aplications.

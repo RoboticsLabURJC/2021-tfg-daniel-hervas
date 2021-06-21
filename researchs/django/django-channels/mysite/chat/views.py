@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+# Render index.html
 def index(request):
     return render(request, 'chat/index.html')
