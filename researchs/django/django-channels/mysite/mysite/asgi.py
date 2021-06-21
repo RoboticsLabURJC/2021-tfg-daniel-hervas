@@ -17,7 +17,11 @@ import chat.routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 
+# ProtocolTypeRouter checks the connection type and 
+# gives the connection to the established handler
 application = ProtocolTypeRouter({
+    # Connection protocols: HTTP and WebSockets
+
     # Django's ASGI application to handle traditional HTTP requests
     "http": get_asgi_application(),
     # Handle WebSockets

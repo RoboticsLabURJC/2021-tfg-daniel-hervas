@@ -23,9 +23,14 @@ The AuthMiddlewareStack will populate the connection’s scope with a reference 
 
 The URLRouter will examine the HTTP path of the connection to route it to a particular consumer, based on the provided url patterns.
 
+If we have 2 tabs opened in the same lobby, the message sent in one tab wont appear in the other tab, for this to work, we need to have multiple instances of the same ChatConsumer. So we need to create a chat group in order to send messages to the group instead of resending them to the same client. We will need to configure channel layers in order to allow us to talk between different instances of an application. On this tutorial we will use Redis as backend storage for groups. We will run redis on docker at port 6379 as follows:
+
+    docker run -p 6379:6379 -d redis:5
+
 ## Tutorial part 3: Asincronous chat server
+
 
 ## Theory
 - ASGI (Asynchronous Server Gateway Interface): provide a standard interface between async-capable Python web servers, frameworks and aplications.
 
-- ProtocolTypeRouter as the root application of your project - the one that you pass to protocol servers - and nest other, more protocol-specific routing underneath there.
+- ProtocolTypeRouter as the root application of your project - the one that you pass to protocol servers - and nest other, more protocol-specific routing underneath there. It checks the connection type.
