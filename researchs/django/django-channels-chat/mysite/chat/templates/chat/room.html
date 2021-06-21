@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room: {{ room_name }}</title>
+</head>
+<body>
+    <h2>Room: {{ room_name }}</h2>
+    <textarea id="chat-log" cols="100" rows="20"></textarea>
+    <input id="chat-message-input" type="text" size="100"><br>
+    <input id="chat-message-submit" type="button" value="Send">
+
+    <script>
+        'use strict';
+
+        // Get the room name
+        let room_name = "{{ room_name }}";
+        //console.log(roomName);
+
+        // Dirección donde se crea el websocket es la que se pasa
+        // al constructor WebSocket()
+        let chat_socket = new WebSocket(
+            'ws://' +
+            window.location.host +
+            '/ws/chat/' +
+            room_name +
+            '/'
+        );
+
+        // Cuando se recibe un mensaje, se muestra en el textarea
+        chat_socket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#chat-log').value += (data.message + '\n');
+        };
+
+        // Cuando se cierra la conexión se avisa
+        chat_socket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chat_socket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInputDom.value = '';
+        };
+
+    </script>
+</body>
+</html>
