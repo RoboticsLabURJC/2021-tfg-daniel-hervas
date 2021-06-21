@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+</head>
+<body>
+    <input id="room-name-input" type="text">
+    <input id="room-name-submit" type="submit" value="Submit">
+
+    <script>
+        'use strict';
+        document.querySelector('#room-name-input').focus();
+        // Detectar que se pulsa la tecla Enter, para coger el nombre 
+        // de la sala
+        document.querySelector('#room-name-input').onkeyup = function(key){
+            if(key.key === "Enter"){
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+        // Te lleva a la url /chat/<nombre_sala>
+        document.querySelector('#room-name-submit').onclick = function(key) {
+            let roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/chat/' + roomName + '/';
+        };
+    </script>
+</body>
+</html>
