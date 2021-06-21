@@ -1,0 +1,59 @@
+José María Cañas
+	- tecnologias web alrededor de unibotics: usan django, mysql, elastic search, dash, AWS, WebRTC
+	- introducir gamificación a la plataforma:
+		en el siguelineas tener el coche que proporciona la organizacion y el que ha programado el user. Un dashboard con los tiempos
+		a modo de competición. https://gsyc.urjc.es/jmplaza/students/tfm-kibotics-torneos-pablo_moreno-2020.pdf
+	- Usar react como Front End
+
+1. Periodo de formación
+2. Repo propio
+3. Reuniones periódicas        
+
+
+June 07 - 2021
+
+- Jekill: para tener un directorio _pages, donde metas tus .md con el contenido de la página: https://github.com/jekyll/jekyll/issues/920#issuecomment-63093764     
+
+June 11 - 2021
+
+- Reunión con José María:
+Hacer el ejercicio Follow Line, ejercicio 2.4 (testear la versión). Ver que sensaciones me da en comparación con el año pasado.
+* El año pasado Plantilla ROS -> ROS Node -> Gazebo saca GUI
+* Ahora: el user usa el browser para todo, tanto para el editor, el GUI, el simulador. Detrás hay un Gazebo y un exercise.py
+	Para que funcione en varias plataformas todo esto está en un contenedor Docker. Todo esto se conecta mediante WebSockets.
+	exercise.py tiene dos web sockets, GUIWebSocket y CodeWebSocket se comunica con exercise.html.
+	manager.py arranca los ejercicios.
+	Dentro del contenedor Docker hay un server web Django que sirve las web de cada ejercicio.
+	[Imagen del esquema en el correo de la universidad]
+	Django 2.2
+
+June 21 - 2021
+
+- Reunión con José María:
+	ARQUITECTURA PRINCIPAL
+	* Dentro del Docker va el simulador Gazebo, que conecta con el Front End.
+	* Editor de texto AC browser.
+	* Para cada ejercicio una plantilla: exercise.html (web del ejercicio: editor y GUI) y exercise.py 
+	(dentro del Docker en comunicación con exercise.html).
+	* exercise.py se conecta a Gazebo para recibir la info de los sensores y entregar la de los actuadores (HAL,
+	Hardware Abstraction Layer). Recibe a través de WebSockets el codigo fuente y lo pone en ejecucción en el Brain. 
+	Envía mediante WebSockets al browser los datos de depuración solicitados (GUI).
+	
+	* Dentro del docker hay un server Django que sirve las páginas.
+	* Al lanzar el Docker el manager.py arrancará Gazebo.
+
+	* Unibotics es la version web de RoboticsAcademy (en vez de en local, en web) tienen funcionalidades extra las
+	de Unibotics: grabar código en S3 de AWS, evaluador automático, competir contra X persona en tu máquina.
+
+	* Socket es como un tubo entre dos extremos, se monta sobre TCP. Se usan para:
+	- Conexión entre el browser y exercise.py
+	- Conexión gui_ws
+	- Conexión del browser con el manager.
+
+	* Trastear con Django para que ofezca una conexión a través de WebSockets, usar django-channels
+	aplicación que requiera conexión de websocket entre servidor y cliente.
+	* Usar Unibotics.
+	* Código unibotics: paizon.
+	* Despliegue D1 desarrolladores.
+	* Despliegue test D2: test.unibotics.org
+	* Despliegue D3 producción.
