@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room: {{ room_name }}</title>
+
+    <style>
+        #content{
+            display: flex;
+        }
+        #chat-log{
+            width: auto;
+            height: 100px;
+            border: 1px solid black;
+            overflow-y: scroll;
+        }
+        #chat-div p#chat-title{
+            text-align: center;
+        }
+        #stream-div{
+            border: 1px solid black;
+        }
+
+        .send{
+            text-align: right;
+        }
+
+        .receive{
+            text-align: left;
+        }
+
+        body {
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        input[type=text]{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        #chat-div {
+            width: 450px;
+            margin: auto;
+            float: right;
+        }
+
+        #startButton {
+            color: #fff !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: red;
+            padding: 20px;
+            border-radius: 50px;
+            display: inline-block;
+            border: none;
+            transition: all 0.4s ease 0s;
+        }
+
+        video{
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Room: {{ room_name }}</h2>
+
+    <div id="content">
+        <div id="stream-div" style="float: left;">
+            <video id="streamVideo" playsinline>
+              Your browser does not support the video tag.
+            </video>
+            <video id="showVideo" playsinline autoplay>
+              Your browser does not support the video tag.
+            </video>
+            <div class="box">
+              <button id="startButton">Start</button>
+            </div>
+        </div>
+    
+        <div id="chat-div">
+            <p id="chat-title">Messages</p>
+            <div id="chat-log">
+            </div>
+            <input id="chat-message-input" type="text" size="100"><br>
+            <input id="chat-message-submit" type="button" value="Send">
+        </div>
+    </div>
+
+    <!-- Django Channels Chat -->
+    <!--
+
+    <script>
+        'use strict';
+
+        // Get the room name
+        let room_name = "{{ room_name }}";
+        //console.log(roomName);
+
+        // Dirección donde se crea el websocket es la que se pasa
+        // al constructor WebSocket()
+        let chat_socket = new WebSocket(
+            'ws://' +
+            window.location.host +
+            '/ws/chat/' +
+            room_name +
+            '/'
+        );
+
+        // Cuando se recibe un mensaje, se muestra en el textarea
+        chat_socket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            console.log(data);
+
+            document.querySelector('#chat-log').value += (data.message + '\n');
+        };
+
+        // Cuando se cierra la conexión se avisa
+        chat_socket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chat_socket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInputDom.value = '';
+        };
+    </script>
+    -->
+
+    <script>
+        window.setInterval(function() {
+        let elem = document.getElementById('chat-log');
+            elem.scrollTop = elem.scrollHeight;
+        }, 500);
+    </script>
+
+    <!-- WebRTC -->
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script>
+        //Get & show the stream.
+        const localVideo = document.getElementById('streamVideo');
+        const remoteVideo = document.getElementById('showVideo');
+        
+        const constraints = {
+            video: {
+            mediaSource: "screen", // whole screen sharing
+            //mediaSource: "window", // choose a window to share
+            // mediaSource: "application", // choose a window to share
+            width: {max: '1920'},
+            height: {max: '1080'},
+            frameRate: {max: '10'}
+            }
+        };
+
+        const offerOptions = {
+            OfferToReceiveAudio: 1,
+            OfferToReceiveVideo: 1
+        };
+
+        let room_name = "{{ room_name }}";
+        console.log('Room name: ', room_name);
+
+        // Create websocket for communication
+        const websocket = new WebSocket(
+            'ws://' +
+            window.location.host +
+            '/ws/chat/' +
+            room_name +
+            '/'
+        );
+        console.log('Websocket created for room: ', room_name);
+    </script>
+    <script src="{% static 'js/ws_chat.js' %}"></script>
+    <script src="{% static 'js/webrtc.js' %}"></script>
+</body>
+</html>
