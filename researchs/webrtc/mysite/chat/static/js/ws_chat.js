@@ -24,8 +24,16 @@ websocket.onmessage = function(event){
             console.log('Escribir mensaje');
             add_message('receive', message_data['message']);
         }
+    }else if(message_data['type'] == 'candidate'){
+        console.log('Candidate received');
+        addIceCandidate(message_data['candidate']);
+    }else if(message_data['type'] == 'offer'){
+        console.log('Offer received');
+        startRemoteStream(message_data['offer']);
+    }else if(message_data['type'] == 'answer'){
+        console.log('Answer received');
+        setAnswerDescription(message_data['answer']);
     }
-
 };
 
 function add_message(direction, message){

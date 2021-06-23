@@ -10,7 +10,7 @@ const constraints = {
     video: {
     mediaSource: "screen", // whole screen sharing
     //mediaSource: "window", // choose a window to share
-    // mediaSource: "application", // choose a window to share
+    //mediaSource: "application", // choose a window to share
     width: {max: '1920'},
     height: {max: '1080'},
     frameRate: {max: '10'}
@@ -36,7 +36,8 @@ async function startStream(){
     localVideo.play();
 
     // Obtener el stream del usuario
-    stream = await navigator.mediaDevices.getUserMedia(constraints)
+    //stream = await navigator.mediaDevices.getUserMedia(constraints)   // Cámara
+    stream = await navigator.mediaDevices.getDisplayMedia(constraints)  // Pantalla
 
     // Mostrar el video
     localVideo.srcObject = stream;
@@ -59,7 +60,7 @@ async function startStream(){
     console.log("Added candidates handlers created.");
 
     // Establecer el vídeo local en el remoto
-    pc2.ontrack = getRemoteStream;
+    pc2.ontrack = gotRemoteStream;
 
     // Notificar si el estado remoto cambia
     pc2.oniceconnectionstatechange = () => console.log('PC2 ice state ' + pc2.iceConnectionState);
@@ -146,7 +147,7 @@ async function onIceCandidate(pc, e){
     }   
 }
 
-function getRemoteStream(e){
+function gotRemoteStream(e){
     console.log('Remote stream: ', e);
     // Establecer el vídeo del remoto
     remoteVideo.srcObject = e.streams[0];
