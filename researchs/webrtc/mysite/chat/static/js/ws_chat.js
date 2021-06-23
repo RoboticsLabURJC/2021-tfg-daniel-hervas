@@ -1,5 +1,15 @@
 'use strict';
 
+// Create websocket for communication
+const websocket = new WebSocket(
+    'ws://' +
+    window.location.host +
+    '/ws/chat/' +
+    room_name +
+    '/'
+);
+console.log('Websocket created for room: ', room_name);
+
 let token = new Date().getTime() + Math.random();
 console.log('token: ',token);
 

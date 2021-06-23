@@ -159,41 +159,15 @@
         }, 500);
     </script>
 
-    <!-- WebRTC -->
+    <!-- WebRTC, VideoChat, Django Channels Chat -->
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
         //Get & show the stream.
         const localVideo = document.getElementById('streamVideo');
         const remoteVideo = document.getElementById('showVideo');
         
-        const constraints = {
-            video: {
-            mediaSource: "screen", // whole screen sharing
-            //mediaSource: "window", // choose a window to share
-            // mediaSource: "application", // choose a window to share
-            width: {max: '1920'},
-            height: {max: '1080'},
-            frameRate: {max: '10'}
-            }
-        };
-
-        const offerOptions = {
-            OfferToReceiveAudio: 1,
-            OfferToReceiveVideo: 1
-        };
-
         let room_name = "{{ room_name }}";
         console.log('Room name: ', room_name);
-
-        // Create websocket for communication
-        const websocket = new WebSocket(
-            'ws://' +
-            window.location.host +
-            '/ws/chat/' +
-            room_name +
-            '/'
-        );
-        console.log('Websocket created for room: ', room_name);
     </script>
     <script src="{% static 'js/ws_chat.js' %}"></script>
     <script src="{% static 'js/webrtc.js' %}"></script>

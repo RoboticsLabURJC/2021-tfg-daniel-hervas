@@ -6,6 +6,22 @@ let localStream;
 let pc1;
 let pc2;
 
+const constraints = {
+    video: {
+    mediaSource: "screen", // whole screen sharing
+    //mediaSource: "window", // choose a window to share
+    // mediaSource: "application", // choose a window to share
+    width: {max: '1920'},
+    height: {max: '1080'},
+    frameRate: {max: '10'}
+    }
+};
+
+const offerOptions = {
+    OfferToReceiveAudio: 1,
+    OfferToReceiveVideo: 1
+};
+
 let iceCandidates = [];
 
 let startButton = document.querySelector('#startButton');
@@ -30,14 +46,14 @@ async function startStream(){
 
     var configuration = {
         "iceServers": [{ "urls": "stun:stun.1.google.com:19302" }]
-      };
+    };
 
     // Creo el peer para cada usuario
     pc1 = new RTCPeerConnection(configuration);
     pc2 = new RTCPeerConnection(configuration);
     console.log('Created RTC Peers');
 
-    // Handlers para cuando hay un candidato
+    // Handlers para cuando hay candidatos
     pc1.addEventListener('icecandidate', e => onIceCandidate(pc1, e));
     pc2.addEventListener('icecandidate', e => onIceCandidate(pc2, e));
     console.log("Added candidates handlers created.");
@@ -45,14 +61,15 @@ async function startStream(){
     // Establecer el vídeo local en el remoto
     pc2.ontrack = getRemoteStream;
 
+    // Notificar si el estado remoto cambia
     pc2.oniceconnectionstatechange = () => console.log('PC2 ice state ' + pc2.iceConnectionState);
     console.log("localStream: " + localStream);
 
     // Añadir tracks a la PeerConnection
-    //console.log(`Streamed tracks added ${localStream.getTracks()[0].label}`);
+    // console.log(`Streamed tracks added ${localStream.getTracks()[0].label}`);
     localStream.getTracks().forEach(track => pc1.addTrack(track, localStream));
 
-    // Crear oferta SDP desde el extremo local
+    // Crear oferta SDP desde el extremo local y respuesta desde el extremo
     // IMPORTANTE: Para establecer la conexión, es necesario que ambos
     // extremos tengan establecida su descripción.
     try{
