@@ -3,14 +3,24 @@ from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 
 class ChatConsumer(WebsocketConsumer):
-    channel_list = []
+    #channel_list = []
+    room_list = {}
 
     def connect(self):
-        if len(self.channel_list) < 2:
-            print('Connected: ', self.channel_name)
-            self.room_name = self.scope['url_route']['kwargs']['room_name']
-            self.room_group_name = 'chat_%s' % self.room_name
+        self.room_name = self.scope['url_route']['kwargs']['room_name']
+        self.room_group_name = 'chat_%s' % self.room_name
 
+        # Si la sala no existe, se mete en el diccionario
+        if self.room_list.get(self.room_group_name) == None:
+            self.room_list[self.room_group_name] = []
+        
+        # Se comprueba que haya hueco en la sala
+        if (len(self.room_list[self.room_group_name]) < 2):
+            print('Connected: ', self.channel_name)
+
+            if self.room_list.get(self.room_group_name) == None:
+                self.room_list[self.room_group_name] = []
+            
             # Join room group
             async_to_sync(self.channel_layer.group_add)(
                 self.room_group_name,
@@ -18,17 +28,25 @@ class ChatConsumer(WebsocketConsumer):
             )
 
             # Append user channel name if not in list
-            if self.channel_name not in self.channel_list:
-                self.channel_list.append(self.channel_name)
-            print('USERS: ', self.channel_list)
+            #if self.channel_name not in self.channel_list:
+            #    self.channel_list.append(self.channel_name)
+            self.room_list[self.room_group_name].append(self.channel_name)
+            #print('USERS: ', self.channel_list)
+            print('GROUPS LIST: ', self.room_list)
             self.accept()
         else:
             # Responderle con mensaje de que no es aceptado
             pass
 
     def disconnect(self, user_code):
-        # Remove user from list
-        self.channel_list.pop(self.channel_list.index(self.channel_name))
+        try:
+            # Remove user from list
+            #self.channel_list.pop(self.channel_list.index(self.channel_name))
+            self.room_list[self.room_group_name].pop(self.room_list[self.room_group_name].index(self.channel_name))
+            self.room_list.pop(self.room_group_name)
+        except (ValueError, KeyError):
+            pass
+        # If room is empty, delete it from dict
 
         # Leave room group
         async_to_sync(self.channel_layer.group_discard)(
@@ -56,8 +74,8 @@ class ChatConsumer(WebsocketConsumer):
         elif text_data_json['type'] == 'candidate':
             print('Candidate message received')
             # Enviar el mensaje al peer opuesto
-            for channel in self.channel_list:
-                if channel != self.channel_name:
+            for channel in self.room_list[self.room_group_name]:
+                if (channel != self.channel_name) and (self.scope['url_route']['kwargs']['room_name'] == self.room_name):
                     async_to_sync(self.channel_layer.send)(
                         channel,
                         {
@@ -68,8 +86,8 @@ class ChatConsumer(WebsocketConsumer):
         elif text_data_json['type'] == 'offer':
             print('Offer message received')
             # Enviar el mensaje al peer opuesto
-            for channel in self.channel_list:
-                if channel != self.channel_name:
+            for channel in self.room_list[self.room_group_name]:
+                if (channel != self.channel_name) and (self.scope['url_route']['kwargs']['room_name'] == self.room_name):
                     async_to_sync(self.channel_layer.send)(
                         channel,
                         {
@@ -79,8 +97,8 @@ class ChatConsumer(WebsocketConsumer):
                     )
         elif text_data_json['type'] == 'answer':
             print('Answer message received')
-            for channel in self.channel_list:
-                if channel != self.channel_name:
+            for channel in self.room_list[self.room_group_name]:
+                if (channel != self.channel_name) and (self.scope['url_route']['kwargs']['room_name'] == self.room_name):
                     async_to_sync(self.channel_layer.send)(
                         channel,
                         {

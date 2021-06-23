@@ -8,8 +8,9 @@
     <title>Room: {{ room_name }}</title>
 
     <style>
-        #content{
+        #chat-content{
             display: flex;
+            flex-direction: row;
         }
         #chat-log{
             width: auto;
@@ -59,27 +60,38 @@
             float: right;
         }
 
-        #startButton {
-            color: #fff !important;
+        #startButton, #stopButton {
+            color: black !important;
             text-transform: uppercase;
             text-decoration: none;
-            background: red;
-            padding: 20px;
-            border-radius: 50px;
-            display: inline-block;
-            border: none;
+            background: #f2f2f2;
+            padding: 10px;
+            border-radius: 10px;
+            /*display: inline-block;*/
+            border: 3px solid black;
             transition: all 0.4s ease 0s;
+            cursor: pointer;
         }
 
         video{
             max-width: 600px;
+        }
+        #button-container{
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <h2>Room: {{ room_name }}</h2>
 
-    <div id="content">
+    <div id="button-container">
+        <button id="startButton">Start stream</button>
+        <button id="stopButton">Stop stream</button>
+    </div>
+
+    <hr>
+
+    <div id="chat-content">
         <div id="stream-div" style="float: left;">
             <video id="streamVideo" playsinline>
               Your browser does not support the video tag.
@@ -87,9 +99,6 @@
             <video id="showVideo" playsinline autoplay>
               Your browser does not support the video tag.
             </video>
-            <div class="box">
-              <button id="startButton">Start</button>
-            </div>
         </div>
     
         <div id="chat-div">
