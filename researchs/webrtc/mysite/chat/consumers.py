@@ -2,8 +2,9 @@ import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 
+from django.shortcuts import render
+
 class ChatConsumer(WebsocketConsumer):
-    #channel_list = []
     room_list = {}
 
     def connect(self):
@@ -35,8 +36,14 @@ class ChatConsumer(WebsocketConsumer):
             print('GROUPS LIST: ', self.room_list)
             self.accept()
         else:
+            self.accept()
             # Responderle con mensaje de que no es aceptado
-            pass
+            async_to_sync(self.channel_layer.send)(
+                self.channel_name,
+                {
+                    'type':'denied'
+                }
+            )
 
     def disconnect(self, user_code):
         try:
@@ -57,7 +64,7 @@ class ChatConsumer(WebsocketConsumer):
     # Receive message from WebSocket
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        #print('WebSocket received from: ', self.scope['user'], '! Content: ', text_data_json)
+        print('WebSocket received from: ', self.scope['user'], '! Content: ', text_data_json)
         
         # Send message to room group
         if text_data_json['type'] == 'chat_message':
@@ -106,7 +113,14 @@ class ChatConsumer(WebsocketConsumer):
                             'answer': text_data_json['answer']
                         }
                     )
-
+        elif text_data_json['type'] == 'check-users':
+            async_to_sync(self.channel_layer.send)(
+                self.channel_name,
+                {
+                    'type':'checkusers',
+                    'users':len(self.room_list[self.room_group_name]) > 1
+                }
+            )
 
     # Receive message from room group
     def chat_message(self, event):
@@ -136,4 +150,15 @@ class ChatConsumer(WebsocketConsumer):
         self.send(text_data=json.dumps({
             'type': event['type'],
             'answer': event['answer']
+        }))
+
+    def denied(self, event):
+        self.send(text_data=json.dumps({
+            'type': 'denied'
+        }))
+
+    def checkusers(self, event):
+        self.send(text_data=json.dumps({
+            'type': event['type'],
+            'users': event['users']
         }))

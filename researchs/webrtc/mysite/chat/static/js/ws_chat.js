@@ -33,6 +33,15 @@ websocket.onmessage = function(event){
     }else if(message_data['type'] == 'answer'){
         console.log('Answer received');
         setAnswerDescription(message_data['answer']);
+    }else if(message_data['type'] == 'denied'){
+        console.log('Denied connection');
+        window.location.pathname = '/';
+    }else if(message_data['type'] == 'checkusers'){
+        if(message_data['users']){
+            startLocalStream()
+        }else{
+            console.log('No peer connected')
+        }
     }
 };
 

@@ -29,7 +29,15 @@ let iceCandidates = [];
 
 let startButton = document.querySelector('#startButton');
 
-startButton.addEventListener('click', startLocalStream);
+startButton.addEventListener('click', checkUsers);
+
+function checkUsers() {
+    websocket.send(
+      JSON.stringify({
+        type: "check-users",
+      })
+    );
+  }
 
 // Empezar el streaming local:
 //   1. Desactivar el botón de start, localVideo.play(),
@@ -41,7 +49,7 @@ startButton.addEventListener('click', startLocalStream);
 //      al remote peer
 //   5. Crear la oferta de candidato en el extremo local
 //   6. Crear la descripción local de localPeer
-async function startLocalStream(){   
+async function startLocalStream(){  
     // Desactivar el botón de start
     startButton.disabled = true;
 
