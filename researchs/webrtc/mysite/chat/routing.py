@@ -9,4 +9,5 @@ user-connection.
 '''
 websocket_urlpatterns = [
     re_path(r'ws/chat/(?P<room_name>\w+)/$', consumers.ChatConsumer.as_asgi()),
+    re_path(r'ws/stream/(?P<room_name>\w+)/$', consumers.StreamConsumer.as_asgi()),
 ]

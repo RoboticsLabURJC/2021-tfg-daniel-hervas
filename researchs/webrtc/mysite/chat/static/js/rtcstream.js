@@ -32,7 +32,7 @@ let startButton = document.querySelector('#startButton');
 startButton.addEventListener('click', checkUsers);
 
 function checkUsers() {
-    websocket.send(
+    streamws.send(
       JSON.stringify({
         type: "check-users",
       })
@@ -156,14 +156,14 @@ function onIceCandidate(peer, event){
     if(event.candidate != null && event.candidate != undefined){
         console.log(`onicecandidate event on ${peer}`);
         // Send the candidate to the other peer via WebSockets
-        //signalRemotePeer(JSON.stringify({
+        signalRemotePeer(JSON.stringify({
+             'type':'candidate',
+             'candidate':event.candidate
+        }));
+        // websocket.send(JSON.stringify({
         //     'type':'candidate',
         //     'candidate':event.candidate
         // }));
-        websocket.send(JSON.stringify({
-            'type':'candidate',
-            'candidate':event.candidate
-        }));
     }
 }
 
@@ -182,7 +182,7 @@ async function addLocalDescription(peer) {
 }
 
 function signalRemotePeer(data){
-    websocket.send(data);
+    streamws.send(data);
     console.log('Signaling remote peer...');
 }
 

@@ -60,7 +60,7 @@
             float: right;
         }
 
-        #startButton, #stopButton {
+        #startButton, #stopButton, #startVNC {
             color: black !important;
             text-transform: uppercase;
             text-decoration: none;
@@ -86,6 +86,7 @@
 
     <div id="button-container">
         <button id="startButton">Start stream</button>
+        <button id="startVNC">Start stream</button>
         <button id="stopButton">Stop stream</button>
     </div>
 
@@ -109,6 +110,8 @@
             <input id="chat-message-submit" type="button" value="Send">
         </div>
     </div>
+
+    <iframe src="http://dhrodao:6080/vnc.html?host=dhrodao&port=6080" width="600" height="600"></iframe>
 
     <!-- Django Channels Chat -->
     <!--
@@ -169,7 +172,7 @@
     </script>
 
     <!-- WebRTC, VideoChat, Django Channels Chat -->
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <!--<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>-->
     <script>
         //Get & show the stream.
         const localVideo = document.getElementById('streamVideo');
@@ -177,6 +180,53 @@
         
         let room_name = "{{ room_name }}";
         console.log('Room name: ', room_name);
+
+        // Enviar mensaje iframe
+        let iframe = document.querySelector('iframe');
+        let startVNC = document.querySelector('#startVNC')
+        startVNC.addEventListener('click', function(){
+            console.log('[PADRE] start stream');
+            iframe.contentWindow.postMessage('start', '*');
+        });
+
+        // Event listener mensajes padre
+        window.addEventListener('message', function(e){
+            console.log('[PADRE] mensaje: ', e.data);
+        });
+    </script>
+    <script>
+        const streamws = new WebSocket(
+            'ws://' +
+            window.location.host +
+            '/ws/stream/' +
+            room_name +
+            '/'
+        );
+
+        streamws.onmessage = function(e){
+            let message_data = JSON.parse(event.data);
+            console.log('[PARENT] streamws: ', message_data);
+            if(message_data['type'] == 'checkusers'){
+                if(message_data['users']){
+                    console.log('[PARENT] usuarios correctos');
+                    startLocalStream();
+                }else{
+                    console.log('[PARENT] usuarios incorrectos');
+                }
+            }else if(message_data['type'] == 'candidate'){
+                console.log('[PARENT] Candidate received');
+                addIceCandidate(message_data['candidate']);
+            }else if(message_data['type'] == 'offer'){
+                console.log('[PARENT] Offer received');
+                startRemoteStream(message_data['offer']);
+            }else if(message_data['type'] == 'answer'){
+                console.log('[PARENT] Answer received');
+                setAnswerDescription(message_data['answer']);
+            }else if(message_data['type'] == 'denied'){
+                console.log('[PARENT] Denied connection');
+                window.location.pathname = '/';
+            }
+        }
     </script>
     <script src="{% static 'js/ws_chat.js' %}"></script>
     <script src="{% static 'js/rtcstream.js' %}"></script>
