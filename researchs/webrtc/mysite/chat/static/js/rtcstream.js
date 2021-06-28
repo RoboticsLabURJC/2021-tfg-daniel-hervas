@@ -32,7 +32,7 @@ let startButton = document.querySelector('#startButton');
 startButton.addEventListener('click', checkUsers);
 
 function checkUsers() {
-    streamws.send(
+    websocket.send(
       JSON.stringify({
         type: "check-users",
       })

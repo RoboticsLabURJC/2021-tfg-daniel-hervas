@@ -38,9 +38,16 @@ websocket.onmessage = function(event){
         window.location.pathname = '/';
     }else if(message_data['type'] == 'checkusers'){
         if(message_data['users']){
-            startLocalStream()
+            iframe.contentWindow.postMessage('start', '*');
         }else{
             console.log('No peer connected')
+        }
+    }else if(message_data['type'] == 'stream'){
+        // Conectarse al streamws
+        if(!streamcon){
+            streamroom = message_data['stream'];
+            streamcon = true;
+            console.log('Conectado al streamws');
         }
     }
 };

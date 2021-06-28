@@ -78,49 +78,26 @@ class ChatConsumer(WebsocketConsumer):
                     'message': message
                 }
             )
-        # elif text_data_json['type'] == 'candidate':
-        #     #print('Candidate message received')
-        #     # Enviar el mensaje al peer opuesto
-        #     for channel in self.room_list[self.room_group_name]:
-        #         if (channel != self.channel_name) and (self.scope['url_route']['kwargs']['room_name'] == self.room_name):
-        #             async_to_sync(self.channel_layer.send)(
-        #                 channel,
-        #                 {
-        #                     'type': text_data_json['type'],
-        #                     'candidate': text_data_json['candidate']
-        #                 }
-        #             )
-        # elif text_data_json['type'] == 'offer':
-        #     #print('Offer message received')
-        #     # Enviar el mensaje al peer opuesto
-        #     for channel in self.room_list[self.room_group_name]:
-        #         if (channel != self.channel_name) and (self.scope['url_route']['kwargs']['room_name'] == self.room_name):
-        #             async_to_sync(self.channel_layer.send)(
-        #                 channel,
-        #                 {
-        #                     'type': text_data_json['type'],
-        #                     'offer': text_data_json['offer']
-        #                 }
-        #             )
-        # elif text_data_json['type'] == 'answer':
-        #     #print('Answer message received')
-        #     for channel in self.room_list[self.room_group_name]:
-        #         if (channel != self.channel_name) and (self.scope['url_route']['kwargs']['room_name'] == self.room_name):
-        #             async_to_sync(self.channel_layer.send)(
-        #                 channel,
-        #                 {
-        #                     'type': text_data_json['type'],
-        #                     'answer': text_data_json['answer']
-        #                 }
-        #             )
-        # elif text_data_json['type'] == 'check-users':
-        #     async_to_sync(self.channel_layer.send)(
-        #         self.channel_name,
-        #         {
-        #             'type':'checkusers',
-        #             'users':len(self.room_list[self.room_group_name]) > 1
-        #         }
-        #     )
+        elif text_data_json['type'] == 'check-users':
+            async_to_sync(self.channel_layer.send)(
+                self.channel_name,
+                {
+                    'type':'checkusers',
+                    'users':len(self.room_list[self.room_group_name]) > 1
+                }
+            )
+        elif text_data_json['type'] == 'stream':
+            print('[NOVNC] Stream message received')
+            # Enviar el mensaje al peer opuesto
+            for channel in self.room_list[self.room_group_name]:
+                if (channel != self.channel_name) and (self.scope['url_route']['kwargs']['room_name'] == self.room_name):
+                    async_to_sync(self.channel_layer.send)(
+                        channel,
+                        {
+                            'type': text_data_json['type'],
+                            'stream': text_data_json['stream']
+                        }
+                    )
 
     # Receive message from room group
     def chat_message(self, event):
@@ -133,35 +110,18 @@ class ChatConsumer(WebsocketConsumer):
             'token':token,
             'message': message
         }))
-    # # Send candidate message
-    # def candidate(self, event):
-    #     self.send(text_data=json.dumps({
-    #         'type': event['type'],
-    #         'candidate': event['candidate']
-    #     }))
 
-    # def offer(self, event):
-    #     self.send(text_data=json.dumps({
-    #         'type': event['type'],
-    #         'offer': event['offer']
-    #     }))
-
-    # def answer(self, event):
-    #     self.send(text_data=json.dumps({
-    #         'type': event['type'],
-    #         'answer': event['answer']
-    #     }))
-
-    # def denied(self, event):
-    #     self.send(text_data=json.dumps({
-    #         'type': 'denied'
-    #     }))
-
-    # def checkusers(self, event):
-    #     self.send(text_data=json.dumps({
-    #         'type': event['type'],
-    #         'users': event['users']
-    #     }))
+    def checkusers(self, event):
+        self.send(text_data=json.dumps({
+            'type': event['type'],
+            'users': event['users']
+        }))
+    
+    def stream(self, event):
+        self.send(text_data=json.dumps({
+            'type': event['type'],
+            'stream': event['stream']
+        }))
 
 class StreamConsumer(WebsocketConsumer):
     room_list = {}
