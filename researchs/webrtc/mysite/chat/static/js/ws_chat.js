@@ -10,9 +10,6 @@ const websocket = new WebSocket(
 );
 console.log('Websocket created for room: ', room_name);
 
-let token = new Date().getTime() + Math.random();
-console.log('token: ',token);
-
 websocket.onmessage = function(event){
     let message_data = JSON.parse(event.data);
     console.log('WebSocket received: ', message_data);
@@ -20,10 +17,8 @@ websocket.onmessage = function(event){
     // If the content type from the websocket is chat_message,
     // the text field is appended to the chat box
     if(message_data['type'] == 'chat_message'){
-        if(Number(token) !== Number(message_data['token'])){
-            console.log('Escribir mensaje');
-            add_message('receive', message_data['message']);
-        }
+        console.log('Escribir mensaje');
+        add_message('receive', message_data['message']);
     }else if(message_data['type'] == 'candidate'){
         console.log('Candidate received');
         addIceCandidate(message_data['candidate']);
@@ -78,7 +73,6 @@ document.querySelector('#chat-message-submit').onclick = function(e) {
     const message = messageInputDom.value;
     websocket.send(JSON.stringify({
         'type':'chat_message',
-        'token':token,
         'message': message,
     }));
     console.log('WebSocket sent!');

@@ -68,16 +68,16 @@ class ChatConsumer(WebsocketConsumer):
         
         # Send message to room group
         if text_data_json['type'] == 'chat_message':
-            message = text_data_json['message']
-            token = text_data_json['token']
-            async_to_sync(self.channel_layer.group_send)(
-                self.room_group_name,
-                {
-                    'type': 'chat_message',
-                    'token':token,
-                    'message': message
-                }
-            )
+            # Enviar el mensaje al peer opuesto
+            for channel in self.room_list[self.room_group_name]:
+                if (channel != self.channel_name) and (self.scope['url_route']['kwargs']['room_name'] == self.room_name):
+                    async_to_sync(self.channel_layer.send)(
+                        channel,
+                        {
+                            'type': text_data_json['type'],
+                            'message': text_data_json['message']
+                        }
+                    )
         elif text_data_json['type'] == 'check-users':
             async_to_sync(self.channel_layer.send)(
                 self.channel_name,
@@ -101,13 +101,10 @@ class ChatConsumer(WebsocketConsumer):
 
     # Receive message from room group
     def chat_message(self, event):
-        message = event['message']
-        token = event['token']
-        
+        message = event['message']        
         # Send message to WebSocket
         self.send(text_data=json.dumps({
             'type': 'chat_message',
-            'token':token,
             'message': message
         }))
 
