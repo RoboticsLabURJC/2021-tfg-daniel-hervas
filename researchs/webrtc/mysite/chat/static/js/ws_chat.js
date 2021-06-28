@@ -40,12 +40,18 @@ websocket.onmessage = function(event){
     }else if(message_data['type'] == 'stream'){
         // Conectarse al streamws
         if(!streamcon){
-            streamroom = message_data['stream'];
-            streamcon = true;
-            console.log('Conectado al streamws');
+            setStreamRoom(message_data['stream']);
         }
     }
 };
+
+function setStreamRoom(name){
+    streamroom = name;
+    streamcon = true;
+    console.log('Conectado al streamws');
+    // Throw event
+    document.dispatchEvent(onRoomNameSet);
+}
 
 function add_message(direction, message){
     let chat_log = document.querySelector('#chat-log');

@@ -27,10 +27,6 @@ var configuration = {
 
 let iceCandidates = [];
 
-let startButton = document.querySelector('#startButton');
-
-startButton.addEventListener('click', checkUsers);
-
 function checkUsers() {
     websocket.send(
       JSON.stringify({
@@ -160,10 +156,6 @@ function onIceCandidate(peer, event){
              'type':'candidate',
              'candidate':event.candidate
         }));
-        // websocket.send(JSON.stringify({
-        //     'type':'candidate',
-        //     'candidate':event.candidate
-        // }));
     }
 }
 
