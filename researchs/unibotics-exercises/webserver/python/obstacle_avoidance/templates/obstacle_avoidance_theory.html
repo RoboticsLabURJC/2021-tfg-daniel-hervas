@@ -1,0 +1,222 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>obstacle_avoidance_theory</title></head>
+<body><h1>Obstacle avoidance</h1>
+<p><img src="{% static 'python/obstacle_avoidance/img/obstacle_2.png' %}" width="60%" style="text-align: center"/></p>
+<h2>1 - Introduction</h2>
+<p>The objective of this practice is to implement the logic of the <a href='http://www-personal.umich.edu/~johannb/vff&vfh.htm'>VFF navigation algorithm</a> to control a F1 Robot as the one shown in the next image.</p>
+<p><img src="{% static 'python/obstacle_avoidance/img/f1_overview.png' %}" width="60%" style="text-align: center"/></p>
+<p>Navigation using VFF (Virtual Force Field), consists of:</p>
+<ul>
+<li>Each object in the environment generates a repulsive force towards the robot.</li>
+<li>Destiny generates an attractive force in the robot.</li>
+
+</ul>
+<p>This makes it possible for the robot to go towards the target, distancing itself of the obstacles, so that their address is the vector sum of all the forces.</p>
+<p>For this practice a world has been designed for the Gazebo simulator (see section 2.1). The main task will consist of making the robot reach its destiny without crashing with any obstacle. Some other extra tasks can be implemented, and are detailed at <a href='#extra'>1.1</a>.</p>
+<p>To do so, the student needs to have at least the next knowledge:</p>
+<ul>
+<li>Ease with operations with vectors</li>
+<li>Python programming skills</li>
+<li>Basic understanding of <a href='http://opencv.org/'>OpenCV library</a></li>
+
+</ul>
+<h3>1.1 Extra tasks</h3>
+<p>The solution can integrate one or more of the following levels of difficulty, as well as any other one that occurs to you:</p>
+<ul>
+<li>Go as quickly as possible</li>
+<li>Choose the safest way</li>
+<li>Obstacles in movement</li>
+<li>Robustness in situations of indecision (zero vector sum)</li>
+
+</ul>
+<h2>2 - Exercise components</h2>
+<p><img src="{% static 'python/obstacle_avoidance/img/circuitobstacles.png' %}" width="50%" height="50%" style="float:right;padding-right:10px;margin-top:35px;padding-left:10px;padding-bottom:7px;"/></p>
+<h3>2.1 Gazebo Simulator</h3>
+<p>Gazebo simulator will be running in the background. The Gazebo world employed for this exercise has a 3D model of a simple F1 circuit, with some obstacles arranged in a predefined way and distributed throughout it. These obstacles are the ones shown in the following image:</p>
+<p><img src="{% static 'python/obstacle_avoidance/img/obstacle.png' %}" width="20%" style="text-align: center"/></p>
+<p>The other component of the simulated world is the f1 car robot that your algorith will have to control. This robot will provide <font color=red>distance data</font> through a laser sensor where the walls and the obstacles will be detected.
+
+<h3>2.1 Obstacle Avoidance Component</h3>
+<p><img src="{% static 'python/obstacle_avoidance/img/obstacle_1.png' %}" width="50%" style="text-align: center"/></p>
+
+<p>This component has been developed specifically to carry out this exercise. This component connects to Gazebo to communicate with the f1 (send orders to it and receive sensors data). The student has to modify this component and add code to accomplish the exercise. In particular, it is required to modify the execute() method.</p>
+<h3>2.3 Obstacle Avoidance GUI</h3>
+<p><img src="{% static 'python/obstacle_avoidance/img/obstacle_avoidance_gui.png' %}" width="30%" style="text-align: center"/></p>
+<p>This component is meant for you to <strong>debug</strong> your algorithm. The GUI let you see in a graphic way the sensing data the f1 is reading. You can see laser scan information (light blue color lines) which <strong>will help you understand what the f1 is &quot;seeing&quot;</strong> through its laser sensor. In addition, you can specify the VFF&#39;s algorithm forces here, so you will be able to see if the robot&#39;s behaviour is correct or not based on you algorithm. For this, you have 3 different vectors (green, red and magenta) which represents the different VFF&#39;s forces (you can see this in the legend at the bottom right corner of the GUI): </p>
+<ul>
+<li><strong>Green vector</strong>: represents the attractive force of the VFF.</li>
+<li><strong>Red vector</strong>: represents the repulsive force of the VFF.</li>
+<li><strong>Magenta vector</strong>: represents the resultant force of the VFF.</li>
+
+</ul>
+<p>Lastly, you have a several circumferences showing distance data, so you can know how close the obstacles to adjust you algorithm.</p>
+<h2>3. API.</h2>
+<p>The robot admits the following instruction:</p>
+<ul>
+<li><p>To get the position of the robot (x coordinate).</p>
+<ul>
+<li><pre><code class='language-python' lang='python'>pose3d.getPose3d().x
+</code></pre>
+</li>
+
+</ul>
+</li>
+<li><p>To obtain the position of the robot (y coordinate).</p>
+<ul>
+<li><pre><code class='language-python' lang='python'>pose3d.getPose3d().y
+</code></pre>
+</li>
+
+</ul>
+</li>
+<li><p>To get the orientation of the robot with regarding the map.</p>
+<ul>
+<li><pre><code class='language-python' lang='python'>pose3d.getPose3d().yaw
+</code></pre>
+</li>
+
+</ul>
+</li>
+<li><p>To obtain laser sensor data It is composed of 180 pairs of values: (0-180º distance in millimeters).</p>
+<ul>
+<li><pre><code class='language-python' lang='python'>laser.getLaserData().values
+</code></pre>
+</li>
+
+</ul>
+</li>
+<li><p>To set and send the linear speed.</p>
+<ul>
+<li><pre><code class='language-python' lang='python'>motors.sendV()
+</code></pre>
+</li>
+
+</ul>
+</li>
+<li><p>To set and send the angular velocity.</p>
+<ul>
+<li><pre><code class='language-python' lang='python'>motors.sendW()
+</code></pre>
+</li>
+
+</ul>
+</li>
+
+</ul>
+<p>&nbsp;</p>
+<h3>3.1 Own API.</h3>
+<p>To simplify, the implementation of control points is offered. To use it, only two actions must be carried out:</p>
+<ol start='' >
+<li><p>Obtain the following point: </p>
+<ul>
+<li><code>self.currentTarget = self.getNextTarget()</code></li>
+
+</ul>
+</li>
+<li><p>Mark it as visited when necessary: </p>
+<ul>
+<li><code>self.currentTarget.setReached(True)</code></li>
+
+</ul>
+</li>
+
+</ol>
+<p>&nbsp;</p>
+<h2>3.2. Conversion of types</h2>
+<h3>Laser&#39;s API:</h3>
+<ul>
+<li>To get the laser data (wich consists of 180 pairs of values), use:</li>
+
+</ul>
+<pre><code>laser_data = self.laser.getLaserData()
+</code></pre>
+<p>We provide the code necessary to parse this data:</p>
+<pre><code>laser = []
+for i in range(len(laser_data.values)):
+    dist = laser_data.values[i]
+    angle = math.radians(i)
+    laser += [(dist, angle)]
+</code></pre>
+<p>Now, your laser_data variable will be a list with 180 positions that contain bth the angle of the laser beam and the distance to the point where the beam hit.</p>
+<p>&nbsp;</p>
+<h3>Target&#39;s API:</h3>
+<p>We provide a Python class that contains different destinations arranged along the circuit to make it easier to create a route to follow, so that you can concentrate on avoiding obstacles and on how not to lose the course. You should start your code with:</p>
+<ul>
+<li><p>To get the next target to reach.</p>
+<pre><code class='language-python' lang='python'>self.currentTarget = self.getNextTarget()
+</code></pre>
+</li>
+<li><p>To get x coordinate of the next target.</p>
+<pre><code class='language-python' lang='python'>self.targetx = self.currentTarget.getPose().x
+</code></pre>
+</li>
+<li><p>To get y coordinate of the next target.</p>
+<pre><code class='language-python' lang='python'>self.targety = self.currentTarget.getPose().y
+</code></pre>
+</li>
+<li><p>Once you think the next target has been reached, just write:</p>
+<pre><code class='language-python' lang='python'>self.currentTarget.setReached(True)
+</code></pre>
+</li>
+
+</ul>
+<h3>Robot&#39;s API:</h3>
+<p>Finally, here is the way to get robot&#39;s position information:</p>
+<ul>
+<li><p>x coordinate:</p>
+<pre><code>rx = self.pose3d.getPose3d().x
+</code></pre>
+</li>
+<li><p>y coordinate:</p>
+<pre><code class='language-python' lang='python'>ry = self.pose3d.getPose3d().y
+</code></pre>
+</li>
+<li><p>Rotation with respect to the map.</p>
+<pre><code class='language-python' lang='python'>rt = self.pose3d.getPose3d().yaw
+</code></pre>
+</li>
+<li><p>Send velocity orders to it:</p>
+<ul>
+<li><p>Send linear speed:</p>
+<pre><code class='language-python' lang='python'>self.motors.sendV(speed).
+</code></pre>
+</li>
+<li><p>Send angular speed:</p>
+<pre><code class='language-python' lang='python'>self.motors.sendW(angle)
+</code></pre>
+</li>
+
+</ul>
+</li>
+
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li><p>Once you think the next target has been reached, just write:</p>
+<pre><code class='language-python' lang='python'>self.currentTarget.setReached(True)
+</code></pre>
+</li>
+
+</ul>
+<p>&nbsp;</p>
+<h3>3.2.1. Coordinate system</h3>
+<pre><code class='language-python' lang='python'>def absolute2relative (x_abs, y_abs, robotx, roboty, robott):
+    
+    # robotx, roboty are the absolute coordinates of the robot
+    # robott is its absolute orientation
+    # Convert to relatives
+    dx = x_abs - robotx
+    dy = y_abs - roboty
+
+    # Rotate with current angle
+    x_rel = dx * math.cos (-robott) - dy * math.sin (-robott)
+    y_rel = dx * math.sin (-robott) + dy * math.cos (-robott)
+
+return x_rel, and y_rel
+</code></pre>
+</body>
+</html>

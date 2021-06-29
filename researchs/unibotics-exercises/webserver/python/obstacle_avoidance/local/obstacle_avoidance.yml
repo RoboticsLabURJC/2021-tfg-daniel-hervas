@@ -1,0 +1,20 @@
+Laser:
+  Topic: "/F1ROS/laser/scan"
+  Name: follow_line_laser
+
+Pose3D:
+  Topic: "/F1ROS/odom"
+  Name: follow_line_pose3d
+
+Motors:
+  Topic: "/F1ROS/cmd_vel"
+  Name: follow_line_motors
+  MaxV: 40
+  MaxW: 2
+
+Websockets:
+  Host: 0.0.0.0
+  Port: 9002
+  SSL: False
+  Cert: ''
+  Key: ''

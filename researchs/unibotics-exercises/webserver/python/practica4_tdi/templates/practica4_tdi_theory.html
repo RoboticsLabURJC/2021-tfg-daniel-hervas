@@ -1,0 +1,47 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>practica4_tdi_theory</title></head>
+<div style="font-size:0.85em;">
+<pre>Dpto. Teoría de la Señal y Comunicaciones y Sistemas Telemáticos y Computación.
+Tratamiento Digital de la Imagen</pre>
+</div>
+<body>
+<h1 align="middle">TDI - Práctica 4</h1>
+<h2 align="middle">Segmentación de Imagen (I)</h2>
+<h4 align="middle">Curso 2018 - 2019</h4>
+<p>&nbsp;</p>
+
+<p>El objetivo de esta práctica es comenzar a familiarizar al alumno con las herramientas básicas de segmentación de imagen en un entorno Python, haciendo uso del estándar <i> de facto</i> en lo que a tratamiendo digital de la imagen se refiere: <i>OpenCV</i>. Para ello se trabajará con la imagen en escala de grises <i>&quot;calculadora.tif&quot;</i>, que acompaña al material de esta práctica. En el apartado de código (acessible a través del botón <strong>Ver Código</strong> de la parte superior) encontrará los comandos del lenguaje de programación <a href="https://www.python.org/">Python</a> que permiten alcanzar los objetivos que se proponen, junto con una explicación detallada de su funcionamiento y utilización.</p>
+
+<p>&nbsp;</p>
+<h2>1 - Introducción </h2>
+<p>Utilice la instrucción <code>imread</code> para leer en el Cuadernillo la imagen <i>&quot;calculadora.tif&quot;</i> proporcionada. Examine visualmente la imagen y responda a las siguientes preguntas:</p>
+<ul>
+<li>- ¿Son todas las teclas del mismo tamaño?, ¿cuál es la de mayor tamaño? </li>
+<li>- ¿Tienen todas las teclas alguna letra/número en su interior?, ¿existe conectividad entre ellas? </li>
+<li>- ¿Aparecen letras/números en el exterior de las teclas? </li>
+<li>- ¿Qué letras/números presentan mayor intensidad luminosa, los del interior de las teclas o los del exterior? </li>
+</ul>
+
+<p>Tras esto, abordaremos el problema de la segmentación de objetos o regiones en las imágenes desde distintos enfoques (utilizando distintas técnicas. Finalmente, se aplicará un post-procesado para la identificación de un objeto concreto en la imagen, a través del filtrado de las áreas segmentadas. El resultado que se obtendrá será similar al mostrado en la siguiente imagen: </p>
+<p align="middle"><img src="{% static 'python/practica4_tdi/img/output.png' %}" width="45%" height="45%"></img></p>
+
+<p>&nbsp;</p>
+<h2>2 - Guión de la Práctica</h2>
+<p>Esta práctica se compone de los siguientes apartados:</p>
+
+<ul>
+<li><strong>I.</strong> Histograma y umbralización</li>
+<li><strong>II.</strong> Segmentación y caracterización de regiones</li>
+<li><strong>III.</strong> Procesado para identificación de la tecla ‘Enter’</li>
+</ul>
+
+<p>Cambie a la vista de código a través del botón superior, y siga el flujo normal a la hora de realizarlos. </p>
+</body>
+</html>
+
+
+

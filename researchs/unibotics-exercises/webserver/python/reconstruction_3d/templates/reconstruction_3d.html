@@ -1,0 +1,61 @@
+{% load static %} <!-- Cargamos los archivos estaticos -->
+
+<meta charset="utf-8">
+
+
+{% static 'python/follow_line/img/follow_line_f1.png' %}
+<script src = '{% static "python/reconstruction_3d/js/three.js" %}'></script>
+<script src = '{% static "python/reconstruction_3d/js/OrbitControls.js" %}'></script>
+<script src = '{% static "python/reconstruction_3d/js/OBJLoader.js" %}'></script>
+<script src = '{% static "python/reconstruction_3d/js/ColladaLoader.js" %}'></script>
+<script src = '{% static "python/reconstruction_3d/js/GUI.js" %}'></script>
+<script src = '{% static "python/reconstruction_3d/js/websockets_client.js" %}'></script>
+<script src = '{% static "python/reconstruction_3d/js/main.js" %}'></script>
+
+
+
+<style type="text/css">
+
+    .referee{
+        font-size: 32px;
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 3px black solid;
+    }
+
+    p.referee{
+        margin: 0px 0px 0px 0px
+    }
+
+.createPoint{
+    color: white;
+}
+
+</style>
+
+<div class="row" style="height: calc(35vh - 72px)">
+    <iframe class="col-md-6" src='{{gzweb_url}}' style="padding:0px; height:100%"></iframe>
+    <img id="imageR" class="col-md-6" style="height:100%" src="" alt="CameraR">
+</div>
+
+<div class="row" style="height: calc(40vh - 72px)">
+    <div id="canvas" class="col-md-12" style="height: 100%"></div>
+</div>
+
+<div class="row" style="height: calc(25vh - 72px)">
+    <img id="imageL" style="height:100%" class="col-md-8" src="" alt="CameraL" >
+</div>
+
+
+
+
+
+<script>
+    var wsUri = "{{gui_url}}";
+    var sprite_p = new THREE.TextureLoader().load('{% static "python/reconstruction_3d/img/disc.png" %}');
+    init()
+</script>
+   
+   
+	

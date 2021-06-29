@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>  
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find simulation_gazebo)/worlds/ArDroneBox.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+    <arg name="verbose" default="false"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="/usr/local/share/jderobot/gazebo/models:/usr/local/share/jderobot/gazebo/worlds:$(find simulation_gazebo)/worlds:$GAZEBO_RESOURCE_PATH"/>
+    <env name="GAZEBO_PLUGIN_PATH" value="/usr/local/share/jderobot/gazebo/plugins/quadrotor:$GAZEBO_PLUGIN_PATH"/>
+    <env name="GAZEBO_MODEL_PATH" value="/usr/local/share/jderobot/gazebo/models:$(find simulation_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)"/>
+    <env name="LD_LIBRARY_PATH" value="$LD_LIBRARY_PATH:/usr/local/share/jderobot/gazebo/plugins/kinect:/usr/local/share/jderobot/gazebo/plugins/quadrotor:/usr/local/share/jderobot/gazebo/plugins/turtlebot:/usr/local/share/jderobot/gazebo/plugins/flyingkinect:/usr/local/share/jderobot/gazebo/plugins/car:/usr/local/share/jderobot/gazebo/plugins/f1" />
+  </include>
+<!--  Include launch.xml if needed -->
+</launch>

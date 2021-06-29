@@ -1,0 +1,74 @@
+{% load static %} <!-- Cargamos los archivos estaticos -->
+
+<style type="text/css">
+
+    .referee{
+        font-size: 32px;
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 3px black solid;
+    }
+
+    p.referee{
+        margin: 0px 0px 0px 0px
+    }
+
+</style>
+
+<div class="col-xs-4 text-center" style="height:50px; margin:5px 0px 5px 0px" >
+    <p id="timer" class="referee align-middle">00:00:0</p>
+</div>
+<div class="col-xs-4 text-center" style="height:50px; margin:5px 0px 5px 0px" >
+    <p id="collisions" class="referee align-middle">0 collisions</p>
+</div>
+<div class="col-xs-4 text-center" style="height:50px; margin:5px 0px 5px 0px" >
+    <p id="score" class="referee align-middle">0 points</p>
+</div>
+<div class="col-xs-12" style="height:250px;">
+    <canvas id="chart_canvas"></canvas>
+</div>
+
+<script src='{% static "js/Chart.js"%}'></script>
+<script src='{% static "js/referee.js"%}'></script>
+
+<script type="text/javascript">
+
+    // Versión de Desarrollo 
+    // window.onload = Referee_Ws("ws://{{host.host}}:{{referee_port}}")
+    window.onload = Referee_Ws("{{referee_url}}")
+    
+    Distance_Chart()
+
+    referee_ws.onmessage = function(e) {
+        // e.data contains received string.
+        //console.log(e.data)
+        message_content = JSON.parse(e.data)
+        if(message_content.length == 4){
+            console.log(message_content)
+            dist = parseFloat(message_content[0])
+            crono = message_content[1]
+            score = message_content[2]
+            col = message_content[3]
+    
+            distance_chart.data.datasets[0].data.push(dist) 
+    
+            if(dist >= 4){
+                distance_chart.options.chartArea.backgroundColor = "rgba(255, 85, 85, 0.4)"
+            }else{
+                distance_chart.options.chartArea.backgroundColor = "rgba(0, 255, 0, 0.4)"
+            }
+    
+            document.getElementById("timer").innerHTML = crono
+            document.getElementById("score").innerHTML = score + " points"
+            document.getElementById("collisions").innerHTML = col + " collisions"
+    
+            distance_chart.update(0)  
+        }else if(message_content[0] == "reset"){
+            console.log("RESET")
+            distance_chart.data.datasets[0].data = 0
+            distance_chart.update(0)
+        }
+    };
+    
+</script>

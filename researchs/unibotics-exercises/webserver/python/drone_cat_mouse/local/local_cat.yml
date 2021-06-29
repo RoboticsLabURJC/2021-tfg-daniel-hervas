@@ -1,0 +1,44 @@
+Cat:
+  Camera:
+    Server: 1 # 0 -> Deactivate, 1 -> Ice , 2 -> ROS
+    Proxy: "Camera:tcp -h localhost -p 9000"
+    Format: RGB8
+    Topic: "/IntrorobROS/image_raw"
+    Name: IntrorobCamera
+
+
+  Pose3D:
+    Server: 1 # 0 -> Deactivate, 1 -> Ice , 2 -> ROS
+    Proxy: "Pose3D:tcp -h localhost -p 9000"
+    Topic: "/IntrorobROS/Pose3D"
+    Name: IntrorobPose3d
+
+  CMDVel:
+    Server: 1 # 0 -> Deactivate, 1 -> Ice , 2 -> ROS
+    Proxy: "CMDVel:tcp -h localhost -p 9000"
+    Topic: "/IntrorobROS/CMDVel"
+    Name: IntrorobCMDVel
+
+  Navdata:
+    Server: 1 # 0 -> Deactivate, 1 -> Ice , 2 -> ROS
+    Proxy: "Navdata:tcp -h localhost -p 9000"
+    Topic: "/IntrorobROS/Navdata"
+    Name: IntrorobNavdata
+
+  Extra:
+    Server: 1 # 0 -> Deactivate, 1 -> Ice , 2 -> ROS
+    Proxy: "Extra:tcp -h localhost -p 9000"
+    Topic: "/IntrorobROS/Extra"
+    Name: IntrorobExtra
+
+Websockets:
+  Host: 0.0.0.0
+  Port: 9002
+  SSL: False
+  Cert: ''
+  Key: ''
+
+  Xmax: 100
+  Ymax: 100
+  Zmax: 100
+  Yawmax: 100 

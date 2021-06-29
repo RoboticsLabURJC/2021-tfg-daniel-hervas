@@ -1,0 +1,12 @@
+Camera:
+  Topic: "/BASETOPIC/cameraL/image_raw" 
+  Name: camera
+
+
+Motors:
+  Topic: "/BASETOPIC/cmd_vel"
+  Name: motors
+  MaxV: 40
+  MaxW: 2
+
+

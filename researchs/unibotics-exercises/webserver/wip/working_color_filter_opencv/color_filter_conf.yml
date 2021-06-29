@@ -1,0 +1,20 @@
+Introrob:
+
+  Source: Local # Local (local camera), Video (local file), Stream (ROS/ICE)
+
+  Local:
+    DeviceNo: 0 # Device number for the desired webcam
+    Server: 0
+
+  Video:
+    Path: "/home/YourUser/pelotas_roja_azul.avi"
+    Server: 0
+
+  Stream:
+    Server: 1 # 0 -> Deactivate, 1 -> Ice , 2 -> ROS
+    Proxy: "cameraA:tcp -h localhost -p 9999"
+    Format: RGB8
+    Topic: "/IntrorobROS/image_raw"
+    Name: IntrorobCamera
+    
+NodeName: Introrob

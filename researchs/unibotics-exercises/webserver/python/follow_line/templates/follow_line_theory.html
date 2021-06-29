@@ -1,0 +1,117 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>follow_line_theory</title></head>
+<body><h1>Follow Line Practice</h1>
+<p><img src="{% static 'python/follow_line/img/follow_line_f1.png' %}" width="100%" height="100%" style="float:left;padding-right:15px"/></p>
+<p>&nbsp;</p>
+<h2>1- Introduction</h2>
+<p>In this exercise we are going to implement a &quot;Formula 1&quot; intelligence to <strong>follow a red line</strong> across the circuit. To do it, the student needs to have at least the next knowledge:</p>
+<ul>
+<li>Python programming skills.</li>
+<li><a href='https://en.wikipedia.org/wiki/Color_space'>Color spaces</a> (RGB, HSV, etc).</li>
+<li>Basic understanding of <a href='https://docs.opencv.org/2.4/modules/refman.html'>OpenCV library</a>.</li>
+
+</ul>
+<p>&nbsp;</p>
+<h2>2- Exercise components</h2>
+<h3>2.1- Gazebo simulator</h3>
+<p>The gazebo simulator will be running on the right side of the window.. The Gazebo world employed for this exercise has one element: <strong>a simulated Formula 1 car robot</strong>. The Formula 1 robot will provide camera where the images will be provided to the student.</p>
+<p><img src="{% static 'python/follow_line/img/f1_overview.png' %}" width="100%" height="100%" style="float:left;padding-right:15px"/></p>
+<p>&nbsp;</p>
+<h3>2.2 Follow Line Component</h3>
+<p>This component has been developed specifically to carry out this exercise. This component connects to Gazebo to teleoperate the Formula 1 (or send orders to it) and receives images from its camera. The student has to modify this component and add code to accomplish the exercise. In particular, it is required to modify the <code>execute()</code> method.</p>
+<p><img src="{% static 'python/follow_line/img/f1_first_person.png' %}" width="100%" height="100%" style="float:left;padding-right:15px"/></p>
+<p>&nbsp;</p>
+<h2>3 - API</h2>
+<p>The orders that the formula 1 admits are the following:</p>
+<ul>
+<li>To get the images from the camera:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>input_image = self.getImage()
+</code></pre>
+<ul>
+<li>To move the robot:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>self.motors.sendV(10)
+self.motors.sendW(5)
+</code></pre>
+<ul>
+<li>To change the image inRGB to HSV:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>image_HSV = cv2.cvtColor()
+</code></pre>
+<ul>
+<li>To filter the red values :</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>value_min_HSV = np.array([0, 235, 60])
+value_max_HSV = np.array([180, 255, 255])
+</code></pre>
+<ul>
+<li>To filter the images:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>image_HSV_filtered = cv2.inRange()
+</code></pre>
+<ul>
+<li>To create a mask with the red values:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>image_HSV_filtered_Mask = np.dstack(())
+</code></pre>
+<ul>
+<li>To get the numbers of the image rows and columns:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>size = input_image.shape
+</code></pre>
+<ul>
+<li>To get the pixels that change of tone:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>position_pixel_left = []
+position_pixel_right  = []
+</code></pre>
+<p>After that you must calculate the middle position of the road and then, calculate the desviation of the car:</p>
+<pre><code class='language-python' lang='python'>desviation = position_middle - (columns/2)
+</code></pre>
+<p>Then, depending on the desviation, you should correct the position of the car. </p>
+<ul>
+<li>To save the camera image:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>self.set_color_image(input_image)
+</code></pre>
+<ul>
+<li>To save the filtered image:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>self.set_threshold_image(image_HSV_filtered_Mask)
+</code></pre>
+<ul>
+<li>To obtain an image of the cameras, the data is first saved and then displayed. You can use these instructions to display the contents of the cameras.</li>
+
+</ul>
+<pre><code class='language-python' lang='python'> def execute(self):
+    img = self.getImage()
+    self.set_color_image(img)
+    
+fl.setExecute(execute)
+</code></pre>
+<p>You can use the following instructions to show the filtered images. <strong>Note: The image must be on RGB or Gray Scale color model. Other formats is not allowed.</strong></p>
+<pre><code class='language-python' lang='python'> def execute(self):
+    img = self.getImage()
+    self.set_threshold_image(img)
+    
+fl.setExecute(execute)
+</code></pre>
+<p>Are you able to complete a lap of the circuit? <strong>Go for it</strong>.</p>
+<p><img src="{% static 'python/follow_line/img/circuit.png' %}" width="100%" height="100%" style="float:left;padding-right:15px"/></p>
+</body>
+</html>

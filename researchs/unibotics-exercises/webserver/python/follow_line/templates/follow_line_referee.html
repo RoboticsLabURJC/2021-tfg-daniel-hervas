@@ -1,0 +1,49 @@
+{% load static %} <!-- Cargamos los archivos estaticos -->
+
+<style type="text/css">
+
+    .referee{
+        font-size: 32px;
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 3px black solid;
+    }
+
+    p.referee{
+        margin: 0px 0px 0px 0px
+    }
+
+</style>
+
+<div class="col-xs-4 text-center" style="height:50px; margin:5px 0px 5px 0px" >
+    <p id="timer" class="referee align-middle">00:00:0</p>
+</div>
+
+<script src='{% static "js/Chart.js"%}'></script>
+<script src='{% static "js/referee.js"%}'></script>
+
+<script type="text/javascript">
+
+    // Versión de Desarrollo 
+    // window.onload = Referee_Ws("ws://{{host.host}}:{{referee_port}}")
+    window.onload = Referee_Ws("{{referee_url}}");
+    
+    //Distance_Chart()
+
+    referee_ws.onmessage = function(e) {
+        // e.data contains received string.
+        //console.log(e.data)
+        message_content = JSON.parse(e.data);
+        console.log(message_content);
+        if(message_content.length == 1){
+            console.log(message_content);
+            crono = message_content[0];
+            document.getElementById("timer").innerHTML = crono;
+            
+        }else if(message_content[0] == "reset"){
+            console.log("RESET");
+        }
+    };
+    
+</script>

@@ -1,0 +1,62 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>reconstruction_3d_theory</title></head>
+<body><h1>3D reconstruction</h1>
+<p><img src="{% static 'python/reconstruction_3d/img/reconstruction_1.png' %}" width="60%" height="60%"></p>
+<h2>1. Introduction</h2>
+<p>Cameras are usual sensors in robot&#39;s equipment. Many robots use vision to perceive their environment. For instance mobile robots may use vision to detect obstacles around and to measure the distance to them. Navigation algorithms may then employ such distances to perform obstacle avoidance.</p>
+<p>Obtaining such distances, the visual 3D reconstruction from images, can be solved using RGBD sensors (like Kinect, LIDAR cameras...) or even stereo cameras. In <strong>this exercise</strong> you will learn the <strong>classic algoritm to compute the 3D reconstruction from the images of two simple cameras in stereo pair</strong>, to obtain geometric information from the visual data in images.</p>
+<p>This classic algorithm uses pin-hole camera model. It also requires calibrated cameras and texture in the scene. It basically consists of <strong>three steps</strong>: </p>
+<ul>
+<li>Computation of interest points in one image.</li>
+<li>Matching pixels from left and right images.</li>
+<li>Triangulation to estimate depth, 3D points. </li>
+
+</ul>
+<p>Some real stereo cameras, like BumbleBee, just perform this algorithm in an electronic circuit.</p>
+<p>&nbsp;</p>
+<h2>2. Infrastructure</h2>
+<p>This section breaks down the parts of which the year is made up as follows</p>
+<h3>2.1.- Gazebo simulator</h3>
+<p>The Gazebo simulator will be used to know the position of the robot in the world. This allows to move the robot to position it in another area of the scene and perform the reconstruction from another perspective.</p>
+<p>&nbsp;</p>
+<p><img src="{% static 'python/reconstruction_3d/img/reconstruction_2.png' %}" width="60%" height="60%"></p>
+<h3>2.2. Viewers</h3>
+<p>In this exercise there are several viewers.</p>
+<p>In the <strong>upper right</strong> part (next to the simulator) there is a viewer where you can <strong>send content</strong>, for example process an image or project text (using OpenCV) to know the state of variables.</p>
+<p>In the <strong>middle</strong> a bigger viewer. This is the <strong>main core of the</strong> viewers since the points you are calculating are projected in space. </p>
+<p>Finally, in the <strong>lower part</strong> you have the <strong>visualization of the stereo pair</strong> of the cameras of the robot (left image and right image). Using the libraries provided by the API you can make point <strong>matches</strong> between both images.</p>
+<p>&nbsp;</p>
+<p><img src="{% static 'python/reconstruction_3d/img/thumbnail_reconstruction_3d.png' %}" width="50%" height="60%"></p>
+<h2>3. API</h2>
+<ul>
+<li><p>To get the images from the cameras:</p>
+<pre><code class='language-python' lang='python'>imageLeft = self.getImageLeft()
+imageRight = self.getImageRight()
+</code></pre>
+</li>
+<li><p>To send the camera images to viewer:</p>
+<pre><code class='language-python' lang='python'>self.setImageFiltered(imageLeft)
+</code></pre>
+</li>
+<li><p>To show matches between the left and right image:</p>
+<pre><code class='language-python' lang='python'>self.showMatches(imageLeft,imageRight,matches)
+</code></pre>
+</li>
+<li><p>To draw points in 3D world:</p>
+<pre><code class='language-python' lang='python'>self.drawPoint(point,color)
+</code></pre>
+</li>
+<li><p>To return a point on the back project line:</p>
+<pre><code class='language-python' lang='python'>self.camLeftP.backproject(self, point2d)
+</code></pre>
+<p>&nbsp;</p>
+</li>
+
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,19 @@
+Camera:
+  Topic: "/F1ROS/cameraL/image_raw" 
+  Name: follow_line_camera
+
+
+Motors:
+  Topic: "/F1ROS/cmd_vel"
+  Name: follow_line_motors
+  MaxV: 40
+  MaxW: 2
+
+Websockets:
+  Host: 0.0.0.0 
+  Port: 9002
+  SSL: False
+  Cert: '/etc/academy-certs/jderobot.org/fullchain1.pem' 
+  Key: '/etc/academy-certs/jderobot.org/privkey1.pem'
+
+

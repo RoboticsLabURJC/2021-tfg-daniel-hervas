@@ -1,0 +1,111 @@
+{% load static %} <!-- Cargamos los archivos estaticos -->
+
+<script src='{% static "js/Chart.js"%}'></script>
+<script src='{% static "js/referee.js"%}'></script>
+
+<style type="text/css">
+
+    .referee{
+        font-size: 32px;
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 3px black solid;
+    }
+
+    p.referee{
+        margin: 0px 0px 0px 0px
+    }
+
+</style>
+
+<!-- Versión de Desarrollo -->
+<!-- iframe class="col-md-12" width="100%" height="100%" frameBorder="0" src='http://{{host.host}}:{{gzweb_port}}'></iframe> -->
+<iframe class="col-lg-12" width="100%" height="600px"frameBorder="0" style="padding:0px" src='{{gzweb_url}}' style="padding:0px"></iframe>
+
+<div id="gui" class="col-xs-12" style="padding:0px 0px 0px 0px; height:290px; display:block">
+   <img id="camera_image" src="{% static 'img/logo_jderobot_pantalla_carga.png' %}" alt="Camera" style="height:100%; width:auto;">
+</div>
+
+{% if referee %}
+
+   <div id="referee" class="col-xs-12" style="padding:0px 0px 0px 0px; height:290px; display:none">
+      {% include exercise.language|add:"/"|add:exercise.exercise_id|add:"/templates/"|add:exercise.exercise_id|add:"_referee.html" %} 
+   </div>
+
+   <script type="text/javascript">
+
+      function switchGuiReferee() {
+         if (document.getElementById('gui').style.display == 'none') {
+               document.getElementById('gui').style.display = 'block';
+               document.getElementById('referee').style.display = 'none';
+               document.getElementById('ButtonGuiReferee').innerHTML = '<span class="glyphicon glyphicon-check"></span> View Referee'
+         }
+         else {
+               document.getElementById('gui').style.display = 'none';
+               document.getElementById('referee').style.display = 'block';
+               document.getElementById('ButtonGuiReferee').innerHTML = '<span class="glyphicon glyphicon-facetime-video"></span> View GUI'
+         }
+      }
+   </script>
+
+{% endif %}
+
+<script type="text/javascript">
+
+   var img;
+   var wsUri = "{{gui_url}}"
+
+   function init() {
+      img = document.getElementById("camera_image");
+      testWebSocket();
+   }
+		
+   function testWebSocket() {
+
+      websocket = new WebSocket(wsUri);
+			
+      websocket.onopen = function(evt) {
+          onOpen(evt)
+      };
+		
+      websocket.onmessage = function(evt) {
+          onMessage(evt)
+      };
+		
+      websocket.onerror = function(evt) {
+         console.error(evt.data);
+      };
+
+      websocket.onclose = function (evt) {
+         // Connection closed.
+         // Firstly, check the reason.
+         if (evt.code != 1000) {
+            onError(evt);
+         }
+      }
+   }
+		
+   function onOpen(evt) {
+      console.log("CONNECTED");
+   }
+   
+   function onMessage(evt) {
+      //console.log(evt.data);
+      img.src = evt.data; 
+   }
+
+   function onError(evt) {
+      console.error(evt.data);
+      setTimeout(function() {
+         init();
+      },500);
+   }
+   
+   function doSend(message) {
+      writeToScreen("SENT: " + message); websocket.send(message);
+   }
+		
+   window.addEventListener("load", init, false);
+
+</script>

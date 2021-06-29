@@ -1,0 +1,48 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>practica1_tdi_theory</title></head>
+<div style="font-size:0.85em;">
+<pre>Dpto. Teoría de la Señal y Comunicaciones y Sistemas Telemáticos y Computación.
+Tratamiento Digital de la Imagen</pre>
+</div>
+<body>
+<h1 align="middle">TDI - Práctica 2</h1>
+<h2 align="middle">Filtrado de imágenes en el dominio espacial</h2>
+<h4 align="middle">Curso 2018 - 2019</h4>
+<p>&nbsp;</p>
+
+<p>El objetivo de esta práctica es familiarizar al alumno con las herramientas básicas de filtrado espacial utilizando Python. En el apartado de código (acessible a través del botón <strong>Ver Código</strong> que de la parte superior) encontrará los comandos del lenguaje de programación <a href="https://www.python.org/">Python</a> que permiten alcanzar los objetivos que se proponen, junto con una explicación detallada de su funcionamiento y utilización.</p>
+
+<p>En esta práctica trabajaremos con dos imágenes en escala de grises (<i>gray scale</i>):</p>
+<ul>
+<li> - Una imagen sintética (artificial) que creará el propio alumno.</li>
+<li> - La imagen <i>&quot;coins.png&quot;</i>.</li>
+</ul>
+
+<p>&nbsp;</p>
+<h2>1 - Introducción </h2>
+<p>Para observar la efectividad del filtrado espacial conviene trabajar con imágenes reales o con imágenes sintéticas contaminadas con alguna fuente de ruido. En esta práctica trabajaremos principalmente con tres fuentes de ruido: '<i>gaussian</i>', '<i>salt & pepper</i>' y '<i>speckle</i>'. A estas imágenes ruidosas se les deberá aplicar un filtrado en el dominio del espacio con el objetivo de reducir el ruido. Utilizaremos filtros tanto de naturaleza lineal como no lineal. </p>
+
+<p>La parte final de la práctica consistirá en un post-procesado que buscará el realce de los contornos presentes en la imagen, y un proceso de composición de imágenes para obtener una imagen a color con las características de interés resaltadas, cuyo resultado debe ser similar al que se muestra en la siguiente imagen:</p>
+<p align="middle"><img src="{% static 'python/practica2_tdi/img/output.png' %}" width="45%" height="45%"></img></p>
+
+<p>&nbsp;</p>
+<h2>2 - Guión de la Práctica</h2>
+<p>Esta práctica se compone de los siguientes puntos:</p>
+
+<ul>
+<li><strong>I.</strong> Imágenes contaminadas con ruido</li>
+<li><strong>II.</strong> Filtros espaciales suavizadores</li>
+<li><strong>III.</strong> Filtros espaciales de realce de contornos</li>
+<li><strong>IV.</strong> Composición de imágenes</li>
+</ul>
+
+<p>Cambie a la vista de código a través del botón superior, y siga el flujo normal a la hora de realizarlos. </p>
+</body>
+</html>
+
+
+

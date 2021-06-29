@@ -1,0 +1,407 @@
+{% extends "exercise_base.html" %}
+{% load static %} <!-- Cargamos los archivos estaticos -->
+{% load i18n %} <!-- Cargamos el módulo de Internacionalización -->
+{% load extras %}
+{% block content %}
+
+<div id="deployment-modal" class="modal fade">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 id="modal-title" class="">How to perform the exercise?</h3>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <ol>
+              <li>
+                Pull the latest RADI image from Docker using the following command:
+                <code>docker pull jderobot/robotics-academy</code>
+              </li>
+              <li>
+                <p>Start the Docker container of the image and keep it running in the background:
+                  <code>docker run --rm -it -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:2.4.3 ./start_manager.sh</code>
+                </p>
+				<p>For linux and nvidia users, hardware acceleration can be achieved by using nvidia proprietary drivers and launching the alternative instruction:
+					<code>docker run --rm -it --device /dev/dri -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:2.4.3 ./start_manager.sh</code>
+				  </p>
+              </li>
+              <li>Click the Connect button and wait until it turns green. You may use the exercise then.</li>
+            </ol>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div id="info-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+		  <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="false">
+		  <div class="carousel-inner">
+			  <div class="carousel-item active">
+				  <div class="modal-header">
+					  <h5>How to connect</h5>
+				  </div>
+				  <div class="modal-body">
+				  <ol>
+					<li>
+						Pull the latest RADI image from Docker using the following command:
+						<code>docker pull jderobot/robotics-academy</code>
+					</li>
+					<li>
+						<p>Start the Docker container of the image and keep it running in the background:
+							<code>docker run --rm -it -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:2.4.3 ./start_manager.sh</code>
+						</p>
+						<p>For linux and nvidia users, hardware acceleration can be achieved by using nvidia proprietary drivers and launching the alternative instruction:
+							<code>docker run --rm -it --device /dev/dri -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:2.4.3 ./start_manager.sh</code>
+						  </p>
+					</li>
+					<li>Click the Connect button and wait until it turns green. You may use the exercise then.</li>
+				  </ol>
+				  </div>
+			  </div>
+			  <div class="carousel-item carousel-item-controls">
+			  <div class="modal-header">
+					  <h5>Controls (1/2)</h5>
+				  </div>
+				  <div class="modal-body" style="display: flex">
+					  <div>
+					  <ul>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="/static/academy/assets/img/submit.png">
+							  <p>- Execute your code</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="/static/academy/assets/img/pause.png">
+							  <p>- Pause the simulation</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="/static/academy/assets/img/upload.png">
+							  <p> - Save your code on the cloud</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="/static/academy/assets/img/download.png">
+							  <p>- Load code from your pc</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="/static/unibotics-exercises/static/assets/common/img/reset.svg">
+							  <p>- Reset the simulation</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="/static/academy/assets/img/style.png">
+							  <p>- Evaluate your code</p>
+							  </div>
+						  </li>
+					  </ul>
+					  </div>
+					  <div>
+						  <ul>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img style="width: 30px; height: 30px" src="/static/unibotics-exercises/static/assets/common/img/gzweb_btn.png">
+							  <p>- Open gzweb</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="/static/unibotics-exercises/static/assets/common/img/terminal-solid.png">
+							  <p style="padding-left: 12px;">- Open terminal</p>
+							  </div>
+						  </li>
+						  </ul>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="carousel-item carousel-item-controls">
+					  <div class="modal-header">
+						  <h5>Controls (2/2)</h5>
+					  </div>
+					  <div class="modal-body">
+					  <ul>
+						  <li>
+							  <div class="d-flex flex-row" style="margin-top: 20px">
+							  <p><strong>Brain Frecuency:</strong>&nbspadjusts the running frecuency of the code</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <p><strong>GUI Frecuency:</strong>&nbspadjusts the running frecuency of the GUI</p>
+							  </div>
+						  </li>
+					  </ul>
+					  </div>
+			  </div>
+		  </div>
+		  <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			  <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			  <span class="sr-only">Next</span>
+		  </a>
+		  </div>
+	  </div>
+	</div>
+  </div>
+
+  <div id="theory-view" style="display: none;">
+	<iframe src="https://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/vacuum_cleaner" id="iframe-tab"></iframe>
+</div>
+
+<div class="row col-md-12" id="exercise-controls">
+	<div id="Control" class="container">
+		<button id="save" type="button" onclick="saveCodeUnibotics('{{exercise}}')"><img  class="btn_img" src="{% static 'academy/assets/img/upload.png''%}"> Save</button>
+		<button id="load" type="button"><img class="btn_img" src="{% static 'academy/assets/img/download.png'%}"> Load</button>
+		<button id="evaluate" type="button" onclick="evaluate_code('{{exercise}}')"><img id="evaluate_img" class="btn_img" src="{% static 'academy/assets/img/style.png' %}"> Evaluate</button>
+		<button id="submit" type="button" onclick="submitCode('{{user.username}}')"><img class="btn_img" src="{% static 'academy/assets/img/submit.png'%}"> Play </button>
+		<button id="stop" type="button" onclick="stopCode()"><img class="btn_img" src="{% static 'academy/assets/img/pause.png''%}"> Stop</button>
+		<input type="file" id="real-file" hidden="hidden"/>
+		<button id="reset" type="button" onclick="resetSim()"><img class="btn_img" style="height:15px;" src="{% static 'unibotics-exercises/static/assets/common/img/reset.svg'%}"> Reset</button>
+		<div overflow-x:auto id="Medidor_Brain">
+			<table id=table_code_freq>
+			<tr>
+			<td><a id="letters">Brain Freq:</a> <output id="ideal_code_frequency">0</output>/ <input type="number" id="code_freq" name="Brain Frequency" min="1" max="30" value="12" step="1" style="color:blue" oninput="codefrequencyUpdate(value)"<span title="The brain frequency is the value that tells the robot with what frequency should the code be updated"></span> <a id="Hz">Hz</a></td>
+			</tr>  
+			</table>
+		</div>    
+		<div overflow-x:auto id="Medidor_GUI">
+			<table id=table_gui_freq>
+			<tr>
+			<td><a id="letters">GUI Freq:</a><output id="ideal_gui_frequency">0</output>/ <input type="number" id="gui_freq" name="quantity" min="1" max="30" value="12" step="1" style="color:green" oninput="guifrequencyUpdate(value)"<span title="This value corresponds to the frequency the UI and visuals will be updated."></span> Hz</td>
+			</tr>  
+			</table>
+		</div>   
+        <div id="Medidor_RTF">
+            <a id="letters">Sim RTF:</a><output id="real_time_factor" style="color:red">0</output><span title="This value is the real time factor of the simulation, it let us know the rate of time in the simulation and real time. As you get closer to 1, the difference between real time and simulation time decreases."></span>
+        </div>
+		<button id="gazebo_button" type="button" onclick="changegzweb()" <span title="Activate the gazebo screen"></span><img id="gzimg" style="height:20px;" src="{% static 'unibotics-exercises/static/assets/common/img//gazebo.svg' %}">Gazebo</button>
+        <button id="console_button" type="button" onclick="changeconsole()"><img id="terminalimg" src="{% static 'unibotics-exercises/static/assets/common/img//console.png' %}"> Console</button>
+        <!--<a id="letters">Sim RTF</a><output id="real_time_factor" style="color:red">0</output><span title="This value is the real time factor of the simulation, it let us know the rate of time in the simulation and real time. As you get closer to 1, the difference between real time and simulation time decreases."></span>-->	
+	</div>
+</div>
+
+
+
+<div class="content" id="exercise-view">
+  <div class="split a">
+	<br>
+	<div class="col-md-12 justify-content-center">
+		<div id="code-control">
+			<!-- Code Editor -->
+			<!-- Along with buttons -->
+			<div id="code_container">
+
+			<div id="editor">from GUI import GUI
+from HAL import HAL
+# Enter sequential code!
+
+while True:
+    # Enter iterative code!</div>
+
+			</div>
+			<div id="myModal" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title">Enter a filename</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			<div class="md-form ml-0 mr-0">
+				<input  type="text" id="form29" class="form-control form-control-sm validate ml-0">
+			  </div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-primary" onclick="downloadFile()">Download</button>
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+		</div>
+			</div>
+	</div>
+
+  </div>
+
+  <div class="split b">
+
+
+
+	<div class="row">
+      <div class="col-md-8">
+        <div class="card text-center">
+            <div class="card-header">
+              Visualization
+            </div>
+          <div class="card-body mx-auto">
+        	<div class="row mx-auto">
+              <canvas id="vacuum-eye"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-md-4">
+          <div class="row">
+            <div class="card text-center flex-fill">
+              <div class="card-header">
+                Lap time <img class="btn_img" src="{% static 'unibotics-exercises/static/assets/common/img/stopwatch-solid.svg'%}">
+              </div>
+              <div class="card-body">
+                <span style="padding: 0 0 0 0; font-size: 20px;" id="lap_time"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="card text-center flex-fill">
+              <div class="card-header">
+                Evaluator
+              </div>
+              <div class="card-body">
+                Score: <p id="score">0</p>
+                <canvas id="grid"></canvas>
+                <div id="herramientas" style="display:none;">
+                    Color: <input id="color"  value="#0000FF"/>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+	</div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card text-center flex-fill">
+          <div class="card-header">
+            Gazebo
+          </div>
+          <div class="card-body">
+            <iframe id="iframe" style="display:none;" src="" width="100%" height="500" ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <iframe id="console-vnc" style="display:none;" src="" width="100%" height="100%"></iframe>
+
+          <script type="text/javascript">
+               var csrf = '{{ csrf_token }}';
+          function changeconsole(){
+            var console_display = document.getElementById('console-vnc').style.display
+            console.log(console_display)
+            if (console_display == "none" || console_display == "none" ) {
+				setIframeConsole();
+              document.getElementById('console-vnc').style.display = 'block';
+            } else{
+              document.getElementById('console-vnc').style.display = 'none';
+            }
+          }
+          function changegzweb(){
+            var display = document.getElementById('iframe').style.display
+            console.log(display)
+            if (display == "none" || display == "none" ) {
+              document.getElementById('iframe').style.display = 'block';
+                      setIframe();
+            } else{
+              document.getElementById('iframe').style.display = 'none';
+            }
+          }
+          </script></div>
+          <script src="https://unpkg.com/split.js/dist/split.min.js"></script>
+          <script>
+            Split(['.a', '.b'], {
+              gutterSize: 3,
+              sizes: [50,50]
+            });
+          </script>
+
+
+    <!-- Common -->
+    <script src="{% static 'unibotics-exercises/static/assets/common/js/utils.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'unibotics-exercises/static/assets/common/js/setIframe.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'unibotics-exercises/static/assets/common/js/ace-builds/src-noconflict/ace.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'unibotics-exercises/static/assets/common/js/ws_data.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'unibotics-exercises/static/assets/common/js/ws_code.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var csrf = '{{ csrf_token }}';
+			function intervalSave() {
+				saveCodeUnibotics('{{exercise}}', true);
+			}
+			var saving = setInterval(intervalSave, 300000);
+		</script>
+    <!-- Exercise specific resources -->
+    <script src="{% static 'unibotics-exercises/static/assets/exercises/vacuum_cleaner/js/ws_gui.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'unibotics-exercises/static/assets/exercises/vacuum_cleaner/js/birds_eye.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'unibotics-exercises/static/assets/exercises/vacuum_cleaner/js/launcher.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'unibotics-exercises/static/assets/exercises/vacuum_cleaner/js/black_squares.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'unibotics-exercises/static/assets/exercises/vacuum_cleaner/js/evaluator.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.addEventListener("beforeunload", function (e) {
+            e.preventDefault();
+            var date = new Date().getTime();
+            localStorage.setItem('lastTime', date);
+            localStorage.setItem('exercise', 'vacuum_cleaner');
+            freeDocker();
+        });
+    </script>
+
+    <!-- BOTON DE CONEXION CON RADI-->
+    <script>
+        $(document).ready(function() {$("#connection-button").click(
+            function () {
+              $("#connection-button").removeClass('btn btn-danger').addClass('btn btn-warning');
+				      $("#connection-button").html('<span id="loading-connection" class="fa fa-refresh fa-spin"></span> Connecting');
+
+				        startSim("{{websocket_address}}","{{server}}", "{{user.username}}");
+			      });
+        });
+    </script>
+
+    <script type="text/javascript">
+    	const realFileBtn = document.getElementById("real-file");
+    	const customBtn = document.getElementById("load");
+    	const editorele = ace.edit("editor");
+    	customBtn.addEventListener("click", function(){
+    		realFileBtn.click();
+    	});
+    	realFileBtn.addEventListener("change", function() {
+    		if (realFileBtn.value) {
+    			console.log("FILE CHOSEN:");
+    			console.log(realFileBtn.value);
+    			var fr = new FileReader();
+    			fr.onload = function(){
+    				editorele.setValue(fr.result, 1);
+    			}
+    			fr.readAsText(this.files[0]);
+
+    		}
+    	});
+    </script>
+
+    {% if user_code|length > 0%}
+
+    <script type="text/javascript">
+        code = "{{user_code}}".replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&gt;/, ">").replace(/&lt;/, "<")
+        console.log(code);
+        editorele.setValue(code)
+    </script>
+    {% endif %}
+
+</div>
+
+{% endblock %}

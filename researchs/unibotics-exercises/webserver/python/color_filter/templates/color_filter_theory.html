@@ -1,0 +1,122 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>color_filter_theory</title></head>
+<body><h1>Color Filter Practice</h1>
+<div style="font-size:1.2em;">
+<p><img src="{% static 'python/color_filter/img/filteredImage.png' %}" width="40%" height="25%" style="float:left;padding-right:25px;margin-top:20px;"/></p>
+<p>&nbsp;</p>
+<h2>1- Introduction</h2>
+<p style="padding-right:20px;padding-left:15px;">In this exercise we are going to implement a &quot;Color Filter&quot; to segment an object in an image provided either by your local camera, a local video file or an external camera controlled by a ROS/ICE plugin. By default, this notebook will get images from your local video device, such as webcams. To resolve this exercise, the student needs to have at least the next knowledge:</p>
+
+<ul>
+<li style="text-indent: 40px">* Python programming skills.</li>
+<li style="text-indent: 40px">* <a href='https://en.wikipedia.org/wiki/Color_space'>Color spaces</a> (RGB, HSV, etc).</li>
+<li style="text-indent: 40px">* Basic understanding of <a href='https://docs.opencv.org/2.4/modules/refman.html'>OpenCV library</a>.</li>
+
+</ul>
+<p>&nbsp;</p>
+<h2 style="margin-top:60px;">2- Exercise components</h2>
+<h3>2.1- Local Camera</h3>
+<p>The video device that your computer includes by default (this is: the one in <strong>/dev/video0</strong>) will be the main component of this exercise. Ir provides a Class which abstracts a Camera from a local device, and provides the methods to keep it constantly updated, so that we will be able to get images from it.
+
+<strong>NOTE:</strong>You must allow your browser to access the default camera device in order to get it to work properly. </p>
+<p>&nbsp;</p>
+<h3>2.2- Color Filter component</h3>
+<p>This component has been developed specifically to carry out this exercise. This component connects to the video source to receive images from it.
+The student has to modify this component and add code to accomplish the exercise. In particular, it is required to modify the <code>execute()</code> method.</p>
+<p>&nbsp;</p>
+<h3>2.3- Printer</h3>
+<p>This class prints an image in a Jupyter Notebook for debugging purposes. It will receive processed images from Color Filter to debug our algorithm, or any other image you want to see. </p>
+<p>&nbsp;</p>
+<h2>3 - API</h2>
+<p>The orders that the ColorFilter component admits are the following:</p>
+<ul>
+<li>- Color filter receives images from your local camera. To obtain these images you can run this code inside the <code>execute()</code> method:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>input_image = self.camera.getImage()
+</code></pre>
+<p>To debug our code and show the output, there are two images that can be visualized:</p>
+<ul>
+<li>- We can visualize an RGB image (three channels), employed to show the images received from the camera or manipulate them. You can set this images with this code:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>self.set_color_image(image_three_channels)
+</code></pre>
+<ul>
+<li>- We can visualize a gray image (one channel), employed to show the color filter result:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>self.set_filtered_image(image_one_channel)
+</code></pre>
+<ul>
+<li>- You can recover these images afterwards with these commands:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'># RGB image
+imageRGB = cf.get_color_image()
+
+# Filtered image
+filteredGray = cf.get_filtered_image()
+</code></pre>
+<ul>
+<li>- To print any of these images in this Notebook, just recover it (get_color_image, get_filtered_image or getImage method shown above), and then call the <code>printImage()</code> method, i.e:</li>
+
+</ul>
+<pre><code class='language-python' lang='python'># Example: print the image provided from the camera
+cameraImage = cf.camera.getImage()
+printImage(cameraImage)
+</code></pre>
+<ul>
+<p>&nbsp;</p>
+<h2>4 - Programming a color filter segmentation</h2>
+<p>To accomplish this exercise the student has to implement a color filter that segments a box and detects its position inside the image.
+Thus, given an input image like this image:</p>
+<p align="middle"><img src="{% static 'python/color_filter/img/inputImage.png' %}" width="35%" height="35%"></img></p>
+<p>The expected output would be similar to this image:</p>
+<p align="middle"><img src="{% static 'python/color_filter/img/filteredImage.png' %}" width="35%" height="35%"></img></p>
+<p>To obtain this result, the proposed pipeline is:</p>
+<ul>
+<li>1. Smooth image</li>
+<li>2. RGB to HSV conversion</li>
+<li>3. Color filter</li>
+<li>4. Rectangle approximation</li>
+<li>5. Object detection</li>
+</ul>
+<p>This steps are detailed in the next sections and can be easily conducted using <a href="https://opencv.org/">OpenCV library.</a></p>
+<p>&nbsp;</p>
+<h3>4.1- Smooth image</h3>
+<p>Image smoothing is useful to remove noise or imperfections in image. For this exercise, we recommend to use a <strong>Gaussian Filter</strong>, that can be found in OpenCV library as <a href="https://docs.opencv.org/2.4/modules/imgproc/doc/filtering.html?highlight=gaussianblur#gaussianblur">GaussianBlur</a>. The expected result of this filter from the input image shown in previous section is this:</p>
+<p align="middle"><img src="{% static 'python/color_filter/img/smoothImage.png' %}" width="35%" height="35%"></img></p>
+<p>&nbsp;</p>
+<h3>4.2 - RGB to HSV conversion</h3>
+<p>The images received from your camera have an RGB color space. This color space is useful to represent digital images but it is also very sensitive to light changes. Therefore, the next step is to convert our RGB image into a HSV image. We recommend to use the <a href="(https://docs.opencv.org/2.4/modules/imgproc/doc/miscellaneous_transformations.html#cvtcolor">cvtColor</a> function from OpenCV.</p>
+<p>If we print this image, the expected result will be similar to the follwoing:</p>
+<p align="middle"><img src="{% static 'python/color_filter/img/hsvImage.png' %}" width="35%" height="35%"></img></p>
+<p>&nbsp;</p>
+<h3>4.3- Color filter</h3>
+<p>Now we can apply our color filter to the HSV image. The OpenCV function <a href="https://docs.opencv.org/2.4/modules/core/doc/operations_on_arrays.html?highlight=inrange#inrange">inRange</a> can help us to make this color filter.</p>
+<p>This function receives two arrays, the first one sets the lower HSV values of the filter, and the second one the upper values. For the first parameter (H), the expected values are in range [0, 180], whereas for S and V the values are in range [0, 255]. Thus, a filter where all pixels would be validated would have this appearance:</p>
+<pre><code class='language-python' lang='python'>lower_values = np.array([0,0,0], dtype=np.uint8)
+upper_values = np.array([180,255,255], dtype=np.uint8)
+</code></pre>
+<p><strong>Note</strong>: To represent arrays we employ the <a href="http://www.numpy.org/">numpy</a> library.</p>
+<p>Once the maximum and minimum values for each HSV parameters have been properly set, the thresholded image (with one channel) has to be similar to this one:</p>
+<p align="middle"><img src="{% static 'python/color_filter/img/thresholdImage.png' %}" width="35%" height="35%"></img></p>
+<p>&nbsp;</p>
+<h3>4.4- Rectangle approximation</h3>
+<p>Trying to find a white object inside a black background is easier than trying to find a colored one inside a changing background. Therefore, from now on, we will use the thresholded image calculated in the previous step.</p>
+<p>One option to detect the box could be detecting the object contour with <a href="https://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#findcontours) function. This function modifies the input image, so we recommend to create a copy before using it with the [numpy copy](https://docs.scipy.org/doc/numpy/reference/generated/numpy.copy.html">findContours()</a> function.</p>
+<p>FindContours returns a list of points that defines the object contour. This points can be approximated to polygons using one of the next OpenCV functions: <a href="https://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#approxpolydp">approxPolyDP</a> or <a href="https://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#boundingrect"> boundingRect</a>. You can also draw the obtained rectangle with <a href="https://docs.opencv.org/2.4/modules/core/doc/drawing_functions.html?highlight=rectangle#rectangle">rectangle</a> function.</p>
+<p>&nbsp;</p>
+<h3>4.5 - Object detection</h3>
+<p>Since color filtering parameters are not easy to adjust (even in simulated environments), there may be several image regions with rectangles calculated in previous step. One rectangle will belong to the box we are trying to detect, where as the rest will be noisy regions.</p>
+<p>In this case, we recommend to filter the calculated rectangles to show only the one belonging to the object you want to segment. You can pick up the proper rectangle setting up some restrictions, like rectangle size or shape deppending on the size of your selected object.</p>
+<p>The final result will be the output image we show at the beginning of this section.</p>
+<p align="middle"><img src="{% static 'python/color_filter/img/filteredImage.png' %}" width="35%" height="35%"></img></p>
+</div>
+</body>
+</html>
