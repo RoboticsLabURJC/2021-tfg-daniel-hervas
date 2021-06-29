@@ -61,5 +61,5 @@ June 21 - 2021
 	
 	June 28 - 2021
 - Otro ejercicio (juego) con dos paginas maestro (= follow_line, con boton establece conexion webrtc) y esclavo (web vacia inicialmente y cuando dices arranca el juego establece la conexión rtc con maestro y aparece chat).
-- otro ejercicio donde se crea un escenario donde en vez de haber 1 robot hay 2, uno en un punto y otro en otro (juego de persecución). Escenario con dos coches y dos exercises.py y cargarles los respectivos cerebros.
+- otro ejercicio donde se crea un escenario donde en vez de haber 1 robot hay 2, uno en un punto y otro en otro (juego de persecución). Escenario con dos coches y dos exercises.py y cargarles los respectivos cerebros. ¿De dónde viene el código de los cerebros?
 -Dockerfile
