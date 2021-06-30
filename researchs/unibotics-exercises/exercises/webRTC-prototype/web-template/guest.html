@@ -171,31 +171,126 @@
 	<iframe src="https://jderobot.github.io/RoboticsAcademy/exercises/AutonomousCars/follow_line/" id="iframe-tab"></iframe>
 </div>
 
+<div class="row col-md-12" id="exercise-controls">
+	<div id="Control" class="container">
+		<button id="save" type="button" onclick="saveCodeUnibotics('{{exercise}}')"><img  class="btn_img" src="{% static 'academy/assets/img/upload.png''%}"> Save</button>
+		<button id="load" type="button"><img class="btn_img" src="{% static 'academy/assets/img/download.png'%}"> Load</button>
+		<button id="evaluate" type="button" onclick="evaluate_code('{{exercise}}')"><img id="evaluate_img" class="btn_img" src="{% static 'academy/assets/img/style.png' %}"> Evaluate</button>
+		<button id="submit" type="button" onclick="submitCode('{{user.username}}')"><img class="btn_img" src="{% static 'academy/assets/img/submit.png'%}"> Play </button>
+		<button id="stop" type="button" onclick="stopCode()"><img class="btn_img" src="{% static 'academy/assets/img/pause.png''%}"> Stop</button>
+		<input type="file" id="real-file" hidden="hidden"/>
+		<button id="reset" type="button" onclick="resetSim()"><img class="btn_img" style="height:15px;" src="{% static 'unibotics-exercises/static/assets/common/img/reset.svg'%}"> Reset</button>		 
+	</div>
+</div>
 
-<div class="content split" id="exercise-view">
-  <div class="a" style="width: 80%;">
-		<!-- Chat Room -->
-		<div id="chat-content">
-			<div id="chat-div">
-				<p id="chat-title">Messages</p>
-				<div id="chat-log">
+
+<div class="content" id="exercise-view">
+  <div class="a">
+	  <div id="buttonContainer" style="text-align: center;">
+		<button id="toggleButton" class="btn btn-primary">Ver Chat</button>
+	  </div>
+	<br>
+	<div class="col-md-12 justify-content-center">
+		<div id="code-control">
+			<!-- Code Editor -->
+			<!-- Along with buttons -->
+			<div id="code_container">
+
+			<div id="editor">from GUI import GUI
+from HAL import HAL
+# Enter sequential code!
+
+while True:
+    # Enter iterative code!</div>
+
+			<!-- Chat Room -->
+			<div id="chat-content" style="display: none;">
+				<div id="chat-div">
+					<p id="chat-title">Messages</p>
+					<div id="chat-log">
+					</div>
+					<input id="chat-message-input" type="text" size="100"><br>
+					<button id="chat-message-submit" class="btn btn-primary">Send</button>
 				</div>
-				<input id="chat-message-input" type="text" size="100"><br>
-				<button id="chat-message-submit" class="btn btn-primary">Send</button>
 			</div>
+
+			</div>
+			<div id="myModal" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title">Enter a filename</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			<div class="md-form ml-0 mr-0">
+				<input  type="text" id="form29" class="form-control form-control-sm validate ml-0">
+			  </div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-primary" onclick="downloadFile()">Download</button>
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
 		</div>
+		</div>
+			</div>
+	</div>
+
   </div>
 
-    <div class="b">
+  <div class="b">
+
+		<script>
+			 var csrf = '{{ csrf_token }}';
+		</script>
+
 		<p style="text-align:center;">Stream</p>
-        <!-- Here will be displayed the noVNC stream -->
+		<!-- Here will be displayed the noVNC stream -->
 		<div id="video-container" style="max-width: 960px; max-height: 640px;overflow: hidden">
 			<video id="showVideo" style="width: 2800;" playsinline autoplay>
 				Your browser does not support the video tag.
 			</video>
 		</div>
+  </div>
+  <br>
 
-    </div>
+
+</div>
+
+  <hr>
+	<div class="row">
+		<div class="col-md-12">
+			<iframe id="console-vnc" style="display:none;" src="" width="100%" height="100%"></iframe>
+		</div>
+	</div>
+
+
+    <script type="text/javascript">
+    function changeconsole(){
+      var console_display = document.getElementById('console-vnc').style.display
+      console.log(console_display)
+      if (console_display == "none" || console_display == "none" ) {
+		  setIframeConsole();
+        document.getElementById('console-vnc').style.display = 'block';
+      } else{
+        document.getElementById('console-vnc').style.display = 'none';
+      }
+    }
+
+	function changegzweb(){
+        var display = document.getElementById('iframe').style.display
+        console.log(display)
+        if (display == "none" || display == "none" ) {
+          document.getElementById('iframe').style.display = 'block';
+          setIframe();
+        } else{
+          document.getElementById('iframe').style.display = 'none';
+        }
+      }
+    </script></div>
 
 	<script src="https://unpkg.com/split.js/dist/split.min.js"></script>
 
@@ -208,6 +303,8 @@
 
        <!-- Common -->
        <script src="{% static 'unibotics-exercises/static/assets/common/js/utils.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <script src="{% static 'unibotics-exercises/static/assets/common/js/setIframe.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <script src="{% static 'unibotics-exercises/static/assets/common/js/ace-builds/src-noconflict/ace.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
        <script src="{% static 'unibotics-exercises/static/assets/common/js/ws_data.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
        <script src="{% static 'unibotics-exercises/static/assets/common/js/ws_code.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
 		<script>
@@ -217,6 +314,16 @@
 			}
 			var saving = setInterval(intervalSave, 300000);
 		</script>
+
+
+
+
+
+       <!-- Exercise specific resources -->
+       <script src="{% static 'unibotics-exercises/static/assets/exercises/follow_line/js/ws_gui.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <script src="{% static 'unibotics-exercises/static/assets/exercises/follow_line/js/birds_eye.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <script src="{% static 'unibotics-exercises/static/assets/exercises/follow_line/js/launcher.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <script src="{% static 'unibotics-exercises/static/assets/exercises/follow_line/js/evaluator.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
         window.addEventListener("beforeunload", function (e) {
@@ -228,6 +335,18 @@
         });
     </script>
 
+
+    <!-- BOTON DE CONEXION CON RADI-->
+    <script>
+        $(document).ready(function() {$("#connection-button").click(
+            function () {
+                $("#connection-button").removeClass('btn btn-danger').addClass('btn btn-warning');
+				$("#connection-button").html('<span id="loading-connection" class="fa fa-refresh fa-spin"></span> Connecting');
+
+				startSim("{{websocket_address}}","{{server}}", "{{user.username}}");
+			});
+        });
+    </script>
 
     <script type="text/javascript">
     	const realFileBtn = document.getElementById("real-file");
@@ -260,14 +379,8 @@
 
     {% endif %}
 
-	<!-- WebRTC chat -->
-    <script>
-
-		const localVideo = document.getElementById('localVideo');
-
-        var room_name = "{{ room_name }}";
-		console.log('Room name: ', room_name);
-
+	<!-- Script boton toggle chat -->
+	<script>
 		$('#toggleButton').on('click', function(){
 			let editor = $('#editor');
 			let chat = $('#chat-content');
@@ -285,6 +398,12 @@
 				button.html('Ver Chat');
 			}
 		});
+	</script>
+
+	<!-- WebRTC chat -->
+    <script>
+        var room_name = "{{ room_name }}";
+		console.log('Room name: ', room_name);
     </script>
 	
     <!-- WebRTC chat -->
@@ -299,7 +418,6 @@
     <script src="{% static 'js/stream/ws_chat.js' %}"></script>
     <script src="{% static 'js/stream/ws_stream.js' %}"></script>
     <script src="{% static 'js/stream/rtc_stream.js' %}"></script>
-
 </div>
 
 {% endblock %}
