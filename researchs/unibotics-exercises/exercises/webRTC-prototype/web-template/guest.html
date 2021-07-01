@@ -180,15 +180,13 @@
 		<button id="stop" type="button" onclick="stopCode()"><img class="btn_img" src="{% static 'academy/assets/img/pause.png''%}"> Stop</button>
 		<input type="file" id="real-file" hidden="hidden"/>
 		<button id="reset" type="button" onclick="resetSim()"><img class="btn_img" style="height:15px;" src="{% static 'unibotics-exercises/static/assets/common/img/reset.svg'%}"> Reset</button>		 
+		<button id="toggleButton" class="btn btn-primary">Ver Chat</button>
 	</div>
 </div>
 
 
 <div class="content" id="exercise-view">
   <div class="a">
-	  <div id="buttonContainer" style="text-align: center;">
-		<button id="toggleButton" class="btn btn-primary">Ver Chat</button>
-	  </div>
 	<br>
 	<div class="col-md-12 justify-content-center">
 		<div id="code-control">
@@ -335,19 +333,6 @@ while True:
         });
     </script>
 
-
-    <!-- BOTON DE CONEXION CON RADI-->
-    <script>
-        $(document).ready(function() {$("#connection-button").click(
-            function () {
-                $("#connection-button").removeClass('btn btn-danger').addClass('btn btn-warning');
-				$("#connection-button").html('<span id="loading-connection" class="fa fa-refresh fa-spin"></span> Connecting');
-
-				startSim("{{websocket_address}}","{{server}}", "{{user.username}}");
-			});
-        });
-    </script>
-
     <script type="text/javascript">
     	const realFileBtn = document.getElementById("real-file");
     	const customBtn = document.getElementById("load");
@@ -385,12 +370,14 @@ while True:
 			let editor = $('#editor');
 			let chat = $('#chat-content');
 			let button = $('#toggleButton');
+			let chat_input = $('#chat-message-input');
 
 			console.log(chat);
 
 			if(button.text() === 'Ver Chat'){
 				editor.hide();
 				chat.show();
+				chat_input.focus();
 				button.html('Ver Código');
 			}else{
 				chat.hide();
