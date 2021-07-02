@@ -16,6 +16,7 @@ var frequency = "0",
 //WebSocket for Code
 var websocket_code;
 function declare_code(websocket_address){
+	console.log('CODE WS ADDRESS:',websocket_address);
 	websocket_code = new WebSocket(websocket_address);
 
 	websocket_code.onopen = function(event){
@@ -67,7 +68,7 @@ function submitCode(){
 
 	var debug_level = 2;
 	python_code = "#dbug" + debug_level + python_code
-
+	console.log(python_code);
     console.log("Code Sent! Check terminal for more information!");
     websocket_code.send(python_code);
     try {

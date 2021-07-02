@@ -401,16 +401,16 @@ while True:
 
 			function loadOdometry(){
 				arrow = new Image();
-				arrow.src = "{% static 'unibotics-exercises/static/assets/exercises/follow_line/img/arrow.png' %}";
+				arrow.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/arrow.png' %}";
 				// Load the speedometer image
 				speedometer = new Image();
-				speedometer.src = "{% static 'unibotics-exercises/static/assets/exercises/follow_line/img/speedometer.png' %}";
+				speedometer.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/speedometer.png' %}";
 
 				arrow2 = new Image();
-				arrow2.src = "{% static 'unibotics-exercises/static/assets/exercises/follow_line/img/arrow.png' %}";
+				arrow2.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/arrow.png' %}";
 				// Load the speedometer image
 				speedometer2 = new Image();
-				speedometer2.src = "{% static 'unibotics-exercises/static/assets/exercises/follow_line/img/speedometer2.png' %}";
+				speedometer2.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/speedometer2.png' %}";
 			}
 
 			function drawOdometry(v,w){
@@ -511,17 +511,19 @@ while True:
 
 
        <!-- Exercise specific resources -->
-       <script src="{% static 'unibotics-exercises/static/assets/exercises/follow_line/js/ws_gui.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
-       <script src="{% static 'unibotics-exercises/static/assets/exercises/follow_line/js/birds_eye.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
-       <script src="{% static 'unibotics-exercises/static/assets/exercises/follow_line/js/launcher.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
-       <script src="{% static 'unibotics-exercises/static/assets/exercises/follow_line/js/evaluator.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/ws_gui.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/birds_eye.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/launcher.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/evaluator.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
         window.addEventListener("beforeunload", function (e) {
             e.preventDefault();
             var date = new Date().getTime();
             localStorage.setItem('lastTime', date);
-            localStorage.setItem('exercise', 'follow_line');
+			// Establecer el ejercicio
+            //localStorage.setItem('exercise', 'follow_line');
+			localStorage.setItem('exercise', 'webRTC-prototype');
             freeDocker();
         });
     </script>
@@ -598,15 +600,6 @@ while True:
         //Get & show the stream.
         const localVideo = document.getElementById('streamVideo');
         const remoteVideo = document.getElementById('showVideo');
-
-        //const onRoomNameSet = new Event('onroomnameset');
-        
-        //let streamws;
-        //let streamroom;
-        //let setstream = false;
-        //let streamcon = false;
-
-        //var streamws;
 
         let room_name = Date.now()+Math.round(Math.random()*10000);
         console.log('Room name: ', room_name);

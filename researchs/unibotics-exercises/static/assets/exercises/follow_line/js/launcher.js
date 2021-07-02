@@ -23,6 +23,7 @@ function startSim(websocket_address="",server="", username=""){
         set_launch_level(1);
         ws_manager.send(JSON.stringify({"command": "exit", "exercise": ""}));
         ws_manager.send(JSON.stringify({"command": "open", "exercise": exercise}));
+        console.log({"command": "open", "exercise": exercise});
         set_launch_level(2);
         ws_manager.send(JSON.stringify({"command" : "Pong"}));
     }
