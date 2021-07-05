@@ -14,7 +14,8 @@ function drawCircles(x_host, y_host, x_guest, y_guest){
 	// Draw HOST
 	ctx.beginPath();
 	ctx.arc(x_host, y_host, 2, 0, 2 * Math.PI);
-	ctx.arc(x_guest, y_guest, 2, 0, 2 * Math.PI);
+	ctx.fillStyle = "red";
+	ctx.fillText("HOST", x_host, y_host);
 	ctx.closePath();
 	
 	ctx.lineWidth = 1.5;
@@ -27,6 +28,8 @@ function drawCircles(x_host, y_host, x_guest, y_guest){
 	// Draw guest
 	ctx.beginPath();
 	ctx.arc(x_guest, y_guest, 2, 0, 2 * Math.PI);
+	ctx.fillStyle = "green";
+	ctx.fillText("GUEST", x_guest, y_guest);
 	ctx.closePath();
 	
 	ctx.lineWidth = 1.5;
@@ -35,6 +38,4 @@ function drawCircles(x_host, y_host, x_guest, y_guest){
 	
 	ctx.fillStyle = "#46ff03";
 	ctx.fill();
-
-
 }

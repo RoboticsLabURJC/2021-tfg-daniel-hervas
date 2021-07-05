@@ -80,7 +80,7 @@ function declare_gui(websocket_address) {
 			})
 
 			//Evaluator, position in canvas and odometry
-			Evaluator(content);
+			Evaluator(content);			// Host
 			drawCircles(content[0], content[1], content_guest[0], content_guest[1]);
 			drawOdometry(data.v, data.w);
 

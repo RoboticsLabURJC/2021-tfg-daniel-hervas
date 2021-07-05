@@ -341,9 +341,16 @@ while True:
 						Progress
 					</div>
 					<div class="card-body">
+						<p style="text-align: center;">Host</p>
 						<div class="progress" style="height: 20px;">
 							<div id="porcentaje_bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">%</div>
 							<span id="lap"></span>
+						</div>
+						<hr>
+						<p style="text-align: center;">Guest</p>
+						<div class="progress" style="height: 20px;">
+							<div id="porcentaje_bar_guest" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">%</div>
+							<span id="lap_guest"></span>
 						</div>
 					</div>
 				</div>
@@ -354,7 +361,11 @@ while True:
 						Lap time <img class="btn_img" src="{% static 'unibotics-exercises/static/assets/common/img/stopwatch-solid.svg'%}">
 					</div>
 					<div class="card-body">
+						<p style="text-align: center;">Host</p>
 						<span style="padding: 0 0 0 0; font-size: 20px;" id="lap_time"></span>
+						<hr>
+						<p style="text-align: center;">Guest</p>
+						<span style="padding: 0 0 0 0; font-size: 20px;" id="lap_time_guest"></span>
 					</div>
 				</div>
 			</div>
@@ -532,7 +543,7 @@ while True:
 
 				websocket_code.send(python_code);
 				websocket_code_guest.send(python_code_guest);
-				
+
 				try {
 					unpause_lap()
 				}
