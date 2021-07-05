@@ -57,31 +57,31 @@ function declare_code(websocket_address){
 }
 
 // Function that sends/submits the code!
-function submitCode(){
-	// Get the code from editor and add headers
-	var message = "#resu"
-	websocket_code.send(message)
-    var python_code = editor.getValue();
-    python_code = "#code\n" + python_code
-	// Get the debug level and add header
-	//var debug_level = document.querySelector('input[name = "debug"]').value;
+// function submitCode(){
+// 	// Get the code from editor and add headers
+// 	var message = "#resu"
+// 	websocket_code.send(message)
+//     var python_code = editor.getValue();
+//     python_code = "#code\n" + python_code
+// 	// Get the debug level and add header
+// 	//var debug_level = document.querySelector('input[name = "debug"]').value;
 
-	var debug_level = 2;
-	python_code = "#dbug" + debug_level + python_code
-	console.log(python_code);
-    console.log("Code Sent! Check terminal for more information!");
-    websocket_code.send(python_code);
-    try {
-    	unpause_lap()
-	}
-	catch {
+// 	var debug_level = 2;
+// 	python_code = "#dbug" + debug_level + python_code
+// 	console.log(python_code);
+//     console.log("Code Sent! Check terminal for more information!");
+//     websocket_code.send(python_code);
+//     try {
+//     	unpause_lap()
+// 	}
+// 	catch {
 
-	}
-    stop_button.disabled = false;
-    stop_button.style.opacity = "1.0";
-	stop_button.style.cursor = "default";
-	running = true;
-}
+// 	}
+//     stop_button.disabled = false;
+//     stop_button.style.opacity = "1.0";
+// 	stop_button.style.cursor = "default";
+// 	running = true;
+// }
 
 // Function that send/submits an empty string
 function stopCode(){

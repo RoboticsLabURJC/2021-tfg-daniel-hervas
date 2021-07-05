@@ -11,6 +11,7 @@ function decode_utf8(s) {
 var websocket_gui, animation_id;
 var image_data, source, shape;
 var lap_time, pose, content;
+var pose_guest, content_guest;
 var command_input;
 
 function declare_gui(websocket_address) {
@@ -64,13 +65,23 @@ function declare_gui(websocket_address) {
 
 			// Parse the Map data
 			// Slice off ( and )
+			// Position Host
 			pose = data.map.substring(1, data.map.length - 1);
+			//console.log('HOST: ', pose);
 			content = pose.split(',').map(function (item) {
 				return parseFloat(item);
 			})
-			//Evaluator follow line
+
+			// Position Guest
+			pose_guest = data.map_guest.substring(1, data.map_guest.length - 1);
+			//console.log('GUEST: ', pose_guest);
+			content_guest = pose_guest.split(',').map(function (item) {
+				return parseFloat(item);
+			})
+
+			//Evaluator, position in canvas and odometry
 			Evaluator(content);
-			drawCircle(content[0], content[1]);
+			drawCircles(content[0], content[1], content_guest[0], content_guest[1]);
 			drawOdometry(data.v, data.w);
 
 			// Send the Acknowledgment Message

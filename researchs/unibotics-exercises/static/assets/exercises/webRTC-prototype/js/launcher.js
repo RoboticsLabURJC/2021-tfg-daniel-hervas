@@ -10,6 +10,7 @@ function startSim(websocket_address="",server="", username=""){
 	} else {
 		is_local = true
 		var address_code = "ws://" + websocket_address + ":1905";
+        var address_code_guest = "ws://" + websocket_address + ":1904"; // WebSocket para enviar el código del invitado
 		var address_gui = "ws://" + websocket_address + ":2303";
 		var address_manager = "ws://" + websocket_address + ":8765";
 
@@ -39,6 +40,7 @@ function startSim(websocket_address="",server="", username=""){
                 websockets_connected = true;
                 declare_code(address_code);
                 declare_gui(address_gui);
+                declare_code_guest(address_code_guest);   // Declarar el WebSocket del invitado
                 setIframe();
             }
             setTimeout(function () {
