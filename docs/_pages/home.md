@@ -20,5 +20,6 @@ My name is Daniel Hervás Rodao and this will be the blog where I will post upda
 I will try my best for the quality of my posts.
 
 TFG Tutor: [Jose Maria Cañas](https://gsyc.urjc.es/jmplaza/)
-TFG Co-Tutor: [David Roldan Álvarez](https://gestion2.urjc.es/pdi/ver/david.roldan)
+
+TFG Co-Tutor: [David Roldán Álvarez](https://gestion2.urjc.es/pdi/ver/david.roldan)
 
