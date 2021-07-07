@@ -575,12 +575,11 @@ while True:
 				let prev_point;
 				arr.forEach(e => {
 					let dist;
-					if(!prev_point){
-						prev_point = e;
-					}else{
+					if(prev_point){
 						dist = getDistance([e[1], e[2]], [prev_point[1],prev_point[2]]);
 						total_dist += dist;
 					}
+					prev_point = e;
 				});
 				return Math.round(total_dist);
 			}
@@ -598,7 +597,6 @@ while True:
 				let arr_host_guest = [];
 				let dist_guest_host, dist_host_guest;
 
-				console.log(pos_host,pos_guest);
 				if(pos_guest > pos_host){
 					arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(pos_guest, checkpoints.length-1));
 					if((arr_guest_host.length === 0)){
