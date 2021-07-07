@@ -28,7 +28,7 @@ function declare_code_guest(websocket_address){
 			alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
 		}
 		else{
-			alert("[close] Connection closed!");
+			alert("[close] Guest Connection closed!" + event);
 		}
 	}
 
@@ -38,21 +38,20 @@ function declare_code_guest(websocket_address){
 
 		if(operation == "#load"){
 			editor.setValue(source_code.substring(5,));
+		}else if(operation == "#freq"){
+		 	var frequency_message = JSON.parse(source_code.substring(5,));
+		 	// Parse GUI and Brain frequencies
+		 	document.querySelector("#ideal_gui_frequency").value = frequency_message.gui;
+		 	document.querySelector('#ideal_code_frequency').value = frequency_message.brain;
+		 	document.querySelector('#real_time_factor').value = frequency_message.rtf;
 		}
-		// else if(operation == "#freq"){
-		// 	var frequency_message = JSON.parse(source_code.substring(5,));
-		// 	// Parse GUI and Brain frequencies
-		// 	document.querySelector("#ideal_gui_frequency").value = frequency_message.gui;
-		// 	document.querySelector('#ideal_code_frequency').value = frequency_message.brain;
-		// 	document.querySelector('#real_time_factor').value = frequency_message.rtf;
-		// }
-		// // Send the acknowledgment message along with frequency
-		// code_frequency = document.querySelector('#code_freq').value;
-		// gui_frequency = document.querySelector('#gui_freq').value;
-		// real_time_factor = document.querySelector('#real_time_factor').value;
+		// Send the acknowledgment message along with frequency
+		code_frequency = document.querySelector('#code_freq').value;
+		gui_frequency = document.querySelector('#gui_freq').value;
+		real_time_factor = document.querySelector('#real_time_factor').value;
 		
-		// frequency_message = {"brain": code_frequency, "gui": gui_frequency, "rtf": real_time_factor};
-		// websocket_code_guest.send("#freq" + JSON.stringify(frequency_message));
+		frequency_message = {"brain": code_frequency, "gui": gui_frequency, "rtf": real_time_factor};
+		websocket_code_guest.send("#freq" + JSON.stringify(frequency_message));
 	};
 }
 

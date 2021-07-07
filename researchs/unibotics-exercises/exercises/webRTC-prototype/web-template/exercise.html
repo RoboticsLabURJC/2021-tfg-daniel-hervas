@@ -210,51 +210,6 @@
 		<button id="startButton" class="btn btn-primary" disabled>Start stream</button>
 		<button id="toggleButton" class="btn btn-primary">Ver Chat</button>
 	  </div>
-	  
-	<!--<div class="row col-md-auto justify-content-center">
-		<div class="card text-center">
-			<div class="card-body">
-				<li id="frecuency_control" style="list-style: none; display:inline-block; margin:auto;" >
-					Source http://thenewcode.com/757/Playing-With-The-HTML5-range-Slider-Input
-					<table>
-						<tr>
-							<th>Brain Frequency</th>
-							<th><input type="range" min="0" max="30" value="12.5" id="fader"
-							step="0.1" oninput="codefrequencyUpdate(value)" class="frequency-slider">
-							<td><strong><output id="ideal_code_frequency">0</output>/<output for="fader" id="code_frequency">12.5</output></strong> </td>
-							</th>
-						</tr>
-						  <tr>
-							<th>GUI Frequency</th>
-							<th><input type="range" min="0" max="30" value="12.5" id="fader"
-							  step="0.1" oninput="guifrequencyUpdate(value)" class="frequency-slider" ></th>
-							<th><output id="ideal_gui_frequency">0</output>/<output for="fader" id="gui_frequency">12.5</output></th>
-						  </tr>
-						<tr>
-							  <th>Debug-Level</th>
-							  <td><input  id="slide" type="range" min="1" max="4" steps="1" value="2" name="debug" class="debug-slider">
-
-								<ul class="debug-labels">
-							  <th><p id="slidernum">2</p>
-
-							<script type="text/javascript">
-								var slide = document.getElementById('slide'),
-								sliderDiv = document.getElementById("slidernum");
-
-								slide.onchange = function() {
-									sliderDiv.innerHTML = this.value;
-								}
-							</script>
-						  </ul>
-
-					  </td>
-					  </th>
-					</tr>
-					</table>
-				  </li>
-			</div>
-		</div>
-</div>-->
 	<br>
 	<div class="col-md-12 justify-content-center">
 		<div id="code-control">
@@ -327,9 +282,9 @@ while True:
 					<div class="row mx-auto">
 						<canvas id="birds-eye"></canvas>
 					</div>
-					<div class="row mx-auto">
+					<!-- <div class="row mx-auto">
 						<img id="gui_canvas"></img>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -338,24 +293,22 @@ while True:
 			<div class="row">
 				<div class="card flex-fill">
 					<div class="card-header text-center">
-						Progress
+						Distances
 					</div>
 					<div class="card-body">
-						<p style="text-align: center;">Host</p>
-						<div class="progress" style="height: 20px;">
-							<div id="porcentaje_bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">%</div>
-							<span id="lap"></span>
+						<p style="text-align: center;">Host-Guest</p>
+						<div class="distance-host" style="text-align: center; height: 20px; font-weight: bold;">
+							
 						</div>
 						<hr>
-						<p style="text-align: center;">Guest</p>
-						<div class="progress" style="height: 20px;">
-							<div id="porcentaje_bar_guest" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">%</div>
-							<span id="lap_guest"></span>
+						<p style="text-align: center;">Guest-Host</p>
+						<div class="distance-guest" style="text-align: center; height: 20px; font-weight: bold;">
+							
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<!-- <div class="row">
 				<div class="card text-center flex-fill">
 					<div class="card-header">
 						Lap time <img class="btn_img" src="{% static 'unibotics-exercises/static/assets/common/img/stopwatch-solid.svg'%}">
@@ -368,8 +321,8 @@ while True:
 						<span style="padding: 0 0 0 0; font-size: 20px;" id="lap_time_guest"></span>
 					</div>
 				</div>
-			</div>
-			<div class="row">
+			</div> -->
+			<!-- <div class="row">
 				<div class="card text-center flex-fill">
 					<div class="card-header">
 						Speed
@@ -383,66 +336,66 @@ while True:
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
   		</div>
 
 
 		<script>
-			 var csrf = '{{ csrf_token }}';
-			var canvasv = document.getElementById("canvas-v");
-			var ctxv = canvasv.getContext("2d");
-			var canvasw = document.getElementById("canvas-w");
-			var ctxw = canvasw.getContext("2d");
+			var csrf = '{{ csrf_token }}';
+			// var canvasv = document.getElementById("canvas-v");
+			// var ctxv = canvasv.getContext("2d");
+			// var canvasw = document.getElementById("canvas-w");
+			// var ctxw = canvasw.getContext("2d");
 
-			ctxv.scale(0.7,0.7);
-			ctxw.scale(0.65,0.65);
-			var arrow;
-			var speedometer;
-			var alfa; //angle
+			// ctxv.scale(0.7,0.7);
+			// ctxw.scale(0.65,0.65);
+			// var arrow;
+			// var speedometer;
+			// var alfa; //angle
 
-			var arrow2;
-			var speedometer2;
-			var beta;//angle
+			// var arrow2;
+			// var speedometer2;
+			// var beta;//angle
 
-			loadOdometry();
-			function Cleancanvasvw() {
-				ctxv.clearRect(0, 0, 200, 200);
-				ctxw.clearRect(0, 0, 200, 200);
-			}
+			// loadOdometry();
+			// function Cleancanvasvw() {
+			// 	ctxv.clearRect(0, 0, 200, 200);
+			// 	ctxw.clearRect(0, 0, 200, 200);
+			// }
 
-			function loadOdometry(){
-				arrow = new Image();
-				arrow.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/arrow.png' %}";
-				// Load the speedometer image
-				speedometer = new Image();
-				speedometer.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/speedometer.png' %}";
+			// function loadOdometry(){
+			// 	arrow = new Image();
+			// 	arrow.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/arrow.png' %}";
+			// 	// Load the speedometer image
+			// 	speedometer = new Image();
+			// 	speedometer.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/speedometer.png' %}";
 
-				arrow2 = new Image();
-				arrow2.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/arrow.png' %}";
-				// Load the speedometer image
-				speedometer2 = new Image();
-				speedometer2.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/speedometer2.png' %}";
-			}
+			// 	arrow2 = new Image();
+			// 	arrow2.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/arrow.png' %}";
+			// 	// Load the speedometer image
+			// 	speedometer2 = new Image();
+			// 	speedometer2.src = "{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/img/speedometer2.png' %}";
+			// }
 
-			function drawOdometry(v,w){
-				//Draw V
-				Cleancanvasvw();
-					ctxv.drawImage(speedometer, 0, 0);
-				ctxv.save();
-					ctxv.translate(100, 100);
-				alfa = -120 + (v*50);  //v scaled x50
-				ctxv.rotate(alfa * (Math.PI / 180));
-				ctxv.drawImage(arrow, -100, -100);
-				ctxv.restore();
-				//Draw W
-				ctxw.drawImage(speedometer2, 0, 0);
-				ctxw.save();
-				ctxw.translate(100, 100);
-				beta = (w*(-200)); //scaled W x(-200)
-				ctxw.rotate(beta * (Math.PI / 180));
-				ctxw.drawImage(arrow2, -100, -100);
-				ctxw.restore();
-			}
+			// function drawOdometry(v,w){
+			// 	//Draw V
+			// 	Cleancanvasvw();
+			// 		ctxv.drawImage(speedometer, 0, 0);
+			// 	ctxv.save();
+			// 		ctxv.translate(100, 100);
+			// 	alfa = -120 + (v*50);  //v scaled x50
+			// 	ctxv.rotate(alfa * (Math.PI / 180));
+			// 	ctxv.drawImage(arrow, -100, -100);
+			// 	ctxv.restore();
+			// 	//Draw W
+			// 	ctxw.drawImage(speedometer2, 0, 0);
+			// 	ctxw.save();
+			// 	ctxw.translate(100, 100);
+			// 	beta = (w*(-200)); //scaled W x(-200)
+			// 	ctxw.rotate(beta * (Math.PI / 180));
+			// 	ctxw.drawImage(arrow2, -100, -100);
+			// 	ctxw.restore();
+			// }
 		</script>
   </div>
   <br>
@@ -571,10 +524,128 @@ while True:
 
 
        <!-- Exercise specific resources -->
+	   <script>
+		   var checkpoints= [[1,12,50], [2,12,36], [3,12,34], [4,12,23], [5,14,16], [6,19,13],[7,31,12], [8,41,14], [9,43,15], [10,47,35],
+                  [11,47,39],[12,51,45], [13,63,48], [14,91,48], [15,112,48], [16,150,48],[17,166,42], [18,167,32], [19,171,27], [20,199,18],
+                  [21,220,19], [22,234,21], [23,253,27], [24,261,30], [25,268,34], [26,276,39],[27,279,42], [28,286,51], [29,288,55], [30,289,59],
+                  [31,289,61],[32,284,77], [33,281,81], [34,280,82], [35,277,84], [36,259,95],[37,225,104], [38,219,105], [39,191,109], [40,181,111],
+                  [41,167,113], [42,160,114], [43,145,116], [44,134,130], [45,134,134], [46,123,141],[47,111,141], [48,99,134], [49,80,116], [50,65,124],
+                  [51,64,134],  [52,60,134], [53,36,137], [54,22,136], [55,12,129], [56,12,110],[57,12,100], [58,12,94],[59,12,84],[60,12,63]
+			];
+	   </script>
+	   <script>
+		   let close_host, close_guest;
+		   let arr_pos_host, arr_pos_guest;
+		   let d_host_guest, d_guest_host;
+			// Gets the distande between two points
+			function getDistance(p1, p2){
+				return Math.sqrt(Math.pow(p2[0]-p1[0],2)+Math.pow(p2[1]-p1[1],2));
+			}
+
+			// Get the closes checkpoint for a point given
+			function getClosestCheckpoint(p, checkpoints){
+				let dist, lowestdist=999, closest;
+				checkpoints.forEach(e => {
+					// Get distance from the car pos to the checkpoint
+					let aux = [e[1], e[2]];
+					dist = getDistance(p, aux);
+
+					if(dist < lowestdist){
+						lowestdist = dist;
+						closest = e;
+					}
+				});
+				return closest;
+			}
+
+			// Sets the new path to calculate distances
+			// Returns the new path and the positions of the new points in the array
+			function getNewPath(p_host, p_guest, closest_host, closest_guest, checkpoints){
+				let pos_host = closest_host[0]-1;
+				let pos_guest = closest_guest[0]-1;
+				
+				checkpoints[pos_host] = [pos_host+1,p_host[0],p_host[1]];
+				checkpoints[pos_guest] = [pos_guest+1,p_guest[0],p_guest[1]];
+				
+				return {checkpoints, pos_host, pos_guest};
+			}
+
+			function getPathDist(arr){
+				let total_dist = 0;
+				let prev_point;
+				arr.forEach(e => {
+					let dist;
+					if(!prev_point){
+						prev_point = e;
+					}else{
+						dist = getDistance([e[1], e[2]], [prev_point[1],prev_point[2]]);
+						total_dist += dist;
+					}
+				});
+				return Math.round(total_dist);
+			}
+
+			function arrPush(arr, data){
+				data.forEach(e => {
+					arr.push(e);
+				});
+				return arr;
+			}
+			
+			// Get distances between each one
+			function getDistanceBetween(pos_host, pos_guest, checkpoints){
+				let arr_guest_host = [];
+				let arr_host_guest = [];
+				let dist_guest_host, dist_host_guest;
+
+				console.log(pos_host,pos_guest);
+				if(pos_guest > pos_host){
+					arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(pos_guest, checkpoints.length-1));
+					if((arr_guest_host.length === 0)){
+						arr_guest_host.push(checkpoints[pos_guest]);
+					}
+					arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(0, pos_host));
+					if((arr_guest_host.length === 1)){
+						arr_guest_host.push(checkpoints[pos_host]);
+					}
+					arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(pos_host,pos_guest+1));
+					if((arr_host_guest.length === 0) || (arr_host_guest.length === 1)){
+						arr_host_guest = [];
+						arr_host_guest.push(checkpoints[pos_host]);
+						arr_host_guest.push(checkpoints[pos_guest]);
+					}
+				}
+				if(pos_host > pos_guest){
+					arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(pos_host, checkpoints.length-1));
+					if((arr_host_guest.length === 0)){
+						arr_host_guest.push(checkpoints[pos_host]);
+					}
+					arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(0, pos_guest));
+					if((arr_host_guest.length === 1)){
+						arr_host_guest.push(checkpoints[pos_guest]);
+					}
+					arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(pos_guest, pos_host+1));
+					if((arr_guest_host.length === 0) || (arr_guest_host.length === 1)){
+						arr_guest_host = [];
+						arr_guest_host.push(checkpoints[pos_guest]);
+						arr_guest_host.push(checkpoints[pos_host]);
+					}
+				}
+				
+				// console.log('DIST HOST->GUEST: ',arr_host_guest);
+				// console.log('DIST GUEST->HOST: ',arr_guest_host);
+				dist_guest_host = getPathDist(arr_guest_host);
+				dist_host_guest = getPathDist(arr_host_guest);
+				// console.log('DIST HOST->GUEST: ',dist_host_guest);
+				// console.log('DIST GUEST->HOST: ',dist_guest_host);
+
+				return {dist_host_guest, dist_guest_host};
+			}
+	   </script>
        <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/ws_gui.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
        <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/birds_eye.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
        <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/launcher.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
-       <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/evaluator.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+       <!-- <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/evaluator.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script> -->
 
     <script type="text/javascript">
         window.addEventListener("beforeunload", function (e) {

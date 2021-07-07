@@ -37,6 +37,10 @@ function declare_gui(websocket_address) {
 
 	// What to do when a message from server is received
 	websocket_gui.onmessage = function (event) {
+		let values;
+		let distance_host_element = $('.distance-host');
+		let distance_guest_element = $('.distance-guest');
+
 		operation = event.data.substring(0, 4);
 		$("#connection-button").removeClass("btn-warning").addClass("btn-success");
 		$("#connection-button").html('<span id="loading-connection" class="bi bi-arrow-down-up"></span> Connected');
@@ -51,17 +55,17 @@ function declare_gui(websocket_address) {
 				source = decode_utf8(image_data.image),
 				shape = image_data.shape;
 
-			if (source != "") {
-				canvas.src = "data:image/jpeg;base64," + source;
-				canvas.width = shape[1];
-				canvas.height = shape[0];
-			}
+			// if (source != "") {
+			// 	canvas.src = "data:image/jpeg;base64," + source;
+			// 	canvas.width = shape[1];
+			// 	canvas.height = shape[0];
+			// }
 
-			// Parse the Lap data
-			lap_time = data.lap;
-			if (lap_time != "") {
-				lap_time_display.textContent = lap_time;
-			}
+			// // Parse the Lap data
+			// lap_time = data.lap;
+			// if (lap_time != "") {
+			// 	lap_time_display.textContent = lap_time;
+			// }
 
 			// Parse the Map data
 			// Slice off ( and )
@@ -79,10 +83,27 @@ function declare_gui(websocket_address) {
 				return parseFloat(item);
 			})
 
-			//Evaluator, position in canvas and odometry
-			Evaluator(content);			// Host
+			//Evaluator(content);			// Host
 			drawCircles(content[0], content[1], content_guest[0], content_guest[1]);
-			drawOdometry(data.v, data.w);
+			//drawOdometry(data.v, data.w);
+
+			// Get closest checkpoints
+			close_host = getClosestCheckpoint(content, checkpoints);
+			close_guest = getClosestCheckpoint(content_guest, checkpoints);
+			
+			// Get path to reach the checkpoints
+			values = getNewPath(content, content_guest,close_host, close_guest, checkpoints);
+			checkpoints = values.checkpoints;
+			arr_pos_host = values.pos_host;
+			arr_pos_guest = values.pos_guest;
+			//console.log(checkpoints, arr_pos_host, arr_pos_guest);
+
+			// Get distances
+			values = getDistanceBetween(arr_pos_host,arr_pos_guest, checkpoints);
+			// console.log('HOST->GUEST: ', values.dist_host_guest);
+			// console.log('GUEST->HOST: ', values.dist_guest_host);
+			distance_host_element = $('.distance-host').text(values.dist_host_guest);
+			distance_guest_element = $('.distance-guest').text(values.dist_guest_host);
 
 			// Send the Acknowledgment Message
 			websocket_gui.send("#ack");
@@ -100,10 +121,10 @@ function declare_gui(websocket_address) {
 	}
 }
 
-var canvas = document.getElementById("gui_canvas");
+// var canvas = document.getElementById("gui_canvas");
 
-// Lap time DOM
-var lap_time_display = document.getElementById("lap_time");
+// // Lap time DOM
+// var lap_time_display = document.getElementById("lap_time");
 
 function pause_lap(){
 	websocket_gui.send("#paus");
