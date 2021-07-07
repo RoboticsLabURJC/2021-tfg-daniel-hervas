@@ -21,3 +21,5 @@ I will try my best for the quality of my posts.
 
 TFG Tutor: [Jose Maria Cañas](https://gsyc.urjc.es/jmplaza/)
 
+TFG Co-Tutor: [David Roldán Álvarez](https://gestion2.urjc.es/pdi/ver/david.roldan)
+
