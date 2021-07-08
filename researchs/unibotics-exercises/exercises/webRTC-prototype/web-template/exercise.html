@@ -525,12 +525,12 @@ while True:
 
        <!-- Exercise specific resources -->
 	   <script>
-		   var checkpoints= [[1,12,50], [2,12,36], [3,12,34], [4,12,23], [5,14,16], [6,19,13],[7,31,12], [8,41,14], [9,43,15], [10,47,35],
-                  [11,47,39],[12,51,45], [13,63,48], [14,91,48], [15,112,48], [16,150,48],[17,166,42], [18,167,32], [19,171,27], [20,199,18],
-                  [21,220,19], [22,234,21], [23,253,27], [24,261,30], [25,268,34], [26,276,39],[27,279,42], [28,286,51], [29,288,55], [30,289,59],
-                  [31,289,61],[32,284,77], [33,281,81], [34,280,82], [35,277,84], [36,259,95],[37,225,104], [38,219,105], [39,191,109], [40,181,111],
-                  [41,167,113], [42,160,114], [43,145,116], [44,134,130], [45,134,134], [46,123,141],[47,111,141], [48,99,134], [49,80,116], [50,65,124],
-                  [51,64,134],  [52,60,134], [53,36,137], [54,22,136], [55,12,129], [56,12,110],[57,12,100], [58,12,94],[59,12,84],[60,12,63]
+		   var checkpoints= [[1,12,50], [2,12,36], [3,12,23], [4,12,16], [5,19,11], [6,19,12],[7,31,12], [8,43,15], [9,47,25], [10,47,39],
+                  [11,51,45],[12,63,48], [13,80,48], [14,100,48], [15,125,48], [16,145,48],[17,165,42], [18,170,28], [19,185,20], [20,205,18],
+                  [21,220,19], [22,234,21], [23,249,25], [24,264,30], [25,276,39], [26,276,39],[27,286,51], [28,288,65], [29, 278, 80], [30, 268, 90],
+				  [31, 250, 98], [32, 230, 103], [33, 210, 107], [34, 190, 110], [35, 170, 113], [36, 150, 116], [37, 140, 118], [38, 135, 123],[39,135,130],
+				  [40, 128, 138],[41, 118, 140], [42, 106,140],[43, 100, 130],[44, 98, 120],[45, 87, 117],[46, 75, 117],[47, 67, 125],[48,60, 134],[49, 45, 136],
+				  [50, 30, 136], [51, 16, 132], [52, 12, 118], [53, 12, 103], [54, 12, 88], [55, 12, 73], [56, 12, 63]
 			];
 	   </script>
 	   <script>
@@ -563,6 +563,7 @@ while True:
 			function getNewPath(p_host, p_guest, closest_host, closest_guest, checkpoints){
 				let pos_host = closest_host[0]-1;
 				let pos_guest = closest_guest[0]-1;
+				console.log(pos_host, pos_guest);
 				
 				checkpoints[pos_host] = [pos_host+1,p_host[0],p_host[1]];
 				checkpoints[pos_guest] = [pos_guest+1,p_guest[0],p_guest[1]];
@@ -592,7 +593,7 @@ while True:
 			}
 			
 			// Get distances between each one
-			function getDistanceBetween(pos_host, pos_guest, checkpoints){
+			function getDistanceBetween(pos_host, pos_guest, checkpoints, coords_host, coords_guest){
 				let arr_guest_host = [];
 				let arr_host_guest = [];
 				let dist_guest_host, dist_host_guest;
@@ -612,8 +613,7 @@ while True:
 						arr_host_guest.push(checkpoints[pos_host]);
 						arr_host_guest.push(checkpoints[pos_guest]);
 					}
-				}
-				if(pos_host > pos_guest){
+				}else if(pos_host > pos_guest){
 					arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(pos_host, checkpoints.length-1));
 					if((arr_host_guest.length === 0)){
 						arr_host_guest.push(checkpoints[pos_host]);
@@ -627,6 +627,118 @@ while True:
 						arr_guest_host = [];
 						arr_guest_host.push(checkpoints[pos_guest]);
 						arr_guest_host.push(checkpoints[pos_host]);
+					}
+				}else{
+					// If they are on the same checkpoint or position of the array
+					arr_host_guest.push(checkpoints[pos_host]);
+					arr_host_guest.push(checkpoints[pos_guest]);
+					
+					arr_guest_host.push(checkpoints[pos_guest]);
+					arr_guest_host.push(checkpoints[pos_host]);
+
+					// Primer tramo
+					if((coords_host[0] < 20) && (coords_guest[0] < 20)){
+						// Host por delante
+						if(coords_host[1] < coords_guest[1]){
+							arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(pos_host, checkpoints.length-1));
+							if((arr_host_guest.length === 0)){
+								arr_host_guest.push(checkpoints[pos_host]);
+							}
+							arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(0, pos_guest));
+							if((arr_host_guest.length === 1)){
+								arr_host_guest.push(checkpoints[pos_guest]);
+							}
+							arr_guest_host.push([1, coords_guest[0], coords_guest[1]]);
+							arr_guest_host.push([2, coords_host[0], coords_host[1]]);
+						}else{
+							arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(pos_guest, checkpoints.length-1));
+							if((arr_guest_host.length === 0)){
+								arr_guest_host.push(checkpoints[pos_guest]);
+							}
+							arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(0, pos_host));
+							if((arr_guest_host.length === 1)){
+								arr_guest_host.push(checkpoints[pos_host]);
+							}
+							arr_host_guest.push([1, coords_guest[0], coords_guest[1]]);
+							arr_host_guest.push([2, coords_host[0], coords_host[1]]);
+						}
+					}else if(((coords_host[0] > 2) && (coords_guest[0] > 2)) && ((coords_host[1] < 50) && (coords_guest[1] < 50))){
+						// Segundo tramo
+						// Host por delante
+						if(coords_host[0] > coords_guest[0]){
+							arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(pos_host, checkpoints.length-1));
+							if((arr_host_guest.length === 0)){
+								arr_host_guest.push(checkpoints[pos_host]);
+							}
+							arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(0, pos_guest));
+							if((arr_host_guest.length === 1)){
+								arr_host_guest.push(checkpoints[pos_guest]);
+							}
+							arr_guest_host.push([1, coords_guest[0], coords_guest[1]]);
+							arr_guest_host.push([2, coords_host[0], coords_host[1]]);
+						}else{
+							arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(pos_guest, checkpoints.length-1));
+							if((arr_guest_host.length === 0)){
+								arr_guest_host.push(checkpoints[pos_guest]);
+							}
+							arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(0, pos_host));
+							if((arr_guest_host.length === 1)){
+								arr_guest_host.push(checkpoints[pos_host]);
+							}
+							arr_host_guest.push([1, coords_guest[0], coords_guest[1]]);
+							arr_host_guest.push([2, coords_host[0], coords_host[1]]);
+						}
+					}else if((coords_host[0] > 250) && (coords_guest[0] > 250)){
+						// Host por delante
+						if(coords_host[1] > coords_guest[1]){
+							arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(pos_host, checkpoints.length-1));
+							if((arr_host_guest.length === 0)){
+								arr_host_guest.push(checkpoints[pos_host]);
+							}
+							arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(0, pos_guest));
+							if((arr_host_guest.length === 1)){
+								arr_host_guest.push(checkpoints[pos_guest]);
+							}
+							arr_guest_host.push([1, coords_guest[0], coords_guest[1]]);
+							arr_guest_host.push([2, coords_host[0], coords_host[1]]);
+						}else{
+							arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(pos_guest, checkpoints.length-1));
+							if((arr_guest_host.length === 0)){
+								arr_guest_host.push(checkpoints[pos_guest]);
+							}
+							arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(0, pos_host));
+							if((arr_guest_host.length === 1)){
+								arr_guest_host.push(checkpoints[pos_host]);
+							}
+							arr_host_guest.push([1, coords_guest[0], coords_guest[1]]);
+							arr_host_guest.push([2, coords_host[0], coords_host[1]]);
+						}
+					}else{
+						// Cuarto tramo
+						// Host por delante
+						if(coords_host[0] < coords_guest[0]){
+							arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(pos_host, checkpoints.length-1));
+							if((arr_host_guest.length === 0)){
+								arr_host_guest.push(checkpoints[pos_host]);
+							}
+							arr_host_guest = arrPush(arr_host_guest, checkpoints.slice(0, pos_guest));
+							if((arr_host_guest.length === 1)){
+								arr_host_guest.push(checkpoints[pos_guest]);
+							}
+							arr_guest_host.push([1, coords_guest[0], coords_guest[1]]);
+							arr_guest_host.push([2, coords_host[0], coords_host[1]]);
+						}else{
+							arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(pos_guest, checkpoints.length-1));
+							if((arr_guest_host.length === 0)){
+								arr_guest_host.push(checkpoints[pos_guest]);
+							}
+							arr_guest_host = arrPush(arr_guest_host, checkpoints.slice(0, pos_host));
+							if((arr_guest_host.length === 1)){
+								arr_guest_host.push(checkpoints[pos_host]);
+							}
+							arr_host_guest.push([1, coords_guest[0], coords_guest[1]]);
+							arr_host_guest.push([2, coords_host[0], coords_host[1]]);
+						}
 					}
 				}
 				

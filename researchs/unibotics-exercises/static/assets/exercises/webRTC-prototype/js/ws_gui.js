@@ -96,10 +96,10 @@ function declare_gui(websocket_address) {
 			checkpoints = values.checkpoints;
 			arr_pos_host = values.pos_host;
 			arr_pos_guest = values.pos_guest;
-			//console.log(checkpoints, arr_pos_host, arr_pos_guest);
+			console.log(checkpoints, arr_pos_host, arr_pos_guest);
 
 			// Get distances
-			values = getDistanceBetween(arr_pos_host,arr_pos_guest, checkpoints);
+			values = getDistanceBetween(arr_pos_host,arr_pos_guest, checkpoints, content, content_guest);
 			// console.log('HOST->GUEST: ', values.dist_host_guest);
 			// console.log('GUEST->HOST: ', values.dist_guest_host);
 			distance_host_element = $('.distance-host').text(values.dist_host_guest);

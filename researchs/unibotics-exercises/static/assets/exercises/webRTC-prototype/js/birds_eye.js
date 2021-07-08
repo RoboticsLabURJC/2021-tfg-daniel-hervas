@@ -11,7 +11,7 @@ function drawCircles(x_host, y_host, x_guest, y_guest){
 	ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
 	
 	// Draw checkpoints
-	drawCheckpoints(checkpoints);
+	//drawCheckpoints(checkpoints);
 	
 	// Draw HOST
 	ctx.beginPath();
