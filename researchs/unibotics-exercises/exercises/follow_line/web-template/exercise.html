@@ -488,6 +488,62 @@ while True:
 			var saving = setInterval(intervalSave, 300000);
 		</script>
 
+		<!-- WS_CODE -->
+		<script>
+			function getCode(user){
+				var req = new XMLHttpRequest();
+				let path = 'http://'+window.location.host+'/academy/exercise/request/{{ exercise }}?user='+user;
+
+				req.open("GET", path, false );
+				req.send( null );
+
+				return req.responseText;
+			}
+
+
+			// Function that sends/submits the code!
+			function submitCode(){
+				// Get the code from editor and add headers
+				var message = "#resu"
+				websocket_code.send(message)
+				//var python_code = editor.getValue();
+				let python_code = "#code\n";
+				let python_code_guest = '#code\n';
+
+				// Get the user code
+				python_code = python_code + getCode('{{user}}');
+				// Get remote user code
+				python_code_guest = python_code_guest + getCode('dhrodao2');
+								
+				console.log('HOST: ', python_code);
+				console.log('GUEST: ',python_code_guest);
+				console.log("Code Sent!");
+
+				websocket_code.send(python_code);
+				websocket_code_guest.send(python_code_guest);
+
+				try {
+					unpause_lap()
+				}
+				catch {
+
+				}
+				stop_button.disabled = false;
+				stop_button.style.opacity = "1.0";
+				stop_button.style.cursor = "default";
+				running = true;
+			}
+		</script>
+
+		<!-- SAVE CODE --> 
+		<script>
+			var csrf = '{{ csrf_token }}';
+			function intervalSave() {
+				saveCodeUnibotics('{{exercise}}', true);
+			}
+			var saving = setInterval(intervalSave, 300000);
+		</script>
+
 
 
 

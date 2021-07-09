@@ -282,9 +282,10 @@ while True:
 					<div class="row mx-auto">
 						<canvas id="birds-eye"></canvas>
 					</div>
-					<!-- <div class="row mx-auto">
+					<div class="row mx-auto">
 						<img id="gui_canvas"></img>
-					</div> -->
+						<img id="gui_canvas_guest"></img>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -479,8 +480,9 @@ while True:
 			// Function that sends/submits the code!
 			function submitCode(){
 				// Get the code from editor and add headers
-				var message = "#resu"
-				websocket_code.send(message)
+				var message = "#resu";
+				websocket_code.send(message);
+				websocket_code_guest.send(message);
 				//var python_code = editor.getValue();
 				let python_code = "#code\n";
 				let python_code_guest = '#code\n';
@@ -563,7 +565,7 @@ while True:
 			function getNewPath(p_host, p_guest, closest_host, closest_guest, checkpoints){
 				let pos_host = closest_host[0]-1;
 				let pos_guest = closest_guest[0]-1;
-				console.log(pos_host, pos_guest);
+				//console.log(pos_host, pos_guest);
 				
 				checkpoints[pos_host] = [pos_host+1,p_host[0],p_host[1]];
 				checkpoints[pos_guest] = [pos_guest+1,p_guest[0],p_guest[1]];
@@ -753,6 +755,7 @@ while True:
 			}
 	   </script>
        <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/ws_gui.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
+	   <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/ws_gui_guest.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
        <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/birds_eye.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
        <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/launcher.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script>
        <!-- <script src="{% static 'unibotics-exercises/static/assets/exercises/webRTC-prototype/js/evaluator.js' %}?v={{version}}" type="text/javascript" charset="utf-8"></script> -->

@@ -21,14 +21,14 @@ function declare_code_guest(websocket_address){
 
 	websocket_code_guest.onopen = function(event){
 		//alert("[open] Connection established!");
-		set_launch_level(get_launch_level()+1);
+		//set_launch_level(get_launch_level()+1);
 	}
 	websocket_code_guest.onclose = function(event){
 		if(event.wasClean){
 			alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
 		}
 		else{
-			alert("[close] Guest Connection closed!" + event);
+			alert("[close] Guest Connection closed!");
 		}
 	}
 

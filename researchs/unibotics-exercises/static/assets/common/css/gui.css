@@ -5,7 +5,7 @@
 	height: 500px;
 }
 
-#gui_canvas {
+#gui_canvas, #gui_canvas_guest {
     height: 350px;
     width: -webkit-fill-available;
 }

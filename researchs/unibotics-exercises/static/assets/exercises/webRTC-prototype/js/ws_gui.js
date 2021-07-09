@@ -49,17 +49,20 @@ function declare_gui(websocket_address) {
 		if (operation == "#gui") {
 			// Parse the entire Object
 			data = JSON.parse(event.data.substring(4,));
+			console.log('HOST: ', data);
 
 			// Parse the Image Data
 			image_data = JSON.parse(data.image),
 				source = decode_utf8(image_data.image),
 				shape = image_data.shape;
 
-			// if (source != "") {
-			// 	canvas.src = "data:image/jpeg;base64," + source;
-			// 	canvas.width = shape[1];
-			// 	canvas.height = shape[0];
-			// }
+			//console.log(image_data, image_data_guest);
+
+			if (source != "") {
+				canvas.src = "data:image/jpeg;base64," + source;
+				canvas.width = shape[1];
+				canvas.height = shape[0];
+			}
 
 			// // Parse the Lap data
 			// lap_time = data.lap;
@@ -96,7 +99,7 @@ function declare_gui(websocket_address) {
 			checkpoints = values.checkpoints;
 			arr_pos_host = values.pos_host;
 			arr_pos_guest = values.pos_guest;
-			console.log(checkpoints, arr_pos_host, arr_pos_guest);
+			//console.log(checkpoints, arr_pos_host, arr_pos_guest);
 
 			// Get distances
 			values = getDistanceBetween(arr_pos_host,arr_pos_guest, checkpoints, content, content_guest);
@@ -121,7 +124,8 @@ function declare_gui(websocket_address) {
 	}
 }
 
-// var canvas = document.getElementById("gui_canvas");
+var canvas = document.getElementById("gui_canvas");
+//var canvas_guest = document.getElementById("gui_canvas_guest");
 
 // // Lap time DOM
 // var lap_time_display = document.getElementById("lap_time");
