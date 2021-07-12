@@ -13,6 +13,7 @@ var image_data, source, shape;
 var lap_time, pose, content;
 var pose_guest, content_guest;
 var command_input;
+var checkpoints=circuit_checkpoints;
 
 function declare_gui(websocket_address) {
 	websocket_gui = new WebSocket(websocket_address);
@@ -37,6 +38,9 @@ function declare_gui(websocket_address) {
 
 	// What to do when a message from server is received
 	websocket_gui.onmessage = function (event) {
+		checkpoints = circuit_checkpoints
+
+		var path = checkpoints;
 		let values;
 		let distance_host_element = $('.distance-host');
 		let distance_guest_element = $('.distance-guest');
@@ -49,7 +53,6 @@ function declare_gui(websocket_address) {
 		if (operation == "#gui") {
 			// Parse the entire Object
 			data = JSON.parse(event.data.substring(4,));
-			console.log('HOST: ', data);
 
 			// Parse the Image Data
 			image_data = JSON.parse(data.image),
@@ -91,22 +94,23 @@ function declare_gui(websocket_address) {
 			//drawOdometry(data.v, data.w);
 
 			// Get closest checkpoints
-			close_host = getClosestCheckpoint(content, checkpoints);
-			close_guest = getClosestCheckpoint(content_guest, checkpoints);
+			close_host = getClosestCheckpoint(content, path);
+			close_guest = getClosestCheckpoint(content_guest, path);
 			
 			// Get path to reach the checkpoints
-			values = getNewPath(content, content_guest,close_host, close_guest, checkpoints);
-			checkpoints = values.checkpoints;
+			values = getNewPath(content, content_guest,close_host, close_guest);
+			path = values.path;
 			arr_pos_host = values.pos_host;
 			arr_pos_guest = values.pos_guest;
+			console.log(checkpoints);
 			//console.log(checkpoints, arr_pos_host, arr_pos_guest);
 
-			// Get distances
-			values = getDistanceBetween(arr_pos_host,arr_pos_guest, checkpoints, content, content_guest);
-			// console.log('HOST->GUEST: ', values.dist_host_guest);
-			// console.log('GUEST->HOST: ', values.dist_guest_host);
-			distance_host_element = $('.distance-host').text(values.dist_host_guest);
-			distance_guest_element = $('.distance-guest').text(values.dist_guest_host);
+			// console.log('HOST->GUEST: ', getDistanceOriginDest(arr_pos_host, arr_pos_guest, path));
+			// console.log('GUEST->HOST: ', getDistanceOriginDest(arr_pos_guest, arr_pos_host, path));
+
+			// Get distances and set them too
+			distance_host_element = $('.distance-host').text(getDistanceOriginDest(arr_pos_host, arr_pos_guest, path));
+			distance_guest_element = $('.distance-guest').text(getDistanceOriginDest(arr_pos_guest, arr_pos_host, path));
 
 			// Send the Acknowledgment Message
 			websocket_gui.send("#ack");
