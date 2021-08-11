@@ -348,7 +348,7 @@ Dentro de la robótica educativa, es preciso enfatizar la plataforma \textit{Uni
 \chapter{Herramientas} 
 \label{chap:herramientas}
 
-En este capítulo se hará una breve presentación de todas las herramientas empleadas para el desarrollo del presente TFG. Estas tecnologías se pueden englobar en dos grupos, las tecnologías Front-End dedicadas a la presentación y a la interfaz de usuario (HTML, CSS y JavaScript), tecnologías Back-End dedicadas al servidor (Django), y, por último, tecnologías WebRTC que serán las encargadas de transmitir el vídeo en los juegos síncronos. 
+En este capítulo se hará una breve presentación de todas las herramientas empleadas para el desarrollo del presente TFG. Estas tecnologías se pueden englobar en dos grupos, las tecnologías Front-End dedicadas a la presentación y a la interfaz de usuario (JavaScript, HTML y CSS), tecnologías Back-End dedicadas al servidor (Django), y, por último, tecnologías WebRTC que serán las encargadas de transmitir el vídeo en los juegos síncronos. 
 
 \section{Lenguaje JavaScript}
 \label{sec:javascript}
@@ -370,6 +370,40 @@ En este proyecto se ha empleado JavaScript en el lado del cliente. La lógica de
 \end{itemize}
 
 Adicionalmente, junto con \textit{ES-6} se ha empleado una librería llamada \textit{jQuery}\footnote{\url{https://jquery.com/}} que permite agregar dinamismo a un sitio web permitiendo interactuar con los elementos HTML, manipular el DOM, manejar eventos, diseñar animaciones y agregar interacción con la técnica \textit{AJAX}\footnote{\url{https://developer.mozilla.org/es/docs/Web/Guide/AJAX}} (\textit{Asynchronous JavaScript and XML}).
+
+\section{Lenguaje HTML}
+
+\textit{HTML} (\textit{HyperText Markup Languaje}) es un lenguaje de marcado que permite indicar la estructura un documento utilizando etiquetas. Es utilizado para la creación de documentos electrónicos que se envían a través de la red. Los documentos pueden tener conexiones con otros a través de \textit{hipervínculos}.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=8cm]{img/html}
+    \caption{Documento básico de \textit{HTML}.}
+    \label{figura:simulador_gazebo}
+\end{figure}
+
+Primeramente se debe declarar el tipo del documento \textit{HTML} mediante la línea \textit{DOCTYPE html} que indica que es un documento \textit{HTML-5}. El elemento \textit{html} engloba el documento \textit{HTML}, dentro de este elemento se encuentran dos etiquetas:
+
+\begin{itemize}
+	\item \textit{HEAD} es la cabecera del documento, que contiene la información general (metadatos) acerca del documento, incluyendo el título y los enlaces a scritps y hojas de estilos.
+	
+	\item \textit{BODY} es el cuerpo del documento \textit{HTML} donde se encuentran las etiquetas que dan formato al mismo. Puede contener imágenes, enlaces, vídeos, menús, formularios, botones, incluso animaciones, que se pueden crear dentro de un elemento canvas.
+\end{itemize}
+
+Con la incorporación de \textit{HTML-5} se han introducido diversas novedades y mejoras que son de interés para este trabajo:
+
+\begin{itemize}
+	\item \textit{WebSockets}, es una tecnología que hace posible abrir una comunicación entre el navegador y el servidor.
+	
+	\item \textit{WebRTC} (\textit{Web Real-Time Communications}) es una tecnología que permite a las aplicaciones web capturar y transmitir audio y vídeo entre navegadores sin necesidad de un intermediario.
+	
+	\item Se añade un mejor soporte de contenido multimedia sin la necesidad de instalar plugins adicionales. Mediante el elemento \textit{video} la página reproducirá de manera nativa el contenido.
+	
+	\item Proporciona un elemento, \textit{canvas} que permite renderizar escenas gráficas en la web mediante el uso de \textit{JavaScript}.
+\end{itemize}
+
+\section{Hojas de estilo CSS}
+\label{sec:css}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
