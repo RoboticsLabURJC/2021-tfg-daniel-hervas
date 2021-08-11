@@ -32,7 +32,7 @@
 \usepackage{latexsym}  %% Logo LaTeX
 
 \title{Memoria del Proyecto}
-\author{Nombre del autor}
+\author{Daniel Hervás Rodao}
 
 \renewcommand{\baselinestretch}{1.5}  %% Interlineado
 
@@ -51,27 +51,28 @@
 \vspace{1.75cm}
 
 \Large
-TITULACIÓN EN MAYÚSCULAS
+GRADO EN INGENIERÍA EN TELEMÁTICA
 
 \vspace{0.4cm}
 
 \large
-Curso Académico 202X/202X
+Curso Académico 2021/2022
 
 \vspace{0.8cm}
 
-Trabajo Fin de Grado/Máster
+Trabajo Fin de Grado
 
 \vspace{2.5cm}
 
 \LARGE
-TÍTULO DEL TRABAJO EN MAYÚSCULAS
+GAMIFICACIÓN DE PLATAFORMA UNIBOTICS
 
 \vspace{4cm}
 
 \large
-Autor : Nombre del Alumno/a \\
-Tutor : Dr. Nombre del Profesor/a
+Autor : Daniel Hervás Rodao \\
+Tutor : José María Cañas Plaza \\
+Co-Tutor : David Roldán Álvarez
 \end{center}
 \end{titlepage}
 
@@ -89,16 +90,17 @@ Tutor : Dr. Nombre del Profesor/a
 \vspace{-4cm}
 \begin{center}
 \LARGE
-\textbf{Trabajo Fin de Grado/Máster}
+\textbf{Trabajo Fin de Grado}
 
 \vspace{1cm}
 \large
-Título del Trabajo con Letras Capitales para Sustantivos y Adjetivos
+Gamificación de la Plataforma Unibotics
 
 \vspace{1cm}
 \large
-\textbf{Autor :} Nombre del Alumno/a \\
-\textbf{Tutor :} Dr. Nombre del Profesor/a
+\textbf{Autor :} Daniel Hervás Rodao \\
+\textbf{Tutor :} José María Cañas Plaza
+\textbf{Co-Tutor :} David Roldán Álvarez
 
 \end{center}
 
@@ -210,103 +212,106 @@ As it is the translation of the ``Resumen'', which is supposed to be written at 
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 
-En este capítulo se introduce el proyecto.
-Debería tener información general sobre el mismo, dando la información sobre el contexto en el que se ha desarrollado.
+El TFG que será descrito a continuación se ha desarrollado en la plataforma \textit{Unibotics} de la asociación \textit{JdeRobot}\footnote{\url{https://jderobot.github.io}}, orientado al aprendizaje de robótica para estudiantes universitarios. El principal motivo de este proyecto es la introducción de técnicas de gamificación para los diferentes ejercicios contenidos la plataforma, así como añadir nuevos.
 
-No te olvides de echarle un ojo a la página con los cinco errores de escritura más frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
+En este capítulo introductorio se introducirá el contexto en el que se desarrolla el trabajo, así como los motivos que han motivado a llevarlo a cabo.
 
-Aconsejo a todo el mundo que mire y se inspire en memorias pasadas.
-Las memorias de los proyectos que he llevado yo están (casi) todas almacenadas en mi web del GSyC\footnote{\url{https://gsyc.urjc.es/~grex/pfcs/}}.
+El campo de la robótica es muy amplio, en concreto, este TFG se encuentra en el marco de la robótica educativa, destinada a la enzeñanza de la misma. 
 
-\section{Sección}
-\label{sec:seccion}
+\section{Robótica}
+\label{sec:robotica}
 
-Esto es una sección, que es una estructura menor que un capítulo. 
+Los avances en computación de las últimas décadas han sido el impulso que ha permitido la creación de máquinas muy cercanas al ideal de autonomía que se ha perseguido siempre. La robótica está muy relacionada no solo con la rama de la ingeniería, si no, que involucra conocimientos de matemáticas y física para el desarrollos de máquinas autónomas. Uno de los objetivos principales de la robótica es el de facilitar tareas de la vida diaria al ser humano, incluso, en algunas ocasiones, sustituir al ser humano.
 
-Por cierto, a veces me comentáis que no os compila por las tildes.
-Eso es un problema de codificación.
-Al guardar el archivo, guardad la codificación de ``ISO-Latin-1'' a ``UTF-8'' (o viceversa) y funcionará.
+La inteligencia artificial, también está muy ligada al campo de la robótica. Los avances en este campo permiten desarrollar sistemas capaces de tener una cierta memoria útil para realizar una serie de funciones.
 
-\subsection{Estilo}
-\label{subsec:estilo}
+En 1950 la robótica experimenta un gran desarrollo. Esto se debe a los grandes avances en relación a la potencia y complejidad computacional. El acoplamiento mecánico empezó a sustituirse por sistemas eléctricos. Tal es el grado de desarrollo que se empiezan a generar sistemas de control automático consistentes en máquinas de estado secuencial.
 
-Recomiendo leer los consejos prácticos sobre escribir documentos científicos en \LaTeX \ de Diomidis Spinellis\footnote{\url{https://github.com/dspinellis/latex-advice}}.
-
-Lee sobre el uso de las comas\footnote{\url{http://narrativabreve.com/2015/02/opiniones-de-un-corrector-de-estilo-11-recetas-para-escribir-correctamente-la-coma.html}}. 
-Las comas en español no se ponen al tuntún.
-Y nunca, nunca entre el sujeto y el predicado (p.ej. en ``Yo, hago el TFG'' sobre la coma).
-La coma no debe separar el sujeto del predicado en una oración, pues se cortaría la secuencia natural del discurso.
-No se considera apropiado el uso de la llamada coma respiratoria o \emph{coma criminal}.
-Solamente se suele escribir una coma para marcar el lugar que queda cuando omitimos el verbo de una oración, pero es un caso que se da de manera muy infrecuente al escribir un texto científico (p.ej. ``El Real Madrid, campeón de Europa'').
-
-A continuación, viene una figura, la Figura~\ref{figura:foro_hilos}. 
-Observarás que el texto dentro de la referencia es el identificador de la figura (que se corresponden con el ``label'' dentro de la misma). 
-También habrás tomado nota de cómo se ponen las ``comillas dobles'' para que se muestren correctamente. 
-Nota que hay unas comillas de inicio (``) y otras de cierre (''), y que son diferentes.
-Volviendo a las referencias, nota que al compilar, la primera vez se crea un diccionario con las referencias, y en la segunda compilación se ``rellenan'' estas referencias. 
-Por eso hay que compilar dos veces tu memoria.
-Si no, no se crearán las referencias.
-
- \begin{figure}
-    \centering
-    \includegraphics[bb=0 0 800 600, width=12cm, keepaspectratio]{img/foro1}
-    \caption{Página con enlaces a hilos}
-    \label{figura:foro_hilos}
- \end{figure}
-
-A continuación un bloque ``verbatim'', que se utiliza para mostrar texto tal cual.
-Se puede utilizar para ofrecer el contenido de correos electrónicos, código, entre otras cosas.
-
-{\footnotesize
-\begin{verbatim}
-    From gaurav at gold-solutions.co.uk  Fri Jan 14 14:51:11 2005
-    From: gaurav at gold-solutions.co.uk (gaurav_gold)
-    Date: Fri Jan 14 19:25:51 2005
-    Subject: [Mailman-Users] mailman issues
-    Message-ID: <003c01c4fa40$1d99b4c0$94592252@gaurav7klgnyif>
-
-    Dear Sir/Madam,
-    How can people reply to the mailing list?  How do i turn off
-    this feature? How can i also enable a feature where if someone
-    replies the newsletter the email gets deleted?
-    Thanks
-
-    From msapiro at value.net  Fri Jan 14 19:48:51 2005
-    From: msapiro at value.net (Mark Sapiro)
-    Date: Fri Jan 14 19:49:04 2005
-    Subject: [Mailman-Users] mailman issues
-    In-Reply-To: <003c01c4fa40$1d99b4c0$94592252@gaurav7klgnyif>
-    Message-ID: <PC173020050114104851057801b04d55@msapiro>
-
-    gaurav_gold wrote:
-    >How can people reply to the mailing list?  How do i turn off
-    this feature? How can i also enable a feature where if someone
-    replies the newsletter the email gets deleted?
-
-    See the FAQ
-    >Mailman FAQ: http://www.python.org/cgi-bin/faqw-mm.py
-    article 3.11
-\end{verbatim}
-}
-
-\section{Estructura de la memoria}
-\label{sec:estructura}
-
-En esta sección se debería introducir la esctura de la memoria. 
-
-Así:
-
-\begin{itemize}
-  \item En el primer capítulo se hace una intro al proyecto.
-  
-  \item En el capítulo~\ref{chap:objetivos} (ojo, otra referencia automática) se muestran los objetivos del proyecto.
-  
-  \item A continuación se presenta el estado del arte en el capítulo~\ref{chap:estado}.
-  
-  \item \ldots
-\end{itemize}
+Un claro ejemplo de este gran impluso es la implementación de robots en la industria automovilística, capaces de realizar tareas repetitivas, y que conllevan un gran riesgo para las personas (Figura 1.1).
 
 
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=8cm, keepaspectratio]{img/brazo}
+    \caption{Brazo robótico.}
+    \label{figura:brazo_robotico}
+\end{figure}
+
+En la actualidad, cada vez son más populares los coches autónomos. Es un campo muy amplio que cuenta con un gran número de posibilidades. Alguna de estas posibilidades serían los coches con conducción autónoma de \textit{Tesla}  (Figura 1.2) o los coches con aparcamiento autónomo que están desarrollando un gran número de compañías en la actualidad.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=8cm, keepaspectratio]{img/coche}
+    \caption{Coche autónomo.}
+    \label{figura:coche_autonomo}
+\end{figure}
+
+Otro campo de la aplicación de la robótica es la medicina, donde existen robots capaces de filtrar las vibraciones naturales del humano para proporcionarle una gran precisión y seguridad, un claro ejemplo es el robot DaVinci (Figura 1.3). Adicionalmente, hay robots capaces de mantener una estabilidad la estabilidad necesaria para caminar sobre dos piernas robóticas, como es el robot ATRIAS (Figura 1.4).
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/davinci}
+    \caption{Robot DaVinci.}
+    \label{figura:robot_davinci}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/atrias}
+    \caption{Robot ATRIAS.}
+    \label{figura:robot_atrias}
+  \end{minipage}
+\end{figure}
+
+En el ámbito militar, existen robots capaces de sustituir a una persona en el a la hora de realizar tareas de gran peligro como la desactivación de bombas y la entrada en zonas contaminadas (Figura 1.5).
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=8cm]{img/robot_militar}
+    \caption{Robot militar.}
+    \label{figura:coche_autonomo}
+\end{figure}
+
+\section{Componentes robóticas}
+\label{subsec:componentes roboticas}
+
+Todo robot está formado por dos componentes: el \textit{software}, encargado de proporcionar la inteligencia al robot, el más importante, y, el \textit{hardware} encargado de proporcionar la estructura física del robot.
+
+Con al gran auge de la robótica han surgido numerosas plataformas que proporcionan herramientas que simplifican el desarrollo de software robótico, esto son los denominados \textit{middlewares} robóticos.
+
+Durante el desarrollo de software robótico es preciso realizar una serie de pruebas para comprobar el funcionamiento del código y depurar errores, por lo que se necesitan simuladores que nos proporcionen un entorno cercano a la realidad previa al ensamblado del robot.
+
+\subsection{Middlewares robóticos}
+\label{subsec:middlewares}
+
+Un \textit{middleware} robótico es un \textit{framework} que proporciona una serie de herramientas que facilitan el desarrollo de software para robots. Proporciona los servicios necesarios para soportar y simplificar aplicaciones complejas y distribuidas. Para el control de los sensores y actuadores de los robots, los \textit{middlewares} proporcionan \textit{drivers}, APIs, etc.
+
+El \textit{middleware} robótico más generalizado es ROS\footnote{\url{https://www.ros.org/}}
+ (\textit{Robotics Operating System}). \textit{Robotics Operating System} fue desarrollado en 2007 por el Laboratorio de Inteligencia Artificial de Stanford para dar soporte a sus proyectos. A pesar de no ser un sistema operativo, ROS proporciona tales servicios coko la abstracción \textit{hardware}, mecanismos de comunicación entre prosesos, el control de dispositivos de bajo nivel y el mantenimiento de paquetes. \textit{Robotics Operating System} fue desarrollado para sistemas UNIX, aunque en la actualidad está siendo adaptado para su funcionamiento en sistemas operativos como Fedora, Mac OS X, Arch, Gentoo, OpenSUSE, Slackware, Debian o Microsoft Windows.
+
+\subsection{Simuladores robóticos}
+\label{subsec:simuladores}
+
+El surgimiento de estos \textit{softwares} robóticos está condicionado por la necesidad de realizar pruebas durante el desarrollo del \textit{software} para la detección y depuración de posibles errores antes de llevarlo a un robot real debido al gran coste que suponen.
+
+El simulador más generalizado en la actualidad es \textit{Gazebo}\footnote{\url{http://gazebosim.org/}}. Su popularidad se debe a su robusto motor de físicas, sus gráficos de alta calidad y su amplio catálogo de robots y escenarios. Es una herramienta de código abierto integrada con ROS, por lo que permite ejecutar \textit{software} robótico en un escenario simulado (Figura 1.6).
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=\textwidth]{img/gazebo}
+    \caption{Simulador Gazebo.}
+    \label{figura:simulador_gazebo}
+\end{figure}
+
+\section{Robótica educativa}
+\label{sec:robotica educativa}
+
+La robótica educativa proporciona a los estudiantes la infraestructura para la construcción y programación de un robot, pero, además de la enseñanza robótica,
+estos entornos van más allá, ofrenciendo la capacidad para el alumno de adquirir un pensamiento lógico. También, contribuye en la adquisición de una mentalidad resolutiva y al enriquecimiento de la cultura científica de los alumnos. Este método de educación con la robótica como objeto de enseñanza se denomina el método STEAM (Science, Technology, Engineering and Matemathics).
+
+Como se ha comentado, para llevar a cabo este método de educación es necesaria una infraestructura, como puede ser LEGO Mindstroms, un kit de robótica que es capaz de aumentras la capacidad de pensamiento de los alumnos.
+
+Dentro de la robótica educativa, es preciso enfatizar la plataforma \textit{Unibotics} en la que se desarrolla el presente proyecto. Esta plataforma es un proyecto internacional que ofrece material para la enseñanza de robótica en las aulas. \textit{Unibotics} proporciona una infraestructura software en conjunto a una colección de ejercicios, cada uno con el material teórico correspondiente para su resolución.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -564,15 +569,21 @@ Pues ponlo aquí.
 
 \cleardoublepage
 
-% Las siguientes dos instrucciones es todo lo que necesitas
-% para incluir las citas en la memoria
-\bibliographystyle{abbrv}
-\bibliography{memoria}  % memoria.bib es el nombre del fichero que contiene
-% las referencias bibliográficas. Abre ese fichero y mira el formato que tiene,
-% que se conoce como BibTeX. Hay muchos sitios que exportan referencias en
-% formato BibTeX. Prueba a buscar en http://scholar.google.com por referencias
-% y verás que lo puedes hacer de manera sencilla.
-% Más información: 
-% http://texblog.org/2014/04/22/using-google-scholar-to-download-bibtex-citations/
+\begin{thebibliography}{X}
+	\bibitem{historia} \textsc{Historia de la robótica.}
+	\url{https://scielo.isciii.es/pdf/aue/v31n3/v31n3a02.pdf}
+	
+	\bibitem{} \textsc{}
+	\url{}
+	
+	\bibitem{} \textsc{}
+	\url{}
+	
+	\bibitem{} \textsc{}
+	\url{}
+	
+	\bibitem{} \textsc{}
+	\url{}
+\end{thebibliography}
 
 \end{document}
