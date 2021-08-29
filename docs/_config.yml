@@ -18,7 +18,7 @@ minimal_mistakes_skin    : "neon"
 #locale                   : "en-US"
 title                    : "TFG Blog"
 title_separator          : "-"
-subtitle                 : TFG title
+subtitle                 : Unibotics Platform Gamification
 name                     : "Daniel Hervás"
 description              : "Programming Robot Intelligence"
 url                      : http://jderobot.github.io
