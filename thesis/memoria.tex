@@ -357,6 +357,9 @@ Se trata de un lenguaje de programación interpretado, su estándar es \textit{E
 
 En este proyecto se ha empleado JavaScript en el lado del cliente. La lógica de las plantillas que usan los ejercicios ha sido programada usando \textit{ECMAScript-6}, así como los evaluadores automáticos de los mismos, y, adicionalmente, para los \textit{WebSockets} encargados de comunicarse con el servidor para realizar tareas de señalización, o de envío de mensajes. Sus principales características son:
 
+\subsection{Caractrerísticas del lenguaje}
+\label{subsec:javascript}
+
 \begin{itemize}
 	\item Se trata de un lenguaje del lado del cliente, es decir, ejecuta en la máquina del propio cliente a través de un navegador.
 	
@@ -370,6 +373,15 @@ En este proyecto se ha empleado JavaScript en el lado del cliente. La lógica de
 \end{itemize}
 
 Adicionalmente, junto con \textit{ES-6} se ha empleado una librería llamada \textit{jQuery}\footnote{\url{https://jquery.com/}} que permite agregar dinamismo a un sitio web permitiendo interactuar con los elementos HTML, manipular el DOM, manejar eventos, diseñar animaciones y agregar interacción con la técnica \textit{AJAX}\footnote{\url{https://developer.mozilla.org/es/docs/Web/Guide/AJAX}} (\textit{Asynchronous JavaScript and XML}).
+
+\subsection{Librería jQuery}
+\label{subsec:javascript}
+
+\textit{jQuery} es una librería multiplataforma desarrollada en JavaScript, inicalmente desarrollada por John Resig. Esta librería permite simplificar en gran medida la interacción con los documentos HTML y sus estilos, manipular el DOM, manejar eventos, crear animaciones, y agregar la integración de la técnica \textit{AJAX} (\textit{Asynchronous JavaScript and XML}).
+
+En código, el constructor de jQuery puede llamarse empleando el nombre \textit{jQuery}, o, también empleando el alias \textit{\$}.
+
+Esta librería hace posible a desarrolladores que se inician en el mundo del desarrollo de interfaces de aplicación, puedan desarrollar una interfaz gráfica más elaborada sin la necesidad de tener amplios conocimientos de CSS.
 
 \section{Lenguaje HTML}
 
@@ -405,21 +417,170 @@ Con la incorporación de \textit{HTML-5} se han introducido diversas novedades y
 \section{Hojas de estilo CSS}
 \label{sec:css}
 
+CSS o \textit{Cascading Stylesheet} es un lenguaje empleado para dar formato y estilo a un documento de texto, comunmente, las instrucciones se agrupan en archivos con extensión \textbf{*.css}, lo que permite que para una página web se puedan almacenar estilos por separados dependiendo del fin de cada uno, de esta manera, se podrán importar en cada documento únicamente las instrucciones de las que se va a hacer uso.
+
+Con respecto a lo último mencionado, puesto que estas hojas almacenan el estilo, CSS nos ofrece una gran ventaja, la separación de la estructura del documento (HTML) de su representación. Aunque es posible añadir instrucciones CSS en el \textit{head} de un documento HTML mediante la etiqueta \textit{style}, esto no es una buena práctica.
+
+\textit{Cascading Stylesheet} nos permite utilizar \textit{JavaScript} para si fin principal, el de dar dinamismo e inteligencia a una página web, etc. Por lo que mejora en gran manera el rendimiento de la página.
+
+A continuación se muestra un ejemplo del uso de este lenguaje.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/nocss_vs_css}
+    \caption{Comparativa entre no usar CSS y usarlo.}
+    \label{figura:nocss_vs_css}
+\end{figure}
+
+Como se puede apreciar en la imagen 3.2, hay un gran salto de no usar CSS a usarlo en los documentos HTML. Este lenguaje nos permite tamto crear un \textit{Navbar}, menús desplegables, barras de búsqueda, botones personalizados, sub-apartados, es decir, aumenta en gran medida la experiencia del usuario.
+
+CSS también permite la creación de páginas web responsivas, esto es, que la web se adapte al tamaño de la pantalla del usuario, redimensionando los elementos y recolocándolos. Esto es muy útil si se quiere desarrollar una aplicación multiplataforma.
+
+\section{Django para servidores web}
+\label{sec:django}
+
+Django \footnote{\url{https://es.wikipedia.org/wiki/Django_(framework)}} \cite{django} es un framework de alto nivel que facilita el desarrollo de sitios web seguros y sostenibles. Fue lanzado como un framework web genérico en 2005, bajo una licencia de código abierto. Django se encarga de las complicaciones del desarrollo web, para que el usuario pueda centrarse en escribir su aplicación.
+
+El objetivo de Django es la creación sencilla de sitios web complejos, poniendo énfasis en la reutilización, la conectividad y la extensibilidad de componentes, el desarrollo rápido y el principio de no repetir código (\textit{Don't Repeat Yourself}).
+
+Algunas de las carácterística de Django son:
+
+\begin{itemize}
+\item Un mapeador objeto-relacional, es capaz de convertir datos entre un sistema de tipos utilizado en un lenguaje de programación orientado a objetos y la utilización de una base de datos relacional.
+
+\item Aplicaciones incorporables en cualquier página gestionada con Django.
+
+\item Una API de base de datos robusta.
+
+\item Un sistema incorporado de "vistas genéricas" que ahorra el tener que escribir la lógica de ciertas tareras comunes.
+
+\item Un sistema extensible de plantillas con herencia.
+
+\item Un despachador de URLs basado en expresiones regulares.
+
+\item Un sistema \textit{middleware} para desarrollar caracteríscas adicionales.
+
+\item Soporte de internacionalización, incluyendo traducciones de la interfaz de administración.
+
+\item Documentación incorporada accesible a través de la aplicación administrativa.
+\end{itemize}
+
+\section{WebRTC}
+\label{sec:webrtc}
+
+WebRTC \footnote{\url{https://es.wikipedia.org/wiki/WebRTC}} \cite{webrtc} (Web Real-Time Communication) es un proyecto libre y de código abierto que proporciona una comunicación en tiempo real (RTC) a través de una serie de APIs. Permite que la comunicación de audio y vídeo funcione dentro de las páginas web al permitir la comunicación \textit{Peer to Peer}, sin necesidad de instalación de plugins y sin necesidad de la intervención del servidor. WebRTC tiene soporte en los navegadores Safari, Chrome, Firefox, Mozilla y Opera, está estandarizado por el World Wide Web Consortium \footnote{\url{https://es.wikipedia.org/wiki/World_Wide_Web_Consortium}} y por el Internet Engineering Task Force \footnote{\url{https://es.wikipedia.org/wiki/Grupo_de_Trabajo_de_Ingenier\%C3\%ADa_de_Internet}}.
+
+El API de WebRTC tiene una serie de interfaces principales que son clave en el dearrollo del software para este proyecto:
+
+\begin{itemize}
+\item \textbf{RTCPeerConnection} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/RTCPeerConnection}} representa una conexiñon entre una máquina local y un par remoto. Esta interfaz provee métodos para: conectar un equipo remoto, mantener y monitorizar esa conexión y cerrar la conexión.
+
+\item \textbf{RTCDataChannel} \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel}} representa el canal que puede ser empleado para la transmisión de datos \textit{Peer to Peer}.
+
+\item \textbf{MediaDevices} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/MediaDevices}} proporciona el acceso a los dispositivos multimedia conectados, como webcams y micrófonos, y, también para compartir la pantalla. Ofrece un método \textit{getUserMedia()}, que, con el permiso del usuario, enciende la cámara, obtiene la imagen de la pantalla, el audio del micrófono, y, proporciona un \textit{MediaStream} que contiene pistas de vídeo y/o de audio del dispositivo.
+
+\item \textbf{MediaStream} \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/MediaStream}} representa el flujo de contenido multimedia. Un flujo consiste de varias pistas, ya sean de audio o de vídeo.
+\end{itemize}
+
+\subsection{Protocolos}
+\label{subsec:protocolos}
+
+\begin{itemize}
+\item \textbf{ICE} \footnote{\url{https://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment}} (\textit{Interactive Conectivity Establishment}). Es una técnica empleada para permitir que un navegador web se conecte con otro/s navegador/es web mediante conexiones \textit{Peer to Peer}. Debe de poder pasar por un \textit{firewall}, dirección IP pública, y, transmitir los datos a través de otro servidor, si el \textit{router} no permite las conexiones entre pares. Para lograr esta serie de casos, se emplean servidores STUN y TURN.
+
+
+\item \textbf{STUN} \footnote{\url{https://en.wikipedia.org/wiki/STUN}} (\textit{Session Transvelsal Utilities for NAT}). Es un protocolo de descubrimiento de IP pública, para determinar cualquier restricción en el \textit{enrutador} que impida una conexión directa con un par. El cliente enviará una solicitud STUN en Internet que responderá con la dirección pñublica del cliente y si el cliente esta accesible detrás del NAT del enrutador.
+
+\item \textbf{NAT} \footnote{\url{https://en.wikipedia.org/wiki/Nat}} (\textit{Network Address Translation}). Es empleado por el \textit{router} para asignar una dirección IP pública. El \textit{router} tiene acceso a la dirección pública de cada dispositivo y cada dispositivo conectado a este, tendrá una dirección IP privada. Las solucitudes se traducen de la IP privada a la IP pública con un puerto único. Algunos \textit{enrutadores} tienen restricciones sobre quien puede conectarse a su red. Esto puede dar lugar a que aunque tengamos un única dirección IP pública encontrada por el servidor STUN, no se pueda establecer una conexión. Ante este caso, se debe recurrir a un servidor TURN.
+
+\item \textbf{TURN} \footnote{\url{https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT}} (\textit{Transversal Using Relays around NAT}). Algunos router emplean una técnica llamada \textit{NAT simétrica}. Esto es, el \textit{enrutador} solo acepta conexiones de pares a los que se haya conectado previamente. TURN está destinado a aludir esta resticción de NAT simétrica. Consiste en establecer una conexión con un servidor TURN que retransmite todo el tráfico que se le envía, de una máquina a otra. Este intercambio es gestionado usando ICE.
+
+El proceso de \textit{Offer}/\textit{Answer} es realizado cuando se establece una nueva conexión, o bien, cuando debe cambiar un aspecto de una conexión ya establecida. A continuación se enumeran los pasos que ocurren durante el intercambio de la oferta y la respuesta:
+
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth,height=60mm]{img/stun.png}
+    \caption{Protocolo STUN.}
+    \label{figura:stun}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth,height=60mm]{img/turn.png}
+    \caption{Protocolo TURN.}
+    \label{figura:turn}
+  \end{minipage}
+\end{figure}
+
+\item \textbf{SDP} (\textit{Session Description Protocol}) \footnote{\url{https://en.wikipedia.org/wiki/Session_Description_Protocol}}. Es un protocolo empleado para describir el contenido multimedia de una conexión.
+
+\end{itemize}
+
+\subsection{Establecimiento de la conexión}
+\label{subsec:establecimiento_conexion}
+
+El protocolo WebRTC se encarga de establecer conexiones entre pares, pero desafortunadamente, una conexión WebRTC no se puede establecer sin un servidor intermedio. Este servidor podríamos llamarlo \textbf{servidor de señalización}, empleado en el intercambio de información previo al establecimiento de la conexión WebRTC.
+
+La información que necesitamos intercambiar es una \textit{Offer} y una \textit{Answer} que contienen el \textit{Session Description Protocol} mencionado anteriormente en \ref{subsec:protocolos}.
+
+El \textit{Peer A} que inicia la conexión va a crear una oferta (\textit{Offer}). Esta \textit{Offer} será enviada al \textit{Peer B} mediante el servidor intermedio seleccionado. \textit{Peer B} recibirá esta \textit{Offer} desde el servidor de señalización y creará una respuesta (\textit{Answer}) que enviará haciendo uso del mismo intermediario al \textit{Peer A}.
+
+\begin{enumerate}
+\item \textit{Peer A} captura los medios locales mediante \textit{MediaDevices.getUserMedia}
+
+\item \textit{Peer A} crea una conexión \textit{RTCPeerConnection} y emplea el método \textit{RTCPeerConnection.addTrack()} para añadir el flujo de datos a la comunicación.
+
+\item \textit{Peer A} crea la \textit{Offer} mediante el método \textit{RTCPeerConnection.createOffer()}.
+
+\item \textit{Peer A} establece el SDP de su \textit{Offer} llamando al método \textit{RTCPeerConnection.setLocalDescription()}.
+
+\item \textit{Peer A} solicita al servidor STUN que genere los candidatos ICE.
+
+\item \textit{Peer A} usa el servidor de señalización para transmitir su \textit{Offer}.
+
+\item \textit{Peer B} recibe la oferta y emplea \textit{RTCPeerConnection.setRemoteDescription()} para almacenar el SDP de \textit{Peer A}.
+
+\item \textit{Peer B} hace la configuración necesaria relativa a su conexión, como obtener su flujo de datos multimedia.
+
+\item \textit{Peer B} crea una respuesta haciendo uso del método \textit{RTCPeerConnection.createAnswer()}.
+
+\item \textit{Peer B} establece su descripción local llamando a \textit{RTCPeerConnection.setLocalDescription()} y pasando la respuesta por parámetro.
+
+\item \textit{Peer B} envía la respuesta usando el servidor de señalización.
+
+\item \textit{Peer A} recibe \textit{Answer}.
+
+\item \textit{Peer A} almacena el SDP de \textit{Peer B} llamando al método \textit{RTCPeerConnection.setRemoteDescription()}. Ahora \textit{Peer A} y \textit{Peer B} tienen la configuración de ambos y el flujo de medios comienza a transmitirse.
+\end{enumerate}
+
+\subsection{Candidatos ICE}
+\label{subsec:candidatos_ice}
+
+Además de intercambiarse la información sobre los elementos multimedia, los \textit{peers} deben intercambiar información sobre la conexión. Esto es conocido como \textit{candidatos ICE}, que detallan los métodos disponibles con los que un extremo puede comunicarse (directamente o mediante un servidor TURN). Cada \textit{peer} propondra una lista con sus mejores candidatos primero, estos candidatos son UDP (puesto que es más rápido, pues no hay retransmisiones, ni recuperación frente a pérdidas), aunque también permite emplear candidatos TCP. Esta comunicación es transparente para el usuario.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=10cm]{img/ice_diagram.png}
+    \caption{Diagrama de intercambio de candidados ICE.}
+    \label{figura:nocss_vs_css}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DISEÑO E IMPLEMENTACIÓN %
+% JUEGOS ASÍNCRONOS %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
-\chapter{Diseño e implementación}
+\chapter{Juegos Asíncronos}
 
 Aquí viene todo lo que has hecho tú (tecnológicamente). 
 Puedes entrar hasta el detalle. 
 Es la parte más importante de la memoria, porque describe lo que has hecho tú.
 Eso sí, normalmente aconsejo no poner código, sino diagramas.
 
-\section{Arquitectura general} 
-\label{sec:arquitectura}
+\section{Follow Line Game} 
+\label{sec:follow_line_game}
 
 Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
 
@@ -429,18 +590,6 @@ Y eso quiere decir que quizás no lo haga donde lo hemos puesto\ldots
 Eso no es malo.
 A veces queda un poco raro, pero es la filosofía de \LaTeX: tú al contenido, que yo me encargo de la maquetación.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=9cm, keepaspectratio]{img/arquitectura.png}
-  \caption{Estructura del parser básico.}\label{fig:arquitectura}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[bb=0 0 800 600, width=12cm, keepaspectratio]{img/foro1}
-    \caption{Página con enlaces a hilos}\label{fig:_arquitectura}
-\end{figure}
-
  
 Recuerda que toda figura que añadas a tu memoria debe ser explicada.
 Sí, aunque te parezca evidente lo que se ve en la figura~\ref{fig:arquitectura}, la figura en sí solamente es un apoyo a tu texto.
@@ -449,6 +598,18 @@ Por ejemplo: En la figura~\ref{fig:arquitectura} se puede ver que la estructura 
 
 Si utilizas una base de datos, no te olvides de incluir también un diagrama de entidad-relación.
 
+\section{Drone Cat Mouse Game} 
+\label{sec:drone_cat_mouse_game}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% JUEGOS SÍNCRONOS %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\chapter{Juegos Síncronos}
+\section{Synchronous Follow Line Game} 
+\label{sec:follow_line_game_sync}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -556,11 +717,15 @@ Pues ponlo aquí.
 	\bibitem{historia} \textsc{Historia de la robótica.}
 	\url{https://scielo.isciii.es/pdf/aue/v31n3/v31n3a02.pdf}
 	
-	\bibitem{} \textsc{}
-	\url{}
+	\bibitem{javascript} \textsc{Documentación oficial de javascript}
+	\url{https://developer.mozilla.org/es/docs/Web/JavaScript}	
 	
-	\bibitem{} \textsc{}
-	\url{}
+	\bibitem{django} \textsc{Documentacion oficial de Django}
+	\url{https://docs.djangoproject.com}	
+	
+	\bibitem{webrtc} \textsc{Documentación oficial de WebRTC.}
+	\url{https://webrtc.org/}
+	
 	
 	\bibitem{} \textsc{}
 	\url{}
