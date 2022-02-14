@@ -574,29 +574,126 @@ Además de intercambiarse la información sobre los elementos multimedia, los \t
 \cleardoublepage
 \chapter{Juegos Asíncronos}
 
-Aquí viene todo lo que has hecho tú (tecnológicamente). 
-Puedes entrar hasta el detalle. 
-Es la parte más importante de la memoria, porque describe lo que has hecho tú.
-Eso sí, normalmente aconsejo no poner código, sino diagramas.
+En este capítulo se expondrán los \emph{juegos asícronos} desarrollados para la plataforma de \textit{Unibotics}. Se han desarrollado un total de dos juegos asíncronos, de los que se hablará desde el diseño de las plantillas de la interfaz de usuario, hasta la comunicación con el servidor y el contenedor docker donde es ejecutado el juego. Para llevar a cabo el desarrollo de estos juegos, se ha partido de las versiones ya existentes dentro de la plataforma llamados \emph{retos}.
 
 \section{Follow Line Game} 
 \label{sec:follow_line_game}
 
-Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
+\subsection{Diseño de la interfaz}
+\label{subsec:follow_line_game_diseño}
 
-Por ejemplo, puedes verlo en la figura~\ref{fig:arquitectura}.
-\LaTeX \ pone las figuras donde mejor cuadran. 
-Y eso quiere decir que quizás no lo haga donde lo hemos puesto\ldots
-Eso no es malo.
-A veces queda un poco raro, pero es la filosofía de \LaTeX: tú al contenido, que yo me encargo de la maquetación.
+Para desarrollar este ejercicio ha sido necesario implementar \emph{software}  en el lado del ¡del cliente especialmente. Se ha diseñado un interfaz de usuario que radica en la simplicidad para el usuario, sin proporcionar un exceso de controles. La plantilla de los ejercicios es común a la mayoría de los ejercicios de la plataforma, pero mediante JavaScript se acondiciona la platilla a los requisitos del ejercicio. Todos los ejercicios tienen en común una barra en la parte superior que contiene una serie de botones para realizar la conexión con el contenedor Docker, que es donde se ejecutará todo lo relativo a la simulación del ejercicio.
 
- 
-Recuerda que toda figura que añadas a tu memoria debe ser explicada.
-Sí, aunque te parezca evidente lo que se ve en la figura~\ref{fig:arquitectura}, la figura en sí solamente es un apoyo a tu texto.
-Así que explica lo que se ve en la figura, haciendo referencia a la misma tal y como ves aquí.
-Por ejemplo: En la figura~\ref{fig:arquitectura} se puede ver que la estructura del \emph{parser} básico, que consta de seis componentes diferentes: los datos se obtienen de la red, y según el tipo de dato, se pasará a un \emph{parser} específico y bla, bla, bla\ldots
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/barra_radi.png}
+    \caption{Barra conexión con RADI.}
+    \label{figura:conexion_radi}
+\end{figure}
 
-Si utilizas una base de datos, no te olvides de incluir también un diagrama de entidad-relación.
+Volviendo a la parte específica para este ejercicio, tenemos una barra donde se encuentran los controles relativos al control de la simulación, visualización, carga de código e información adicional sobre la simulación.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/barra_control.png}
+    \caption{Barra de control de la simulación.}
+    \label{figura:conexion_radi}
+\end{figure}
+
+Bajo las barras de control del ejercicio, se tiene una pantalla que está dividida en dos secciones. La primera sección contiene el selector de circuito, el selector de dificultad y el editor de código. En la segunda sección se encuentra toda la información que se recibe del escenario, esto es, las localizaciones de los coches y sus cámaras, el evaluador automático, el simulador Gazebo y la consola del contenedor.
+
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/follow_line_game.png}
+    \caption{Plantilla del juego Follow Line.}
+    \label{figura:conexion_radi}
+\end{figure}
+
+\subsection{Inicio del juego}
+\label{subsec:follow_line_game_inicio}
+
+Para llevar a cabo la iniciación del juego es necesario realizar previamente la conexión con el contenedor Docker (RADI) donde se va a llevar a cabo toda la ejecución del ejercicio. Una vez realizada esta conexión, se deberá seleccionar el circuito en el que el usuario quiera jugar, seleccionar la dificultad del oponente, y, pulsar el botón \emph{Load in robot}, una vez se hayan cargado los respectivos códigos, se podrá proceder pulsando el botón \emph{Play} para comenzar la ejecución.
+
+\subsubsection{Selección de circuito}
+\label{subsec:follow_line_game_circuito}
+
+El usuario podrá elegir mediante un desplegable uno de los circuitos disponibles para realizar la ejecución del juego, estos circuitos son \emph{Default}, \emph{Montmelo}, \emph{Montreal} y \emph{Nürbugring}. 
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/circuit_selector.png}
+    \caption{Selector de circuitos.}
+    \label{figura:circuit_selector}
+\end{figure}
+
+El circuito \emph{Default} será el escenario por defecto en el que comenzará la simulación, si el usuario selecciona otro, se le comunicará al contenedor Docker, y este se encargará de volver a lanzar la simulación con el escenario seleccionado. Esta comunicación se realiza por medio de WebSockets.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=5cm]{img/select_circuit_code.png}
+    \caption{Cambio de circuito.}
+    \label{figura:circuit_selector}
+\end{figure}
+
+Como se puede apreciar en la figura anterior, el código del selector de circuitos se encarga de matar la simulación en curso e iniciar la nueva simulación con el circuito que se obtiene del selector.
+
+\subsubsection{Selección de dificultad}
+\label{subsec:follow_line_game_circuito}
+
+El selector de circuitos brinda al usuario un total de tres dificultades diferentes, \emph{Easy}, \emph{Medium} y \emph{Hard}, adicionalmente, el usuario también podrá seleccionar una cuarta dificultad, llamada \emph{Teleoperate} que consiste en que podrá teleoperar el coche del oponente con las teclas de dirección.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=10cm]{img/difficulty_selector.png}
+    \caption{Selector de dificultad.}
+    \label{figura:difficulty_selector}
+\end{figure}
+
+\subsection{Modo teleoperado}
+\label{follow_line_game_mode_teleoperado}
+
+En este juego se ha considerado el extra de implementar un modo de teleoperación para ambos vehículos, para brindar al usuario la posibilidad de probar su código ante diversas situaciones y pueda desarrollar un código más robusto, también con el objetivo de que pueda controlar alguno de los dos vehículos en el caso de que se haya quedado atascado. El usuario podrá controlar su vehículo, mediante el botón de teleoperación situado en la barra superior, y el coche oponente seleccionando la dificultar \emph{Teleoperate}, como se ha mencionado antes.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth,height=\textwidth]{img/teleoperate_off.png}
+    \caption{Teleoperación apagada.}
+    \label{figura:stun}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth,height=\textwidth]{img/teleoperate_on.png}
+    \caption{Teleoperación encendida.}
+    \label{figura:turn}
+  \end{minipage}
+\end{figure}
+
+Como se puede apreciar en las figuras, el botón de teleoperación del vehículo del usuario, cambiará de color en función de si la teleoperación está encendida o apagada.
+
+\subsubsection{Implementación del botón de teleoperación}
+\label{follow_line_game_mode_teleoperado_impl}
+
+Para llevar a cabo el control de la teleoperación se ha implementado mediante código JavaScript un \emph{listener} para el botón de teleoperación, que se encarga de comprobar si se puede activar el modo, es decir, no se está teleoperando el otro vehículo, cambiar la imagen del botón de teleoperación y añadir el handler correspondiente a los eventos \emph{keyup} y \emph{keydown}.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/teleop_mode_code.png}
+    \caption{Listener del botón de teleoperación.}
+    \label{figura:difficulty_selector}
+\end{figure}
+
+El handler que se le asigna a los eventos \emph{keyup} y \emph{keydown} se encarga de determinar cual es la tecla que se ha soltado o pulsado, y, si es una de las flechas de dirección establece un valor constante a la variable de velocidad o giro.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=10cm]{img/keyhandler.png}
+    \caption{Key Handler.}
+    \label{figura:keyhandler}
+\end{figure}
+
+Como se puede apreciar en la figura 4.10,los valores de velocidad son asignados a las correspondientes variables de velocidad o de giro. Los valores de estas variables son enviados al contenedor Docker mediante el websocket por el que viaja el código desde el navegador al contenedor.
 
 \section{Drone Cat Mouse Game} 
 \label{sec:drone_cat_mouse_game}
