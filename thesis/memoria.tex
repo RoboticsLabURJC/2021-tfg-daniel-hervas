@@ -576,13 +576,33 @@ Además de intercambiarse la información sobre los elementos multimedia, los \t
 
 En este capítulo se expondrán los \emph{juegos asícronos} desarrollados para la plataforma de \textit{Unibotics}. Se han desarrollado un total de dos juegos asíncronos, de los que se hablará desde el diseño de las plantillas de la interfaz de usuario, hasta la comunicación con el servidor y el contenedor docker donde es ejecutado el juego. Para llevar a cabo el desarrollo de estos juegos, se ha partido de las versiones ya existentes dentro de la plataforma llamados \emph{retos}.
 
+\section{Infraestructura}
+\label{sec:async_infraestructura}
+
+Para la realización de los siguientes ejercicios, trabajado sobre la infraestructura inicial sobre la que opera Unibotics. Esta arquitectura es formada por tres componentes, un \emph{Webserver}, el \emph{navegador} del usuario y el \emph{RADI} (contenedor Docker donde se ejecutan los ejercicios). A continuación, una descripción del trabajo que realiza cada componente:
+
+\begin{itemize}
+\item \textbf{Webserver:} este componente se encarga de proporcionar al navegador del usuario, los componentes del \emph{Front End} que van a ser  necesarios para llevar a cabo la ejecución del ejercicio en cuestión. Proporciona las plantillas \textbf{HTML} y el código \textbf{JavaScript}. También se encarga de almacenar y traer el código del usuario desde \textbf{AWS} (\emph{Amazon Web Services} \footnote{\url{https://es.wikipedia.org/wiki/Amazon_Web_Services}}), con el fin de tener una persistencia del código del mismo.
+
+\item \textbf{Navegador:} ejecuta en la máquina del usuario, es el encargado de comunicarse con el RADI y mostrar toda la información relacionada con la simulación al usuario. Este componente muestra las plantillas de los ejercicios recibidas desde el Webserver al usuario. Mediante \emph{listeners} (escritos en \textbf{JavaScript}) sobre distintos elementos de la plantilla proporciona los controles sobre la ejecución del ejercicio (Play, Reset, Load Code, Gazebo, etc.). Además de proporcionar los controles sobre el ejercicio, también debe de transmitir estas órdenes al contenedor donde se aloja el ejercicio, de manera que durante el establecimiento de la conexión con este, en el caso de los juegos con dos vehículos, se establecen cinco WebSockets. Estos son, un máster, por el que se envían los comandos relacionados con el lanzamiento del ejercicio y Gazebo, y un dos WebSockets por cada vehículo, el primero \emph{ws\_code}, empleado para el envío del código al contenedor, se encarga de interactuar con el cerebro del robot, y, por útlimo, \emph{ws\_gui} cuya función es mostrar toda la información relativa a la interfaz de usuario (mapa al estilo f1, autoevaluador, imágenes de las cámaras), es decir, recibe toda la información del robot.
+
+\item \textbf{RADI:} es uno de los componentes con más peso, pues es donde se ejecuta la simulación. Este ofrece una serie de elementos,  \emph{ws\_manager}, \emph{ws\_code} y \emph{ws\_gui} mencionados anteriormentes, y adicionalmente, ofrece la visualización de Gazebo mediante \emph{GZClient \footnote{\url{http://manpages.ubuntu.com/manpages/bionic/man1/gzclient.1.html}}} y de la consola del contenedor, ambos por medio de un servidor \emph{noVNC \footnote{\url{https://novnc.com/info.html}}} alojado localmente en el contenedor, al cual se conectará el navegador para mostrar dichos elementos.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=10cm]{img/robotics_academy_architecture.png}
+    \caption{Arquitectura de Unibotics.}
+    \label{figura:unibotics_architecture}
+\end{figure}
+
 \section{Follow Line Game} 
 \label{sec:follow_line_game}
 
 \subsection{Diseño de la interfaz}
 \label{subsec:follow_line_game_diseño}
 
-Para desarrollar este ejercicio ha sido necesario implementar \emph{software}  en el lado del ¡del cliente especialmente. Se ha diseñado un interfaz de usuario que radica en la simplicidad para el usuario, sin proporcionar un exceso de controles. La plantilla de los ejercicios es común a la mayoría de los ejercicios de la plataforma, pero mediante JavaScript se acondiciona la platilla a los requisitos del ejercicio. Todos los ejercicios tienen en común una barra en la parte superior que contiene una serie de botones para realizar la conexión con el contenedor Docker, que es donde se ejecutará todo lo relativo a la simulación del ejercicio.
+Para desarrollar este ejercicio ha sido necesario implementar \emph{software}  en el lado del del cliente especialmente. Se ha diseñado un interfaz de usuario que radica en la simplicidad para el usuario, sin proporcionar un exceso de controles. La plantilla de los ejercicios es común a la mayoría de los ejercicios de la plataforma, pero mediante JavaScript se acondiciona la platilla a los requisitos del ejercicio. Todos los ejercicios tienen en común una barra en la parte superior que contiene una serie de botones para realizar la conexión con el contenedor Docker, que es donde se ejecutará todo lo relativo a la simulación del ejercicio.
 
 \begin{figure}[H]
 	\centering
@@ -695,8 +715,45 @@ El handler que se le asigna a los eventos \emph{keyup} y \emph{keydown} se encar
 
 Como se puede apreciar en la figura 4.10,los valores de velocidad son asignados a las correspondientes variables de velocidad o de giro. Los valores de estas variables son enviados al contenedor Docker mediante el websocket por el que viaja el código desde el navegador al contenedor.
 
+\subsection{Evaluador automático}
+\label{follow_line_game_evaluator}
+
+Este evaluador consiste en mostrar en tiempo real las distancias que hay entre los coches, con el fin de que el usuario pueda competir contra la plataforma. Para cada circuito se han establecido una serie de puntos (\emph{checkpoints}) a lo largo del mismo, que sirven para saber en que lugar se encuentran los robots, y, con esta información poder calcular la distancia que le queda a cada robot para alcanzar al adversario. Estos \emph{checkpoionts} son almacenados en una serie de \emph{arrays}, y, en función del circuito que haya seleccionado el usuario se emplerá el correspondiente.
+
+La información de posición se esta recibiendo con una determinada frecuencia en el tiempo a través del WebSocket \emph{ws\_gui}, este se encarga de actualizar las variables que contienen las posiciones de los robots. A continuación, se ha desarrollado código JavaScript que se encarga de utilizar los valores que contienen estas variables de posición y calcula el checkpoint más cercano a la posición de cada robot y construye los caminos (\emph{paths}) desde un robot hasta el otro. Una vez se obtienen los paths, se calcula la distancia total de estos y se muestra en la interfaz del usuario.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=5cm]{img/evaluator_follow_line.png}
+    \caption{Evaluador automático.}
+    \label{figura:keyhandler}
+\end{figure}
+
+\subsection{Carga de código}
+\label{follow_line_game_code_load}
+
+Una vez se ha establecido la conexión con \emph{RADI}, se puede proceder a la carga del código. Esta carga se realiza mediante un botón \emph{Load in robot}, que un avez pulsado, se encarga de habilitar el botón \emph{Play} después de haber realizado una comprobación exitosa del código del usuario.
+
 \section{Drone Cat Mouse Game} 
 \label{sec:drone_cat_mouse_game}
+
+\subsection{Diseño de la interfaz}
+\label{drone_cat_mouse_interface}
+
+Al igual que todos los juegos de la plataforma, estos comparten una plantilla \emph{HTML} con los componentes básicos de un ejercicio, por lo que para el caso de este ejercicio, cabe mencionar que las barras superiores de conexión con \emph{RADI} y de control de la simulacón son similares a las de \textbf{Follow Line Game}.
+
+Bajo el navbar, se encuentra el editor de código a mano izquierda, y a mano derecha, los botones para el control de la ejecución del ratón, el evaluador automático, el simulador \emph{Gazebo} y la consola del contenedor Docker.
+
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/drone_cat_mouse.png}
+    \caption{Plantilla Drone Cat Mouse.}
+    \label{figura:keyhandler}
+\end{figure}
+
+\subsection{Inicio del juego}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -705,7 +762,7 @@ Como se puede apreciar en la figura 4.10,los valores de velocidad son asignados 
 
 \cleardoublepage
 \chapter{Juegos Síncronos}
-\section{Synchronous Follow Line Game} 
+\section{Follow Line Game Síncrono} 
 \label{sec:follow_line_game_sync}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -824,8 +881,9 @@ Pues ponlo aquí.
 	\url{https://webrtc.org/}
 	
 	
-	\bibitem{} \textsc{}
-	\url{}
+	\bibitem{TFM} \textsc{Pablo Moreno. Torneos de programación de robots
+en una plataforma online. (2020)}
+	\url{https://gsyc.urjc.es/jmplaza/students/tfm-kibotics-torneos-pablo_moreno-2020.pdf}
 	
 	\bibitem{} \textsc{}
 	\url{}
