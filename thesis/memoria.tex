@@ -31,6 +31,32 @@
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
 \usepackage{latexsym}  %% Logo LaTeX
 
+\usepackage{listings}
+\usepackage{color}
+
+% Para mostrar código
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=XML,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \title{Memoria del Proyecto}
 \author{Daniel Hervás Rodao}
 
@@ -599,7 +625,7 @@ Para la realización de los siguientes ejercicios, trabajado sobre la infraestru
 \section{Follow Line Game} 
 \label{sec:follow_line_game}
 
-\subsection{Diseño de la interfaz}
+\subsection{Diseño}
 \label{subsec:follow_line_game_diseño}
 
 Para desarrollar este ejercicio ha sido necesario implementar \emph{software}  en el lado del del cliente especialmente. Se ha diseñado un interfaz de usuario que radica en la simplicidad para el usuario, sin proporcionar un exceso de controles. La plantilla de los ejercicios es común a la mayoría de los ejercicios de la plataforma, pero mediante JavaScript se acondiciona la platilla a los requisitos del ejercicio. Todos los ejercicios tienen en común una barra en la parte superior que contiene una serie de botones para realizar la conexión con el contenedor Docker, que es donde se ejecutará todo lo relativo a la simulación del ejercicio.
@@ -630,10 +656,60 @@ Bajo las barras de control del ejercicio, se tiene una pantalla que está dividi
     \label{figura:conexion_radi}
 \end{figure}
 
-\subsection{Inicio del juego}
+\subsubsection{Robot adversario}
+\label{follow_line_game_adversario}
+
+
+Ha sido necesario añadir un nuevo modelo de robot para que el usuario pueda diferenciar entre su robot y el adversiario. Con lo que se ha modificado el modelo del robot del usuario cambiándolo de color a verde. Esta modificación se ha llevado a cabo mediante \emph{Blender} \footnote{\url{https://www.blender.org/}} y se ha llamado \emph{f1\_guest}.
+
+Una vez creado el nuevo modelo, se ha añadido a los ficheros de declaración de los escenarios de Gazebo, incluyendo el nuevo modelo en una posición del circuito en la que ambos coches se encuentran a la misma distancia. Los ficheros empleados para la configfuración del escenario tienen la siguiente forma:
+
+\begin{lstlisting}
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <gui fullscreen=1></gui>
+    <scene>
+      <grid>false</grid>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene>
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+      <name>sun_1</name>
+      <pose>0 0 1 0 0 0</pose>
+    </include>
+    <include>
+	    <uri>model://simple_circuit</uri>
+	    <pose>0 0 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://f1</uri>
+      <pose>53.462 -10.734 0.004 0 0 -1.57</pose>
+    </include>
+    <include>
+      <uri>model://f1_guest</uri>
+      <pose>-53.2 -6.8 0.004 0 0 -4.85</pose>
+    </include>
+  </world>
+</sdf>
+\end{lstlisting}
+
+
+\subsubsection{Inicio del juego}
 \label{subsec:follow_line_game_inicio}
 
-Para llevar a cabo la iniciación del juego es necesario realizar previamente la conexión con el contenedor Docker (RADI) donde se va a llevar a cabo toda la ejecución del ejercicio. Una vez realizada esta conexión, se deberá seleccionar el circuito en el que el usuario quiera jugar, seleccionar la dificultad del oponente, y, pulsar el botón \emph{Load in robot}, una vez se hayan cargado los respectivos códigos, se podrá proceder pulsando el botón \emph{Play} para comenzar la ejecución.
+Para llevar a cabo la iniciación del juego es necesario realizar previamente la conexión con el contenedor Docker (\emph{RADI}) donde se va a llevar a cabo toda la ejecución del ejercicio. Una vez realizada esta conexión, se deberá seleccionar el circuito en el que el usuario quiera jugar, seleccionar la dificultad del oponente, y, pulsar el botón \emph{Load in robot}, una vez se hayan cargado los respectivos códigos, se podrá proceder pulsando el botón \emph{Play} para comenzar la ejecución.
+
+Con respecto a las versiones iniciales del reto \emph{Follow Line} de \textbf{Unibotics}, se ha tenido que implementar un cambio dentro del RADI, pues para era necesario poder lanzar el escenario con el circuito seleccionado por el usuario.
+
+Para implementar esta característica, dentro del fichero \emph{manager.py} (encargado del lanzamiento de los ejercicios, comprobar el código mediante PyLint, noVNC, etc), se ha añadido una variable con scope global que contiene un array con todos los ejercicios que requieren el cambio de circuito. De manera que, antes de lanzar un ejercicio se comprueba si es uno de estos, y, si es así, el circuito que se ha obtenido del comando de lanzamiento que llega vía \emph{WebSockets} se emplea para formatear la cadena de texto que contiene la instrucción de lanzamiento del proceso. Esta instrucción de lanzamiento contendrá el nombre del fichero que se corresponde con el modelo del circuito deseado por el usuario, de manera que Gazebo ya sabe qué escenario cargar.
+
+Finalmente, se lanzará este proceso (además de algunos otros como noVNC para mostrar GZClient y la consola), y se avisará al \emph{Front End} que la conexión está lista.
 
 \subsubsection{Selección de circuito}
 \label{subsec:follow_line_game_circuito}
@@ -732,17 +808,26 @@ La información de posición se esta recibiendo con una determinada frecuencia e
 \subsection{Carga de código}
 \label{follow_line_game_code_load}
 
-Una vez se ha establecido la conexión con \emph{RADI}, se puede proceder a la carga del código. Esta carga se realiza mediante un botón \emph{Load in robot}, que un avez pulsado, se encarga de habilitar el botón \emph{Play} después de haber realizado una comprobación exitosa del código del usuario.
+Una vez se ha establecido la conexión con \emph{RADI}, se puede proceder a la carga del código. Esta carga se realiza mediante un botón \emph{Load in robot}, que una vez pulsado, se encarga de habilitar el botón \emph{Play} después de haber realizado una comprobación exitosa del código del usuario.
+
+Cuando el usuario procede a realizar la carga del código en los respectivos robots, el código que se ha desarrollado
+se obtiene del editor de código situado en la parte izquierda de la pantalla. Para realizar la carga de código de las distintas dificultades, se ha desarrollado un script en \emph{JavaScript} que se encarga de realizar una solicitud al servidor web, pidiendo el código correspondiente con la dificultad seleccionada.
+
+Para que el servidor web pueda proporcionar el código de cada dificultad al navegador web solicitante, se han creado una serie de usuarios con el prefijo de \emph{bot}, que contienen el código correspondiente a cada dificultad. También, ha sido necesaria la creación de un nuevo \emph{endpoint} en el servidor web.
+
+Desde el lado del servidor web, cuando se recibe una solicitud en dicho \emph{endpoint}, este se encarga de determinar cual es la dificultad y el ejercicio del que se está solicitando por medio de los datos aportados en el propio \emph{endpoint}.
+
+Finalmente, unz vez se tienen ambos códigos, estos se envían cada uno por el \emph{WebSocket} que se corresponde con su robot.  
 
 \section{Drone Cat Mouse Game} 
 \label{sec:drone_cat_mouse_game}
 
-\subsection{Diseño de la interfaz}
+\subsection{Diseño}
 \label{drone_cat_mouse_interface}
 
 Al igual que todos los juegos de la plataforma, estos comparten una plantilla \emph{HTML} con los componentes básicos de un ejercicio, por lo que para el caso de este ejercicio, cabe mencionar que las barras superiores de conexión con \emph{RADI} y de control de la simulacón son similares a las de \textbf{Follow Line Game}.
 
-Bajo el navbar, se encuentra el editor de código a mano izquierda, y a mano derecha, los botones para el control de la ejecución del ratón, el evaluador automático, el simulador \emph{Gazebo} y la consola del contenedor Docker.
+Bajo el navbar, a mano izquierda se encuentra el editor de código, y a mano derecha, los botones para el control de la ejecución del ratón, el evaluador automático, el simulador \emph{Gazebo} y la consola del contenedor Docker.
 
 
 \begin{figure}[H]
@@ -752,8 +837,16 @@ Bajo el navbar, se encuentra el editor de código a mano izquierda, y a mano der
     \label{figura:keyhandler}
 \end{figure}
 
-\subsection{Inicio del juego}
+Por otro lado, la plataforma Unibotics contaba con una versión del reto \emph{Drone Cat Mouse} con una arquitectura en la que, internamente, el \emph{ratón} era instanciado dentro del controlador del robot que se correspondía con el \emph{gato}, y este, se controlaba desde el propio objeto del \emph{gato}.
 
+En la version desarrollada para este trabajo, se han introducido algunos cambios. En primer lugar, se han desacoplado los controladores para los robots, de manera que ahora cada uno es independiente del otro. Esto da lugar a la necesidad de tener dos \emph{WebSockets} para cada robot (inicialmente se tenían únicamente dos \emph{WebSockets} para comunicarse con el \emph{gato}, y este, se encargaba de trasladar la información al \emph{ratón}), \emph{ws\_code} y \emph{ws\_gui} para el \emph{gato} y el \emph{ratón}.
+
+En la versión inicial del ejercicio, el código del ratón, se encontraba almacenado dentro del \emph{RADI}. Actualmente esto se ha cambiado, de manera que el código del \emph{ratón} se pide al \emph{webserver} especificando el ejercicio y la dificultad seleccionada. Este cambio se ha realizado con el fin de seguir el mismo paradigma que con los usuarios, el código de los mismos se recibe desde el \emph{webserver}. Una vez recibido el código, este es enviado al \emph{ratón} por medio del \emph{WebSocket} correspondiente.
+
+\subsubsection{Inicio del juego}
+\label{drone_cat_mouse_inicio}
+
+De igual manera que en el juego \emph{Follow Line}, primeramente hay que realizar la conexión con el RADI. Posteriormente, puede elegirse la dificultad del ratón, cargar el código del usuario, y reanudar la simulación.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
