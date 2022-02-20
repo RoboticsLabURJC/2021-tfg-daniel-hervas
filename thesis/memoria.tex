@@ -846,7 +846,49 @@ En la versión inicial del ejercicio, el código del ratón, se encontraba almac
 \subsubsection{Inicio del juego}
 \label{drone_cat_mouse_inicio}
 
-De igual manera que en el juego \emph{Follow Line}, primeramente hay que realizar la conexión con el RADI. Posteriormente, puede elegirse la dificultad del ratón, cargar el código del usuario, y reanudar la simulación.
+De igual manera que en el juego \emph{Follow Line}, primeramente hay que realizar la conexión con \emph{RADI}, que se encargará de lanzar el proceso del juego, y, una vez se haya establecido la conexión con los \emph{WebSockets}, se avisa al \emph{Front End} de manera que el usuario quede notificado. Posteriormente, puede elegirse la dificultad del ratón, cargar el código del usuario, mostrar \emph{Gazebo} y la consola,  y reanudar la simulación.
+
+\subsubsection{Selección de dificultad}
+\label{drone_cat_mouse_difficulty}
+
+El selector de dificultad del \emph{ratón} está situado en la mitad suyperior derecha de la interfaz del usuario junto a los botones de control del mismo. El usuario debe seleccionar primeramente la dificultad deseada mediante el desplegable situado en la mitad derecha de la pantalla. Y, a continuación, pulsar el botón \emph{Load in robot} para proceder a la carga de los códigos.
+
+Para realizar la carga de códigos, primero se obtiene el código del editor de texto situado en la mitad izquierda de la platilla y se envía por el \emph{WebSocket} empleado para comunicarse con el \emph{gato}. A continuación, mediante una peticón HTTP al \emph{WebServer}, se solicita el código del ratón (en función de la dificultad), y finalmente se envía por el \emph{WebSocket} definido para la comunicación  \emph{RADI}-\emph{Ratón}.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/drone_cat_mouse_difficulty.png}
+    \caption{Selector de dificultad Drone Cat Mouse.}
+    \label{figura:evaluator_drone}
+\end{figure}
+
+\subsection{Evaluador automático}
+\label{drone_cat_mouse_evaluator}
+
+En una versión inicial, la plataforma no disponía del \emph{Juego Drone Cat Mouse}, sino, del \emph{Reto Drone Cat Mouse}, es decir, este ejercicio inicialmente no incorporaba un evaluador automático que proporcionase un desafío para el usuario, por lo que se decidió incluir este evaluador para dar lugar al \emph{Juego Drone Cat Mouse}. 
+
+Este evaluador automático consiste en una gráfica que muestra la distancia \emph{Gato}-\emph{Ratón} en el tiempo. La gráfica se genera con una librería de \emph{JavaScript} llamada \emph{Plotly} \footnote{\url{https://plotly.com/javascript/}}, en la cual se muestra la distancia en el eje vertical y el tiempo en el eje horizontal.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/evaluator_drone_cat_mouse.png}
+    \caption{Evaluador Drone Cat Mouse.}
+    \label{figura:evaluator_drone}
+\end{figure}
+
+\subsection{Carga de código}
+\label{drone_cat_mouse_code_load}
+
+Una vez se ha establecido la conexión con \emph{RADI}, se puede proceder a la carga del código. Esta carga se realiza mediante un botón \emph{Load in robot}, que una vez pulsado, se encarga de habilitar el botón \emph{Play} después de haber realizado una comprobación exitosa del código del usuario.
+
+Cuando el usuario procede a realizar la carga del código en los respectivos robots, el código que se ha desarrollado
+se obtiene del editor de código situado en la parte izquierda de la pantalla. Para realizar la carga de código de las distintas dificultades, se ha desarrollado un script en \emph{JavaScript} que se encarga de realizar una solicitud al servidor web, pidiendo el código correspondiente con la dificultad seleccionada.
+
+Para que el servidor web pueda proporcionar el código de cada dificultad al navegador web solicitante, se han creado una serie de usuarios con el prefijo de \emph{bot}, que contienen el código correspondiente a cada dificultad. También, ha sido necesaria la creación de un nuevo \emph{endpoint} en el servidor web.
+
+Desde el lado del servidor web, cuando se recibe una solicitud en dicho \emph{endpoint}, este se encarga de determinar cual es la dificultad y el ejercicio del que se está solicitando por medio de los datos aportados en el propio \emph{endpoint}.
+
+Finalmente, unz vez se tienen ambos códigos, estos se envían cada uno por el \emph{WebSocket} que se corresponde con su robot.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -854,9 +896,19 @@ De igual manera que en el juego \emph{Follow Line}, primeramente hay que realiza
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
-\chapter{Juegos Síncronos}
+\chapter{Juegos Compartidos Síncronos}
+
+En este capítulo se abardarán todos los detalles de los \emph{juegos síncronos}. En una primera parte hablando del diseño e implementación de las plantillas del usuario, para porsteriormente, dirigirnos a los aspectos más técnicos relacionados con las comunicaciones \emph{WebRTC} y el servidor web como servidor de señalización entre los usuarios.
+
+\section{Objetivo}
+\label{sync_objective}
+
+En \emph{Unibotics}, se parte de los \emph{ejercicios asíncronos} en lo que únicamente pueden elegirse una serie de dificultades proporcionadas por la plataforma. Con el desarrollo los \emph{ejercicios síncronos} se han querido orientar los juegos hacia un modo más competitivo, de manera que el usuario pueda conectarse con sus amigos y realizar competiciones poniendo en ejecucción sus mejores códigos.
+
 \section{Follow Line Game Síncrono} 
 \label{sec:follow_line_game_sync}
+
+\subsection{Diseño}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
