@@ -363,6 +363,34 @@ Como se ha comentado, para llevar a cabo este método de educación es necesaria
 
 Dentro de la robótica educativa, es preciso enfatizar la plataforma \textit{Unibotics} en la que se desarrolla el presente proyecto. Esta plataforma es un proyecto internacional que ofrece material para la enseñanza de robótica en las aulas. \textit{Unibotics} proporciona una infraestructura software en conjunto a una colección de ejercicios, cada uno con el material teórico correspondiente para su resolución.
 
+\subsection{Tecnologías Web}
+
+Las diferentes tecnologías web permiten crear interfaces de usuario y establecer las comunicaciones con el servidor, además de implementar comportamientos de la web en el servidor. Se pueden distinguir en tecnologías \emph{backend} (del lado del servidor) y tecnologías \emph{frontend} (del lado del usuario).
+
+Una gran ventaja de estas tecnologías es que ofrecen la ausencia de la necesidad de instalar componentes de software, configuración y dependencias adicionales. Únicamente es necesario disponer de un navegador de internet y una conexión a internet, pues todos los archivos necesarios se servirán desde el lado del servidor.
+
+Estas tecnologías facilitan el uso al cliente, pues evitan que el usuario tenga que intalar actualizaciones, pues las actualizaciones se realizan en el lado del servidor. Esta ventaja elimina posibles fallos debidos a incompatibilidades entre las versiones, pues el servidor distribuye una única version para todos. También ofrecen la ventaja de aplicaciones web multiplataforma, únicamente es necesario el desarrollo en un único entorno (\emph{Windows}, \emph{Ubuntu}, \emph{MacOS}, etc), pues estas tecnologías son comunes a los navegadores de todos los sistemas. Únicamente es necesario conocer \emph{HTML}, \emph{CSS} y \emph{JavaScript}, el navegador será el encargado de interpretar dichos lenguajes.
+
+Las aplicaciones web dependen de una conexión entre el usuario y el servidor, por lo que, una de las desventajas que estas es la latencia que esta conexión pueda generar. Estas tecnologías siempre son algo más lentas que otros lenguajes compilados como \emph{C\#} puesto que el navegador no realiza ninguna compilación, si no que interpreta el código línea a línea.
+
+En el lado del servidor, existen diversos \emph{frameworks} que facilitan la vida al desarrollador. Algunos ejemplos de ellos serían, \emph{Express} para el lenguaje \emph{JavaScript} y \emph{Django} escrito en \emph{Python}.
+
+El desarrollo de tecnologías web está sujeto a un gran crecimiento. Cada vez las aplicaciones web son más potentes y eficientes, de manera que cada vez son más los desarrolladores que optan por este modelo de desarrollo.
+
+\subsection{Estructura del documento}
+
+En esta sección se va a hacer un breve resúmen de los contenidos de cada capítulo, también se mencionará como están estructurados.
+
+En primer lugar, se comienza con un capítulo de objetivos, de manera que se explique cuál es el propósito o los propósitos de este trabajo. Tambén se mencionará la planificación temporal que se ha llevado a cabo durante el trabajo. Y finalmente, se mencionará la heramienta empleada para realizar un control de versiones.
+
+Previamente, se encuentra un capítulo dedicado exclusivamente a las herramientas y tecnologías utilizadas. Serán descritas indicando sus ventajas, inconvenientes y áreas de uso.
+
+A continuación, tenemos la sección de juegos síncronos en la que se explicará como se ha realizado el diseño de los mismos, tanto para la IU como para la infraestructura interna.
+
+Seguidamente, se haya la sección de juegos asíncronos, donde, de igual manera que en la sección anterior, se explicará como se ha desarrollado la infraestructura necesaria.
+
+Finalmente, tenemos los experimentos realizados y sus resultados, además de las conclusiones obtenidas de haber realizado este trabajo, y, en último lugar la bibliografía que contiene todos los contenidos empleados para el desarrollo del trabajo.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OBJETIVOS %
@@ -372,22 +400,80 @@ Dentro de la robótica educativa, es preciso enfatizar la plataforma \textit{Uni
 \chapter{Objetivos} % título del capítulo (se muestra)
 \label{chap:objetivos} % identificador del capítulo (no se muestra, es para poder referenciarlo)
 
-\section{Objetivo general} % título de sección (se muestra)
+Una vez introducido el contexto de este trabajo, se puede proceder a comentar los propósitos del mismo, los requisitos para los problemas que se van a plantear, la planificación y metodología seguida durante todo el desarrollo, además de las herramientas usadas para el control de versiones de la plataforma.
+
+\section{Objetivos} % título de sección (se muestra)
 \label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
 
+El objetivo general de este trabajo es la introducción de juegos lúdicos a la plataforma \emph{Unibotics} con una visión más competitiva y social que fomente el aprendizaje de los usuarios. Este objetivo principal se ha dividido en dos subobjetivos.
 
-\section{Objetivos específicos}
-\label{sec:objetivos-especificos}
+\begin{itemize}
+\item La introducción de \textbf{juegos competitivos asíncronos} que permitan a los usuarios competir contra una serie de dificultades proporcionadas por la plataforma, en el mismo escenario y en tiempo real.
+\item La introducción de \textbf{juegos competitivos síncronos} que proporcionan una visión más competitiva y social de la plataforma a los usuarios, que pueden conectarse con sus amigos para competir entre ellos.
+\end{itemize}
 
+\section{Requisitos}
+\label{sec:requisitos}
 
-\section{Planificación temporal}
-\label{sec:planificacion-temporal}
+Las soluciones proporcionadas deben cumplir los objetivos de la sección anterior, además de los siguientes requisitos para una correcta implementación:
 
+\begin{itemize}
+\item El código del lado del servidor debe ser desarrollado en \emph{HTML}, \emph{CSS3} y \emph{JavaScript}.
+\item No debe requerir instalaciones de software adicionales, el usuario unicamente ha de tener el contenedor docker \emph{RADI}, instalado en la máquina local.
+\end{itemize}
+
+\section{Metodología}
+\label{sec:metodologia}
+
+Para llevar a cabo este trabajo, se ha empleado una metodología basada en \emph{sprints}. Este modelo de desarrollo se corresponde con un modelo de desarrollo de software ágil, consiste en dividir un proyecto en tareas más sencillas y de menor duración, de forma que cada cierto período de tiempo (1-2 semanas) puedan presentarse resultados. Esta metodología es muy útil pues, es susceptible a cambios por parte del cliente.
+
+Durante la realización de este trabajo se ha simulado esta metodología de manera que para cada semana se ha establecido una reunión, y, en dichas reuniones se comentan los cambios que se han introducido en el \emph{sprint} previo para proponer cambios, mejoras y fijar una serie de objetivos para la siguiente semana.
+
+%\section{Planificación temporal}
+%\label{sec:planificacion-temporal} 
+
+\section{Plan de trabajo}
+\label{sec:plan-de-trabajo}
+
+Para el seguimiento de los objetivos previamente mencionados, se ha seguido una serie de etapas que permiten el avance incremental en la implementación del trabajo.
+
+\begin{itemize}
+\item \textbf{Estudio de la plataforma Unibotics:} Como una primera toma de contacto es preciso el estudio de la infraestructura que se está empleando en la plataforma. Además, se ha realizado la puesta en funcionamiento del despliegue local, el contenedor docker (\emph{RADI}) y la comprobación de que todos los ejercicios funcionan de manera correcta. También, se ha estudiadio el funcionamiento de las platillas empleadas por los ejercicios y la conexión con el \emph{RADI}.
+
+\item \textbf{Desarrollo de los juegos asíncronos:} Una vez entendidos los conceptos pricipales de la plataforma, se ha procedido al desarrollo de los juegos asíncronos. Se han diseñado nuevas plantillas para los nuevos ejercicios asícronos, y, añadido nuevos aspectos, como evaluadores automáticos.
+
+\item \textbf{Estudio de la tecnología WebRTC:} Una vez completada la parte de los juegos asíncronos, se procede al estudio de estas tecnologías que nos permiten la retransmision de audio y vídeo entre dos navegadores web. Se han desarrollado algunos pequeños programas de prueba, como un chat de texto y vídeo, para asentar los conceptos.
+
+\item \textbf{Desarrollo del juego síncrono:} Con los conceptos de WebRTC asentados, se ha procedido a diseñar en el webserver de \emph{Unibotics}, un sistema de señalización entre los usuarios, de manera que se pueda intercambiar la información necesaria para realizar la conexión WebRTC. Finalmente, en las plantillas del ejercicio, se incluye código \emph{JavaScript} que se encarga de establecer las conexiones RTC para cada extremo.
+\end{itemize}
 
 \section{Control de versiones}
 \label{sec:control-de-versiones}
 
+En todo desarrollo de software es necesaria una herramienta de control de versiones que facilite la gestión del código fuente. Estos softwares realizan un control de todas las modificaciones, de manera que si se comete un error en un determinado instante, se puede volver a una versión anterior del código. La herramienta empleada para el control de versiones en este proyecto es \emph{GitHub}.
 
+Esta herramienta permite clonar cualquier repositorio en nuestra máquina local y mantenerlo actualizado frente a cambios que se hagan en el extremo remoto. También podemos contribuir en este código realizando \emph{pull requests}. Es una herramienta muy potente, lo que le hace ser una de las herramientas de control de versiones más utilizadas por la comunidad de desarrolladores.
+
+\emph{GitHub} proporciona un interfaz gráfico que nos permite, de manera gráfica, ver la actividad de un repositorio, lo que nos permite saber si un proyecto tiene una gran cantidad de desarrolladores.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/github_contributors.png}
+    \caption{Gráfico de.actividad del repositorio \emph{noVNC} de GitHub.}
+    \label{figura:simulador_gazebo}
+\end{figure}
+
+En este proyecto se ha trabajado en una serie de repositorios diferentes:
+
+\begin{itemize}
+\item \textbf{unibotics-webserver:} aquí se encuentran los recursos del webserver Django.
+\item \textbf{unibotics-exercises:} este repositorio contiene las platillas de los ejercicios de la plataforma.
+\item \textbf{RoboticsAcademy:} este repositorio es una colección \emph{open-source} de algunos retos, que se han empleado para diseñar ejercicios para la plataforma de \emph{Unibotics}.
+\item \textbf{CustomRobots:} este repositorio contiene todos los robots empleados en las simulaciones.
+\item \textbf{noVNC:} se ha realizado un \emph{fork} del repositorio oficial puesto que para la versión del ejercició síncrono se necesitaba hacer algunas modificaciones para enviar el flujo de vídeo al extremo remoto.
+\end{itemize}
+
+La metodología que se ha seguido para incorporar nuevos cambios a los disferentes repositorios es la siguiente. En primer lugar se crea una \emph{issue} el el repositorio correspondiente que describa el problema que se va a resolver. A continuación, se crea una rama a partir de la \emph{master} con el nombre de \emph{issue-XXX} donde se incorporarán todos los cambios mencionados en la \emph{issue} que se creó. Finalmente, una vez se han realizado todos los cambios y se ha verificado que funciona de manera correcta, se realiza un \emph{pull request}, esto es, una solicitud de incorporación de los cambios a la rama principal. Las \emph{pull request} son revisadas por otro compañero, que se encargará de hacer la pruebas pertinentes e incorporarla a la rama \emph{master}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
