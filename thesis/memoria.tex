@@ -1020,6 +1020,51 @@ En \emph{Unibotics}, se parte de los \emph{ejercicios asíncronos} en lo que ún
 
 \subsection{Diseño}
 
+El juego \emph{Follow Line Síncrono} parte de la plantilla básica que comparten todos los ejercicios. A esta plantilla se le han añadido una serie de extras, como son el chat de texto, la barra de búsqueda de usuarios y los botones de carga de código, del anfitrión y del invitado. Adicionalmente, se ha añadido un botón para ocultar el editor de código con el fin del que el usuario tenga únicamente la vista del chat de texto.
+
+Con respecto la pantalla del usuario invitado, una vez este acepta la invitación proveniente del usuario anfitrión, mediante código \emph{JavaScript}, se ha implementado un sistema que se encarga de ocultar todos los controles y elementos irrelevantes para este extremo de la conexión.
+%% AÑADIR CAPTURA DE LA PLANTILLA
+
+Para desarrollar este ejercicio, ha sido necesario implementar \emph{software} tanto en el lado del cliente como en el lado del servidor. Pues los usuarios participantes deben usar el servidor web de \emph{Unibotics} como servidor de señalización para el protocolo \emph{WebRTC}. Una vez ambos extremos se conocen entre sí, se inicia el tráfico \emph{WebRTC}.
+
+Una vez el usuario entra en el ejercicio, automáticamente el navegador se conecta a una ruta del servidor web por medio de \emph{WebSockets} generando una sala de juego. Esta ruta será por medio de la que se van a comunicar los extremos con el servidor de señalización.
+
+Debido a la complejidad de las subredes, ha sido necesaria la incorporación de un servidor \emph{TURN} (Transversal Using Relay NAT) que se encargue de hacer de retransmisor entre los dos extremos una vez se inicia la comunicación \emph{WebRTC}. En la mayoría de casos no es posible realizar una conexión \emph{WebRTC} directa entre los dos extremos (a menos que residan en una red local), esto es debido a que \emph{WebRTC} no es capaz de atravesar un NAT (Network Address Translation).
+%% AÑADIR CAPTURA DE ARQUITECTURA
+
+\subsection{Elección de oponente}
+\label{sec:follow_line_game_sync_oponente_chat}
+
+Para proporcionar al usuario la elección de un contrincante, se ha implementado una barra de búsqueda de usuarios que permite al anfitrión, escribir el nombre del usuario que desea invitar.
+
+Una vez el usuario realiza la selección del contrincante, la consulta es enviada al servidor web por medio del \emph{WebSocket} de la sala de juego, y, este la reenviará al usuario invitado en caso de que se encuentre en línea y dentro del ejercicio.
+
+En el caso de que el invitado acepte la solicitud, el anfitrión comenzará con la negociación \emph{WebRTC}.
+
+\subsubsection{Barra de búsqueda}
+
+Para poder realizar la conexión entre dos usuarios, el anfitrión debe escribir el login del usuario que quiere invitar en la barra de búsqueda, de manera que se pueda hacer la consulta al servidor web. Se ha desarrollado código \emph{JavaScript} que se encarga de esperar a que se inserte un login y se pulse el botón \emph{"Enter"}, y además, que se encargue de enviar la inserción al servidor web vía el \emph{WebSocket} establecido para la sala del juego.
+
+Una vez el servidor recibe este mensaje por el \emph{WebSocket}, este se encarga de extraer el login del usuario, y mediante el uso de un paquete instalado en el servidor \emph{Django}, llamado \emph{"Django-online-users"}, obtiene los usuarios que hay conectados actualmente, y comprueba si el usuario recibido se encuentra en línea. En el caso en que la búsqueda no sea satisfactoria, se envía un mensaje al usuario anfitrión indicando la imposibilidad de realizar la invitación. Si la búsqueda se realiza con éxito, se envía la invitación a dicho usuario por \emph{WebSocket}.
+
+En el lado del usuario receptor, el navegador recibirá la petición y la mostrará al usuario por medio de un menú de diálogo que le da la posibilidad de aceptar o rechazar la invitación.
+%% AÑADIR CAPTURA DE LA INVITACIÓN
+
+Una vez aceptada, se iniciará la conexión \emph{WebRTC}. Y el usuario anfitrión será el encargado de iniciar la simulación y compartir la retransmisión.
+
+\subsubsection{Sección de chat}
+
+Como se ha mencionado antes, la plantilla del juego contiene un chat por el que ambos contrincantes pueden comunicarse. Este chat se ha implementando usando una conexión \emph{WebRTC} y \emph{DataChannels} entre los navegadores, de manera que se reduce la carga de tráfico que atraviesa el servidor web, pues estos mensajes son enviados por medio del canal de datos \emph{peer-to-peer}.
+
+Este sistema se ha desarrollado en la parte del navegador, mediante un \emph{script} en \emph{JavaScript} que contiene toda la configuración para realizar la creación de los \emph{DataChannels}. Además, se ha implementado una función de \emph{callback} (\emph{onDataChannelMessage}) que es ejecutada cuando se recibe un mensaje por el \emph{DataChannel}, esta se encarga de añadir el mensaje al chat.
+
+\subsubsection{Transmisión datos entre plantillas}
+
+Este \emph{DataChannel} es aprovechado para el paso de más información además de para el envío de los mensajes del chat. De manera que, una vez el anfitrión conecta el \emph{RADI} en su máquina local, por este data channel son enviados todos los datos relativos a la interfaz del usuario, es decir, la vista de pájaro, y el evaluador automático hacia el otro extremo. Adicionalmente, cuando el usuario invitado presione el botón \emph{Play} o el botón de carga de su código, estas órdenes serán enviadas al anfitrión por medio del canal de datos, que será quien las complete.
+
+\subsection{Carga flexible de código}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % EXPERIMENTOS Y VALIDACIÓN %
