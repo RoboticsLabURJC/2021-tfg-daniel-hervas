@@ -1058,11 +1058,53 @@ Como se ha mencionado antes, la plantilla del juego contiene un chat por el que 
 
 Este sistema se ha desarrollado en la parte del navegador, mediante un \emph{script} en \emph{JavaScript} que contiene toda la configuración para realizar la creación de los \emph{DataChannels}. Además, se ha implementado una función de \emph{callback} (\emph{onDataChannelMessage}) que es ejecutada cuando se recibe un mensaje por el \emph{DataChannel}, esta se encarga de añadir el mensaje al chat.
 
-\subsubsection{Transmisión datos entre plantillas}
+\subsubsection{Transmisión de datos entre plantillas}
 
 Este \emph{DataChannel} es aprovechado para el paso de más información además de para el envío de los mensajes del chat. De manera que, una vez el anfitrión conecta el \emph{RADI} en su máquina local, por este data channel son enviados todos los datos relativos a la interfaz del usuario, es decir, la vista de pájaro, y el evaluador automático hacia el otro extremo. Adicionalmente, cuando el usuario invitado presione el botón \emph{Play} o el botón de carga de su código, estas órdenes serán enviadas al anfitrión por medio del canal de datos, que será quien las complete.
 
 \subsection{Carga flexible de código}
+
+Para proporcionar la libertad de la carga del código, se ha desarrollado un módulo \emph{software} en \emph{JavaScript} que se encarga de soportar la carga flexible del código.
+
+De esta manera, cada usuario debe cargar su código antes de iniciar la simulación. Con respecto al usuario invitado, se ha desarrollado un sistema que se encarga de avisar al usuario host de que este quiere cargar su código, mediante el \emph{DataChannel} establecido entre ambos. Una vez el host recibe este mensaje, se encarga de pedir el código al \emph{WebServer} y cargarlo en el coche correspondiente. En el lado de la carga de código del host, simplemente, al pulsar el botón de carga de código, se pedirá el código al servidor web y se cargará en el robot correspondiente.
+
+Una vez se carga un código, el botón de carga correspondiente se colorea de verde, de manera que para el usuario es más intuitivo a la hora de comprobar el estado de su código.
+
+Ambos navegadores sincronizan sus interfaces por medio del canal de datos establecido entre los navegadores, enviando mensajes de control que una vez son interpretados, se aplican los cambios a la IU.
+
+\subsection{Ejecución compartida}
+
+Una vez se ha establecido la conexión \emph{WebRTC} entre los usuarios, es necesario realizar la carga de código en los robotos, así como mostrar el estado de carga de los códigos y proporcionar una serie de controles de la ejecución de la sumilación a los usuarios.
+
+\subsubsection{Botones de control de la ejecución}
+
+En ambas interfaces, se encuentran serie de elementos de control de la simulación en común. Estos son:
+
+\begin{itemize}
+\item \textbf{Botón \emph{Play}:} ambos usuarios tendrán la posibilidad de iniciar la ejercución del ejercicio una vez se han cargado los códigos en los robots.
+
+\item \textbf{Botón \emph{Reset}:} botón que proporciona a ambos extremos realizar un reseteo del escenario.
+\end{itemize}
+
+%% AÑADIR IMAGEN DE LOS BOTONES
+
+Una vez cargados ambos códigos, se habilitará el botón \emph{Play} en ambos extremos. Desde el lado del usuario \emph{invitado}, se ha elaborado un sistema que se encarga de enviar las órdenes al usuario \emph{anfitrión} cuando algún botón es pulsado. Una vez el \emph{emisor} recibe una órden, este se encarga de procesarla y ejecutar las órdenes. De esta manera, ambos usuarios pueden controlar la ejecución de la simulación de manera individual.
+
+\subsubsection{Botones de carga de código}
+
+De manera que los usuarios puedan conocer el estado de carga de sus códigos, se ha implementado un sistema que guarda el estado de carga y realiza una serie de ajustes visuales. Los indicadores de carga son los siguientes:
+
+\begin{itemize}
+\item \textbf{Botón de carga de código del anfitrión:} se encuentra únicamente en la plantilla del usuario \emph{emisor}, este elemento es un botón que inicialmente tiene un color rojo, mostrando un estado que representa que no hay ningún código cargado, una vez se carga el código, este botón cambia a un color verde.
+\item \textbf{Botón de carga de código del invitado:} se encuentra ambas interfaces, este elemento es un botón que inicialmente tiene un color rojo, mostrando un estado que representa que no hay ningún código cargado, una vez se carga el código, este botón cambia a un color verde en ambos extremos. Este botón no puede ser pulsado en el lado del \emph{emisor}.
+\end{itemize}
+
+%% AÑADIR IMAGEN DE LOS BOTONES EN EL HOST Y EL GUEST
+
+El establecimiento de los estados se realiza mediante mensajes vía \emph{WebSockets} entre ambos usuarios. En la plantilla del \emph{anfitrión} es donde se almacenan todas las variables relativas al estado de los códigos, el extremo \emph{invitado} únicamente recibe órdenes vía \emph{WebSockets} para ajustar su interfaz.
+
+\subsubsection{Transmisión vía WebRTC}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
