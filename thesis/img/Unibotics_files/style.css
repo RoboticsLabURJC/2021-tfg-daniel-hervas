@@ -1,0 +1,157 @@
+/* Archivo CSS para definir el estilo principal de la aplicación */
+
+/* ======================= Main Styles ===================== */
+
+body {
+    /* Regla CSS que contiene el color de fondo y el color de letra pricipales
+     de la aplicación. Cualquier elemento con esta clase tendra estos colores */
+    font-family: 'Roboto';
+    font-size: 14px;
+    background-color: #F6F6F6;
+    color: black;
+}
+th {
+    text-align: center;
+    vertical-align: middle;
+}
+ul {
+    list-style-type: none;
+}
+body {
+    background-color: #f6f6f6;
+}
+.row {
+    margin-left: 15px;
+}
+a {
+    color:rgb(77, 77, 77);
+}
+#twitter {
+    color: #1CA1F2;
+}
+#youtube {
+    color: #FF0201;
+}
+a:hover {
+    color: rgb(0, 105, 224);
+}
+.btn-forum { 
+    color: #ffffff; 
+    background-color: #611BBD; 
+    border-color: #130269; 
+}
+.btn-forum:hover { 
+    color: #ffffff; 
+    background-color: #130269; 
+}
+.panel > .panel-heading {
+    /* Main Color para los panel heading de la aplicación */
+    background-color: #e88540;
+    color: #ffffff;
+}
+
+
+/* ======================= Navbar Styles ===================== */
+.nav.navbar {
+    color: black;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.navbar-brand {
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+    padding-top: 2px;
+}
+
+.navbar-nav{
+    margin-top: 5px;
+    height: 50px;
+    color: black;
+}
+
+.navbar-nav > a:active, .navbar-nav > a:hover {
+       outline: 0;
+       color: rgb(0, 0, 0);
+    }
+
+.navbar-nav > li > a {
+    color: black;
+}
+
+.active {
+    color: black;
+    /*background-color: #ffffff;*/
+    margin-bottom: 15px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #ffffff;
+    color: #FFFFFF;
+}
+
+.tabtext {
+    margin-top: 4px;
+}
+
+@media (min-width: 768px) {
+    .navbar-collapse.collapse {
+        box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    }
+    .navbar-nav.navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+    }
+}
+
+
+#loader{
+    top:0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+.loaded{
+    opacity: 0;
+    -webkit-transform: translateX(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: translateY(-100%);  /* IE 9 */
+    transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+    -webkit-transition: all 0.3s 0.6s ease-out; 
+    transition: all 0.3s 0.6s ease-out;
+}
+
+#icon_loader{
+        top: 50%;
+        transform: translateY(-50%);            
+}
+
+.footer {
+    font-size: 10px;
+    padding-top: 3px;
+    text-align: center;
+    background-color: #e88540;
+    position: fixed;
+    clear: both;
+    left:0px;
+    bottom:0px;
+    height:20px;
+    width:100%;
+}
+
+
+.btn-simulation.disabled{
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+}
+a.btn-simulation.disabled{
+    pointer-events: none;
+}

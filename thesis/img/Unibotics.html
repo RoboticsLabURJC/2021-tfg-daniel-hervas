@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://127.0.0.1:8000/academy/exercise/follow_line/ -->
+<html lang="es-ES"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="ace-monokai">.ace-monokai .ace_gutter {background: #2F3129;color: #8F908A}.ace-monokai .ace_print-margin {width: 1px;background: #555651}.ace-monokai {background-color: #272822;color: #F8F8F2}.ace-monokai .ace_cursor {color: #F8F8F0}.ace-monokai .ace_marker-layer .ace_selection {background: #49483E}.ace-monokai.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px #272822;}.ace-monokai .ace_marker-layer .ace_step {background: rgb(102, 82, 0)}.ace-monokai .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid #49483E}.ace-monokai .ace_marker-layer .ace_active-line {background: #202020}.ace-monokai .ace_gutter-active-line {background-color: #272727}.ace-monokai .ace_marker-layer .ace_selected-word {border: 1px solid #49483E}.ace-monokai .ace_invisible {color: #52524d}.ace-monokai .ace_entity.ace_name.ace_tag,.ace-monokai .ace_keyword,.ace-monokai .ace_meta.ace_tag,.ace-monokai .ace_storage {color: #F92672}.ace-monokai .ace_punctuation,.ace-monokai .ace_punctuation.ace_tag {color: #fff}.ace-monokai .ace_constant.ace_character,.ace-monokai .ace_constant.ace_language,.ace-monokai .ace_constant.ace_numeric,.ace-monokai .ace_constant.ace_other {color: #AE81FF}.ace-monokai .ace_invalid {color: #F8F8F0;background-color: #F92672}.ace-monokai .ace_invalid.ace_deprecated {color: #F8F8F0;background-color: #AE81FF}.ace-monokai .ace_support.ace_constant,.ace-monokai .ace_support.ace_function {color: #66D9EF}.ace-monokai .ace_fold {background-color: #A6E22E;border-color: #F8F8F2}.ace-monokai .ace_storage.ace_type,.ace-monokai .ace_support.ace_class,.ace-monokai .ace_support.ace_type {font-style: italic;color: #66D9EF}.ace-monokai .ace_entity.ace_name.ace_function,.ace-monokai .ace_entity.ace_other,.ace-monokai .ace_entity.ace_other.ace_attribute-name,.ace-monokai .ace_variable {color: #A6E22E}.ace-monokai .ace_variable.ace_parameter {font-style: italic;color: #FD971F}.ace-monokai .ace_string {color: #E6DB74}.ace-monokai .ace_comment {color: #75715E}.ace-monokai .ace_indent-guide {background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWPQ0FD0ZXBzd/wPAAjVAoxeSgNeAAAAAElFTkSuQmCC) right repeat-y}
+/*# sourceURL=ace/css/ace-monokai */</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-tm */</style><style id="ace_editor.css">.ace_br1 {border-top-left-radius    : 3px;}.ace_br2 {border-top-right-radius   : 3px;}.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}.ace_br4 {border-bottom-right-radius: 3px;}.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}.ace_br8 {border-bottom-left-radius : 3px;}.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}.ace_editor {position: relative;overflow: hidden;padding: 0;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;text-align: left;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;box-sizing: border-box;min-width: 100%;contain: style size layout;font-variant-ligatures: no-common-ligatures;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;contain: style size layout;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {position: absolute;top: 0;left: 0;right: 0;padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {contain: strict;position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;contain: strict;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;white-space: pre!important;}.ace_text-input.ace_composition {background: transparent;color: inherit;z-index: 1000;opacity: 1;}.ace_composition_placeholder { color: transparent }.ace_composition_marker { border-bottom: 1px solid;position: absolute;border-radius: 0;margin-top: 1px;}[ace_nocontext=true] {transform: none!important;filter: none!important;clip-path: none!important;mask : none!important;contain: none!important;perspective: none!important;mix-blend-mode: initial!important;z-index: auto;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;height: 1000000px;contain: style size layout;}.ace_text-layer {font: inherit !important;position: absolute;height: 1000000px;width: 1000000px;contain: style size layout;}.ace_text-layer > .ace_line, .ace_text-layer > .ace_line_group {contain: style size layout;position: absolute;top: 0;left: 0;right: 0;}.ace_hidpi .ace_text-layer,.ace_hidpi .ace_gutter-layer,.ace_hidpi .ace_content,.ace_hidpi .ace_gutter {contain: strict;will-change: transform;}.ace_hidpi .ace_text-layer > .ace_line, .ace_hidpi .ace_text-layer > .ace_line_group {contain: strict;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;box-sizing: border-box;border-left: 2px solid;transform: translatez(0);}.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_hasPlaceholder .ace_hidden-cursors .ace_cursor {opacity: 0;}.ace_smooth-blinking .ace_cursor {transition: opacity 0.18s;}.ace_animate-blinking .ace_cursor {animation-duration: 1000ms;animation-timing-function: step-end;animation-name: blink-ace-animate;animation-iteration-count: infinite;}.ace_animate-blinking.ace_smooth-blinking .ace_cursor {animation-duration: 1000ms;animation-timing-function: ease-in-out;animation-name: blink-ace-animate-smooth;}@keyframes blink-ace-animate {from, to { opacity: 1; }60% { opacity: 0; }}@keyframes blink-ace-animate-smooth {from, to { opacity: 1; }45% { opacity: 1; }60% { opacity: 0; }85% { opacity: 0; }}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_error_bracket {position: absolute;border-bottom: 1px solid #DE5555;border-radius: 0;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;box-sizing: border-box;}.ace_line .ace_fold {box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_inline_button {border: 1px solid lightgray;display: inline-block;margin: -1px 8px;padding: 0 5px;pointer-events: auto;cursor: pointer;}.ace_inline_button:hover {border-color: gray;background: rgba(200,200,200,0.2);display: inline-block;pointer-events: auto;}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}.ace_mobile-menu {position: absolute;line-height: 1.5;border-radius: 4px;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;background: white;box-shadow: 1px 3px 2px grey;border: 1px solid #dcdcdc;color: black;}.ace_dark > .ace_mobile-menu {background: #333;color: #ccc;box-shadow: 1px 3px 2px grey;border: 1px solid #444;}.ace_mobile-button {padding: 2px;cursor: pointer;overflow: hidden;}.ace_mobile-button:hover {background-color: #eee;opacity:1;}.ace_mobile-button:active {background-color: #ddd;}.ace_placeholder {font-family: arial;transform: scale(0.9);transform-origin: left;white-space: pre;opacity: 0.7;margin: 0 10px;}
+/*# sourceURL=ace/css/ace_editor.css */</style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="http://127.0.0.1:8000/static/assets/img/favicon_unibotics.png" sizes="32x32">
+    <title>Unibotics</title>
+    <link rel="stylesheet" href="./Unibotics_files/main(1).css">
+    <link rel="stylesheet" href="./Unibotics_files/gui.css">
+    <link rel="stylesheet" href="./Unibotics_files/console.css">
+    <link rel="stylesheet" href="./Unibotics_files/split_style.css">
+    <!-- Bootstrap 3.3.7 from local -->
+    <link rel="stylesheet" href="./Unibotics_files/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="./Unibotics_files/flag-icon.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Unibotics_files/bootstrap-icons.css">
+
+    <script src="./Unibotics_files/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="./Unibotics_files/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="./Unibotics_files/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="./Unibotics_files/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    
+    <!-- SWAL -->
+    <script src="./Unibotics_files/sweetalert2@8"></script><style>@charset "UTF-8";.swal2-popup.swal2-toast{flex-direction:row;align-items:center;width:auto;padding:.625em;overflow-y:hidden;box-shadow:0 0 .625em #d9d9d9}.swal2-popup.swal2-toast .swal2-header{flex-direction:row}.swal2-popup.swal2-toast .swal2-title{flex-grow:1;justify-content:flex-start;margin:0 .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:static;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{justify-content:flex-start;font-size:1em}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0}.swal2-popup.swal2-toast .swal2-icon::before{display:flex;align-items:center;font-size:2em;font-weight:700}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-popup.swal2-toast .swal2-icon::before{font-size:.25em}}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{flex-basis:auto!important;width:auto;height:auto;margin:0 .3125em}.swal2-popup.swal2-toast .swal2-styled{margin:0 .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 .0625em #fff,0 0 0 .125em rgba(50,100,150,.4)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.8em;left:-.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:swal2-toast-show .5s;animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:swal2-toast-hide .1s forwards;animation:swal2-toast-hide .1s forwards}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:swal2-toast-animate-success-line-tip .75s;animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:swal2-toast-animate-success-line-long .75s;animation:swal2-toast-animate-success-line-long .75s}.swal2-container{display:flex;position:fixed;z-index:1060;top:0;right:0;bottom:0;left:0;flex-direction:row;align-items:center;justify-content:center;padding:.625em;overflow-x:hidden;transition:background-color .1s;background-color:transparent;-webkit-overflow-scrolling:touch}.swal2-container.swal2-top{align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{align-items:flex-start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{align-items:flex-start;justify-content:flex-end}.swal2-container.swal2-center{align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{align-items:center;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{align-items:center;justify-content:flex-end}.swal2-container.swal2-bottom{align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{align-items:flex-end;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{align-items:flex-end;justify-content:flex-end}.swal2-container.swal2-bottom-end>:first-child,.swal2-container.swal2-bottom-left>:first-child,.swal2-container.swal2-bottom-right>:first-child,.swal2-container.swal2-bottom-start>:first-child,.swal2-container.swal2-bottom>:first-child{margin-top:auto}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:flex!important;flex:1;align-self:stretch;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-grow-column{flex:1;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-container.swal2-shown{background-color:rgba(0,0,0,.4)}.swal2-popup{display:none;position:relative;box-sizing:border-box;flex-direction:column;justify-content:center;width:32em;max-width:100%;padding:1.25em;border:none;border-radius:.3125em;background:#fff;font-family:inherit;font-size:1rem}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-header{display:flex;flex-direction:column;align-items:center}.swal2-title{position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-actions{display:flex;z-index:1;flex-wrap:wrap;align-items:center;justify-content:center;width:100%;margin:1.25em auto 0}.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-actions.swal2-loading .swal2-styled.swal2-confirm{box-sizing:border-box;width:2.5em;height:2.5em;margin:.46875em;padding:0;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border:.25em solid transparent;border-radius:100%;border-color:transparent;background-color:transparent!important;color:transparent;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-actions.swal2-loading .swal2-styled.swal2-cancel{margin-right:30px;margin-left:30px}.swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{content:"";display:inline-block;width:15px;height:15px;margin-left:5px;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border:3px solid #999;border-radius:50%;border-right-color:transparent;box-shadow:1px 1px 1px #fff}.swal2-styled{margin:.3125em;padding:.625em 2em;box-shadow:none;font-weight:500}.swal2-styled:not([disabled]){cursor:pointer}.swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#3085d6;color:#fff;font-size:1.0625em}.swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#aaa;color:#fff;font-size:1.0625em}.swal2-styled:focus{outline:0;box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(50,100,150,.4)}.swal2-styled::-moz-focus-inner{border:0}.swal2-footer{justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-image{max-width:100%;margin:1.25em auto}.swal2-close{position:absolute;z-index:2;top:0;right:0;justify-content:center;width:1.2em;height:1.2em;padding:0;overflow:hidden;transition:color .1s ease-out;border:none;border-radius:0;outline:initial;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer}.swal2-close:hover{transform:none;background:0 0;color:#f27474}.swal2-content{z-index:1;justify-content:center;margin:0;padding:0;color:#545454;font-size:1.125em;font-weight:400;line-height:normal;text-align:center;word-wrap:break-word}.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{margin:1em auto}.swal2-file,.swal2-input,.swal2-textarea{box-sizing:border-box;width:100%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;background:inherit;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);color:inherit;font-size:1.125em}.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 3px #c4e6f5}.swal2-file::-webkit-input-placeholder,.swal2-input::-webkit-input-placeholder,.swal2-textarea::-webkit-input-placeholder{color:#ccc}.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{color:#ccc}.swal2-file:-ms-input-placeholder,.swal2-input:-ms-input-placeholder,.swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-file::-ms-input-placeholder,.swal2-input::-ms-input-placeholder,.swal2-textarea::-ms-input-placeholder{color:#ccc}.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{color:#ccc}.swal2-range{margin:1em auto;background:inherit}.swal2-range input{width:80%}.swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}.swal2-range input,.swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-input{height:2.625em;padding:0 .75em}.swal2-input[type=number]{max-width:10em}.swal2-file{background:inherit;font-size:1.125em}.swal2-textarea{height:6.75em;padding:.75em}.swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:inherit;color:inherit;font-size:1.125em}.swal2-checkbox,.swal2-radio{align-items:center;justify-content:center;background:inherit;color:inherit}.swal2-checkbox label,.swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-checkbox input,.swal2-radio input{margin:0 .4em}.swal2-validation-message{display:none;align-items:center;justify-content:center;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}.swal2-validation-message::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}.swal2-icon{position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;font-family:inherit;line-height:5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-icon::before{display:flex;align-items:center;height:92%;font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-warning::before{content:"!"}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-info::before{content:"i"}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-question::before{content:"?"}.swal2-icon.swal2-question.swal2-arabic-question-mark::before{content:"؟"}.swal2-icon.swal2-success{border-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-.25em;left:-.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.875em;width:1.5625em;transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}.swal2-progress-steps{align-items:center;margin:0 0 1.25em;padding:0;background:inherit;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{z-index:20;width:2em;height:2em;border-radius:2em;background:#3085d6;color:#fff;line-height:2em;text-align:center}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#3085d6}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{z-index:10;width:2.5em;height:.4em;margin:0 -1px;background:#3085d6}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-show.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-hide.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-animate-success-icon .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-animate-error-icon{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-animate-error-icon .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-moz-document url-prefix(){.swal2-close:focus{outline:2px solid rgba(50,100,150,.4)}}@-webkit-keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@-webkit-keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@-webkit-keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@-webkit-keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-shown{top:auto;right:auto;bottom:auto;left:auto;max-width:calc(100% - .625em * 2);background-color:transparent}body.swal2-no-backdrop .swal2-shown>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-shown.swal2-top{top:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-top-left,body.swal2-no-backdrop .swal2-shown.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-top-end,body.swal2-no-backdrop .swal2-shown.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-shown.swal2-center{top:50%;left:50%;transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-left,body.swal2-no-backdrop .swal2-shown.swal2-center-start{top:50%;left:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-end,body.swal2-no-backdrop .swal2-shown.swal2-center-right{top:50%;right:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom{bottom:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom-left,body.swal2-no-backdrop .swal2-shown.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-bottom-end,body.swal2-no-backdrop .swal2-shown.swal2-bottom-right{right:0;bottom:0}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static!important}}body.swal2-toast-shown .swal2-container{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-shown{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}body.swal2-toast-column .swal2-toast{flex-direction:column;align-items:stretch}body.swal2-toast-column .swal2-toast .swal2-actions{flex:1;align-self:stretch;height:2.2em;margin-top:.3125em}body.swal2-toast-column .swal2-toast .swal2-loading{justify-content:center}body.swal2-toast-column .swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}body.swal2-toast-column .swal2-toast .swal2-validation-message{font-size:1em}</style>
+    <script src="./Unibotics_files/idle.js" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+        var isLocalBackend = "False".toLowerCase()
+        if (isLocalBackend === "false"){
+            $(document).ready(function () {
+                $("#deployment-modal").modal('show');
+            });
+        }
+
+
+        function showInfoModal() {
+            $("#info-modal").modal('show');
+        }
+        function hideLoadModal() {
+            $("#load-modal").modal('hide');
+        }
+
+        function showLoadModal() {
+            $("#load-modal").modal('show');
+        }
+       
+        // Tab selection functions
+        function openExercise() {
+            hideAll();
+            $("#exercise-view").show();
+            $("#exercise-controls").show();
+        }
+
+        function openTheory() {
+            hideAll();
+            $("#theory-view").show();
+        }
+        
+        function openForum() {
+            hideAll();
+            $("#forum-view").show();
+
+            //window.open('https://forum.unibotics.org/', '_blank');
+	}
+
+        function hideAll() {
+            $("#exercise-view").hide();
+            $("#exercise-controls").hide();
+            $("#theory-view").hide();
+            $("#forum-view").hide();
+        }
+    </script>
+	<script src="./Unibotics_files/controller.js" type="text/javascript" charset="utf-8"></script>
+    
+    <!-- Roboto Typography -->
+    <link href="./Unibotics_files/css" rel="stylesheet">
+
+    <!-- Hoja de Estilo principal de la Aplicación (Main Styles) -->
+    <link rel="stylesheet" type="text/css" href="./Unibotics_files/style.css">
+    <link rel="stylesheet" type="text/css" href="./Unibotics_files/navbar.css">
+
+    <!-- Aniamte CSS -->
+    <link rel="stylesheet" type="text/css" href="./Unibotics_files/animate.css">
+
+    <!--Font Awesome -->
+    <link href="./Unibotics_files/font-awesome.min.css" rel="stylesheet">
+    <style>
+        /* Styling h1 tag */
+        h1 {
+            color: green;
+            text-align: center;
+        }
+
+        /* Styling modal */
+        .modal .modal-content {
+            padding: 20px 20px 20px 20px;
+            width: 650px;
+            -webkit-animation-name: modal-animation;
+            -webkit-animation-duration: 0.5s;
+            animation-name: modal-animation;
+            animation-duration: 0.5s;
+        }
+
+        .content {
+            visibility: visible;
+        }
+
+        @-webkit-keyframes modal-animation {
+            from {
+                top: -100px;
+                opacity: 0;
+            }
+
+            to {
+                top: 0px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes modal-animation {
+            from {
+                top: -100px;
+                opacity: 0;
+            }
+
+            to {
+                top: 0px;
+                opacity: 1;
+            }
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            visibility: hidden;
+            display: none;
+            background-color: rgba(22, 22, 22, 0.5);
+        }
+
+        #container:target {
+            visibility: visible;
+            display: block;
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {filter: invert(100%); }
+
+        .carousel-control-prev-icon{
+            position: absolute;
+            left: 0%;
+        }
+        .carousel-control-next-icon{
+            position: absolute;
+            right: 0%;
+        }
+
+        .carousel-item-controls p { padding-left: 6px;}
+        .carousel-item-controls img {width: 20px; height: 20px}
+
+        video{
+            display: block;
+        }
+
+    </style>
+<script src="./Unibotics_files/theme-monokai.js"></script><script src="./Unibotics_files/mode-python.js"></script></head>
+
+
+<body class="" style="">
+    <div class="modal" id="evalModal" role="dialog" style="position:absolute; z-index:10000000" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Style evaluation</h4>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="white-space:pre-line">
+                    Modal Body
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light" style="padding-top: 0px; padding-bottom: 0px;">
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <a href="http://127.0.0.1:8000/academy/login" class="nav nav-link">
+                <img src="./Unibotics_files/logocuadrado_unibotics.png" class="d-inline-block align-top" height="28" alt="Academy">
+            </a>
+
+
+            
+            <!-- <form class="form-check form-check-inline ml-auto" method="POST" action="/academy/setDockerInfo/">
+                         <input type="hidden" name="csrfmiddlewaretoken" value="ltBokQWvwyMaqcqZCjTpwAN7vmKyyzvifg9XFN7OlYf5AnQ35JLxAQ6Q5AfHvg8z">
+                         <div class="col-auto">
+                             <select name="docker_mode" class="custom-select">
+                              <option  selected  value="Local">Local</option>
+                              <option  value="Online">Online</option>
+                            </select>
+                         </div>
+                         div class="col-auto">
+                            <input class="form-control mr-sm-2"  name="docker_ip" type="search" placeholder="Docker IP (IP:PORT)" aria-label="DockerIP">
+                         </div>
+                         <div class="col-auto">
+                                 <input id="local" name="local" class="form-check-input" type="checkbox" value="online" >
+                                 <label class="form-check-label" style="color:#000" for="local">Online</label>
+                         </div>
+                         <div class="col-auto">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Enviar</button>
+                         </div>
+                      </form>-->
+            <input type="hidden" name="csrfmiddlewaretoken" value="ltBokQWvwyMaqcqZCjTpwAN7vmKyyzvifg9XFN7OlYf5AnQ35JLxAQ6Q5AfHvg8z">
+            <div class="col-xs-3 ml-auto">
+                <button type="button" class="btn btn-success" style="padding-top: 2px; padding-bottom: 2px;" id="connection-button" value="local-connection" disabled=""><span id="loading-connection" class="bi bi-arrow-down-up"></span> Connected</button>
+                <button type="button" class="btn btn-secondary" style="padding-top: 2px; padding-bottom: 2px;" id="launch-button" value="local-connection"><span id="loading-connection" class="bi bi-arrow-down-up"></span> Launch</button>
+                <button type="button" class="btn" onclick="showInfoModal()"><span class="fa fa-question-circle-o" style="font: normal normal normal 20px/1 FontAwesome; padding-top: 2px; padding-bottom: 2px;"></span></button>
+            </div>
+
+
+
+            <!-- Cuando se genere el token se le muestra la url de invitado y se quita cuando se detecta conexión-->
+            <div id="rtc-url" style="color: black; margin: 15px"></div>
+            
+
+            <div class="mr-auto">
+                    <div id="Control" class="container">
+                        <button id="open-theory" class="btn btn-secondary" style="padding-top: 2px; padding-bottom: 2px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; background: rgb(108, 117, 125);" type="button" onclick="openTheory()"><i class="fa fa-graduation-cap" aria-hidden="true"></i></button>
+                        <button id="open-exercise" class="btn btn-secondary" style="padding-top: 2px; padding-bottom: 2px; border-radius: 0px; background: rgb(40, 167, 69);" type="button" onclick="openExercise()"><i class="fa fa-code" aria-hidden="true"></i></button>
+                        <button id="open-forum" class="btn btn-secondary" style="padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; background: rgb(108, 117, 125);" type="button" onclick="openForum()"><img src="./Unibotics_files/forum.svg" height="20" style="filter: brightness(0) invert(1);"></button>
+                        
+                        
+                    </div>
+            </div>
+
+            <script>
+
+                // Simulate variable
+                let theory_mode = false;
+                let code_mode = true;
+                let forum_mode = false;
+                // Simulate button
+                const theory_icon = document.querySelector('#open-theory');
+                const code_icon = document.querySelector('#open-exercise');
+                const forum_icon = document.querySelector('#open-forum');
+                code_icon.style.background = '#28A745';
+                theory_icon.style.background = '#6C757D';
+                forum_icon.style.background = '#6C757D';
+                
+                theory_icon.addEventListener('click', function(){
+
+                    if(!theory_mode){
+
+                        // Activate mode
+                        theory_mode = true;
+                        code_mode = false;
+                        forum_mode = false;
+                        theory_icon.style.background = '#28A745';
+                        forum_icon.style.background = '#6C757D';
+                        code_icon.style.background = '#6C757D';
+                        return;
+                    }
+
+
+                });
+
+                code_icon.addEventListener('click', function(){
+
+                    if(!code_mode){
+
+                        // Activate mode
+                        code_mode = true;
+                        theory_mode = false;
+                        forum_mode = false;
+                        code_icon.style.background = '#28A745';
+                        theory_icon.style.background = '#6C757D';
+                        forum_icon.style.background = '#6C757D';
+                        return;
+                    }
+
+
+                });
+                
+                
+                forum_icon.addEventListener('click', function(){
+
+                    if(!forum_mode){
+
+                        // Activate mode
+                        forum_mode = true;
+                        theory_mode = false;
+                        code_mode = false;
+                        theory_icon.style.background = '#6C757D';
+                        code_icon.style.background = '#6C757D';
+                        forum_icon.style.background = '#28A745';
+                        return;
+                    }
+
+
+                });
+
+        </script>
+
+            <div class="navbar-nav" style="padding:0px;">
+                <ul class="nav navbar-nav ml-auto">
+                    <li><a class="nav-link" id="home" href="http://127.0.0.1:8000/academy/login"><i class="fa fa-home"></i></a></li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://127.0.0.1:8000/academy/exercise/follow_line/#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            dhrodao
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="http://127.0.0.1:8000/academy/exercise/follow_line/#">dhrodao@gmail.com</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="https://analytics.unibotics.org/" target="_blank">Dashboard</a>
+                            
+                            <a class="dropdown-item" href="http://127.0.0.1:8000/academy/farm/" target="_blank">Farm Info</a>
+                            <a class="dropdown-item" href="http://127.0.0.1:8000/admin" target="_blank">Panel Admin</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="http://127.0.0.1:8000/academy/exercise/follow_line/#en"><span class="flag-icon flag-icon-gb"></span> English</a>
+                            
+                            
+                            <input type="hidden" name="csrfmiddlewaretoken" value="ltBokQWvwyMaqcqZCjTpwAN7vmKyyzvifg9XFN7OlYf5AnQ35JLxAQ6Q5AfHvg8z">
+                            <div class="dropdown-divider"></div>
+                            <form id="docker-mode" style="margin-left: 18px;">
+                                <input type="radio" name="radioBackend" value="Local" checked=""> Local backend <br>
+                                 <input type="radio" name="radioBackend" value="Online"> Remote backend <br> 
+                              </form>
+                              
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" id="logout_section" href="http://127.0.0.1:8000/academy/logout">Logout</a>
+                        </div>
+
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- EXITED BUTTON -->
+    <div class="modal fade text-center" id="modal_exit_simulation" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Have you saved your changes?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="padding-top: 10px">
+                        <ul>
+                            <h5 class="text-center">{% trans "Do you want to stop the current simulation? Unsaved
+                                changes will be discarded." %}</h5>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a id="btn-exit_simulation" type="button" href="http://127.0.0.1:8000/exit_simulation" class="btn btn-raised btn-success">Yes, I've saved my changes. Exit.</a>
+                    <a type="button" class="btn btn-danger" data-dismiss="modal">{% trans "No, I have not saved my
+                        changes. Return." %}</a>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $('#btn-exit_simulation').click(function () {
+                            socket.close()
+                            $('#modal_exit_simulation').modal('toggle');
+                            $('#loader').removeClass('loaded')
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- KILL SIMULATIONS BUTTON -->
+    <div class="modal fade text-center" id="modal_kill_simulations" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Kill all simulations.</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="padding-top: 10px">
+                        <ul>
+                            <h5 class="text-center">All active simulations will terminate. Are you sure?
+                            </h5>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" href="http://127.0.0.1:8000/kill_user_simulations" class="btn btn-success">{% trans "Yes, kill all
+                        simulations." %}</a>
+                    <a type="button" class="btn btn-danger" data-dismiss="modal">No, return.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Sección para incluir en todas las páginas mensajes de error o de succcess -->
+    
+
+    <script>
+        var csrf = 'ltBokQWvwyMaqcqZCjTpwAN7vmKyyzvifg9XFN7OlYf5AnQ35JLxAQ6Q5AfHvg8z';
+        var select = document.getElementById('docker-mode');
+        select.addEventListener('change',
+          function(){
+                var selectedOptionValue = $('input[name=radioBackend]:checked', '#docker-mode').val();
+                /** /academy/setDockerInfo/ **/
+                const request = new Request('/academy/setDockerInfo/', {method: 'POST', headers: {"X-CSRFToken": csrf}, body:selectedOptionValue});
+                fetch(request)
+                  .then(response => {response.text(); if (response.ok) location.reload();})
+                  .catch(error => {
+                    console.error(error);
+                  }).then(function(result){
+                    result = result ;
+                    alert(result);
+                  });
+          });
+
+        var launch_level = 0;
+        // Changes connection step value
+        function set_launch_level(level) {
+            launch_level = level;
+        }
+        function get_launch_level() {
+            return launch_level;
+        }
+
+    </script>
+
+
+<div class="row col-md-12" id="exercise-controls">
+
+
+	<div id="Control" style="margin-top: 3px; margin-bottom: 0px;" class="container">
+		<button id="save" type="button" onclick="saveCodeUnibotics(&#39;follow_line&#39;, true)"><img class="btn_img" src="./Unibotics_files/upload.svg"> Save</button>
+		<button id="loadIntoRobot" title="" type="button" onclick="check()" style="opacity: 0.4; cursor: not-allowed;" disabled="true"><nobr><img class="btn_img" src="./Unibotics_files/robot.svg" style="display: inline;"><p style="display: inline; white-space: nowrap;"> Load in robot</p></nobr><img class="btn_img" id="loadIntoRobotAlert" src="./Unibotics_files/dot.svg" style="position: absolute; display: none; height: 14px; margin-top: -6px; filter: invert(83%) sepia(29%) saturate(7448%) hue-rotate(12deg) brightness(87%) contrast(101%);"></button>
+		<button id="submit" type="button" style="opacity: 0.4; cursor: not-allowed;" disabled=""><img class="btn_img" src="./Unibotics_files/submit.svg" style="display: inline;"><p style="display: inline;"> Play</p></button>
+		<button id="stop" type="button" onclick="stop()" style="opacity: 0.4; cursor: not-allowed; display: none;" disabled="true"><img class="btn_img" src="./Unibotics_files/pause.png" style="display: inline;"><p style="display: inline;"> Pause</p></button>
+		<input type="file" id="real-file" hidden="hidden">
+		<button id="reset" type="button" style="opacity: 0.4; cursor: not-allowed;" disabled=""><img class="btn_img" style="height:15px;" src="./Unibotics_files/reset.svg"> Reset</button>
+
+
+		
+	
+		<script>
+		
+            		
+            		document.getElementById('stop').style.display = 'none';
+			 if(window.location.pathname=='/academy/exercise/laser_mapping/' || window.location.pathname=='/academy/exercise/laser_mapping' || window.location.pathname.includes("/academy/exercise/laser_loc")){
+                		document.getElementById('loadIntoRobot').style.display = 'none';
+                		document.getElementById('stop').style.display = 'block';
+                		document.getElementById('submit').onclick = function(){check('dhrodao')};
+				document.getElementById("reset").onclick = function(){reset()};
+				
+            		}
+            		else{
+            			document.getElementById('submit').onclick =function(){start('dhrodao')};
+            			document.getElementById('reset').onclick=function(){resetSim()};
+            		
+            		}
+		
+		
+		
+		</script>
+		
+		<div overflow-x:auto="" id="Medidor_Brain">
+			<table id="table_code_freq">
+			<tbody><tr>
+			<td><a id="letters">Brain Freq:</a> <output id="ideal_code_frequency">0</output>/ <input type="number" id="code_freq" name="Brain Frequency" min="1" max="30" value="12" step="1" style="color:blue" oninput="codefrequencyUpdate(value)" <span="" title="The brain frequency is the value that tells the robot with what frequency should the code be updated"> <a id="Hz">Hz</a></td>
+			</tr>
+			</tbody></table>
+		</div>
+		<div overflow-x:auto="" id="Medidor_GUI">
+			<table id="table_gui_freq">
+			<tbody><tr>
+			<td><a id="letters">GUI Freq:</a><output id="ideal_gui_frequency">0</output>/ <input type="number" id="gui_freq" name="quantity" min="1" max="30" value="12" step="1" style="color:green" oninput="guifrequencyUpdate(value)" <span="" title="This value corresponds to the frequency the UI and visuals will be updated."> Hz</td>
+			</tr>
+			</tbody></table>
+		</div>
+		<div id="Medidor_RTF">
+            <a id="letters">Sim RTF:</a><output id="real_time_factor" style="color:red">0</output><span title="This value is the real time factor of the simulation, it let us know the rate of time in the simulation and real time. As you get closer to 1, the difference between real time and simulation time decreases."></span>
+        </div>
+
+
+
+
+
+
+		<button id="gazebo_button" type="button" onclick="changegzweb()" title="Activate the simulation screen"><div style="vertical-align: top; display: inline-block; text-align: center;"><img id="gzimg" style="height:20px;" src="./Unibotics_files/gazebo.svg"><span style="display: block;">View Sim</span></div></button>
+        <button id="console_button" type="button" onclick="changeconsole()" title="Open the console"> <div style="vertical-align: top; display: inline-block; text-align: center;"><img id="terminalimg" style="height:20px;" src="./Unibotics_files/console.svg"><span style="display: block;">View Console</span></div></button>
+		<!--<a id="letters">Sim RTF</a><output id="real_time_factor" style="color:red">0</output><span title="This value is the real time factor of the simulation, it let us know the rate of time in the simulation and real time. As you get closer to 1, the difference between real time and simulation time decreases."></span>-->
+        <button id="teleop_button" type="button" title="Use the arrow keys to operate the F1" style="display: block;"> <div style="vertical-align: top; display: inline-block; text-align: center;"><img id="teleop_img" style="height:20px;" src="./Unibotics_files/joystick_off.svg"><span style="display: block;">Teleoperate</span></div></button>
+        <button id="efficacy" type="button" data-clicks="False" onclick="efficacy_evaluator(&#39;follow_line&#39;)" style="display: block;"><img class="btn_img" src="./Unibotics_files/efficacy.svg"> Efficacy evaluator</button>
+		<button id="eval_button" type="button" onclick="startevaluate()" style="display: none;"><img id="evaluator_img" class="btn_img" src="./Unibotics_files/evaluate.png"> Evaluator</button>
+
+
+        <script>
+            document.getElementById('teleop_button').style.display = 'none';
+            document.getElementById('efficacy').style.display = 'none';
+            document.getElementById('eval_button').style.display = 'none';
+            
+
+
+            if(window.location.pathname=='/academy/exercise/follow_line/' || window.location.pathname=='/academy/exercise/follow_line'){
+                document.getElementById('teleop_button').style.display = 'block';
+                document.getElementById('efficacy').style.display = 'block';
+            }
+
+            if(window.location.pathname=='/academy/exercise/obstacle_avoidance/' || window.location.pathname=='/academy/exercise/obstacle_avoidance' || window.location.pathname=='/academy/exercise/vacuum_cleaner_loc/' || window.location.pathname=='/academy/exercise/vacuum_cleaner_loc' || window.location.pathname=='/academy/exercise/vacuum_cleaner/' || window.location.pathname=='/academy/exercise/vacuum_cleaner'){
+                document.getElementById('efficacy').style.display = 'block';
+            }
+            if(window.location.pathname=='/academy/exercise/laser_mapping' || window.location.pathname=='/academy/exercise/laser_mapping/' || window.location.pathname=='/academy/exercise/follow_line_game/' || window.location.pathname=='/academy/exercise/follow_line_game' || window.location.pathname.includes("/academy/exercise/laser_loc")){
+                document.getElementById('teleop_button').style.display = 'block';
+            }
+            if(window.location.pathname=='/academy/exercise/color_filter/' || window.location.pathname=='/academy/exercise/color_filter'){
+                document.getElementById('gazebo_button').style.display = 'none';
+                document.getElementById('efficacy').style.display = 'none';
+            }
+            if(window.location.pathname=='/academy/exercise/drone_cat_mouse_game/' || window.location.pathname=='/academy/exercise/drone_cat_mouse_game'){
+                document.getElementById('eval_button').style.display = 'block';
+            }
+
+        </script>
+
+
+
+        <button id="evaluate" type="button" onclick="evaluate_code(&#39;follow_line&#39;)"><img id="evaluate_img" class="btn_img" src="./Unibotics_files/style.svg"> Evaluate style</button>
+
+    </div>
+
+</div>
+
+<script>
+
+        // Simulate variable
+        let simulate_mode = false;
+		// Simulate button
+		const simulate_btn = document.querySelector('#gazebo_button');
+		const simulate_img = document.querySelector('#gzimg');
+		simulate_btn.addEventListener('click', function(){
+
+			if(!simulate_mode){
+
+				// Activate mode
+				simulate_mode = true;
+				simulate_btn.style.background = '#BEBEBE';
+				simulate_img.src = "/static/unibotics-exercises/static/assets/common/img/gazebo_on.svg";
+				return;
+			}
+
+			// Else, turn of teleop mode and remove event listeners
+			simulate_mode = false;
+			simulate_btn.style.background = 'transparent';
+			simulate_img.src = "/static/unibotics-exercises/static/assets/common/img/gazebo.svg";
+
+			return;
+
+
+		});
+
+		function deactivateSimulateButton() {
+			simulate_mode = false;
+			simulate_btn.style.background = 'transparent';
+			simulate_img.src = "/static/unibotics-exercises/static/assets/common/img/gazebo.svg";
+
+		}
+
+		// Console variable
+		let console_mode = false;
+		// Console button
+		const console_btn = document.querySelector('#console_button');
+		const console_img = document.querySelector('#terminalimg');
+		console_btn.addEventListener('click', function(){
+
+			if(!console_mode){
+
+				// Activate mode
+				console_mode = true;
+				console_btn.style.background = '#BEBEBE';
+				console_img.src = "/static/unibotics-exercises/static/assets/common/img/console_on.svg";
+				return;
+			}
+
+			// Else, turn of teleop mode and remove event listeners
+			console_mode = false;
+			console_btn.style.background = 'transparent';
+			console_img.src = "/static/unibotics-exercises/static/assets/common/img/console.svg";
+
+			return;
+
+
+		});
+		function deactivateConsoleButton() {
+			console_mode = false;
+			console_btn.style.background = 'transparent';
+			console_img.src = "/static/unibotics-exercises/static/assets/common/img/console.svg";
+
+		}
+
+        // Teleop variables
+        let teleop_mode = false;
+        let teleop_mode_guest = false;
+		// Teleop button
+		const teleop_btn = document.querySelector('#teleop_button');
+		const teleop_img = document.querySelector('#teleop_img');
+
+		teleop_btn.addEventListener('click', function(){
+			// If variable is false, activate teleoperate mode
+			if(!teleop_mode){
+				if (running == false) {
+					resumeSimulation();
+					running == true;
+				}
+				// Activate mode
+				teleop_mode = true;
+				teleop_btn.style.background = '#BEBEBE';
+				teleop_img.src = "/static/unibotics-exercises/static/assets/exercises/follow_line/img/joystick_on.svg";
+				document.addEventListener('keydown', keyHandler, false);
+				document.addEventListener('keyup', keyHandler, false);
+				return;
+			}
+
+			// Else, turn of teleop mode and remove event listeners
+			teleop_mode = false;
+			submitCode();
+			teleop_btn.style.background = 'transparent';
+			teleop_img.src = "/static/unibotics-exercises/static/assets/exercises/follow_line/img/joystick_off.svg";
+			document.removeEventListener('keydown', keyHandler, false);
+			document.removeEventListener('keyup', keyHandler, false);
+			return;
+		});
+
+		function deactivateTeleopButton() {
+			teleop_mode = false;
+			teleop_btn.style.background = 'transparent';
+			teleop_img.src = "/static/unibotics-exercises/static/assets/exercises/follow_line/img/joystick_off.svg";
+			document.removeEventListener('keydown', keyHandler, false);
+			document.removeEventListener('keyup', keyHandler, false);
+		}
+
+
+    		// Car variables
+		let v = 0;
+		let w = 0;
+
+		// Event Handlers for controls
+		function keyHandler(event) {
+			// Right (39), Left (37), Down (40), Up (38)
+
+			// First check if websocket_gui_guest and websocket_code_guest are defined
+			if((typeof(websocket_gui) !== 'undefined' && (typeof(websocket_code) !== 'undefined'))){
+				let cmd = "#tele";
+
+				// Prevent using arrow keys to scroll page
+				if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+					event.preventDefault();
+				}
+
+				if(event.keyCode == 39) {
+					//console.log('Right');
+					w = (event.type == 'keydown')?-1:0;
+				}else if(event.keyCode == 37) {
+					//console.log('Left');
+					w = (event.type == 'keydown')?1:0;
+				}else if(event.keyCode == 40) {
+					//console.log('Down');
+					v = (event.type == 'keydown')?-2:0;
+				}else if(event.keyCode == 38) {
+					//console.log('Up');
+					v = (event.type == 'keydown')?2:0;
+				}
+				console.log('v: ', v, 'w: ', w);
+			}
+		}
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+   window.addEventListener("beforeunload", function (e) {
+       e.preventDefault();
+       var date = new Date().getTime();
+       localStorage.setItem('lastTime', date);
+       localStorage.setItem('exercise', 'follow_line');
+       freeDocker();
+   });
+</script>
+
+
+    <div id="forum-view" style="display: none;">
+	<iframe src="./Unibotics_files/saved_resource.html" id="iframe-tab"></iframe>
+    </div>
+    
+    
+    
+
+<div id="theory-view" style="display: none;">
+	<iframe src="./Unibotics_files/saved_resource(1).html" id="iframe-tab"></iframe>
+</div>
+
+
+<div class="content" id="exercise-view">
+  <div class="split a" style="width: calc(50% - 1.5px);">
+	<!--<div class="row col-md-auto justify-content-center">
+		<div class="card text-center">
+			<div class="card-body">
+				<li id="frecuency_control" style="list-style: none; display:inline-block; margin:auto;" >
+					Source http://thenewcode.com/757/Playing-With-The-HTML5-range-Slider-Input
+					<table>
+						<tr>
+							<th>Brain Frequency</th>
+							<th><input type="range" min="0" max="30" value="12.5" id="fader"
+							step="0.1" oninput="codefrequencyUpdate(value)" class="frequency-slider">
+							<td><strong><output id="ideal_code_frequency">0</output>/<output for="fader" id="code_frequency">12.5</output></strong> </td>
+							</th>
+						</tr>
+						  <tr>
+							<th>GUI Frequency</th>
+							<th><input type="range" min="0" max="30" value="12.5" id="fader"
+							  step="0.1" oninput="guifrequencyUpdate(value)" class="frequency-slider" ></th>
+							<th><output id="ideal_gui_frequency">0</output>/<output for="fader" id="gui_frequency">12.5</output></th>
+						  </tr>
+						<tr>
+							  <th>Debug-Level</th>
+							  <td><input  id="slide" type="range" min="1" max="4" steps="1" value="2" name="debug" class="debug-slider">
+
+								<ul class="debug-labels">
+							  <th><p id="slidernum">2</p>
+
+							<script type="text/javascript">
+								var slide = document.getElementById('slide'),
+								sliderDiv = document.getElementById("slidernum");
+
+								slide.onchange = function() {
+									sliderDiv.innerHTML = this.value;
+								}
+							</script>
+						  </ul>
+
+					  </td>
+					  </th>
+					</tr>
+					</table>
+				  </li>
+			</div>
+		</div>
+</div>-->
+	<br>
+	<div class="col-md-12 justify-content-center">
+		<div id="code-control">
+			<!-- Code Editor -->
+			<!-- Along with buttons -->
+			<div id="code_container">
+			<input type="button" id="aug_font" onclick="setFontSize(true)" value="+">
+			<input type="button" id="red_font" onclick="setFontSize(false)" value="-">
+			<div id="editor" class=" ace_editor ace_hidpi ace-monokai ace_dark"><textarea class="ace_text-input" wrap="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="opacity: 0; font-size: 1px; height: 1px; width: 1px; transform: translate(43px, 12px);"></textarea><div class="ace_gutter" aria-hidden="true" style="left: 0px; width: 39px;"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="height: 1e+06px; transform: translate(0px, 0px); width: 39px;"><div class="ace_gutter-cell ace_gutter-active-line " style="height: 12px; top: 0px;">1<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 12px; top: 12px;">2<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 12px; top: 24px;">3<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 12px; top: 36px;">4<span style="display: none;"></span></div><div class="ace_gutter-cell " style="height: 12px; top: 48px;">5<span style="display: inline-block; height: 12px;" class="ace_fold-widget ace_start ace_open"></span></div><div class="ace_gutter-cell " style="height: 12px; top: 60px;">6<span style="display: none;"></span></div></div></div><div class="ace_scroller" style="line-height: 12px; left: 39px; right: 0px; bottom: 0px;"><div class="ace_content" style="transform: translate(0px, 0px); width: 497px; height: 522px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 484px; visibility: visible;"></div></div><div class="ace_layer ace_marker-layer"><div class="ace_active-line" style="height: 12px; top: 0px; left: 0px; right: 0px;"></div></div><div class="ace_layer ace_text-layer" style="height: 1e+06px; margin: 0px 4px; transform: translate(0px, 0px);"><div class="ace_line" style="height: 12px; top: 0px;"><span class="ace_keyword">from</span> <span class="ace_identifier">GUI</span> <span class="ace_keyword">import</span> <span class="ace_identifier">GUI</span></div><div class="ace_line" style="height: 12px; top: 12px;"><span class="ace_keyword">from</span> <span class="ace_identifier">HAL</span> <span class="ace_keyword">import</span> <span class="ace_identifier">HAL</span></div><div class="ace_line" style="height: 12px; top: 24px;"><span class="ace_comment"># Enter sequential code!</span></div><div class="ace_line" style="height: 12px; top: 36px;"></div><div class="ace_line" style="height: 12px; top: 48px;"><span class="ace_keyword">while</span> <span class="ace_constant ace_language">True</span><span class="ace_punctuation">:</span></div><div class="ace_line" style="height: 12px; top: 60px;">    <span class="ace_comment"># Enter iterative code!</span></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors"><div class="ace_cursor" style="display: block; transform: translate(4px, 0px); width: 6px; height: 12px;"></div></div></div></div><div class="ace_scrollbar ace_scrollbar-v" style="display: none; width: 20px; bottom: 0px;"><div class="ace_scrollbar-inner" style="width: 20px; height: 72px;">&nbsp;</div></div><div class="ace_scrollbar ace_scrollbar-h" style="display: none; height: 20px; left: 39px; right: 0px;"><div class="ace_scrollbar-inner" style="height: 20px; width: 497px;">&nbsp;</div></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: hidden;"><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: visible;">הההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההה</div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; overflow: visible;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div></div></div>
+
+			</div>
+			<div id="myModal" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title">Enter a filename</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			<div class="md-form ml-0 mr-0">
+				<input type="text" id="form29" class="form-control form-control-sm validate ml-0">
+			  </div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-primary" onclick="downloadFile()">Download</button>
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+		</div>
+			</div>
+	</div>
+
+  </div>
+
+  <div class="gutter gutter-horizontal" style="width: 3px;"></div><div class="split b" style="width: calc(50% - 1.5px);">
+	<!--<div class="row justify-content-center">
+			<div class="col-md-3">
+				<div class="btn-group" role="group" aria-label="Toggle buttons">
+					<button id="gzweb_btn" class="btn btn-primary" type="button" onclick="changegzweb()" data-toggle="tooltip" data-placement="bottom" title="Display Gazebo visualization"><img src="/static/unibotics-exercises/static/assets/common/img/gzweb_btn.png" alt="Gazebo logo"></button>
+					<button id="console_btn" class="btn btn-primary" type="button" onclick="changeconsole()" data-toggle="tooltip" data-placement="bottom" title="Toogle command console"><img src="/static/unibotics-exercises/static/assets/common/img/terminal-solid.png" alt="Command console logo"></button>
+				</div>
+			</div>
+  	</div><br>-->
+
+	<!-- Circuit selector -->
+	<label for="circuit_selector" style="display: inline-block;">Circuit: </label>
+	<select class="form-control" style="display: inline-block; margin-bottom: 10px; width: auto;" name="circuit_selector" id="circuit_selector">
+		<option value="default">Default Line</option>
+		<option value="montmelo">Montmelo Line</option>
+		<option value="montreal">Montreal Line</option>
+		<option value="nbg">Nürburgring Line</option>
+	</select>
+
+  <div class="row" id="visual">
+		<div class="col-md-8">
+			<div class="card text-center">
+				<div class="card-header">
+					Visualization
+				</div>
+				<div class="card-body">
+					<div class="row mx-auto">
+						<canvas id="birds-eye" class="montmelo"></canvas>
+					</div>
+					<div class="row mx-auto">
+						<img id="gui_canvas">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="row">
+				<div class="card flex-fill">
+					<div class="card-header text-center">
+						Progress
+					</div>
+					<div class="card-body">
+						<div class="progress" style="height: 20px;">
+							<div id="porcentaje_bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">%</div>
+							<span id="lap"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="card text-center flex-fill">
+					<div class="card-header">
+						Lap time <img class="btn_img" src="./Unibotics_files/stopwatch-solid.svg">
+					</div>
+					<div class="card-body">
+						<span style="padding: 0 0 0 0; font-size: 20px;" id="lap_time"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="card text-center flex-fill">
+					<div class="card-header">
+						Speed
+					</div>
+					<div class="card-body">
+						<div class="row mx-auto">
+							<canvas id="canvas-w" width="200" height="200"></canvas>
+						</div>
+						<div class="row mx-auto">
+							<canvas id="canvas-v" width="200" height="200"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+  		</div>
+
+
+		<script>
+			 var csrf = 'ltBokQWvwyMaqcqZCjTpwAN7vmKyyzvifg9XFN7OlYf5AnQ35JLxAQ6Q5AfHvg8z';
+			var canvasv = document.getElementById("canvas-v");
+			var ctxv = canvasv.getContext("2d");
+			var canvasw = document.getElementById("canvas-w");
+			var ctxw = canvasw.getContext("2d");
+
+			ctxv.scale(0.7,0.7);
+			ctxw.scale(0.65,0.65);
+			var arrow;
+			var speedometer;
+			var alfa; //angle
+
+			var arrow2;
+			var speedometer2;
+			var beta;//angle
+
+			loadOdometry();
+			function Cleancanvasvw() {
+				ctxv.clearRect(0, 0, 200, 200);
+				ctxw.clearRect(0, 0, 200, 200);
+			}
+
+			function loadOdometry(){
+				arrow = new Image();
+				arrow.src = "/static/unibotics-exercises/static/assets/exercises/follow_line/img/arrow.png";
+				// Load the speedometer image
+				speedometer = new Image();
+				speedometer.src = "/static/unibotics-exercises/static/assets/exercises/follow_line/img/speedometer.png";
+
+				arrow2 = new Image();
+				arrow2.src = "/static/unibotics-exercises/static/assets/exercises/follow_line/img/arrow.png";
+				// Load the speedometer image
+				speedometer2 = new Image();
+				speedometer2.src = "/static/unibotics-exercises/static/assets/exercises/follow_line/img/speedometer2.png";
+			}
+
+			function clearCanvasImage() {
+				let canvas = document.getElementById("gui_canvas");
+				canvas.src = "/static/unibotics-exercises/static/assets/exercises/follow_line/img/white.png";
+			}
+
+			function drawOdometry(v,w){
+				//Draw V
+				Cleancanvasvw();
+					ctxv.drawImage(speedometer, 0, 0);
+				ctxv.save();
+					ctxv.translate(100, 100);
+				alfa = -120 + (v*50);  //v scaled x50
+				ctxv.rotate(alfa * (Math.PI / 180));
+				ctxv.drawImage(arrow, -100, -100);
+				ctxv.restore();
+				//Draw W
+				ctxw.drawImage(speedometer2, 0, 0);
+				ctxw.save();
+				ctxw.translate(100, 100);
+				beta = (w*(-200)); //scaled W x(-200)
+				ctxw.rotate(beta * (Math.PI / 180));
+				ctxw.drawImage(arrow2, -100, -100);
+				ctxw.restore();
+			}
+		</script>
+  </div>
+  <br>
+
+  <div class="row">
+	  <div class="col-md-12">
+		<div class="card text-center flex-fill">
+			<div class="card-header">
+				Gazebo
+			</div>
+			<div class="card-body">
+				<iframe id="iframe" style="display:none;" src="./Unibotics_files/saved_resource(2).html" width="100%" height="500"></iframe>
+			</div>
+		</div>
+	  </div>
+  </div>
+
+  <hr>
+	<div class="row">
+		<div class="col-md-12">
+			<iframe id="console-vnc" style="display:none;" src="./Unibotics_files/saved_resource(3).html" width="100%" height="100%"></iframe>
+		</div>
+	</div>
+
+
+    <script type="text/javascript">
+	var exercise = "follow_line";
+
+    function changeconsole(){
+      var console_display = document.getElementById('console-vnc').style.display
+      console.log(console_display)
+      if (console_display == "none" || console_display == "none" ) {
+		  setIframeConsole();
+        document.getElementById('console-vnc').style.display = 'block';
+      } else{
+        document.getElementById('console-vnc').style.display = 'none';
+      }
+    }
+
+	function changegzweb(){
+		toggleGazebo();
+        var display = document.getElementById('iframe').style.display
+        console.log(display)
+        if (display == "none" || display == "none" ) {
+          document.getElementById('iframe').style.display = 'block';
+          setIframe();
+        } else{
+          document.getElementById('iframe').style.display = 'none';
+        }
+      }
+
+	  function toggleSubmitButton(toggle) {
+		let submit_button = document.getElementById("loadIntoRobot");
+		if (toggle == false) {
+			submit_button.disabled = true;
+			submit_button.style.opacity = "0.4";
+			submit_button.style.cursor = "not-allowed";
+			showLoadModal();
+		} else {
+			submit_button.disabled = false;
+			submit_button.style.opacity = "1.0";
+			submit_button.style.cursor = "default";
+			hideLoadModal();
+		}
+	  }
+
+	  function toggleResetButton(toggle) {
+		let reset_button = document.getElementById("reset");
+		if (toggle == false) {
+			reset_button.disabled = true;
+			reset_button.style.opacity = "0.4";
+			reset_button.style.cursor = "not-allowed";
+		} else {
+			reset_button.disabled = false;
+			reset_button.style.opacity = "1.0";
+			reset_button.style.cursor = "default";
+		}
+	  }
+
+	  function togglePlayPause(stop) {
+		let submit_button = document.getElementById("submit");
+		if (stop) {
+			submit_button.getElementsByTagName('img')[0].src = "/static/academy/assets/img/pause.png";
+			submit_button.getElementsByTagName('p')[0].innerText = " Stop";
+			submit_button.setAttribute( "onClick", "javascript: stop();" );
+		} else {
+			submit_button.getElementsByTagName('img')[0].src = "/static/academy/assets/img/submit.png";
+			submit_button.getElementsByTagName('p')[0].innerText = " Play";
+			submit_button.setAttribute( "onClick", "javascript: start();" );
+		}
+	  }
+
+	  function enablePlayPause(enable) {
+		let playPause_button = document.getElementById("submit");
+		if (enable == false) {
+			playPause_button.disabled = true;
+			playPause_button.style.opacity = "0.4";
+			playPause_button.style.cursor = "not-allowed";
+		} else if (firstCodeSent == true) {
+			playPause_button.disabled = false;
+			playPause_button.style.opacity = "1.0";
+			playPause_button.style.cursor = "default";
+		}
+	  }
+
+	  function enableSimControls() {
+		let reset_button = document.getElementById("reset");
+		if (resetRequested == true) {
+			togglePlayPause(false);
+		}
+		enablePlayPause(true);
+		toggleResetButton(true);
+	  }
+
+	  function setFontSize(augm) {
+		  if (augm) {
+			if (editorele.getFontSize() < 70)
+				editorele.setFontSize(editorele.getFontSize()+1);
+		  } else {
+			if (editorele.getFontSize() > 2)
+				editorele.setFontSize(editorele.getFontSize()-1);
+		  }
+	  }
+    </script></div>
+
+	<script src="./Unibotics_files/split.min.js"></script>
+
+	<script>
+      Split(['.a', '.b'], {
+        gutterSize: 3,
+        sizes: [50,50]
+      });
+    </script>
+
+       <!-- Common -->
+
+       <script src="./Unibotics_files/utils.js" type="text/javascript" charset="utf-8"></script>
+       <script src="./Unibotics_files/setIframe.js" type="text/javascript" charset="utf-8"></script>
+       <script src="./Unibotics_files/ace.js" type="text/javascript" charset="utf-8"></script>
+       <script src="./Unibotics_files/ws_data.js" type="text/javascript" charset="utf-8"></script>
+       <script src="./Unibotics_files/ws_code_teleop.js" type="text/javascript" charset="utf-8"></script>
+	   <script src="./Unibotics_files/local_functions.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var csrf = 'ltBokQWvwyMaqcqZCjTpwAN7vmKyyzvifg9XFN7OlYf5AnQ35JLxAQ6Q5AfHvg8z';
+			function intervalSave(verbose = true) {
+				saveCodeUnibotics('follow_line', verbose);
+			}
+			var saving = setInterval(intervalSave, 300000);
+		</script>
+
+
+
+
+
+       <!-- Exercise specific resources -->
+	   <script src="./Unibotics_files/circuit_selector.js" type="text/javascript" charset="utf-8"></script>
+	   <script src="./Unibotics_files/controller(1).js" type="text/javascript" charset="utf-8"></script>
+	   <script src="./Unibotics_files/evaluator.js" type="text/javascript" charset="utf-8"></script>
+       <script src="./Unibotics_files/ws_gui.js" type="text/javascript" charset="utf-8"></script>
+       <script src="./Unibotics_files/birds_eye.js" type="text/javascript" charset="utf-8"></script>
+       <script src="./Unibotics_files/launcher.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+
+    <!-- BOTON DE CONEXION CON RADI-->
+    <script>
+		window.onload = function() {
+			startSim(0, "default", "127.0.0.1","127.0.0.1", "dhrodao");
+			$("#connection-button").prop('disabled', true);
+		}
+		window.onbeforeunload = function() {
+			startSim(2);
+		}
+        $(document).ready(function() {$("#launch-button").click(
+            function () {
+				if ($("#launch-button").attr('class') == 'btn btn-secondary' && $("#connection-button").attr('class') == 'btn btn-success') {
+					$("#launch-button").prop('disabled', true);
+					$("#launch-button").removeClass('btn-secondary').addClass('btn-warning');
+					$("#launch-button").html('<span id="loading-connection" class="fa fa-refresh fa-spin"></span> Launching');
+					startSim(1, circuit_selector.options[circuit_selector.selectedIndex].value);
+				}
+				else if ($("#connection-button").attr('class') == 'btn btn-secondary') {
+					alert("A connection with the manager must be established before launching an exercise");
+				}
+			});
+        });
+		$(document).ready(function() {$("#connection-button").click(
+            function () {
+				if ($("#connection-button").attr('class') == 'btn btn-secondary') {
+					$("#connection-button").prop('disabled', true);
+					$("#connection-button").removeClass('btn-secondary').addClass('btn-warning');
+					$("#connection-button").html('<span id="loading-connection" class="fa fa-refresh fa-spin"></span> Connecting');
+					startSim(0, "default", "127.0.0.1","127.0.0.1", "dhrodao");
+				}
+			});
+        });
+		function connectionUpdate(data){
+			if (data.connection == 'manager') {
+				if (data.command == 'up') {
+					$("#connection-button").removeClass("btn-warning btn-secondary").addClass("btn-success");
+					$("#connection-button").html('<span id="loading-connection" class="bi bi-arrow-down-up"></span> Connected');
+					$("#connection-button").prop('disabled', true);
+					$("#launch-button").prop('disabled', false);
+				}else if (data.command == 'down'){
+					$("#connection-button").removeClass("btn-success btn-warning").addClass("btn-secondary");
+					$("#connection-button").html('<span id="loading-connection" class="bi bi-arrow-down-up"></span> Connect');
+					$("#connection-button").prop('disabled', false);
+					if (websocket_code != null)
+						websocket_code.close();
+					if (websocket_gui != null)
+						websocket_gui.close();
+					$("#launch-button").removeClass("btn-success btn-warning").addClass("btn-secondary");
+					$("#launch-button").html('<span id="loading-connection" class="bi bi-arrow-down-up"></span> Launch');
+				}
+			} else if (data.connection == 'exercise') {
+				if (data.command == 'available') {
+					$("#launch-button").removeClass('btn-secondary').addClass('btn-secondary');
+				}else if (data.command == 'up') {
+					stop();
+					swapping = false;
+					$("#launch-button").removeClass("btn-warning").addClass("btn-success");
+					$("#launch-button").html('<span id="loading-connection" class="bi bi-arrow-down-up"></span> Ready');
+					$("#launch-button").prop('disabled', true);
+					togglePlayPause(false);
+					let reset_button = document.getElementById("reset");
+					reset_button.disabled = false;
+					reset_button.style.opacity = "1.0";
+					reset_button.style.cursor = "default";
+					let load_button = document.getElementById("loadIntoRobot");
+					load_button.disabled = false;
+					load_button.style.opacity = "1.0";
+					load_button.style.cursor = "default";
+				}else if (data.command == 'down'){
+					if (!swapping) {
+						$("#launch-button").removeClass("btn-success").addClass("btn-secondary");
+						$("#launch-button").html('<span id="loading-connection" class="bi bi-arrow-down-up"></span> Launch');
+						$("#launch-button").prop('disabled', false);
+					}
+				}else if (data.command == 'swap'){
+					$("#launch-button").removeClass("btn-success btn-warning btn-secondary").addClass("btn-warning");
+					$("#launch-button").html(`<span id="loading-connection" class="fa fa-refresh fa-spin"></span> Launching`);
+				}else if (data.command == 'launch_level'){
+					let level = data.level;
+					$("#launch-button").html(`<span id="loading-connection" class="fa fa-refresh fa-spin"></span> Launching <a id="launch_level">${level}</a>`);
+				}else if (data.command == 'error') {
+					$('#errorModal .modal-header .modal-header-text').text("Errors detected:");
+                    $('#errorModal .modal-body').text(data.text);
+                    $('#errorModal').modal({ show:true, backdrop: false});
+					$('#errorModal .modal-dialog').draggable({});
+					toggleSubmitButton(true);
+                }
+				else if (data.command == 'style') {
+					$('#errorModal .modal-header .modal-header-text').text("Style evaluation:");
+					if (data.text.replace(/\s/g, '').length)
+                    	$('#errorModal .modal-body').text(data.text);
+					else
+						$('#errorModal .modal-body').text("Everything is correct!");
+                    $('#errorModal').modal({ show:true, backdrop: false});
+					$('#errorModal .modal-dialog').draggable({});
+                }
+			}
+		}
+    </script>
+
+	<script type="text/javascript">
+		const editorele = ace.edit("editor");
+		function downloadCode() {
+			downloaded_code = downloadUserCode('follow_line');
+		}
+		function showUserCode(downloaded_code){
+			if (downloaded_code != "") {
+				code = downloaded_code.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&amp;gt;/g, ">").replace(/&amp;lt;/g, "<").replace(/&amp;ge;/g, ">=").replace(/&amp;le;/g, "<=").replace(/&le;/g, "<=").replace(/&ge;/g, ">=").replace(/\n/g, "\n").replace(/\n/g, "\n");
+				editorele.setValue(code);
+			}
+		}
+	</script>
+
+	<script>
+		editorele.getSession().on('change', function() {
+			editorChanged(true);
+		});
+
+		function editorChanged(toggle) {
+			if (firstCodeSent) {
+				if (toggle) {
+					document.getElementById("loadIntoRobotAlert").style.display = 'inline-block';
+					document.getElementById("loadIntoRobot").title = "Code changed since last sending";
+				} else {
+					document.getElementById("loadIntoRobotAlert").style.display = 'none';
+					document.getElementById("loadIntoRobot").title = "";
+				}
+			}
+		}
+	</script>
+
+    
+
+</div>
+
+
+
+
+
+    
+    <div class="footer">
+        <span><b>Release 2.3.3</b></span> | <span>Derechos de autor ©
+            <script>document.write(new Date().getFullYear())</script>2022 - Asociación JdeRobot.
+        </span> Este sitio utiliza cookies. <a href="http://127.0.0.1:8000/terms#cookies" target="_blank">Más Información</a>
+    </div>
+    
+<script>
+
+var radi_latest = '3.2.4'
+var radi_follow_line = radi_latest;
+var radi_follow_line_game = radi_latest;
+var radi_obtacle_avoidance = radi_latest;
+var radi_laser_mapping = radi_latest;
+var radi_vacuum_cleaner = radi_latest;
+var radi_vacuum_cleaner_loc = radi_latest;
+var radi_drone_cat_mouse = radi_latest;
+var radi_drone_cat_mouse_game = radi_latest;
+var radi_color_filter = radi_latest;
+var radi_3d_reconstruction = radi_latest;
+var radi_optical_flow_teleop = radi_latest;
+var radi_global_navigation = radi_latest;
+var radi_rescue_people = radi_latest;
+var radi_montecarlo_visual_loc = radi_latest;
+var radi_autoparking = radi_latest;
+var radi_car_junction = radi_latest;
+
+
+if(window.location.pathname=='/academy/exercise/3d_reconstruction/'){ 
+	var radi_version = radi_3d_reconstruction;	
+}
+if(window.location.pathname=='/academy/exercise/autoparking/'){ 
+	var radi_version = radi_autoparking;
+}
+if(window.location.pathname=='/academy/exercise/car_junction/'){ 
+	var radi_version = radi_car_junction;
+}
+if(window.location.pathname=='/academy/exercise/color_filter/'){ 
+	var radi_version = radi_color_filter;
+}
+if(window.location.pathname=='/academy/exercise/follow_line/'){ 
+	var radi_version = radi_follow_line;
+}
+if(window.location.pathname=='/academy/exercise/follow_line_game/'){ 
+	var radi_version = radi_follow_line_game;
+}
+if(window.location.pathname=='/academy/exercise/global_navigation/'){ 
+	var radi_version = radi_global_navigation;
+}
+if(window.location.pathname=='/academy/exercise/laser_mapping/'){ 
+	var radi_version = radi_laser_mapping;
+}
+if(window.location.pathname=='/academy/exercise/laser_loc/'){
+	var radi_version = radi_laser_mapping;
+}
+if(window.location.pathname=='/academy/exercise/drone_cat_mouse/'){ 
+	var radi_version = radi_drone_cat_mouse;
+}
+if(window.location.pathname=='/academy/exercise/drone_cat_mouse_game/'){ 
+	var radi_version = radi_drone_cat_mouse_game;
+}
+if(window.location.pathname=='/academy/exercise/montecarlo_visual_loc/'){ 
+	var radi_version = radi_montecarlo_visual_loc;
+}
+if(window.location.pathname=='/academy/exercise/obtacle_avoidance/'){ 
+	var radi_version = radi_obtacle_avoidance;
+}
+if(window.location.pathname=='/academy/exercise/opticalflow_teleop/'){ 
+	var radi_version = radi_opticalflow_teleop;
+}
+if(window.location.pathname=='/academy/exercise/rescue_people/'){ 
+	var radi_version = radi_rescue_people;
+}
+if(window.location.pathname=='/academy/exercise/vacuum_cleaner/'){ 
+	var radi_version = radi_vacuum_cleaner;
+}
+if(window.location.pathname=='/academy/exercise/vacuum_cleaner_loc/'){ 
+	var radi_version = radi_vacuum_cleaner_loc;
+}
+
+</script>
+
+
+<div id="deployment-modal" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title" class="">How to perform the exercise?</h3>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+				<ol>
+					<li>
+						Pull the latest RADI image from Docker using the following command:
+						<code><p>docker pull jderobot/robotics-academy:<script>document.write(radi_version);</script>3.2.4</p></code>
+					</li>
+					<li>
+						<p>Start the Docker container of the image and keep it running in the background:
+							<code>docker run --rm -it -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:<script>document.write(radi_version);</script>3.2.4 ./start_manager.sh</code>
+						</p>
+						<p>For linux and nvidia users, hardware acceleration can be achieved by using nvidia proprietary drivers, installing <a href="https://virtualgl.org/">VirtualGL</a> and launching the alternative instruction:
+							<code>docker run --rm -it --device /dev/dri -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:<script>document.write(radi_version);</script>3.2.4 ./start_manager.sh</code>
+						  </p>
+					</li>
+					<li>Click the Connect button and wait until it turns green. Then, click on the Launch button and wait until the "Connection Established" popup appears. You may use the exercise then.</li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="info-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+		  <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="false">
+		  <div class="carousel-inner">
+			  <div class="carousel-item active">
+				  <div class="modal-header">
+					  <h5>How to connect</h5>
+				  </div>
+				  <div class="modal-body">
+				  <ol>
+					<li>
+						Pull the latest RADI image from Docker using the following command:
+						<code>docker pull jderobot/robotics-academy:<script>document.write(radi_version);</script>3.2.4</code>
+					</li>
+					<li>
+						<p>Start the Docker container of the image and keep it running in the background:
+							<code>docker run --rm -it -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:<script>document.write(radi_version);</script>3.2.4 ./start_manager.sh</code>
+						</p>
+						<p>For linux and nvidia users, hardware acceleration can be achieved by using nvidia proprietary drivers, installing <a href="https://virtualgl.org/">VirtualGL</a> and launching the alternative instruction:
+							<code>docker run --rm -it --device /dev/dri -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:<script>document.write(radi_version);</script>3.2.4 ./start_manager.sh</code>
+						  </p>
+					</li>
+					<li>Click the Connect button and wait until it turns green. Then, click on the Launch button and wait until the "Connection Established" popup appears. You may use the exercise then.</li>
+				  </ol>
+				  </div>
+			  </div>
+			  <div class="carousel-item carousel-item-controls">
+			  <div class="modal-header">
+					  <h5>Controls (1/2)</h5>
+				  </div>
+				  <div class="modal-body" style="display: flex">
+					  <div>
+					  <ul>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="./Unibotics_files/submit.png">
+							  <p>- Execute your code</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="./Unibotics_files/pause(1).png">
+							  <p>- Pause the simulation</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="./Unibotics_files/upload.png">
+							  <p> - Save your code on the cloud</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="./Unibotics_files/reset.svg">
+							  <p>- Reset the simulation</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="./Unibotics_files/style.png">
+							  <p>- Evaluate your code</p>
+							  </div>
+						  </li>
+					  </ul>
+					  </div>
+					  <div>
+						  <ul>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img style="width: 30px; height: 30px" src="./Unibotics_files/gzweb_btn.png">
+							  <p>- Open gzweb</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <img src="./Unibotics_files/terminal-solid.png">
+							  <p style="padding-left: 12px;">- Open terminal</p>
+							  </div>
+						  </li>
+						  </ul>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="carousel-item carousel-item-controls">
+					  <div class="modal-header">
+						  <h5>Controls (2/2)</h5>
+					  </div>
+					  <div class="modal-body">
+					  <ul>
+						  <li>
+							  <div class="d-flex flex-row" style="margin-top: 20px">
+							  <p><strong>Brain Frecuency:</strong>&nbsp;adjusts the running frecuency of the code</p>
+							  </div>
+						  </li>
+						  <li>
+							  <div class="d-flex flex-row">
+							  <p><strong>GUI Frecuency:</strong>&nbsp;adjusts the running frecuency of the GUI</p>
+							  </div>
+						  </li>
+					  </ul>
+					  </div>
+			  </div>
+			  <div class="carousel-item carousel-item-controls">
+				<div class="modal-header">
+					<h5>Remote Backend</h5>
+				</div>
+				<div class="modal-body">
+					<ul>
+						<li>
+							- With remote backend, the simulator is run on our servers. If the servers are full, wait a few minutes and try again.
+						</li>
+						<li>
+							- There are two options to visualize the simulator and the console iframes:
+							<ol>
+								<li>Enable Mixed Content (https and http) on your browser settings. </li>
+								<li>Click on the desired iframe button, open the web browser console, left click on the url displayed on the Mixed Content error (starting with "http://...") and select "open in new tab". </li>
+							</ol>
+						</li>
+					</ul>
+				</div>
+			</div>
+		  </div>
+		  <a class="carousel-control-prev" href="http://127.0.0.1:8000/academy/exercise/follow_line/#carouselControls" role="button" data-slide="prev">
+			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			  <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="http://127.0.0.1:8000/academy/exercise/follow_line/#carouselControls" role="button" data-slide="next">
+			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			  <span class="sr-only">Next</span>
+		  </a>
+		  </div>
+	  </div>
+	</div>
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog" id="errorModal">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <p class="modal-header-text" style="font-weight: 700;"></p>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: red">
+			<span aria-hidden="true">×</span>
+		  </button>
+		</div>
+		<div class="modal-body" style="white-space: pre-wrap;">
+		  <p style="word-wrap: break-word;"></p>
+		</div>
+	  </div>
+	</div>
+</div>
+
+<!-- search-error-modal & invitation modals are used in Follow Line Game Sync Prototype -->
+<div id="search-error-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modal-title" class="">Oops!</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+				<p>An error occured while processing your invitation.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="invitation-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modal-title" class="">Game invitation received</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+				<p>You received an invitation from <span id="invitor-username" style="font-weight: bold;"></span></p>
+				<button id="invitation-accept" class="btn btn-success">Accept</button>
+				<button id="invitation-cancel" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ################################################################################## -->
+
+
+
+
+<div id="load-modal" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+		  <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="false">
+		  <div class="carousel-inner">
+			  <div class="carousel-item active">
+				  
+				  <div class="modal-header">
+				  	<ul style="display:inline-block">
+					  	
+					  	<li><h5>Wait some seconds. Your code is been loading into the robot...</h5></li><li>
+					  	</li><li><center><img src="./Unibotics_files/loading.gif" style="width:50px; height: 50px;"></center></li>
+				  	</ul>
+				  </div>
+				  
+		
+		  	  </div>
+		 
+		 </div>
+	         </div>
+	</div>
+  </div>
+</div>
+  <div class="modal" tabindex="-1" role="dialog" id="errorModal">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <p class="modal-header-text" style="font-weight: 700;"></p>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: red">
+			<span aria-hidden="true">×</span>
+		  </button>
+		</div>
+		<div class="modal-body" style="white-space: pre-wrap;">
+		  <p style="word-wrap: break-word;"></p>
+		</div>
+	  </div>
+	</div>
+</div>
+
+
+
+</body></html>
