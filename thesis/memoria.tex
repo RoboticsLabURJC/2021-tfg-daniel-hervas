@@ -1096,9 +1096,34 @@ De manera que los usuarios puedan conocer el estado de carga de sus códigos, se
 
 El establecimiento de los estados se realiza mediante mensajes vía \emph{WebSockets} entre ambos usuarios. En la plantilla del \emph{anfitrión} es donde se almacenan todas las variables relativas al estado de los códigos, el extremo \emph{invitado} únicamente recibe órdenes vía \emph{WebSockets} para ajustar su interfaz.
 
-\subsubsection{Transmisión vía WebRTC}
+\subsubsection{Transmisión de vídeo y datos vía WebRTC}
 
+Una vez elegido el oponente, y aceptada la invitación, ha sido necesario el desarrollo de las fases descritas en la sección \ref{subsec:establecimiento_conexion} de manera que se pueda negociar una conexión entre los dos extremos.
 
+Dependiendo del extremo de la conexión que sea el usuario (\emph{caller} o \emph{callee}), necesita realizar unos pasos u otros, por lo que para cada extremo se necesita un código diferente, este código se ha recogido en un fichero llamado \emph{"rtc\_stream.js"}.
+
+En primer lugar, se ha creado una función llamada \emph{startLocalStream}, que se encarga de realiazar la conexión desde el lado el anfritrión. Estos son los primeros 6 pasos detallados en la sección \ref{subsec:establecimiento_conexion}.
+
+Desde el lado del usuario invitado, se ejecutará una función llamada \emph{startRemoteStream}, que, una vez se reciba desde el servidor web la oferta enviada por el anfitrión mediante \emph{WebSockets}, se encargará de realizar los pasos 7-11 descritos en la sección \ref{subsec:establecimiento_conexion}.
+
+Finalmente, en el lado el anfitrión se recibirá desde el servidor web, la respuesta del otro extremo. Una vez recibida la respuesta, se almacena el \emph{SDP} \footnote{\url{https://es.wikipedia.org/wiki/Session_Description_Protocol}} (Session Decription Protocol) del extremo remoto. Una vez establecida la descripción del otro extremo, ambos \emph{peers} tienen la identificación del otro, por lo que puede iniciarse una comunicación \emph{WebRTC}.
+
+Para realizar el envío de sus candidatos, cada \emph{peer} debe enviarlos al servidor de señalización (haciendo uso de la función \emph{onIceCandidate}, como respuesta al callback \emph{icecandidate}) para que este los reenvíe al otro \emph{peer}. En primer lugar, en el extremo remoto, se reciben los candidatos, este debe almacenar los candidatos (función \emph{remotePeer.setRemoteDescription(offer)} que establece como descripción remota los candidatos recibidos por parámetro en la función \emph{startRemoteStream}), y, responder con su oferta. Finalmente, en el extremo local, se reciben los candidatos del \emph{peer} remoto, y se establece el SDP del usuario invitado, una vez realizado este paso, ambos extremos tienen el SDP del extremo remoto, por lo que pueden iniciar la elección del mejor candidato ICE, y, posteriormente el establecimiento de la conexión \emph{WebRTC}.
+
+De esta manera, gracias a este sistema, se permite que los usuarios tengan una conexión directa entre ellos, y únicamente un usuario ejecute el simulador, puesto que el elemento \emph{HTML} que contiene el vídeo del simulador es retransmitido al otro extremo haciendo uso de la conexión entre \emph{peers}.
+
+Para soportar el intercambio de cantidatos ICE, entre los extremos, se ha implementado en el servidor web \emph{Django} un sistema de señalización entre usuarios basado en salas usando \emph{Django-channels} \footnote{\url{https://channels.readthedocs.io/en/stable/}}. Ha sido necesario implementar un objeto (\emph{StreamConsumer}) en el fichero \emph{"consumers.py"} que contiene la funcionalidad necesaria para el soporte de grupos, y el reenvío de mensajes al extremo remoto.
+
+De igual manera, en el lado del canal de datos, la implementación del establecimiento de los candidatos ICE es similar al sistema implementado para la tranmisión de vídeo, únicamente ha sido necesario cambiar la parte del \emph{streaming} por el establecimiento de un canal de datos, por el que viaja todo lo relativo a la IU y a mensajes del chat. En el lado del servidor, también ha sido necesario implementar un consumidor espoecífico para la sala en el fichero \emph{"consumers.py"}.
+
+Además, en ambos casos, en el lado del navegador, ha sido necesaria la implementación de un software para la gestión de los mensajes ente sockets, tanto para el \emph{WebSocket} de vídeo, como para el de datos. Este sistema se encarga de ejecutar la distintas fases del establecimiento de candidatos, como iniciar la conexión, añadir la descripción SDP remota una vez recibida, y señalizar al extremo remoto. Esta lógica se agrupa en dos ficheros, \emph{"ws\_stream.js"} para el vídeo y \emph{"ws\_room.js"} para el canal de datos.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/diagrama_conexion_webrtc.png}
+    \caption{Diagrama de conexión WebRTC establecida.}
+    \label{figura:diagrama_conexion_webrtc}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
