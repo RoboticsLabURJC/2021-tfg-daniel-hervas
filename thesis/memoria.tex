@@ -418,7 +418,7 @@ Para la implantación de esta metodología se han establecido reuniones semanale
 %\section{Planificación temporal}
 %\label{sec:planificacion-temporal} 
 
-\section{Plan de trabajo}
+\section{Plan de trabajo y metodología}
 \label{sec:plan-de-trabajo}
 
 Para el seguimiento de los objetivos previamente mencionados, se ha seguido una serie de etapas que permiten el avance incremental en la implementación del trabajo.
@@ -433,6 +433,8 @@ Para el seguimiento de los objetivos previamente mencionados, se ha seguido una 
 \item \textbf{Desarrollo del juego síncrono:} Con los conceptos de WebRTC asentados, se ha procedido a diseñar en el webserver de \emph{Unibotics}, un sistema de señalización entre los usuarios, de manera que se pueda intercambiar la información necesaria para realizar la conexión WebRTC. Finalmente, en las plantillas del ejercicio, se incluye código \emph{JavaScript} que se encarga de establecer las conexiones RTC para cada extremo.
 \end{itemize}
 
+Con el fin de incorporar cambios en el código de la organización, se ha empleado la herramienta \emph{GitHub}. La metodología que se ha seguido para incorporar nuevos cambios a los diferentes repositorios es la siguiente. En primer lugar se crea una incidencia (\emph{issue}) el el repositorio correspondiente que describa el problema que se va a resolver. A continuación, se crea una rama a partir de la rama \emph{master} con el nombre de \emph{issue-XXX} donde se incorporarán todos los cambios mencionados en la \emph{issue} que se creó. Finalmente, una vez se han realizado todos los cambios y se ha verificado que funciona de manera correcta, se realiza un parche (\emph{Pull Request}), esto es, una solicitud de incorporación de los cambios a la rama principal. Los parches son revisados por otro compañero, que se encargará de hacer la pruebas pertinentes e incorporarla a la rama \emph{master}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HERRAMIENTAS %
@@ -442,44 +444,46 @@ Para el seguimiento de los objetivos previamente mencionados, se ha seguido una 
 \chapter{Herramientas} 
 \label{chap:herramientas}
 
-En este capítulo se hará una breve presentación de todas las herramientas empleadas para el desarrollo del presente TFG. Estas tecnologías se pueden englobar en dos grupos, las tecnologías Front-End dedicadas a la presentación y a la interfaz de usuario (JavaScript, HTML y CSS), tecnologías Back-End dedicadas al servidor (Django), y, por último, tecnologías WebRTC que serán las encargadas de transmitir el vídeo en los juegos síncronos. 
+En este capítulo se hará una breve presentación de todas las herramientas empleadas para el desarrollo del presente TFG. Estas tecnologías se pueden englobar en tres grupos, las tecnologías Front-End dedicadas a la presentación y a la interfaz de usuario (JavaScript, HTML y CSS), tecnologías Back-End dedicadas al servidor (Django), y, por último, tecnologías WebRTC que serán las utilizadas en la retransmisión del vídeo en los juegos síncronos. 
+
+Estas herramientas son estandarizadas por medio de W3C \footnote{\url{https://www.w3.org}} (World Wide Web Consortium). Además, la versión de HTML empleada para realizar este trabajo es \emph{HTML5}, pues es la versión establecida por W3C como lenguaje de hipertexto de la World Wide Web.
 
 \section{Lenguaje JavaScript}
 \label{sec:javascript}
 
-Se trata de un lenguaje de programación interpretado, su estándar es \textit{ECMAScript}\footnote{Especificación de lenguaje de programeción que define un leguaje de tipos dinámicos y soporta programación orientada a objetos basada en prototipos.}, basado en \textit{Java} y \textit{C}. Fue creado para aplicaciones web del lado del cliente. Es interpretado en el navegador web y permite mejoras en la interfaz de usuario, además de páginas web dinámicas. Tembién puede usarse en el lado del servidor utilizando \textit{Node.js}, un entorno de ejecucción de JavaScript construido con el motor \textit{JavaScript V8}.
+Se trata de un lenguaje de programación interpretado, su estándar es \textit{ECMAScript}\footnote{\url{https://es.wikipedia.org/wiki/ECMAScript}}, basado en \textit{Java} y \textit{C}. Fue creado para aplicaciones web del lado del cliente. Es interpretado en el navegador web y permite mejoras en la interfaz de usuario, además de páginas web dinámicas. También puede usarse en el lado del servidor utilizando \textit{Node.js}, un entorno de ejecucción de JavaScript construido con el motor \textit{JavaScript V8}.
 
 En este proyecto se ha empleado JavaScript en el lado del cliente. La lógica de las plantillas que usan los ejercicios ha sido programada usando \textit{ECMAScript-6}, así como los evaluadores automáticos de los mismos, y, adicionalmente, para los \textit{WebSockets} encargados de comunicarse con el servidor para realizar tareas de señalización, o de envío de mensajes. Sus principales características son:
 
-\subsection{Caractrerísticas del lenguaje}
-\label{subsec:javascript}
+%\subsection{Caractrerísticas del lenguaje}
+%\label{subsec:javascript}
 
 \begin{itemize}
-	\item Se trata de un lenguaje del lado del cliente, es decir, ejecuta en la máquina del propio cliente a través de un navegador.
+	\item Originalmente se trata de un lenguaje del lado del cliente, es decir, típicamente ejecuta en la máquina del propio cliente a través de un navegador.
 	
 	\item Tipado débil, por lo que no es necesario especificar el tipo de dato al declarar una variable permitiendo que una misma variable pueda adquirir distintos tipos durante la ejecucción.
 	
-	\item De alto nivel, con lo que significa que su sintaxis es fácilmente comprensible. Esta sintaxis se encuentra alejada del lenguaje máquina.
+	\item De alto nivel, con lo que significa que su sintaxis es fácilmente comprensible para las personas. Esta sintaxis se encuentra alejada del lenguaje máquina.
 	
-	\item Es un lenguaje interpretado puesto que utiliza un intérprete que traduce las líneas de código a lenguaje máquina en tiempo de ejecucción.
+	\item Es un lenguaje interpretado puesto que utiliza un intérprete que traduce las líneas de código a lenguaje máquina en tiempo de ejecución.
 
-	\item Es un leguaje orientado a objetos, ya que utiliza clases y objetos como estructuras.
+	\item Es un lenguaje orientado a objetos, ya que utiliza clases y objetos como estructuras.
 \end{itemize}
 
-Adicionalmente, junto con \textit{ES-6} se ha empleado una librería llamada \textit{jQuery}\footnote{\url{https://jquery.com/}} que permite agregar dinamismo a un sitio web permitiendo interactuar con los elementos HTML, manipular el DOM, manejar eventos, diseñar animaciones y agregar interacción con la técnica \textit{AJAX}\footnote{\url{https://developer.mozilla.org/es/docs/Web/Guide/AJAX}} (\textit{Asynchronous JavaScript and XML}).
+Adicionalmente, en este Trabajo de Fin de Grado, junto con \textit{ES-6} se ha empleado una librería llamada \textit{jQuery} que permite agregar dinamismo a un sitio web permitiendo interactuar con los elementos HTML, manipular el DOM, manejar eventos, diseñar animaciones y agregar interacción con la técnica \textit{AJAX}\footnote{\url{https://developer.mozilla.org/es/docs/Web/Guide/AJAX}} (\textit{Asynchronous JavaScript and XML}).
 
 \subsection{Librería jQuery}
 \label{subsec:javascript}
 
-\textit{jQuery} es una librería multiplataforma desarrollada en JavaScript, inicalmente desarrollada por John Resig. Esta librería permite simplificar en gran medida la interacción con los documentos HTML y sus estilos, manipular el DOM, manejar eventos, crear animaciones, y agregar la integración de la técnica \textit{AJAX} (\textit{Asynchronous JavaScript and XML}).
+\textit{jQuery} \footnote{\url{https://jquery.com/}} es una librería multiplataforma desarrollada en JavaScript, inicalmente desarrollada por John Resig. Esta librería permite simplificar en gran medida la interacción con los documentos HTML y sus estilos, manipular el DOM, manejar eventos, crear animaciones, y agregar la integración de la técnica \textit{AJAX} (\textit{Asynchronous JavaScript and XML}). L a versión utilizada en este proyecto es \emph{jQuery 3.3.1}.
 
 En código, el constructor de jQuery puede llamarse empleando el nombre \textit{jQuery}, o, también empleando el alias \textit{\$}.
 
-Esta librería hace posible a desarrolladores que se inician en el mundo del desarrollo de interfaces de aplicación, puedan desarrollar una interfaz gráfica más elaborada sin la necesidad de tener amplios conocimientos de CSS.
+Esta librería hace posible a desarrolladores que se inician en el mundo del desarrollo de interfaces de aplicación, que puedan desarrollar una interfaz gráfica elaborada sin la necesidad de tener amplios conocimientos de CSS.
 
 \section{Lenguaje HTML}
 
-\textit{HTML} (\textit{HyperText Markup Languaje}) es un lenguaje de marcado que permite indicar la estructura un documento utilizando etiquetas. Es utilizado para la creación de documentos electrónicos que se envían a través de la red. Los documentos pueden tener conexiones con otros a través de \textit{hipervínculos}.
+\textit{HTML} \footnote{\url{https://developer.mozilla.org/es/docs/Web/HTML}} (\textit{HyperText Markup Languaje}) es un lenguaje de marcado que permite indicar la estructura un documento utilizando etiquetas. Es utilizado para la creación de documentos electrónicos que se envían a través de la red. Los documentos pueden tener conexiones con otros a través de \textit{hipervínculos}.
 
 \begin{figure}[H]
 	\centering
@@ -499,11 +503,11 @@ Primeramente se debe declarar el tipo del documento \textit{HTML} mediante la l�
 Con la incorporación de \textit{HTML-5} se han introducido diversas novedades y mejoras que son de interés para este trabajo:
 
 \begin{itemize}
-	\item \textit{WebSockets}, es una tecnología que hace posible abrir una comunicación entre el navegador y el servidor.
+	\item \textit{WebSockets} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/WebSockets_API}}, es una tecnología que hace posible abrir una comunicación de baja latencia entre el navegador y el servidor.
 	
-	\item \textit{WebRTC} (\textit{Web Real-Time Communications}) es una tecnología que permite a las aplicaciones web capturar y transmitir audio y vídeo entre navegadores sin necesidad de un intermediario.
+	\item \textit{WebRTC} \footnote{\url{https://webrtc.org/}} (\textit{Web Real-Time Communications}) es una tecnología que permite a las aplicaciones web capturar y transmitir audio y vídeo entre navegadores sin necesidad de un intermediario.
 	
-	\item Se añade un mejor soporte de contenido multimedia sin la necesidad de instalar plugins adicionales. Mediante el elemento \textit{video} la página reproducirá de manera nativa el contenido.
+	\item Se añade un mejor soporte de contenido multimedia sin la necesidad de instalar plugins adicionales. Mediante el elemento \textit{video} en la página web del navegador reproducirá de manera nativa el contenido audiovisual.
 	
 	\item Proporciona un elemento, \textit{canvas} que permite renderizar escenas gráficas en la web mediante el uso de \textit{JavaScript}.
 \end{itemize}
@@ -511,44 +515,45 @@ Con la incorporación de \textit{HTML-5} se han introducido diversas novedades y
 \section{Hojas de estilo CSS}
 \label{sec:css}
 
-CSS o \textit{Cascading Stylesheet} es un lenguaje empleado para dar formato y estilo a un documento de texto, comunmente, las instrucciones se agrupan en archivos con extensión \textbf{*.css}, lo que permite que para una página web se puedan almacenar estilos por separados dependiendo del fin de cada uno, de esta manera, se podrán importar en cada documento únicamente las instrucciones de las que se va a hacer uso.
+CSS \footnote{\url{https://developer.mozilla.org/es/docs/Web/CSS}} o \textit{Cascading StyleSheet} es un lenguaje empleado para dar formato y estilo a un documento de texto, comunmente, las instrucciones se agrupan en archivos con extensión \textbf{*.css}, lo que permite que para una página web se puedan almacenar estilos por separado dependiendo del fin de cada uno, de esta manera, se podrán importar en cada documento únicamente las instrucciones de las que se va a hacer uso.
 
 Con respecto a lo último mencionado, puesto que estas hojas almacenan el estilo, CSS nos ofrece una gran ventaja, la separación de la estructura del documento (HTML) de su representación. Aunque es posible añadir instrucciones CSS en el \textit{head} de un documento HTML mediante la etiqueta \textit{style}, esto no es una buena práctica.
 
-\textit{Cascading Stylesheet} nos permite utilizar \textit{JavaScript} para si fin principal, el de dar dinamismo e inteligencia a una página web, etc. Por lo que mejora en gran manera el rendimiento de la página.
+\textit{Cascading StyleSheet} nos permite utilizar \textit{JavaScript} para su fin principal, el de dar dinamismo e inteligencia a una página web, etc. Por lo que mejora en gran manera el rendimiento de la página.
 
 A continuación se muestra un ejemplo del uso de este lenguaje.
 
 \begin{figure}[H]
 	\centering
     \includegraphics[width=15cm]{img/nocss_vs_css}
-    \caption{Comparativa entre no usar CSS y usarlo.}
+    \caption{Comparativa entre no usar CSS (izquierda) y usarlo (derecha).}
     \label{figura:nocss_vs_css}
 \end{figure}
 
-Como se puede apreciar en la imagen 3.2, hay un gran salto de no usar CSS a usarlo en los documentos HTML. Este lenguaje nos permite tamto crear un \textit{Navbar}, menús desplegables, barras de búsqueda, botones personalizados, sub-apartados, es decir, aumenta en gran medida la experiencia del usuario.
+Como se puede apreciar en la imagen 3.2, hay un gran salto de no usar CSS a usarlo en los documentos HTML. Este lenguaje nos permite tanto crear fácilmente una barra de navegación, menús desplegables, barras de búsqueda, botones personalizados, sub-apartados, es decir, mejora en gran medida la experiencia del usuario.
 
 CSS también permite la creación de páginas web responsivas, esto es, que la web se adapte al tamaño de la pantalla del usuario, redimensionando los elementos y recolocándolos. Esto es muy útil si se quiere desarrollar una aplicación multiplataforma.
 
 \section{Django para servidores web}
 \label{sec:django}
 
-Django \footnote{\url{https://es.wikipedia.org/wiki/Django_(framework)}} \cite{django} es un framework de alto nivel que facilita el desarrollo de sitios web seguros y sostenibles. Fue lanzado como un framework web genérico en 2005, bajo una licencia de código abierto. Django se encarga de las complicaciones del desarrollo web, para que el usuario pueda centrarse en escribir su aplicación.
+Django \footnote{\url{https://es.wikipedia.org/wiki/Django_(framework)}} \cite{django} es un entorno de alto nivel basado en el lenguaje Python que facilita el desarrollo de sitios web seguros y sostenibles, en este proyecto en particular, se ha empleado \emph{Django 2.2}. Fue lanzado como un \emph{framework} web genérico en 2005, bajo una licencia de código abierto. Django se encarga de las complicaciones del desarrollo web, para que el usuario pueda centrarse en escribir su aplicación.
 
 El objetivo de Django es la creación sencilla de sitios web complejos, poniendo énfasis en la reutilización, la conectividad y la extensibilidad de componentes, el desarrollo rápido y el principio de no repetir código (\textit{Don't Repeat Yourself}).
 
 Algunas de las carácterística de Django son:
 
 \begin{itemize}
-\item Un mapeador objeto-relacional, es capaz de convertir datos entre un sistema de tipos utilizado en un lenguaje de programación orientado a objetos y la utilización de una base de datos relacional.
+\item Un mapeador objeto-relacional, es capaz de convertir datos entre un sistema de tipos utilizado en un lenguaje de programación orientado a objetos y la utilización de una base de datos relacional. Permite realizar accesos a las bases de datos utilizando los filtros del lenguaje Python, no es necesario utilizar el lenguaje SQL de consultas a bases de datos. Django traduce automáticamente de Python a peticiones SQL.
 
 \item Aplicaciones incorporables en cualquier página gestionada con Django.
 
-\item Una API de base de datos robusta.
+\item Una API de base de datos robusta y genérica. Soporta MySQL, SQLite, Postgre, y demás sistemas de bases de datos y a las que el programador del sitio web accede con el uso de Python.
 
 \item Un sistema incorporado de "vistas genéricas" que ahorra el tener que escribir la lógica de ciertas tareras comunes.
 
-\item Un sistema extensible de plantillas con herencia.
+\item Un sistema extensible de plantillas con herencia, que simplifican la programación de páginas web dinámicas, que se autocompletan en tiempo de ejecución
+dependiendo de las consultas del usuario.
 
 \item Un despachador de URLs basado en expresiones regulares.
 
@@ -564,30 +569,30 @@ Algunas de las carácterística de Django son:
 
 WebRTC \footnote{\url{https://es.wikipedia.org/wiki/WebRTC}} \cite{webrtc} (Web Real-Time Communication) es un proyecto libre y de código abierto que proporciona una comunicación en tiempo real (RTC) a través de una serie de APIs. Permite que la comunicación de audio y vídeo funcione dentro de las páginas web al permitir la comunicación \textit{Peer to Peer}, sin necesidad de instalación de plugins y sin necesidad de la intervención del servidor. WebRTC tiene soporte en los navegadores Safari, Chrome, Firefox, Mozilla y Opera, está estandarizado por el World Wide Web Consortium \footnote{\url{https://es.wikipedia.org/wiki/World_Wide_Web_Consortium}} y por el Internet Engineering Task Force \footnote{\url{https://es.wikipedia.org/wiki/Grupo_de_Trabajo_de_Ingenier\%C3\%ADa_de_Internet}}.
 
-El API de WebRTC tiene una serie de interfaces principales que son clave en el dearrollo del software para este proyecto:
+El API de WebRTC tiene una serie de interfaces principales que son clave en el desarrollo del software para este proyecto:
 
 \begin{itemize}
-\item \textbf{RTCPeerConnection} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/RTCPeerConnection}} representa una conexiñon entre una máquina local y un par remoto. Esta interfaz provee métodos para: conectar un equipo remoto, mantener y monitorizar esa conexión y cerrar la conexión.
+\item \textbf{RTCPeerConnection} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/RTCPeerConnection}} representa una conexión entre una máquina local y un par remoto. Esta interfaz provee métodos para: conectar un equipo remoto, mantener y monitorizar esa conexión y cerrar la conexión.
 
-\item \textbf{RTCDataChannel} \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel}} representa el canal que puede ser empleado para la transmisión de datos \textit{Peer to Peer}.
+\item \textbf{RTCDataChannel} \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel}} representa el canal que puede ser empleado para la transmisión de datos de baja lantencia (pues está basado en el protocolo UDP) entre pares (\textit{Peer to Peer}).
 
-\item \textbf{MediaDevices} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/MediaDevices}} proporciona el acceso a los dispositivos multimedia conectados, como webcams y micrófonos, y, también para compartir la pantalla. Ofrece un método \textit{getUserMedia()}, que, con el permiso del usuario, enciende la cámara, obtiene la imagen de la pantalla, el audio del micrófono, y, proporciona un \textit{MediaStream} que contiene pistas de vídeo y/o de audio del dispositivo.
+\item \textbf{MediaDevices} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/MediaDevices}} proporciona el acceso desde el navegador web a los dispositivos multimedia conectados, como webcams y micrófonos, y, también para compartir la pantalla. Ofrece un método \textit{getUserMedia()}, que, con el permiso del usuario, enciende la cámara, obtiene la imagen de la pantalla, el audio del micrófono, y, proporciona un \textit{MediaStream} que contiene pistas de vídeo y/o de audio del dispositivo.
 
 \item \textbf{MediaStream} \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/MediaStream}} representa el flujo de contenido multimedia. Un flujo consiste de varias pistas, ya sean de audio o de vídeo.
 \end{itemize}
 
-\subsection{Protocolos}
+\subsection{Protocolos y mecanismos de comunicación}
 \label{subsec:protocolos}
 
 \begin{itemize}
-\item \textbf{ICE} \footnote{\url{https://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment}} (\textit{Interactive Conectivity Establishment}). Es una técnica empleada para permitir que un navegador web se conecte con otro/s navegador/es web mediante conexiones \textit{Peer to Peer}. Debe de poder pasar por un \textit{firewall}, dirección IP pública, y, transmitir los datos a través de otro servidor, si el \textit{router} no permite las conexiones entre pares. Para lograr esta serie de casos, se emplean servidores STUN y TURN.
+\item \textbf{ICE} \footnote{\url{https://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment}} (\textit{Interactive Connectivity Establishment}). Es una técnica empleada para permitir que un navegador web se conecte con otro/s navegador/es web mediante conexiones entre pares. Debe poder pasar por un \textit{firewall}, dirección IP pública, y, transmitir los datos a través de otro servidor, si el \textit{router} no permite las conexiones directas entre pares. Para lograr esta serie de casos, se emplean servidores STUN y TURN. Previo al establecimiento de una conexión ICE, es necesario realizar una señalización, que sirve para que ambos pares negocien un tipo de conexión, y, finalmente inicien una conexión, para que esta señalización sea posible es necesario un servidor intermedio (servidor de señalización) que se encarge de comunicar ambos extremos durante el proceso de señalización.
 
 
-\item \textbf{STUN} \footnote{\url{https://en.wikipedia.org/wiki/STUN}} (\textit{Session Transvelsal Utilities for NAT}). Es un protocolo de descubrimiento de IP pública, para determinar cualquier restricción en el \textit{enrutador} que impida una conexión directa con un par. El cliente enviará una solicitud STUN en Internet que responderá con la dirección pñublica del cliente y si el cliente esta accesible detrás del NAT del enrutador.
+\item \textbf{STUN} \footnote{\url{https://en.wikipedia.org/wiki/STUN}} (\textit{Session Transversal Utilities for NAT}). Es un protocolo de descubrimiento de IP pública, para determinar cualquier restricción en el \textit{enrutador} que impida una conexión directa con un par. El cliente enviará una solicitud STUN en Internet que responderá con la dirección pñublica del cliente y si el cliente esta accesible detrás del NAT del enrutador.
 
-\item \textbf{NAT} \footnote{\url{https://en.wikipedia.org/wiki/Nat}} (\textit{Network Address Translation}). Es empleado por el \textit{router} para asignar una dirección IP pública. El \textit{router} tiene acceso a la dirección pública de cada dispositivo y cada dispositivo conectado a este, tendrá una dirección IP privada. Las solucitudes se traducen de la IP privada a la IP pública con un puerto único. Algunos \textit{enrutadores} tienen restricciones sobre quien puede conectarse a su red. Esto puede dar lugar a que aunque tengamos un única dirección IP pública encontrada por el servidor STUN, no se pueda establecer una conexión. Ante este caso, se debe recurrir a un servidor TURN.
+\item \textbf{NAT} \footnote{\url{https://en.wikipedia.org/wiki/Nat}} (\textit{Network Address Translation}). Es empleado por el \textit{router} para asignar una dirección IP pública. El \textit{router} tiene acceso a la dirección pública de cada dispositivo y cada dispositivo conectado a este, tendrá una dirección IP privada. Las solucitudes se traducen de la IP privada a la IP pública con un puerto único. Desde el exterior de una red privada todos los dispositivos tienen la misma IP pública, de manera que el router se encarga de entregar el mensaje al dispositivo que corresponda, esto permite ahorrar direcciones IP, pero complica la comunicación directa entre dispositivos que se encuentren detras de sus respectivos NATs. Algunos \textit{enrutadores} tienen restricciones sobre quién puede conectarse a su red. Esto puede dar lugar a que aunque tengamos un única dirección IP pública encontrada por el servidor STUN, no se pueda establecer una conexión. Ante este caso, se debe recurrir a un servidor TURN.
 
-\item \textbf{TURN} \footnote{\url{https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT}} (\textit{Transversal Using Relays around NAT}). Algunos router emplean una técnica llamada \textit{NAT simétrica}. Esto es, el \textit{enrutador} solo acepta conexiones de pares a los que se haya conectado previamente. TURN está destinado a aludir esta resticción de NAT simétrica. Consiste en establecer una conexión con un servidor TURN que retransmite todo el tráfico que se le envía, de una máquina a otra. Este intercambio es gestionado usando ICE.
+\item \textbf{TURN} \footnote{\url{https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT}} (\textit{Transversal Using Relays around NAT}). Algunos router emplean una técnica llamada \textit{NAT simétrica}. Esto es, el \textit{enrutador} sólo acepta conexiones de pares a los que se haya conectado previamente. TURN está destinado a aludir esta resticción de NAT simétrica. Consiste en establecer una conexión con un servidor TURN que retransmite todo el tráfico que se le envía, de una máquina a otra. Este intercambio es gestionado usando ICE.
 
 El proceso de \textit{Offer}/\textit{Answer} es realizado cuando se establece una nueva conexión, o bien, cuando debe cambiar un aspecto de una conexión ya establecida. A continuación se enumeran los pasos que ocurren durante el intercambio de la oferta y la respuesta:
 
@@ -607,67 +612,67 @@ El proceso de \textit{Offer}/\textit{Answer} es realizado cuando se establece un
   \end{minipage}
 \end{figure}
 
-\item \textbf{SDP} (\textit{Session Description Protocol}) \footnote{\url{https://en.wikipedia.org/wiki/Session_Description_Protocol}}. Es un protocolo empleado para describir el contenido multimedia de una conexión.
+\item \textbf{SDP} (\textit{Session Description Protocol}) \footnote{\url{https://en.wikipedia.org/wiki/Session_Description_Protocol}}. Es un protocolo empleado para describir una sesión de comunicación multimedia con el fin de anuncio o ode invitación. Su uso predominante se encuentra en el soporte de aplicaciones que utilizan retransmisiones multimedia, como voice over IP (VoIP) y vídeo conferencias.
 
 \end{itemize}
 
-\subsection{Establecimiento de la conexión}
+\subsection{Establecimiento de la conexión en WebRTC}
 \label{subsec:establecimiento_conexion}
 
 El protocolo WebRTC se encarga de establecer conexiones entre pares, pero desafortunadamente, una conexión WebRTC no se puede establecer sin un servidor intermedio. Este servidor podríamos llamarlo \textbf{servidor de señalización}, empleado en el intercambio de información previo al establecimiento de la conexión WebRTC.
 
-La información que necesitamos intercambiar es una \textit{Offer} y una \textit{Answer} que contienen el \textit{Session Description Protocol} mencionado anteriormente en \ref{subsec:protocolos}.
+La información que necesitamos intercambiar es una oferta (\textit{Offer}) y una respuesta (\textit{Answer}) que contienen el \textit{Session Description Protocol} mencionado anteriormente en \ref{subsec:protocolos}.
 
-El \textit{Peer A} que inicia la conexión va a crear una oferta (\textit{Offer}). Esta \textit{Offer} será enviada al \textit{Peer B} mediante el servidor intermedio seleccionado. \textit{Peer B} recibirá esta \textit{Offer} desde el servidor de señalización y creará una respuesta (\textit{Answer}) que enviará haciendo uso del mismo intermediario al \textit{Peer A}.
+El \textit{Peer A} que inicia la conexión va a crear una oferta. Esta oferta será enviada al par B mediante el servidor intermedio seleccionado. El par B recibirá esta oferta desde el servidor de señalización y creará una respuesta que enviará haciendo uso del mismo intermediario al par A.
 
 \begin{enumerate}
-\item \textit{Peer A} captura los medios locales mediante \textit{MediaDevices.getUserMedia}
+\item Extremo A captura los medios locales mediante \textit{MediaDevices.getUserMedia}
 
-\item \textit{Peer A} crea una conexión \textit{RTCPeerConnection} y emplea el método \textit{RTCPeerConnection.addTrack()} para añadir el flujo de datos a la comunicación.
+\item Extremo A crea una conexión \textit{RTCPeerConnection} y emplea el método \textit{RTCPeerConnection.addTrack()} para añadir el flujo de datos a la comunicación.
 
-\item \textit{Peer A} crea la \textit{Offer} mediante el método \textit{RTCPeerConnection.createOffer()}.
+\item Extremo A crea la oferta mediante el método \textit{RTCPeerConnection.createOffer()}.
 
-\item \textit{Peer A} establece el SDP de su \textit{Offer} llamando al método \textit{RTCPeerConnection.setLocalDescription()}.
+\item Extremo A establece el SDP de su oferta llamando al método \textit{RTCPeerConnection.setLocalDescription()}.
 
-\item \textit{Peer A} solicita al servidor STUN que genere los candidatos ICE.
+\item Extremo A solicita al servidor STUN que genere los candidatos ICE.
 
-\item \textit{Peer A} usa el servidor de señalización para transmitir su \textit{Offer}.
+\item Extremo A usa el servidor de señalización para transmitir su oferta.
 
-\item \textit{Peer B} recibe la oferta y emplea \textit{RTCPeerConnection.setRemoteDescription()} para almacenar el SDP de \textit{Peer A}.
+\item Extremo B recibe la oferta y emplea \textit{RTCPeerConnection.setRemoteDescription()} para almacenar el SDP del par A.
 
-\item \textit{Peer B} hace la configuración necesaria relativa a su conexión, como obtener su flujo de datos multimedia.
+\item Extremo B hace la configuración necesaria relativa a su conexión, como obtener su flujo de datos multimedia.
 
-\item \textit{Peer B} crea una respuesta haciendo uso del método \textit{RTCPeerConnection.createAnswer()}.
+\item Extremo B crea una respuesta haciendo uso del método \textit{RTCPeerConnection.createAnswer()}.
 
-\item \textit{Peer B} establece su descripción local llamando a \textit{RTCPeerConnection.setLocalDescription()} y pasando la respuesta por parámetro.
+\item Extremo B establece su descripción local llamando a \textit{RTCPeerConnection.setLocalDescription()} y pasando la respuesta por parámetro.
 
-\item \textit{Peer B} envía la respuesta usando el servidor de señalización.
+\item Extremo B envía la respuesta usando el servidor de señalización.
 
-\item \textit{Peer A} recibe \textit{Answer}.
+\item Extremo A recibe la respuesta.
 
-\item \textit{Peer A} almacena el SDP de \textit{Peer B} llamando al método \textit{RTCPeerConnection.setRemoteDescription()}. Ahora \textit{Peer A} y \textit{Peer B} tienen la configuración de ambos y el flujo de medios comienza a transmitirse.
+\item Extremo A almacena el SDP del par B llamando al método \textit{RTCPeerConnection.setRemoteDescription()}. Ahora el par A y el par B tienen la configuración de ambos y el flujo de medios comienza a transmitirse.
 \end{enumerate}
 
 \subsection{Candidatos ICE}
 \label{subsec:candidatos_ice}
 
-Además de intercambiarse la información sobre los elementos multimedia, los \textit{peers} deben intercambiar información sobre la conexión. Esto es conocido como \textit{candidatos ICE}, que detallan los métodos disponibles con los que un extremo puede comunicarse (directamente o mediante un servidor TURN). Cada \textit{peer} propondra una lista con sus mejores candidatos primero, estos candidatos son UDP (puesto que es más rápido, pues no hay retransmisiones, ni recuperación frente a pérdidas), aunque también permite emplear candidatos TCP. Esta comunicación es transparente para el usuario.
+Además de intercambiarse la información sobre los elementos multimedia, los pares deben intercambiar información sobre la conexión. Esto es conocido como \textit{candidatos ICE}, que detallan los métodos disponibles con los que un extremo puede comunicarse (directamente o indirectamente mediante un servidor TURN). Cada \textit{peer} propondrá una lista con sus mejores candidatos primero, estos candidatos son UDP (puesto que es más rápido, pues no hay retransmisiones, ni recuperación frente a pérdidas), aunque también permite emplear candidatos TCP. Esta comunicación es transparente para el usuario.
 
 \begin{figure}[H]
 	\centering
     \includegraphics[width=10cm]{img/ice_diagram.png}
-    \caption{Diagrama de intercambio de candidados ICE.}
+    \caption{Diagrama de intercambio de candidatos ICE.}
     \label{figura:nocss_vs_css}
 \end{figure}
 
 \section{Control de versiones}
 \label{sec:control-de-versiones}
 
-En todo desarrollo de software es necesaria una herramienta de control de versiones que facilite la gestión del código fuente. Estos softwares realizan un control de todas las modificaciones, de manera que si se comete un error en un determinado instante, se puede volver a una versión anterior del código. La herramienta empleada para el control de versiones en este proyecto es \emph{GitHub}.
+En todo desarrollo de aplicaciones software es necesaria una herramienta de control de versiones que facilite la gestión del código fuente. Estas herramientas realizan un control de todas las modificaciones, de manera que si se comete un error en un determinado instante, se puede volver a una versión anterior del código fuente de la aplicación. La herramienta empleada para el control de versiones en este proyecto es \emph{GitHub}.
 
-Esta herramienta permite clonar cualquier repositorio en nuestra máquina local y mantenerlo actualizado frente a cambios que se hagan en el extremo remoto. También podemos contribuir en este código realizando \emph{pull requests}. Es una herramienta muy potente, lo que le hace ser una de las herramientas de control de versiones más utilizadas por la comunidad de desarrolladores.
+Esta herramienta permite clonar cualquier repositorio en nuestra máquina local y mantenerlo actualizado frente a cambios que se hagan en el extremo remoto, además simplifica el ciclo de desarrollo en proyectos grandes, con varios colaboradores, pues se mantiene un código común (que los desarrolladores pueden sincronizar) con la incorporación de modificaciones por parte de los distintos colaboradores. También podemos contribuir en este código realizando parches (\emph{Pull Requests}). Es una herramienta muy potente, lo que le hace ser una de las herramientas de control de versiones más utilizadas internacionalmente por la comunidad de desarrolladores.
 
-\emph{GitHub} proporciona un interfaz gráfico que nos permite, de manera gráfica, ver la actividad de un repositorio, lo que nos permite saber si un proyecto tiene una gran cantidad de desarrolladores.
+\emph{GitHub} proporciona un interfaz gráfico que permite, de manera gráfica, ver la actividad de un repositorio, lo que permite saber si un proyecto tiene una gran cantidad de desarrolladores.
 
 \begin{figure}[H]
 	\centering
@@ -686,22 +691,38 @@ En este proyecto se ha trabajado en una serie de repositorios diferentes:
 \item \textbf{noVNC:} se ha realizado un \emph{fork} del repositorio oficial puesto que para la versión del ejercició síncrono se necesitaba hacer algunas modificaciones para enviar el flujo de vídeo al extremo remoto.
 \end{itemize}
 
-La metodología que se ha seguido para incorporar nuevos cambios a los disferentes repositorios es la siguiente. En primer lugar se crea una \emph{issue} el el repositorio correspondiente que describa el problema que se va a resolver. A continuación, se crea una rama a partir de la \emph{master} con el nombre de \emph{issue-XXX} donde se incorporarán todos los cambios mencionados en la \emph{issue} que se creó. Finalmente, una vez se han realizado todos los cambios y se ha verificado que funciona de manera correcta, se realiza un \emph{pull request}, esto es, una solicitud de incorporación de los cambios a la rama principal. Las \emph{pull request} son revisadas por otro compañero, que se encargará de hacer la pruebas pertinentes e incorporarla a la rama \emph{master}.
+\subsection{noVNC}
+\label{subsection:novnc}
+
+La herramienta \emph{noVNC} \footnote{https://novnc.com/info.html} es un proyecto de código abierto con un gran número de usuarios, desarrolladores y contribuidores. Esta herramienta ofrece un cliente web VNC construido sobre \emph{JavaScript} y empleando \emph{HTML5}, \emph{WebSockets} y \emph{Canvas}, que funciona en la gran mayoría de navegadores modernos de manera fluida. Incluye un servidor VNC que debe de ejecutarse en la máquina desde la que se quiere compartir el contenido multimedia, y, finalmente desde el cliente web VNC conectarse a este servidor que proporciona el contenido multimedia que será mostrado en el cliente web mediante un elemento \emph{canvas}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% JUEGOS ASÍNCRONOS %
+% Robotics Academy %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{RoboticsAcademy}
+\label{section:roboticsacademy}
 
-\cleardoublepage
-\chapter{Juegos Asíncronos}
+RoboticsAcademy \footnote{\url{https://github.com/jderobot/RoboticsAcademy}} es una plataforma de código abierto proporcionada por JdeRobot \footnote{\url{https://github.com/jderobot}}. Esta plataforma ofrece una colección de ejercicios para aprender robótica de una manera práctica. La herramienta principal empleada es un simulador \emph{Gazebo}, el entorno que nos permite visualizar la ejecución de los ejercicios.
 
-En este capítulo se expondrán los \emph{juegos asícronos} desarrollados para la plataforma de \textit{Unibotics}. Se han desarrollado un total de dos juegos asíncronos, de los que se hablará desde el diseño de las plantillas de la interfaz de usuario, hasta la comunicación con el servidor y el contenedor docker donde es ejecutado el juego. Para llevar a cabo el desarrollo de estos juegos, se ha partido de las versiones ya existentes dentro de la plataforma llamados \emph{retos}.
+\subsection{Arquitectura}
 
-\section{Infraestructura}
-\label{sec:async_infraestructura}
+Esta plataforma emplea un servidor \emph{Django} para servir los contenidos, este servidor está contenido dentro del contenedor docker RADI que proporciona. Cada ejercicio se comunica con diferentes componentes del contenedor vía \emph{WebSockets}.
 
-Para la realización de los siguientes ejercicios, trabajado sobre la infraestructura inicial sobre la que opera Unibotics. Esta arquitectura es formada por tres componentes, un \emph{Webserver}, el \emph{navegador} del usuario y el \emph{RADI} (contenedor Docker donde se ejecutan los ejercicios). A continuación, una descripción del trabajo que realiza cada componente:
+El contenedor docker RADI (Robotics Academy Docker Image) incluye un conjunto de ejercicios que hacen uso de \emph{Gazebo} en su simulación. Para comunicarse con este contenedor desde el lado del navegador web, se accede mediante un \emph{WebSocket} en el puerto 8765, empleando un protocolo de comunicación específico RAMP (Robotics Academy Manager Protocol), mediante esta conexión se mandan las órdenes relativas a la ejecución de los ejercicios. Cada ejercicio abrirá una serie de \emph{WebSockets} adicionales necesarios para que los complementos del ejercicio puedan intercambiar información.
+
+Cada ejercicio está compuesto por una plantilla que muestra el navegador web llamada \emph{exercise.html} y un archivo Python llamado \emph{exercise.py}. El \emph{exercise.py} se ejecuta dentro del contenedor docker RADI, mientras que el \emph{exercise.html} lo muestra el navegador. Ambos se comunican vía \emph{WebSockets} de manera bidireccional.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UNIBOTICS %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Unibotics}
+\label{section:unibotics}
+
+\emph{Unibotics} \footnote{\url{https://unibotics.org/}} es una plataforma que, al igual que RoboticsAcademy, se centra en el aprendizaje de la robótica de manera práctica. Esta plataforma hace uso del RADI de RoboticsAcademy para la ejecucción de los ejercicios, pero no hace uso del servidor local \emph{Django} que contiene el mismo, sino, que ofrece una web en a la que los usuarios pueden acceder desde su navegador, esta plataforma no es de código abierto.
+
+La arquitectura de la plataforma es muy similar a la de RoboticsAcademy, está formada por tres componentes, un \emph{Webserver}, el \emph{navegador} del usuario y el \emph{RADI} (contenedor Docker donde se ejecutan los ejercicios). A continuación, una descripción del trabajo que realiza cada componente:
 
 \begin{itemize}
 \item \textbf{Webserver:} este componente se encarga de proporcionar al navegador del usuario, los componentes del \emph{Front End} que van a ser  necesarios para llevar a cabo la ejecución del ejercicio en cuestión. Proporciona las plantillas \textbf{HTML} y el código \textbf{JavaScript}. También se encarga de almacenar y traer el código del usuario desde \textbf{AWS} (\emph{Amazon Web Services} \footnote{\url{https://es.wikipedia.org/wiki/Amazon_Web_Services}}), con el fin de tener una persistencia del código del mismo.
@@ -714,9 +735,25 @@ Para la realización de los siguientes ejercicios, trabajado sobre la infraestru
 \begin{figure}[H]
 	\centering
     \includegraphics[width=10cm]{img/robotics_academy_architecture.png}
-    \caption{Arquitectura de Unibotics.}
+    \caption{Arquitectura de RoboticsAcademy y Unibotics.}
     \label{figura:unibotics_architecture}
 \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% JUEGOS ASÍNCRONOS %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\chapter{Juegos Asíncronos}
+
+En este capítulo se expondrán los \emph{juegos asícronos} desarrollados para la plataforma de \textit{Unibotics}. Se han desarrollado un total de dos juegos asíncronos, de los que se hablará desde el diseño de las plantillas de la interfaz de usuario, hasta la comunicación con el servidor y el contenedor docker donde es ejecutado el juego. Para llevar a cabo el desarrollo de estos juegos, se ha partido de las versiones ya existentes dentro de la plataforma llamados \emph{retos}.
+
+\section{Diseño de los juegos}
+\label{sec:async_infraestructura}
+
+Para la realización de los siguientes ejercicios, trabajado sobre la infraestructura inicial sobre la que opera Unibotics. 
 
 \section{Follow Line Game} 
 \label{sec:follow_line_game}
