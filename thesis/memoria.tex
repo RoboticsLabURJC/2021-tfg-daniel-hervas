@@ -435,6 +435,16 @@ Para el seguimiento de los objetivos previamente mencionados, se ha seguido una 
 
 Con el fin de incorporar cambios en el código de la organización, se ha empleado la herramienta \emph{GitHub}. La metodología que se ha seguido para incorporar nuevos cambios a los diferentes repositorios es la siguiente. En primer lugar se crea una incidencia (\emph{issue}) el el repositorio correspondiente que describa el problema que se va a resolver. A continuación, se crea una rama a partir de la rama \emph{master} con el nombre de \emph{issue-XXX} donde se incorporarán todos los cambios mencionados en la \emph{issue} que se creó. Finalmente, una vez se han realizado todos los cambios y se ha verificado que funciona de manera correcta, se realiza un parche (\emph{Pull Request}), esto es, una solicitud de incorporación de los cambios a la rama principal. Los parches son revisados por otro compañero, que se encargará de hacer la pruebas pertinentes e incorporarla a la rama \emph{master}.
 
+En este proyecto se ha trabajado con los siguientes repositorios:
+
+\begin{itemize}
+\item \textbf{unibotics-webserver:} aquí se encuentran los recursos del webserver Django.
+\item \textbf{unibotics-exercises:} este repositorio contiene las platillas de los ejercicios de la plataforma.
+\item \textbf{RoboticsAcademy:} este repositorio es una colección \emph{open-source} de algunos retos, que se han empleado para diseñar ejercicios para la plataforma de \emph{Unibotics}.
+\item \textbf{CustomRobots:} este repositorio contiene todos los robots empleados en las simulaciones.
+\item \textbf{noVNC:} se ha realizado un \emph{fork} del repositorio oficial puesto que para la versión del ejercició síncrono se necesitaba hacer algunas modificaciones para enviar el flujo de vídeo al extremo remoto.
+\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HERRAMIENTAS %
@@ -680,16 +690,6 @@ Esta herramienta permite clonar cualquier repositorio en nuestra máquina local 
     \caption{Gráfico de.actividad del repositorio \emph{noVNC} de GitHub.}
     \label{figura:simulador_gazebo}
 \end{figure}
-
-En este proyecto se ha trabajado en una serie de repositorios diferentes:
-
-\begin{itemize}
-\item \textbf{unibotics-webserver:} aquí se encuentran los recursos del webserver Django.
-\item \textbf{unibotics-exercises:} este repositorio contiene las platillas de los ejercicios de la plataforma.
-\item \textbf{RoboticsAcademy:} este repositorio es una colección \emph{open-source} de algunos retos, que se han empleado para diseñar ejercicios para la plataforma de \emph{Unibotics}.
-\item \textbf{CustomRobots:} este repositorio contiene todos los robots empleados en las simulaciones.
-\item \textbf{noVNC:} se ha realizado un \emph{fork} del repositorio oficial puesto que para la versión del ejercició síncrono se necesitaba hacer algunas modificaciones para enviar el flujo de vídeo al extremo remoto.
-\end{itemize}
 
 \subsection{noVNC}
 \label{subsection:novnc}
