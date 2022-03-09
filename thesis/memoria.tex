@@ -1083,7 +1083,7 @@ En \emph{Unibotics}, se parte de los \emph{ejercicios asíncronos} en lo que ún
 \section{Follow Line Game Síncrono} 
 \label{sec:follow_line_game_sync}
 
-\subsection{Diseño}
+\subsection{Interfaz de usuario}
 
 El juego \emph{Follow Line Síncrono} parte de la plantilla básica que comparten todos los ejercicios. A esta plantilla se le han añadido una serie de extras, como son el chat de texto, la barra de búsqueda de usuarios y los botones de carga de código, del anfitrión y del invitado. Adicionalmente, se ha añadido un botón para ocultar el editor de código con el fin del que el usuario tenga únicamente la vista del chat de texto.
 
@@ -1095,6 +1095,8 @@ Con respecto la pantalla del usuario invitado, una vez este acepta la invitació
     \caption{Plantilla del juego Follow Line en Unibotics.}
     \label{figura:diagrama_conexion_webrtc}
 \end{figure}
+
+\subsection{Sistema de salas de juego}
 
 Para desarrollar este ejercicio, ha sido necesario implementar \emph{software} tanto en el lado del cliente como en el lado del servidor. Pues los usuarios participantes deben usar el servidor web de \emph{Unibotics} como servidor de señalización para el protocolo \emph{WebRTC}. Una vez ambos extremos se conocen entre sí, se inicia el tráfico \emph{WebRTC}.
 
@@ -1114,13 +1116,12 @@ En el caso de que el invitado acepte la solicitud, el anfitrión comenzará con 
 
 \subsubsection{Barra de búsqueda}
 
-Para poder realizar la conexión entre dos usuarios, el anfitrión debe escribir el login del usuario que quiere invitar en la barra de búsqueda, de manera que se pueda hacer la consulta al servidor web. Se ha desarrollado código \emph{JavaScript} que se encarga de esperar a que se inserte un login y se pulse el botón \emph{"Enter"}, y además, que se encargue de enviar la inserción al servidor web vía el \emph{WebSocket} establecido para la sala del juego.
+Para poder realizar la conexión entre dos usuarios, el anfitrión debe escribir el login del usuario que quiere invitar en la barra de búsqueda, de manera que se pueda hacer la consulta al servidor web. Se ha desarrollado código \emph{JavaScript} que se encarga de esperar a que se inserte un login y se pulse el botón "\emph{Enter}", y además, que se encargue de enviar la inserción al servidor web vía el \emph{WebSocket} establecido para la sala del juego.
 
 Una vez el servidor recibe este mensaje por el \emph{WebSocket}, este se encarga de extraer el login del usuario, y mediante el uso de un paquete instalado en el servidor \emph{Django}, llamado \emph{"Django-online-users"}, obtiene los usuarios que hay conectados actualmente, y comprueba si el usuario recibido se encuentra en línea. En el caso en que la búsqueda no sea satisfactoria, se envía un mensaje al usuario anfitrión indicando la imposibilidad de realizar la invitación. Si la búsqueda se realiza con éxito, se envía la invitación a dicho usuario por \emph{WebSocket}.
 
 En el lado del usuario receptor, el navegador recibirá la petición y la mostrará al usuario por medio de un menú de diálogo que le da la posibilidad de aceptar o rechazar la invitación.
 %% AÑADIR CAPTURA DE LA INVITACIÓN
-
 \begin{figure}[H]
 	\centering
     \includegraphics[width=10cm]{img/invitation.png}
@@ -1166,6 +1167,17 @@ En ambas interfaces, se encuentran serie de elementos de control de la simulaci�
 \end{itemize}
 
 %% AÑADIR IMAGEN DE LOS BOTONES
+  \begin{figure}[H]
+    \includegraphics[width=15cm]{img/host_sync_control_bar.png}
+    \caption{Barra de control del usuario anfitrión.}
+    \label{figura:host_sync_control_bar}
+  \end{figure}
+  \begin{figure}[H]
+    \includegraphics[width=15cm]{img/guest_sync_control_bar.png}
+    \caption{Barra de control del usuario invitado.}
+    \label{figura:guest_sync_control_bar}
+  \end{figure}
+
 
 Una vez cargados ambos códigos, se habilitará el botón \emph{Play} en ambos extremos. Desde el lado del usuario \emph{invitado}, se ha elaborado un sistema que se encarga de enviar las órdenes al usuario \emph{anfitrión} cuando algún botón es pulsado. Una vez el \emph{emisor} recibe una órden, este se encarga de procesarla y ejecutar las órdenes. De esta manera, ambos usuarios pueden controlar la ejecución de la simulación de manera individual.
 
@@ -1179,6 +1191,20 @@ De manera que los usuarios puedan conocer el estado de carga de sus códigos, se
 \end{itemize}
 
 %% AÑADIR IMAGEN DE LOS BOTONES EN EL HOST Y EL GUEST
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/host_code_buttons.png}
+    \caption{Botones de control de código del anfitrión.}
+    \label{figura:robot_davinci}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{img/guest_code_buttons.png}
+    \caption{Botones de control de código del invitado.}
+    \label{figura:robot_atrias}
+  \end{minipage}
+\end{figure}
 
 El establecimiento de los estados se realiza mediante mensajes vía \emph{WebSockets} entre ambos usuarios. En la plantilla del \emph{anfitrión} es donde se almacenan todas las variables relativas al estado de los códigos, el extremo \emph{invitado} únicamente recibe órdenes vía \emph{WebSockets} para ajustar su interfaz.
 
@@ -1198,9 +1224,9 @@ Para realizar el envío de sus candidatos, cada \emph{peer} debe enviarlos al se
 
 De esta manera, gracias a este sistema, se permite que los usuarios tengan una conexión directa entre ellos, y únicamente un usuario ejecute el simulador, puesto que el elemento \emph{HTML} que contiene el vídeo del simulador es retransmitido al otro extremo haciendo uso de la conexión entre \emph{peers}.
 
-Para soportar el intercambio de cantidatos ICE, entre los extremos, se ha implementado en el servidor web \emph{Django} un sistema de señalización entre usuarios basado en salas usando \emph{Django-channels} \footnote{\url{https://channels.readthedocs.io/en/stable/}}. Ha sido necesario implementar un objeto (\emph{StreamConsumer}) en el fichero \emph{"consumers.py"} que contiene la funcionalidad necesaria para el soporte de grupos, y el reenvío de mensajes al extremo remoto.
+Para soportar el intercambio de cantidatos ICE, entre los extremos, se ha implementado en el servidor web \emph{Django} un sistema de señalización entre usuarios basado en salas usando \emph{Django-channels} \footnote{\url{https://channels.readthedocs.io/en/stable/}}. Ha sido necesario implementar un objeto (\emph{StreamConsumer}) en el fichero "\emph{consumers.py}" que contiene la funcionalidad necesaria para el soporte de grupos, y el reenvío de mensajes al extremo remoto.
 
-De igual manera, en el lado del canal de datos, la implementación del establecimiento de los candidatos ICE es similar al sistema implementado para la tranmisión de vídeo, únicamente ha sido necesario cambiar la parte del \emph{streaming} por el establecimiento de un canal de datos, por el que viaja todo lo relativo a la IU y a mensajes del chat. En el lado del servidor, también ha sido necesario implementar un consumidor espoecífico para la sala en el fichero \emph{"consumers.py"}.
+De igual manera, en el lado del canal de datos, la implementación del establecimiento de los candidatos ICE es similar al sistema implementado para la tranmisión de vídeo, únicamente ha sido necesario cambiar la parte del \emph{streaming} por el establecimiento de un canal de datos, por el que viaja todo lo relativo a la IU y a mensajes del chat. En el lado del servidor, también ha sido necesario implementar un consumidor específico para la sala en el fichero "\emph{consumers.py}".
 
 Además, en ambos casos, en el lado del navegador, ha sido necesaria la implementación de un software para la gestión de los mensajes ente sockets, tanto para el \emph{WebSocket} de vídeo, como para el de datos. Este sistema se encarga de ejecutar la distintas fases del establecimiento de candidatos, como iniciar la conexión, añadir la descripción SDP remota una vez recibida, y señalizar al extremo remoto. Esta lógica se agrupa en dos ficheros, \emph{"ws\_stream.js"} para el vídeo y \emph{"ws\_room.js"} para el canal de datos.
 
