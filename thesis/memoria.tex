@@ -454,16 +454,16 @@ En este proyecto se ha trabajado con los siguientes repositorios:
 \chapter{Herramientas} 
 \label{chap:herramientas}
 
-En este capítulo se hará una breve presentación de todas las herramientas empleadas para el desarrollo del presente TFG. Estas tecnologías se pueden englobar en tres grupos, las tecnologías Front-End dedicadas a la presentación y a la interfaz de usuario (JavaScript, HTML y CSS), tecnologías Back-End dedicadas al servidor (Django), y, por último, tecnologías WebRTC que serán las utilizadas en la retransmisión del vídeo en los juegos síncronos. 
+En este capítulo se hará una breve presentación de todas las herramientas empleadas para el desarrollo del presente TFG. Estas tecnologías se pueden englobar en cuatro grupos, las tecnologías Front-End dedicadas a la presentación y a la interfaz de usuario (JavaScript, HTML y CSS), tecnologías Back-End dedicadas al servidor (Django), tecnologías WebRTC que serán las utilizadas en la retransmisión del vídeo en los juegos síncronos, y, por último, tecnologías dedicadas al control de versiones (GitHub). 
 
 Estas herramientas son estandarizadas por medio de W3C \footnote{\url{https://www.w3.org}} (World Wide Web Consortium). Además, la versión de HTML empleada para realizar este trabajo es \emph{HTML5}, pues es la versión establecida por W3C como lenguaje de hipertexto de la World Wide Web.
 
 \section{Lenguaje JavaScript}
 \label{sec:javascript}
 
-Se trata de un lenguaje de programación interpretado, su estándar es \textit{ECMAScript}\footnote{\url{https://es.wikipedia.org/wiki/ECMAScript}}, basado en \textit{Java} y \textit{C}. Fue creado para aplicaciones web del lado del cliente. Es interpretado en el navegador web y permite mejoras en la interfaz de usuario, además de páginas web dinámicas. También puede usarse en el lado del servidor utilizando \textit{Node.js}, un entorno de ejecucción de JavaScript construido con el motor \textit{JavaScript V8}.
+Su estándar se denomina \textit{ECMAScript}\footnote{\url{https://es.wikipedia.org/wiki/ECMAScript}}. Se trata de un lenguaje de programación interpretado, basado en \textit{Java} y \textit{C}. Fue creado para aplicaciones web del lado del cliente. Es interpretado en el navegador web y permite mejoras en la interfaz de usuario, además de páginas web dinámicas. También puede usarse en el lado del servidor utilizando \textit{Node.js}, un entorno de ejecucción de JavaScript construido con el motor \textit{JavaScript V8}.
 
-En este proyecto se ha empleado JavaScript en el lado del cliente. La lógica de las plantillas que usan los ejercicios ha sido programada usando \textit{ECMAScript-6}, así como los evaluadores automáticos de los mismos, y, adicionalmente, para los \textit{WebSockets} encargados de comunicarse con el servidor para realizar tareas de señalización, o de envío de mensajes. Sus principales características son:
+En este proyecto se ha empleado JavaScript en el lado de la interfaz de usuario. La lógica de las plantillas que usan los ejercicios ha sido programada usando \textit{ECMAScript-6}, es decir, se ha empleado para los controladores de los botones de la interfaz, para comunicaciones entre la interfaz de usuario con determinados sevicios, y, además, para todos los extras añadidos a los ejercicios base de los que se parten. Sus principales características son:
 
 %\subsection{Caractrerísticas del lenguaje}
 %\label{subsec:javascript}
@@ -485,12 +485,9 @@ Adicionalmente, en este Trabajo de Fin de Grado, junto con \textit{ES-6} se ha e
 \subsection{Librería jQuery}
 \label{subsec:javascript}
 
-\textit{jQuery} \footnote{\url{https://jquery.com/}} es una librería multiplataforma desarrollada en JavaScript, inicalmente desarrollada por John Resig. Esta librería permite simplificar en gran medida la interacción con los documentos HTML y sus estilos, manipular el DOM, manejar eventos, crear animaciones, y agregar la integración de la técnica \textit{AJAX} (\textit{Asynchronous JavaScript and XML}). L a versión utilizada en este proyecto es \emph{jQuery 3.3.1}.
+\textit{jQuery} \footnote{\url{https://jquery.com/}} es una librería multiplataforma desarrollada en JavaScript, inicalmente desarrollada por John Resig. Esta librería permite simplificar en gran medida la interacción con los documentos HTML y sus estilos, manipular el DOM, manejar eventos, crear animaciones, y agregar la integración de la técnica \textit{AJAX} (\textit{Asynchronous JavaScript and XML}). La versión utilizada en este proyecto es \emph{jQuery 3.3.1}.
 
-En código, el constructor de jQuery puede llamarse empleando el nombre \textit{jQuery}, o, también empleando el alias \textit{\$}.
-
-Esta librería hace posible a desarrolladores que se inician en el mundo del desarrollo de interfaces de aplicación, que puedan desarrollar una interfaz gráfica elaborada sin la necesidad de tener amplios conocimientos de CSS.
-
+Gracias a esta librería, es posible diseñar una interfaz gráfica elaborada sin necesidad de tener amplios conocimientos de CSS.
 \section{Lenguaje HTML}
 
 \textit{HTML} \footnote{\url{https://developer.mozilla.org/es/docs/Web/HTML}} (\textit{HyperText Markup Languaje}) es un lenguaje de marcado que permite indicar la estructura un documento utilizando etiquetas. Es utilizado para la creación de documentos electrónicos que se envían a través de la red. Los documentos pueden tener conexiones con otros a través de \textit{hipervínculos}.
@@ -513,23 +510,19 @@ Primeramente se debe declarar el tipo del documento \textit{HTML} mediante la l�
 Con la incorporación de \textit{HTML-5} se han introducido diversas novedades y mejoras que son de interés para este trabajo:
 
 \begin{itemize}
-	\item \textit{WebSockets} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/WebSockets_API}}, es una tecnología que hace posible abrir una comunicación de baja latencia entre el navegador y el servidor.
-	
-	\item \textit{WebRTC} \footnote{\url{https://webrtc.org/}} (\textit{Web Real-Time Communications}) es una tecnología que permite a las aplicaciones web capturar y transmitir audio y vídeo entre navegadores sin necesidad de un intermediario.
-	
-	\item Se añade un mejor soporte de contenido multimedia sin la necesidad de instalar plugins adicionales. Mediante el elemento \textit{video} en la página web del navegador reproducirá de manera nativa el contenido audiovisual.
-	
-	\item Proporciona un elemento, \textit{canvas} que permite renderizar escenas gráficas en la web mediante el uso de \textit{JavaScript}.
+\itemsep 0em
+\item \textit{WebSockets} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/WebSockets_API}}, es una tecnología que hace posible abrir una comunicación de baja latencia entre el navegador y el servidor.
+\item \textit{WebRTC} \footnote{\url{https://webrtc.org/}} (\textit{Web Real-Time Communications}) es una tecnología que permite a las aplicaciones web capturar y transmitir audio y vídeo entre navegadores sin necesidad de un intermediario.
+\item Se añade un mejor soporte de contenido multimedia sin la necesidad de instalar plugins adicionales. Mediante el elemento \textit{video} en la página web del navegador reproducirá de manera nativa el contenido audiovisual.
+\item Proporciona un elemento, \textit{canvas} que permite renderizar escenas gráficas en la web mediante el uso de \textit{JavaScript}.
 \end{itemize}
 
 \section{Hojas de estilo CSS}
 \label{sec:css}
 
-CSS \footnote{\url{https://developer.mozilla.org/es/docs/Web/CSS}} o \textit{Cascading StyleSheet} es un lenguaje empleado para dar formato y estilo a un documento de texto, comunmente, las instrucciones se agrupan en archivos con extensión \textbf{*.css}, lo que permite que para una página web se puedan almacenar estilos por separado dependiendo del fin de cada uno, de esta manera, se podrán importar en cada documento únicamente las instrucciones de las que se va a hacer uso.
+CSS \footnote{\url{https://developer.mozilla.org/es/docs/Web/CSS}} o \textit{Cascading StyleSheet} es un lenguaje empleado para dar formato y estilo a un documento de texto, comunmente, las instrucciones se agrupan en archivos con extensión \textbf{*.css}. Lo que permite que para una página web se puedan almacenar estilos por separado dependiendo del fin de cada uno. Además, la posibilidad de agrupar las instrucciones en varios archivos hace posible la importación en cada documento únicamente las instrucciones de las que se va a hacer uso.
 
-Con respecto a lo último mencionado, puesto que estas hojas almacenan el estilo, CSS nos ofrece una gran ventaja, la separación de la estructura del documento (HTML) de su representación. Aunque es posible añadir instrucciones CSS en el \textit{head} de un documento HTML mediante la etiqueta \textit{style}, esto no es una buena práctica.
-
-\textit{Cascading StyleSheet} nos permite utilizar \textit{JavaScript} para su fin principal, el de dar dinamismo e inteligencia a una página web, etc. Por lo que mejora en gran manera el rendimiento de la página.
+Al poder almacenar las instrucciones ficheros separados, esto ofrece una gran ventaja, es decir, la separación de la estructura del documento (HTML) de su representación (CSS). También es posible añadir instrucciones CSS en la cabecera de un documento HTML mediante la etiqueta \textit{style}, pero  no se considera una buena práctica.
 
 A continuación se muestra un ejemplo del uso de este lenguaje.
 
@@ -540,14 +533,14 @@ A continuación se muestra un ejemplo del uso de este lenguaje.
     \label{figura:nocss_vs_css}
 \end{figure}
 
-Como se puede apreciar en la imagen 3.2, hay un gran salto de no usar CSS a usarlo en los documentos HTML. Este lenguaje nos permite tanto crear fácilmente una barra de navegación, menús desplegables, barras de búsqueda, botones personalizados, sub-apartados, es decir, mejora en gran medida la experiencia del usuario.
+Como se puede apreciar en la imagen 3.2, hay un gran salto de no usar CSS a usarlo en los documentos HTML. Este lenguaje permite diseñar barras de navegación, menús desplegables, barras de búsqueda, botones, sub-apartados, etcétera, personalizados al estilo que se le quiera dar a la página, y con una apariencia muy diferente a los elementos que ofrece HTML por defecto.
 
-CSS también permite la creación de páginas web responsivas, esto es, que la web se adapte al tamaño de la pantalla del usuario, redimensionando los elementos y recolocándolos. Esto es muy útil si se quiere desarrollar una aplicación multiplataforma.
+CSS también permite la creación de páginas web responsivas, esto es, que los elementos se coloquen de una manera u otra para ofrecer una mejor disposición de los elementos dependiendo del tamaño la pantalla del usuario. Es decir, un teléfono móvil no tiene una pantalla de las mismas dimensiones que un ordenador, por lo que en el caso de una pantalla de un teléfono, con una web responsiva los elementos se colocarían de determinada manera para que sea más cómoda la experiencia del usuario, y, por ejemplo, que el usuario no tenga que hacer desplazamientos horizontales para ver el contenido, o que los botones y la fuente se adapten tomando un mayor tamaño de manera que sean legibles.
 
 \section{Django para servidores web}
 \label{sec:django}
 
-Django \footnote{\url{https://es.wikipedia.org/wiki/Django_(framework)}} \cite{django} es un entorno de alto nivel basado en el lenguaje Python que facilita el desarrollo de sitios web seguros y sostenibles, en este proyecto en particular, se ha empleado \emph{Django 2.2}. Fue lanzado como un \emph{framework} web genérico en 2005, bajo una licencia de código abierto. Django se encarga de las complicaciones del desarrollo web, para que el usuario pueda centrarse en escribir su aplicación.
+Django \footnote{\url{https://es.wikipedia.org/wiki/Django_(framework)}} \cite{django} es un entorno de alto nivel basado en el lenguaje Python que facilita el desarrollo de sitios web seguros y sostenibles, en este proyecto en particular, se ha empleado \emph{Django 2.2}. Fue lanzado como un \emph{framework} web genérico en 2005, bajo una licencia de código abierto. Django se encarga de las complicaciones del desarrollo web (como puede ser la seguridad, la autenticación de usuarios, expresiones regulares predefinidas para validaciones de campos como correos´), para que el usuario pueda centrarse en escribir su aplicación.
 
 El objetivo de Django es la creación sencilla de sitios web complejos, poniendo énfasis en la reutilización, la conectividad y la extensibilidad de componentes, el desarrollo rápido y el principio de no repetir código (\textit{Don't Repeat Yourself}).
 
@@ -577,7 +570,7 @@ dependiendo de las consultas del usuario.
 \section{WebRTC}
 \label{sec:webrtc}
 
-WebRTC \footnote{\url{https://es.wikipedia.org/wiki/WebRTC}} \cite{webrtc} (Web Real-Time Communication) es un proyecto libre y de código abierto que proporciona una comunicación en tiempo real (RTC) a través de una serie de APIs. Permite que la comunicación de audio y vídeo funcione dentro de las páginas web al permitir la comunicación \textit{Peer to Peer}, sin necesidad de instalación de plugins y sin necesidad de la intervención del servidor. WebRTC tiene soporte en los navegadores Safari, Chrome, Firefox, Mozilla y Opera, está estandarizado por el World Wide Web Consortium \footnote{\url{https://es.wikipedia.org/wiki/World_Wide_Web_Consortium}} y por el Internet Engineering Task Force \footnote{\url{https://es.wikipedia.org/wiki/Grupo_de_Trabajo_de_Ingenier\%C3\%ADa_de_Internet}}.
+WebRTC \footnote{\url{https://es.wikipedia.org/wiki/WebRTC}} \cite{webrtc} (Web Real-Time Communication) es un proyecto libre y de código abierto que proporciona una comunicación en tiempo real (RTC) a través de una serie de APIs. Permite que la transmisión de audio y vídeo funcione dentro de las páginas web al permitir la comunicación \textit{Peer to Peer}, sin necesidad de instalación de plugins y sin necesidad de la intervención del servidor. WebRTC tiene soporte en los navegadores Safari, Chrome, Firefox, Mozilla y Opera, está estandarizado por el World Wide Web Consortium \footnote{\url{https://es.wikipedia.org/wiki/World_Wide_Web_Consortium}} y por el Internet Engineering Task Force \footnote{\url{https://es.wikipedia.org/wiki/Grupo_de_Trabajo_de_Ingenier\%C3\%ADa_de_Internet}}.
 
 El API de WebRTC tiene una serie de interfaces principales que son clave en el desarrollo del software para este proyecto:
 
@@ -595,12 +588,11 @@ El API de WebRTC tiene una serie de interfaces principales que son clave en el d
 \label{subsec:protocolos}
 
 \begin{itemize}
-\item \textbf{ICE} \footnote{\url{https://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment}} (\textit{Interactive Connectivity Establishment}). Es una técnica empleada para permitir que un navegador web se conecte con otro/s navegador/es web mediante conexiones entre pares. Debe poder pasar por un \textit{firewall}, dirección IP pública, y, transmitir los datos a través de otro servidor, si el \textit{router} no permite las conexiones directas entre pares. Para lograr esta serie de casos, se emplean servidores STUN y TURN. Previo al establecimiento de una conexión ICE, es necesario realizar una señalización, que sirve para que ambos pares negocien un tipo de conexión, y, finalmente inicien una conexión, para que esta señalización sea posible es necesario un servidor intermedio (servidor de señalización) que se encarge de comunicar ambos extremos durante el proceso de señalización.
-
-
-\item \textbf{STUN} \footnote{\url{https://en.wikipedia.org/wiki/STUN}} (\textit{Session Transversal Utilities for NAT}). Es un protocolo de descubrimiento de IP pública, para determinar cualquier restricción en el \textit{enrutador} que impida una conexión directa con un par. El cliente enviará una solicitud STUN en Internet que responderá con la dirección pñublica del cliente y si el cliente esta accesible detrás del NAT del enrutador.
+\item \textbf{ICE} \footnote{\url{https://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment}} (\textit{Interactive Connectivity Establishment}). Es una técnica empleada para permitir que un navegador web se conecte con otro/s navegador/es web mediante conexiones entre pares. Debe poder pasar por un \textit{firewall}, dirección IP pública, y, transmitir los datos a través de otro servidor, si el \textit{router} no permite las conexiones directas entre pares. Para lograr esta serie de casos, se emplean servidores STUN y TURN. Previo al establecimiento de una conexión ICE, es necesario realizar una señalización, que sirve para que ambos pares negocien un tipo de conexión. Para poder realizar una negociación satisfactoria, es necesario un servidor intermedio (servidor de señalización) que se encarge de comunicar ambos extremos durante el proceso de señalización.
 
 \item \textbf{NAT} \footnote{\url{https://en.wikipedia.org/wiki/Nat}} (\textit{Network Address Translation}). Es empleado por el \textit{router} para asignar una dirección IP pública. El \textit{router} tiene acceso a la dirección pública de cada dispositivo y cada dispositivo conectado a este, tendrá una dirección IP privada. Las solucitudes se traducen de la IP privada a la IP pública con un puerto único. Desde el exterior de una red privada todos los dispositivos tienen la misma IP pública, de manera que el router se encarga de entregar el mensaje al dispositivo que corresponda, esto permite ahorrar direcciones IP, pero complica la comunicación directa entre dispositivos que se encuentren detras de sus respectivos NATs. Algunos \textit{enrutadores} tienen restricciones sobre quién puede conectarse a su red. Esto puede dar lugar a que aunque tengamos un única dirección IP pública encontrada por el servidor STUN, no se pueda establecer una conexión. Ante este caso, se debe recurrir a un servidor TURN.
+
+\item \textbf{STUN} \footnote{\url{https://en.wikipedia.org/wiki/STUN}} (\textit{Session Transversal Utilities for NAT}). Es un protocolo de descubrimiento de IP pública, para determinar cualquier restricción en el \textit{enrutador} que impida una conexión directa con un par. El cliente enviará una solicitud STUN en Internet que responderá con la dirección pública del cliente y si el cliente esta accesible detrás del NAT del enrutador.
 
 \item \textbf{TURN} \footnote{\url{https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT}} (\textit{Transversal Using Relays around NAT}). Algunos router emplean una técnica llamada \textit{NAT simétrica}. Esto es, el \textit{enrutador} sólo acepta conexiones de pares a los que se haya conectado previamente. TURN está destinado a aludir esta resticción de NAT simétrica. Consiste en establecer una conexión con un servidor TURN que retransmite todo el tráfico que se le envía, de una máquina a otra. Este intercambio es gestionado usando ICE.
 
@@ -756,7 +748,7 @@ La arquitectura de la plataforma es muy similar a la de RoboticsAcademy, está f
 \cleardoublepage
 \chapter{Juegos Asíncronos}
 
-En este capítulo se expondrán los \emph{juegos asícronos} desarrollados para la plataforma de \textit{Unibotics}. Se han desarrollado un total de dos juegos asíncronos, de los que se hablará desde el diseño de las plantillas de la interfaz de usuario, hasta la comunicación con el servidor y el contenedor docker donde es ejecutado el juego. Para llevar a cabo el desarrollo de estos juegos, se ha partido de las versiones ya existentes dentro de la plataforma llamados \emph{retos}.
+En este capítulo se expondrán los \emph{juegos asícronos} desarrollados para la plataforma de \textit{Unibotics}. Se han desarrollado un total de dos juegos asíncronos, de los que se hablará desde el diseño de las plantillas de la interfaz de usuario, hasta la comunicación con el servidor y el contenedor docker donde es ejecutado el juego. Para llevar a cabo el desarrollo de estos juegos, se ha partido de las versiones ya existentes dentro de la plataforma.
 
 \section{Diseño de los juegos}
 \label{sec:async_infraestructura}
@@ -765,30 +757,42 @@ Para la realización de los siguientes ejercicios, se ha trabajado sobre la infr
 
 \subsection{Interfaz de usuario}
 
-Ha sido necesario hacer una remodelación de las interfaces de usuario para hacer la incorporación del selector de dificultades, el evaluador automático y de algunos botones y selectores específicos de cada ejercicio.
+Ha sido necesario hacer una remodelación de las interfaces de usuario para incorporar el selector de dificultades, el evaluador automático y de algunos botones y selectores específicos de cada ejercicio.
 
 \subsection{Evaluadores automáticos}
 
-Adicionalmente, para cada ejercicio ha sido implementado un evaluador automático, con el objetivo de que el usuario que está ejecutando la simulación pueda obtener retroalimentación de como está funcionando su robot.
+Adicionalmente, para cada ejercicio se ha implementado haciendo uso de \emph{JavaScript}, un evaluador automático, con el objetivo de que el usuario que está ejecutando la simulación pueda obtener retroalimentación de como está funcionando su robot.
 
 \subsection{Escenarios con dos robots}
 
-En primer lugar, ha sido necesario pensar los retos existentes en la plataforma, como juegos en los que sea posible la incorporación de un segundo robot contra el cual el usuario pueda competir. De esta manera han surgido escenarios con dos robots, en los que en uno se carga el código del usuario y en otro el código proporcionado por la plataforma.
+Para poder implementar los juegos, ha sido necesario realizar un primer estudio sobre aquellos retos en los que tendría sentido implementar una "competición".  Para implementar dicha competición, es necesario que dos robots puedan actuar simultáneamente en el mismo escenario, y, además que estos puedan realizar algún tipo de duelo. Con este motivo, han sido seleccionados los juegos Follow Line y Drone Cat Mouse para la implementación de un escenario competitivo, donde el usuario tendrá el objetivo de competir para alcanzar a un robot dentro de un circuito, o, retar al usuario seguir de manera fructuosa un robot objetivo con un dron.
 
 \subsection{Carga de código en los robots}
 
-Con la incorporación de un segundo robot, es necesario hacer una modificación en la arquitectura existente del RADI, pues, en un primer lugar, solo había un robot, pero ahora, habiendo un segundo, ha sido necesario añadir un controlador para este. De manera que con este extra, los \emph{WebSockets} del escenario serán duplicados puesto que cada robot ha de comunicarse con el navegador web y viceversa. Además, ha sido neceraria la implementación de una nueva interfaz en el servidor web, que escucha peticiones de códigos. Por medio de esta interfaz, el navegador se encargará de hacer las consultas para pedir el código correspondiente. En el lado del servidor web, al recibir una petición en esta interfaz, este se encargará de pedir el código a AWS y devolverlo al navegador web.
+Con la incorporación de un segundo robot, es necesario hacer una modificación en la arquitectura existente del RADI, pues, en un primer lugar, solo había un robot, pero ahora, habiendo un segundo, ha sido necesario añadir un controlador para este. Por este motivo, los \emph{WebSockets} del escenario serán duplicados puesto que cada robot ha de comunicarse con el navegador web y viceversa. Además, ha sido neceraria la implementación de una nueva interfaz en el servidor web, que escucha peticiones de códigos. Por medio de esta interfaz, el navegador se encargará de hacer las consultas para pedir el código correspondiente. En el lado del servidor web, al recibir una petición en esta interfaz, este se encargará de pedir el código a AWS y devolverlo al navegador web.
 
 \subsection{Oponentes automáticos}
 
-En los juegos síncronos, el usuario tiene la posibilidad de escoger una dificultad a la que quiera enfrentarse, para que esto sea posible, ha sido necesario implementar una serie de códigos correspondientes a cada dificultad. Se han creado tres usuarios en la base de datos de \emph{Unibotics} (bot1, bot2, bot3) que contienen los respectivos códigos para cada ejercicio. Una vez un usuario selecciona una dificultad, al cargar el código en los robots, este código se pedirá al servidor web, que este a su vez lo pedirá a AWS (Amazon Web Services), y lo devolverá al navegador, finalmente, desde el navegador, será enviado al robot correspondiente por medio de su \emph{WebSocket} de código.
+En los juegos asíncronos, el usuario tiene la posibilidad de escoger una dificultad a la que quiera enfrentarse, para que esto sea posible, ha sido necesario implementar una serie de códigos correspondientes a cada dificultad. Se han creado tres usuarios en la base de datos de \emph{Unibotics} (bot1, bot2, bot3) que contienen los respectivos códigos para cada ejercicio. Una vez un usuario selecciona una dificultad, al cargar el código en los robots, este código se pedirá al servidor web, que este a su vez lo pedirá a AWS (Amazon Web Services), y lo devolverá al navegador. Finalmente, desde el navegador, será enviado al robot correspondiente por medio de su \emph{WebSocket} de código.
+
+\subsection{WebSockets empleados en la comunicación}
+
+Cada uno de los ejercicios que se han desarrollado, emplea una serie de conexiones con el contenedor docker (RADI) con el fin de realizar el intercambio de información entre la interfaz de usuario y el contenedor docker (RADI) donde se ejecuta la simulación. Estos WebSockets son:
+
+\begin{itemize}
+\item \emph{WebSocket} maestro: empleado para el control de la ejecución del ejercicio, emplea un protocolo de mensajes propio de RADI, sirve para lanzar los ejercicios, reanudar la simulación, parar la simulción, etc.
+\item \emph{WebSockets} de código: se emplea uno para cada robot del escenario, este canal es empleado para el envío del código a los robots desde el lado del navegador.
+\item \emph{WebSockets} de interfaz: se emplea uno para cada robot del escenario, este canal es empeado para la recepción de datos referentes a la simulación, utilizados para mostrar los datos en la interfaz del usuario, como por ejemplo la posición de los robots, la frecuencia de simulación, etc.
+\end{itemize}
 
 \section{Diseño de Follow Line Game} 
 \label{sec:follow_line_game}
 
+En esta sección se expondrán las distintas partes de la implementación del juego Follow Line.
+
 \subsection{Interfaz de usuario}
 
-Para desarrollar este ejercicio ha sido necesario implementar \emph{software}  en el lado del del cliente especialmente. Se ha diseñado un interfaz de usuario que radica en la simplicidad para el mismo, sin proporcionar un exceso de controles. La plantilla es común a la mayoría de los ejercicios de la plataforma, pero mediante JavaScript se construye la plantilla con respecto a los requisitos del ejercicio. Todos los ejercicios tienen en común una barra en la parte superior que contiene una serie de botones para realizar la conexión con el contenedor Docker, que es donde se ejecutará todo lo relativo a la simulación del ejercicio.
+Se ha diseñado un interfaz de usuario que radica en la simplicidad para el mismo, sin proporcionar un exceso de controles. La plantilla es común a la mayoría de los ejercicios de la plataforma, y en ella se integran las funcionalidades particulares a cada ejercicio mediante Javascript. Todos los ejercicios tienen en común una barra en la parte superior que contiene una serie de botones para realizar la conexión con el contenedor Docker, que es donde se ejecutará todo lo relativo a la simulación del ejercicio.
 
 \begin{figure}[H]
 	\centering
@@ -797,7 +801,7 @@ Para desarrollar este ejercicio ha sido necesario implementar \emph{software}  e
     \label{figura:conexion_radi}
 \end{figure}
 
-Volviendo a la parte específica para este ejercicio, tenemos una barra donde se encuentran los controles relativos al control de la simulación, visualización, carga de código e información adicional sobre la simulación.
+Volviendo a la parte específica para este ejercicio, encontramos una barra donde se encuentran los controles relativos al control de la simulación, visualización, carga de código e información adicional sobre la simulación.
 
 \begin{figure}[H]
 	\centering
@@ -819,7 +823,7 @@ Bajo las barras de control del ejercicio, se tiene una pantalla que está dividi
 \subsection{Evaluador automático}
 \label{follow_line_game_evaluator}
 
-Este evaluador consiste en mostrar en tiempo real las distancias que hay entre los coches, con el fin de que el usuario pueda competir contra la plataforma. Para cada circuito se han establecido una serie de puntos (\emph{checkpoints}) a lo largo del mismo, que sirven para saber en que lugar se encuentran los robots, y, con esta información poder calcular la distancia que le queda a cada robot para alcanzar al adversario. Estos \emph{checkpoionts} son almacenados en una serie de \emph{arrays}, y, en función del circuito que haya seleccionado el usuario se emplerá el correspondiente.
+Este evaluador consiste en mostrar en tiempo real las distancias que hay entre los coches, con el fin de que el usuario pueda competir contra la plataforma. A lo largo de cada circuito se han establecido una serie de putnos de control, que sirven para saber en que lugar se encuentran los robots, y, con esta información poder calcular la distancia que le queda a cada robot para alcanzar al adversario. Estos \emph{checkpoionts} son almacenados en una serie de \emph{arrays}, y, en función del circuito que haya seleccionado el usuario se emplerá el correspondiente.
 
 La información de posición se esta recibiendo con una determinada frecuencia en el tiempo a través del WebSocket \emph{ws\_gui}, este se encarga de actualizar las variables que contienen las posiciones de los robots. A continuación, se ha desarrollado código JavaScript que se encarga de utilizar los valores que contienen estas variables de posición y calcula el checkpoint más cercano a la posición de cada robot y construye los caminos (\emph{paths}) desde un robot hasta el otro. Una vez se obtienen los paths, se calcula la distancia total de estos y se muestra en la interfaz del usuario.
 
@@ -833,7 +837,7 @@ La información de posición se esta recibiendo con una determinada frecuencia e
 \subsection{Robot adversario}
 \label{follow_line_game_adversario}
 
-Ha sido necesario añadir un nuevo modelo de robot para que el usuario pueda diferenciar entre su robot y el adversiario. Con lo que se ha modificado el modelo del robot del usuario, que es rojo, cambiándolo de color al verde, que será el correspondiente con el adversario. Esta modificación se ha llevado a cabo usando \emph{Blender} \footnote{\url{https://www.blender.org/}} para modificar el color de las texturas, se ha llamado \emph{f1\_guest}, y, ha sido  incluido en el repositorio de la organización \emph{CustomRobots}.
+Ha sido necesario añadir un nuevo modelo de robot para que el usuario pueda diferenciar entre su robot y el adversiario. Para ello simplemente se ha integrado un coche con el mismo modelo que el coche del usuario pero modificando el color. De esta forma, el coche del usuario será rojo y el del adversario verde. Esta modificación se ha llevado a cabo usando \emph{Blender} \footnote{\url{https://www.blender.org/}} para modificar el color de las texturas, se ha llamado \emph{f1\_guest}, y, ha sido  incluido en el repositorio de la organización \emph{CustomRobots}.
 
 Una vez creado el nuevo modelo, se ha añadido a los ficheros de declaración de los escenarios de Gazebo, incluyendo el nuevo modelo en una posición del circuito en la que ambos coches se encuentran a la misma distancia. Los ficheros empleados para la configfuración del escenario tienen la siguiente forma:
 
@@ -880,20 +884,20 @@ Una vez se ha establecido la conexión de \emph{RADI} con el navegador, se puede
 Cuando el usuario procede a realizar la carga del código en los respectivos robots, el código que ha desarrollado el usuario
 se obtiene del editor de código situado en la parte izquierda de la pantalla. Para realizar la carga de código de las distintas dificultades proporcionadas por la plataforma, se ha desarrollado un script en \emph{JavaScript} que se encarga de realizar una solicitud al servidor web, pidiendo el código correspondiente con la dificultad seleccionada.
 
-Para que el servidor web pueda proporcionar el código de cada dificultad al navegador web solicitante, se han creado una serie de usuarios con el prefijo de \emph{bot}, que contienen el código correspondiente a cada dificultad. También, ha sido necesaria la creación de una nueva interfaz (\emph{endpoint}) en el servidor web.
+Para que el servidor web pueda proporcionar el código de cada dificultad al navegador web solicitante, se han creado una serie de usuarios con el prefijo de \emph{bot}, que contienen el código correspondiente a cada dificultad. También, ha sido necesaria la creación de una nueva ruta (\emph{endpoint}) en el servidor web.
 
 Desde el lado del servidor web, cuando se recibe una solicitud en dicha interfaz, este se encarga de determinar cual es la dificultad y el ejercicio del que se está solicitando por medio de los datos aportados en la propia cadena de búsqueda.
 
-Finalmente, una vez se tienen ambos códigos, estos se envían cada uno por el \emph{WebSocket} que se corresponde con cada robot. 
+Finalmente, una vez se tienen ambos códigos, estos se envían cada uno por el \emph{WebSocket} de código que se corresponde con cada robot del escenario, de manera que el código será recibido en el contenedor docker (RADI), procesado, e insertado en el cerebro de cada robot. 
 
 \subsubsection{Inicio del juego}
 \label{subsec:follow_line_game_inicio}
 
-Para llevar a cabo la iniciación del juego es necesario realizar previamente la conexión con el contenedor Docker (\emph{RADI}) donde se va a llevar a cabo toda la ejecución del ejercicio. Una vez realizada esta conexión, se deberá seleccionar el circuito en el que el usuario quiera jugar, seleccionar la dificultad del oponente, y, pulsar el botón \emph{Load in robot}, una vez se hayan cargado los respectivos códigos, se podrá proceder pulsando el botón \emph{Play} para comenzar la ejecución.
+Para iniciar el juego es necesario realizar previamente la conexión con el contenedor Docker (\emph{RADI}) donde se va a llevar a cabo toda la ejecución del ejercicio. Una vez realizada esta conexión, se deberá seleccionar el circuito en el que el usuario quiera jugar, seleccionar la dificultad del oponente, y, pulsar el botón \emph{Load in robot}, una vez se hayan cargado los respectivos códigos, se podrá proceder pulsando el botón \emph{Play} para comenzar la ejecución.
 
-Con respecto a las versiones iniciales del reto \emph{Follow Line} de \textbf{Unibotics}, se ha tenido que implementar un cambio dentro del RADI, pues para era necesario poder lanzar el escenario con el circuito seleccionado por el usuario.
+Con respecto a las versiones iniciales del reto \emph{Follow Line} de \textbf{Unibotics}, ha sido necesaria la implementación de código dentro del contenedor RADI, con el fin de poder lanzar la simulación del ejercicio con el circuito seleccionado por el usuario.
 
-Para implementar esta característica, dentro del fichero \emph{manager.py} (encargado del lanzamiento de los ejercicios, comprobar el código mediante PyLint, noVNC, etc), se ha añadido una variable con scope global que contiene un array con todos los ejercicios que requieren el cambio de circuito. De manera que, antes de lanzar un ejercicio se comprueba si es uno de estos, y, si es así, el circuito que se ha obtenido del comando de lanzamiento que llega vía \emph{WebSockets} se emplea para formatear la cadena de texto que contiene la instrucción de lanzamiento del proceso. Esta instrucción de lanzamiento contendrá el nombre del fichero que se corresponde con el modelo del circuito deseado por el usuario, de manera que Gazebo ya sabe qué escenario cargar.
+Para implementar esta característica, dentro del fichero \emph{manager.py} (encargado del lanzamiento de los ejercicios, comprobar el código mediante PyLint, noVNC, etc), se ha añadido una variable con ámbito global dentro del fichero \emph{manager.py} que contiene una lista con todos los ejercicios que implementan la funcionalidad de cambio de circuito. De manera que, cuando el contenedor docker recibe una orden de lanzar un ejercicio, previamente al lanzamiento se comprueba si el ejercicio a lanzar implementa dicha funcionalidad, y, si es así, se obtiene el nombre del circuito seleccionado de los datos que se han recibido por este canal de comunicación (el \emph{WebSocket entre el RADI y el navegador}). Finalmente, una vez obtenido el nombre del circuito que desea lanzar el usuario, se procede a ejecutar la simulación Gazebo con el escenario correspondiente al circuito seleccionado.
 
 Finalmente, se lanzará este proceso (además de algunos otros como noVNC para mostrar GZClient y la consola), y se avisará al \emph{Front End} que la conexión está lista.
 
@@ -984,6 +988,8 @@ Para este juego, han sido implementados tres códigos diferentes que se correspo
 \section{Drone Cat Mouse Game} 
 \label{sec:drone_cat_mouse_game}
 
+En esta sección se expondrán las distintas partes de la implementación del juego Drone Cat Mouse.
+
 \subsection{Interfaz de usuario}
 \label{drone_cat_mouse_interface}
 
@@ -1003,7 +1009,7 @@ Por otro lado, la plataforma Unibotics contaba con una versión del reto \emph{D
 
 En la version desarrollada para este trabajo, se han introducido algunos cambios. En primer lugar, se han desacoplado los controladores para los robots, de manera que ahora cada uno es independiente del otro. Esto da lugar a la necesidad de tener dos \emph{WebSockets} para cada robot (inicialmente se tenían únicamente dos \emph{WebSockets} para comunicarse con el \emph{gato}, y este, se encargaba de trasladar la información al \emph{ratón}), \emph{ws\_code} y \emph{ws\_gui} para el \emph{gato} y el \emph{ratón}.
 
-En la versión inicial del ejercicio, el código del ratón, se encontraba almacenado dentro del \emph{RADI}. Actualmente esto se ha cambiado, de manera que el código del \emph{ratón} se pide al \emph{webserver} especificando el ejercicio y la dificultad seleccionada. Este cambio se ha realizado con el fin de seguir el mismo paradigma que con los usuarios, el código de los mismos se recibe desde el \emph{webserver}. Una vez recibido el código, este es enviado al \emph{ratón} por medio del \emph{WebSocket} correspondiente.
+En la versión inicial del ejercicio, el código del ratón, se encontraba almacenado dentro del \emph{RADI}. Actualmente esto se ha cambiado, de manera que el código del \emph{ratón} se pide al \emph{webserver} especificando el ejercicio y la dificultad seleccionada. De esta manera, en la versión actual del ejercicio, el ratón recibirá el código que debe ejecutar vía su \emph{WebSocket} de código, mientras que en la versión inicial, el ratón recibía una orden con la dificultad a ejecutar, y, finalmente, este buscaba el código a ejecutar dentro del contenedor RADI. Este cambio se ha realizado con el fin de seguir el mismo paradigma que con los usuarios, el código de los mismos se recibe desde el \emph{webserver}. Una vez recibido el código, este es enviado al \emph{ratón} por medio del \emph{WebSocket} correspondiente.
 
 \subsection{Evaluador automático}
 \label{drone_cat_mouse_evaluator}
@@ -1031,7 +1037,7 @@ De esta manera, cada robot tendrá sus \emph{WebSockets} separados, y actuará i
 \subsection{Carga de código}
 \label{drone_cat_mouse_code_load}
 
-Una vez se ha establecido la conexión con \emph{RADI}, se puede proceder a la carga del código. Esta carga se realiza mediante un botón \emph{Load in robot}, que una vez pulsado, se encarga de habilitar el botón \emph{Play} después de haber realizado una comprobación exitosa del código del usuario.
+La carga de código se realiza de manera similar al ejercicio anterior. Una vez realizada la comprobación de código y su carga, se habilita el botón \emph{Play}.
 
 Cuando el usuario procede a realizar la carga del código en los respectivos robots, el código que se ha desarrollado
 se obtiene del editor de código situado en la parte izquierda de la pantalla. Para realizar la carga de código de las distintas dificultades, se ha desarrollado un script en \emph{JavaScript} que se encarga de realizar una solicitud al servidor web, pidiendo el código correspondiente con la dificultad seleccionada.
