@@ -311,17 +311,41 @@ Durante el desarrollo de software robótico es preciso realizar una serie de pru
 \subsection{Middlewares robóticos}
 \label{subsec:middlewares}
 
-Un \textit{middleware} robótico es un \textit{framework} que proporciona una serie de herramientas que facilitan el desarrollo de software para robots. Proporciona los servicios necesarios para soportar y simplificar aplicaciones complejas y distribuidas. Para el control de los sensores y actuadores de los robots, los \textit{middlewares} proporcionan \textit{drivers}, APIs, etc.
+Un \textit{middleware} robótico es un \textit{framework} que proporciona una serie de herramientas que facilitan el desarrollo de software para robots. Proporciona los servicios necesarios para soportar y simplificar aplicaciones complejas y distribuidas. Para el control de los sensores y actuadores de los robots, los \textit{middlewares} proporcionan \textit{drivers}, APIs, bibiliotecas con funcionalidad ya resuelta y reutilizables, etc.
 
 \emph{OpenRDK} es un proyecto de código abierto para el desarrollo de módulos poco acoplados. Proporciona una gestión de concurrencia, comunicación entre procesos y una técnica de enlace que permite el diseño de sistemas conceptuales de puertos de datos de entrada / salida. También proporciona módulos para realizar conexiones con simuladores robóticos y controladores de robots genéricos. También existen algunos otros \emph{middlewares} como \emph{Micro} y \emph{Orca}.
 
 El \textit{middleware} robótico más generalizado es ROS\footnote{\url{https://www.ros.org/}}
  (\textit{Robotics Operating System}). \textit{Robotics Operating System} fue desarrollado en 2007 por el Laboratorio de Inteligencia Artificial de Stanford para dar soporte a sus proyectos. A pesar de no ser un sistema operativo, ROS proporciona servicios como la abstracción \textit{hardware}, mecanismos de comunicación entre prosesos, el control de dispositivos de bajo nivel y el mantenimiento de paquetes. \textit{Robotics Operating System} fue desarrollado para sistemas UNIX, aunque en la actualidad está siendo adaptado para su funcionamiento en sistemas operativos como Fedora, Mac OS X, Arch, Gentoo, OpenSUSE, Slackware, Debian o Microsoft Windows.
+ 
+Para transmitir información, ROS emplea un sistema de comunicación unidireccional llamado ROS \emph{Topics} \footnote{\url{http://wiki.ros.org/Topics}} (temas). Estos \emph{Topics} se comportan como buses sobre los cuales los nodos intercambian mensajes, además, son de publicación anónima.
+
+Los \emph{Topics} tienen como objetivo una comunicación unidireccional de transmisión. Los nodos que necesitan hacer llamadas de procedimiento remoto que esperan una respuesta, deben emplear un servicio dedicado a ello.
+
+Los ROS \emph{Nodes} \footnote{\url{http://wiki.ros.org/Nodes}} (nodos) son procesos que realizan cálculos. Los nodos se comunican entre sí mediante el uso de temas, servicios RPC (Remote Procedure Call) y un servidor de parámetros. Un sistema de control de un robot, generalmente está compuesto de un gran número de nodos, por ejemplo, un nodo controla un sensor láser, mientras que otro nodo controla los motores de las ruedas del robot.
+
+Este \emph{middleware} ofrece una serie de herramientas \footnote{\url{http://wiki.ros.org/Tools}} para facilitarnos la visualización de la información que genera la aplicación robótica. Algunas de estas herramientas son las siguientes:
+\nolinebreak
+\begin{itemize}
+\itemsep 0em
+\item \textbf{RVIZ}: es un entorno de visualización 3D que permite combinar información de sensores, modelo del robot y otros datos en 3D en una vista combinada.
+\item \textbf{Rqt-plot}: herramienta que permite visualizar datos escalares que generan los temas de ROS.
+\item \textbf{Webviz}: una herramienta basada en navegador para buscar datos y archivos de ROS bags \footnote{\url{http://wiki.ros.org/Bags}}, incluso mezclados con vídeo en directo.
+\end{itemize}
+
+Además, también ofrece un amplio conjunto de \emph{drivers} que facilitan la incorporación de dispositivos adicionales en los robots, como cámaras, motores, láseres, sensores de posición, etc. Algunos de estos son:
+
+\begin{itemize}
+\itemsep 0em
+\item \textbf{Cámara} \footnote{\url{http://wiki.ros.org/cv_camera}}: captura la imagen de la cámara y la publica en un tema llamado "\emph{sensor\_msgs\\/Image}"
+\item \textbf{Motores} \footnote{\url{http://wiki.ros.org/Motor\%20Controller\%20Drivers}}: se encarga de publicar información relativa a los motores del robot, es decir, mensajes sobre la odometría y la posición del robot en distintos temas con la información de velocidad que recibe del tema "\emph{sensor\_msgs\\/Twist}"
+
+\end{itemize}
 
 \subsection{Simuladores robóticos}
 \label{subsec:simuladores}
 
-Los simuladores robóticos surgen con la necesidad de realizar pruebas durante el desarrollo del \textit{software} para la detección y depuración de posibles errores antes de llevarlo a un robot real debido al gran coste que suponen.
+Los simuladores robóticos surgen con la necesidad de realizar pruebas durante el desarrollo del \textit{software} para la detección y depuración de posibles errores antes de llevarlo a un robot real debido al gran coste que suponen. En la actualidad, existen numerosos simuladores robóticos.
 
 Uno de los simuladores más utilizados en la actualidad es \textit{Gazebo}\footnote{\url{http://gazebosim.org/}}. Su popularidad se debe a su robusto motor de físicas, sus gráficos de alta calidad y su amplio catálogo de robots y escenarios. Es una herramienta de código abierto integrada con ROS, por lo que permite ejecutar \textit{software} robótico en un escenario simulado (Figura 1.6).
 
@@ -332,6 +356,12 @@ Uno de los simuladores más utilizados en la actualidad es \textit{Gazebo}\footn
     \label{figura:simulador_gazebo}
 \end{figure}
 
+\emph{CoppeliaSim} \footnote{\url{https://coppeliarobotics.com/}}. Se trata de un simulador robótico con un entorno de desarrollo integrado. se basa en una arquitectura de control distribuido: cada objeto/modelo se puede controlar individualmente a través de un script integrado, un complemento, un nodo ROS, un cliente API remoto o una solución personalizada. Los controladores pueden escribirse en  C/C++, Python, Java, Lua, Matlab u Octave.
+
+\emph{Waymo} \footnote{\url{https://es.wikipedia.org/wiki/Waymo}} (Poryecto de vehículo autónomo de Google). Es una tecnología que permite a un vehículo moverse de forma autónoma por una ciudad y por carretera, detectando señales de tráfico, vehículos y demás objetos de la vía.
+
+\emph{Carla} \footnote{\url{https://carla.org/}}. Es un sistema que se ha desarrollado desde cero para apoyar el desarrollo, entrenamiento y la validación de sistemas de conducción autónomos. \emph{Carla} provee su código, protocolos, sets de configuraciones de escenarios (zona urbana, edificios, veículos, etc) como fuente abierta. La plataforma admite un gran número de sensores, condiciones ambientales, un control completo de los actuadores, generación de terreno y mucho más.
+
 \section{Robótica educativa}
 \label{sec:robotica educativa}
 
@@ -341,16 +371,37 @@ estos entornos van más allá, ofrenciendo la capacidad para el alumno de adquir
 Como se ha comentado, para llevar a cabo este método de educación es necesaria una infraestructura, como alguna plataforma cuyo objetivo sea el de la enseñanza de la robótica, algunas de estas plataformas son las siguientes:
 
 \begin{itemize}
-\item \textbf{Robocode:} es un juego de programación en \emph{Java} o \emph{.NET}, cuyo objetivo es programar la lógica de un robot que es un tanque de batalla, para combatir contra otros tanques. Esta plataforma ofrece una comunidad que incluye uuna Wiki y un grupo de google. Además, ha realizado una competición propia \footnote{\url{https://gamesfleadh.ie/robocode/}}.
-\item \textbf{CodeCombat:} ofrece un aprendizaje basado en juegos, tiene el objetivo de que los estudiantes aprendan mientras juegan. Los estudiantes aprenderán \emph{JavaScript}, \emph{Python}, \emph{HTML} y \emph{CoffeeScript}, además de aprender los fundamentos de la informática. El contenido se divide en 11 unidades: tres unidades de desarrollo de juegos, dos unidades de desarrollo web y seis unidades de informática.
-\item \textbf{Gearsbot:} un entorno de programación de robots mediante bloques, que además también ofrece la posibilidad de programar la lógica en \emph{Python}, usa un simulador web que emplea la tecnología \emph{WebGL} \footnote{\url{https://es.wikipedia.org/wiki/WebGL}} para renderizar gráficos.
-\item \textbf{Riders.ai:} una plataforma de programación de robots que ofrece la posibilidad de realizar competiciones idividuales como en grupos. Es accesible desde cualquier lado del mundo. También ofrece al usuario una capa de abstracción sobre los sensores, localización y diferentes partes del robot.
-\item \textbf{TheConstruct:} ofrece un entorno de programación de robots que pueden moverse por la Luna, Marte y más planetas. No requiere la instalación de ROS. Ofrece un gran extra que le diferencia de los demás, esto es, brinda la posibilidad al usuario de poder ejecutar su código en robots reales de forma remota, y, también proveen certificados al completar diferentes cursos.
+\item \textbf{Robocode}: es un juego de programación en \emph{Java} o \emph{.NET}, cuyo objetivo es programar la lógica de un robot que es un tanque de batalla, para combatir contra otros tanques. Esta plataforma ofrece una comunidad que incluye uuna Wiki y un grupo de google. Además, ha realizado una competición propia \footnote{\url{https://gamesfleadh.ie/robocode/}}.
+\item \textbf{OpenRoberta}: es un proyecto alemán que busca animar a los niños a programar mediante el uso de robots como \emph{Lego Mindstorms} y otros sistemas \emph{hardware} programables como \emph{Arduino}. Ofrece una plataforma en la nube llamada Open Roberta Lab, cuyo objetivo es simplificar los conceptos de programación la enseñanza de la programación en las escuelas. Es una plataforma gratuita y no requiere de instalaciones adicionales.
+\item \textbf{CodeCombat}: ofrece un aprendizaje basado en juegos, tiene el objetivo de que los estudiantes aprendan mientras juegan. Los estudiantes aprenderán \emph{JavaScript}, \emph{Python}, \emph{HTML} y \emph{CoffeeScript}, además de aprender los fundamentos de la informática. El contenido se divide en 11 unidades: tres unidades de desarrollo de juegos, dos unidades de desarrollo web y seis unidades de informática.
+\item \textbf{Gearsbot}: un entorno de programación de robots mediante bloques, que además también ofrece la posibilidad de programar la lógica en \emph{Python}, usa un simulador web que emplea la tecnología \emph{WebGL} \footnote{\url{https://es.wikipedia.org/wiki/WebGL}} para renderizar gráficos.
+\item \textbf{Riders.ai}: una plataforma de programación de robots que ofrece la posibilidad de realizar competiciones idividuales como en grupos. Es accesible desde cualquier lado del mundo. También ofrece al usuario una capa de abstracción sobre los sensores, localización y diferentes partes del robot. En su plataforma online, proporciona una serie de cursos de iniciación a la robótica, además, ofrece un sistema de ligas en las que han de resolverse una serie de ejercicios, como forma de competición entre los usuarios. Esta plataforma está orientada a las competiciones, para empezar a aprender, el usuario ha de unirse a una competición y empezar a resolver los problemas de las misma, finalmente, obtendrá una puntuación en un ranking.
+\item \textbf{TheConstruct}: ofrece un entorno de programación de robots que pueden moverse por la Luna, Marte y más planetas. No requiere la instalación de ROS. Ofrece un gran extra que le diferencia de los demás, esto es, brinda la posibilidad al usuario de poder ejecutar su código en robots reales de forma remota, y, también proveen certificados al completar diferentes cursos. La plataforma ofrece numerosos cursos de ROS, creación de robots, algoritmos robóticos, etc. Está orientada al aprendizaje mediante la práctica y no requiere ninguna instalación adicional. También ofrece una comunidad con la que los usuarios pueden interactuar.
 \end{itemize}
 
-Dentro de la robótica educativa, es preciso enfatizar la plataforma \textit{Unibotics} en la que se desarrolla el presente proyecto. Esta plataforma es un proyecto internacional que ofrece material para la enseñanza de robótica en las aulas. \textit{Unibotics} proporciona una infraestructura software en conjunto a una colección de ejercicios, cada uno con el material teórico correspondiente para su resolución.
+Dentro de la robótica educativa, es preciso enfatizar la plataforma \textit{Unibotics} en la que se desarrolla el presente proyecto. Esta plataforma es un proyecto internacional que ofrece material para la enseñanza de robótica en las aulas. \textit{Unibotics} proporciona una infraestructura software en conjunto a una colección de ejercicios, cada uno con el material teórico correspondiente para su resolución. No requiere de ninguna instalación adicional. También ofrece una foro por el cual los usuarios pueden preguntar dudas, mostrar sus resultados y notificar acerca de bugs. De esta manera, se ofrece la posibilidad de aprender robótica con la necesiad de únicamente una conexión a internet.
 
-\subsection{Tecnologías Web}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth,height=45mm]{img/plataforma_unibotics.png}
+    \caption{Plataforma de Unibotics.}
+    \label{figura:stun}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth,height=45mm]{img/pagina_principal_unibotics.png}
+    \caption{Página pricipal de Unibotics.}
+    \label{figura:turn}
+  \end{minipage}
+\end{figure}
+
+Esta plataforma permite el aprendizaje de la robótica mediante una serie de ejercicios que se muestran a través de una interfaz web. Ofrece un amplio rango de ejercicios con robots de todo tipo, como coches, drones y aspiradoras, con distintos tipos de sensores como sensores de proximidad láser, cámaras, diversos motores y sensores de navegación.
+
+La gamificación de la educación tiene una gran importancia, pues potencia las capacidades de los estudiantes, además, aumenta la concentración y la motivación. De manera que hace que los estudiantes puedan alcanzar un nivel de conocimiento superior con la unión de actividades lúdicas y aprendizaje.
+
+
+\section{Tecnologías Web}
 
 Las diferentes tecnologías web permiten crear interfaces de usuario y establecer las comunicaciones con el servidor, además de implementar comportamientos de la web en el servidor. Se pueden distinguir en tecnologías \emph{backend} (del lado del servidor) y tecnologías \emph{frontend} (del lado del usuario).
 
@@ -366,7 +417,7 @@ El desarrollo de tecnologías web está sujeto a un gran crecimiento. Cada vez l
 
 Las tecnologías web ofrecen la posibilidad de que varios usuarios puedan programar robots y ejecutarlos en el mismo escenario, hacer competiciones tanto síncronas como asíncronas, algo que resultaría muy complejo si se realizase en local. \emph{WebRTC} nos ofrece esta posibilidad, pues es una herramienta de código abierto que proporciona conexiones en tiempo real entre \emph{peers} mediante un API.
 
-\subsection{Estructura del documento}
+\section{Estructura del documento}
 
 En esta sección se va a hacer un breve resúmen de los contenidos de cada capítulo, también se mencionará como están estructurados.
 
