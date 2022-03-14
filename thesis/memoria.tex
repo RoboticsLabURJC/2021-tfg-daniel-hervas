@@ -231,26 +231,26 @@ As it is the translation of the ``Resumen'', which is supposed to be written at 
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 
-El TFG que será descrito a continuación se ha desarrollado en la plataforma \textit{Unibotics} de la asociación \textit{JdeRobot}\footnote{\url{https://jderobot.github.io}}, orientado al aprendizaje de robótica para estudiantes universitarios. El principal motivo de este proyecto es la introducción de técnicas de gamificación para los diferentes ejercicios contenidos la plataforma, así como añadir nuevos.
+El TFG que será descrito a continuación se ha desarrollado en la plataforma web \textit{Unibotics} de la asociación \textit{JdeRobot}\footnote{\url{https://jderobot.github.io}}, orientada al aprendizaje de robótica de estudiantes universitarios. El principal motivo de este proyecto es la introducción de técnicas de \emph{gamificación} para los diferentes ejercicios contenidos la plataforma, así como añadir nuevos.
 
-En este capítulo se introducirá el contexto en el que se desarrolla el trabajo, así como los motivos relevantes para a llevarlo a cabo. Puesto que el campo de la robótica es muy amplio, en concreto, este TFG se centra en el marco de la robótica educativa, destinada a la enzeñanza de la misma, buscando fomentar el desarrollo, la independencia y la lógica a edades tempranas. Esta manera de enseñanza consiste en la metodología \emph{learning-by-doing}, un sistema que facilita a los niños el aprendizaje aspectos científicos y matemáticos, y también ayuda en el incremento del pensamiento lógico y creativo de los mismos.
+En este capítulo se introducirá el contexto en el que se desarrolla el trabajo, así como los motivos relevantes para a llevarlo a cabo. Puesto que el campo de la robótica es muy amplio, en concreto, este TFG se centra en el marco de la robótica educativa, destinada a la enzeñanza de la misma, buscando fomentar el desarrollo y la lógica a edades tempranas. Esta manera de enseñanza consiste en la metodología \emph{learning-by-doing}, un sistema que facilita a los niños el aprendizaje aspectos científicos y matemáticos, y también ayuda en el incremento del pensamiento lógico y creativo de los mismos.
 
-Existen diversas formas de iniciación a la robótica, estas son, mediante libros o juguetes. Relizando talleres de programación. También existen plataformas para la iniciación a la robótica, como por ejemplo, \emph{Lightbot Jr} \footnote{\url{https://lightbot.com/}}, \emph{Scratch Jr} \footnote{\url{https://www.scratchjr.org/}}, \emph{Kibotics} \footnote{\url{https://kibotics.org/}}, etc.
+Existen diversas formas de iniciación a la robótica, estas son, mediante libros o juguetes. Realizando talleres de programación. También existen plataformas para la iniciación a la robótica, como por ejemplo, \emph{Lightbot Jr} \footnote{\url{https://lightbot.com/}}, \emph{Scratch Jr} \footnote{\url{https://www.scratchjr.org/}}, \emph{Kibotics} \footnote{\url{https://kibotics.org/}}, etc.
 
 \section{Robótica}
 \label{sec:robotica}
 
 % HARDWARE
 
-Los avances en computación de las últimas décadas han sido el impulso que ha permitido la creación de máquinas con comportamientos muy cercanos a los de los seres humanos. La robótica está muy relacionada no solo con la rama de la ingeniería, si no, que involucra conocimientos de matemáticas y física imprescindibles en el desarrollo de estas máquinas. Uno de los objetivos principales de la robótica es el de facilitar tareas de la vida diaria al ser humano, incluso, en algunas ocasiones, sustituir al ser humano.
+Los avances en computación de las últimas décadas han sido el impulso que ha permitido la creación de máquinas con comportamientos muy cercanos a los de los seres humanos. La robótica está muy relacionada no solo con la rama de la ingeniería, si no que involucra conocimientos de matemáticas y física imprescindibles en el desarrollo de estas máquinas. Uno de los objetivos principales de la robótica es facilitar tareas de la vida diaria al ser humano, incluso, en algunas ocasiones, sustituir al ser humano.
 
-En 1950 la robótica experimenta un gran desarrollo. Esto se debe a los grandes avances en relación a la potencia y complejidad computacional. El acoplamiento mecánico empezó a sustituirse por sistemas eléctricos. Tal es el grado de desarrollo que se empiezan a generar sistemas de control automático consistentes en máquinas de estado secuencial.
+En 1950 la robótica experimenta un gran desarrollo. Esto se debe a los grandes avances en relación a la potencia y complejidad computacional. El acoplamiento mecánico empezó a sustituirse por sistemas eléctricos. Debido al gran desarrollo que sufre la robótica, surgen los primeros sistemas de control automático consistentes en máquinas de estado secuencial. Al final de esta década, las máquinas secuenciales acaban dando lugar al concepto de autómata finito no determinista \footnote{\url{https://es.wikipedia.org/wiki/Aut\%C3\%B3mata_finito_no_determinista}}.
 
-La motivación que existe en la robótica de facilitar algunas tareas que realizan los seres humanos en su día a día, viene dada por algunos casos en los que las personas realizan trabajos muy repetitivos (p.e. cadena de montaje), trabajos peligrosos (p.e. desactivación de una bomba). Entre estos, también surge con el motivo de mejorar la calidad de vida, como por ejemplo, con el objetivo de monitorizar personas mayores que viven solas, y si es necesario, avisar a un médico (\emph{Misty II} \footnote{\url{https://isocial.cat/es/innovacio/misty-ii-robot-para-mejorar-la-calidad-de-vida-de-las-persones-mayoresque-viven-solas-millorar-la-qualitat-de-vida-de-persones-grans-que-viuen-soles/}}).
+La motivación que existe en la robótica de facilitar algunas tareas que realizan los seres humanos en su día a día viene dada por algunos casos en los que las personas realizan trabajos muy repetitivos (p.e. cadena de montaje), trabajos peligrosos (p.e. desactivación de una bomba). Entre estos motivos, la robótica, además, surge con el objetivo de mejorar la calidad de vida de las personas, por ejemplo, con el objetivo de monitorizar personas mayores que viven solas con el objetivo de avisar a un médico si se requiere (\emph{Misty II} \footnote{\url{https://isocial.cat/es/innovacio/misty-ii-robot-para-mejorar-la-calidad-de-vida-de-las-persones-mayoresque-viven-solas-millorar-la-qualitat-de-vida-de-persones-grans-que-viuen-soles/}}).
 
 % SOFTWARE
 
-Estas máquinas, requieren de un \emph{software} que proporcione la capacidad de aprender ciertas tareas previamente mencionadas, de manera que puedan ser más eficientes. Este \emph{software} es conocido con el nombre de inteligencia artificial, muy ligada al campo de la robótica. Los avances en este campo permiten desarrollar sistemas capaces de tener una cierta memoria útil para realizar una serie de funciones.
+Estas máquinas requieren de un \emph{software} que proporcione la capacidad de aprender ciertas tareas previamente mencionadas, de manera que puedan ser más eficientes. Este \emph{software} es conocido con el nombre de inteligencia artificial, muy ligada al campo de la robótica. Los avances en este campo permiten desarrollar sistemas capaces de tener una cierta memoria útil para realizar una serie de funciones.
 
 % EJEMPLOS
 
@@ -264,7 +264,7 @@ Un claro ejemplo de este gran impluso es la implementación de robots en la indu
     \label{figura:brazo_robotico}
 \end{figure}
 
-En la actualidad, cada vez son más populares los coches autónomos. Es un campo muy amplio que cuenta con un gran número de posibilidades. Alguna de estas posibilidades serían los coches con conducción autónoma de \textit{Tesla}  (Figura 1.2) o los coches con aparcamiento autónomo que están desarrollando un gran número de compañías en la actualidad.
+En la actualidad cada vez son más populares los coches autónomos. Es un campo muy amplio que cuenta con un gran número de posibilidades. Alguna de estas posibilidades serían los coches con conducción autónoma de \textit{Tesla}  (Figura 1.2) o los coches con aparcamiento autónomo que están desarrollando un gran número de compañías en la actualidad, aspiradoras autónomas, inspección con drones, etc.
 
 \begin{figure}[H]
 	\centering
@@ -290,7 +290,7 @@ Otro campo de la aplicación de la robótica es la medicina, donde existen robot
   \end{minipage}
 \end{figure}
 
-En el ámbito militar, existen robots capaces de sustituir a una persona en el a la hora de realizar tareas de gran peligro como la desactivación de bombas y la entrada en zonas contaminadas (Figura 1.5).
+En el ámbito militar, existen robots capaces de sustituir a una persona a la hora de realizar tareas de gran peligro como la desactivación de bombas y la entrada en zonas contaminadas (Figura 1.5).
 
 \begin{figure}[H]
 	\centering
@@ -389,7 +389,7 @@ Finalmente, en el capítulo 6, tenemos los experimentos realizados y sus resulta
 \chapter{Objetivos} % título del capítulo (se muestra)
 \label{chap:objetivos} % identificador del capítulo (no se muestra, es para poder referenciarlo)
 
-En este capítulo se explicarán los objetivos que se pretenden alcanzar en este TFG, los requisitos para los problemas que se van a plantear, la planificación y metodología seguida durante todo el desarrollo.
+En este capítulo se explicarán los objetivos concretos que se pretenden alcanzar en este TFG, los requisitos para los problemas que se van a plantear, la planificación y metodología seguida durante todo el desarrollo.
 
 \section{Objetivos} % título de sección (se muestra)
 \label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
@@ -397,15 +397,16 @@ En este capítulo se explicarán los objetivos que se pretenden alcanzar en este
 El objetivo general de este trabajo es la introducción de juegos en la plataforma \emph{Unibotics}, en los que varios usuarios puedan competir síncrona y asíncronamente para fomentar su aprendizaje. Este objetivo principal se ha dividido en dos subobjetivos.
 
 \begin{itemize}
-\item La introducción de \textbf{juegos competitivos asíncronos} que permitan a los usuarios competir contra una serie de dificultades proporcionadas por la plataforma, en el mismo escenario y en tiempo real.
-\item La introducción de \textbf{juegos competitivos síncronos} que proporcionan una visión más competitiva y social de la plataforma a los usuarios, que pueden conectarse simultáneamente con sus amigos para competir entre ellos.
+\item La introducción de \textbf{juegos competitivos asíncronos} que permitan a los usuarios competir contra una serie de oponentes automśticos proporcionadas por la plataforma, en el mismo escenario y en tiempo real.
+\item La introducción de \textbf{juegos competitivos síncronos} que proporcionan una visión más competitiva y social de la plataforma a los usuarios, que pueden conectarse simultáneamente con sus amigos para competir entre ellos. Este juego se basará en tecnologías WebRTC.
 \end{itemize}
 
 Las soluciones proporcionadas deben cumplir los objetivos previamente mencionados, además de los siguientes requisitos para una correcta implementación:
 
 \begin{itemize}
-\item El código del lado del servidor debe ser desarrollado en \emph{HTML}, \emph{CSS3} y \emph{JavaScript}.
-\item No debe requerir instalaciones de software adicionales, el usuario unicamente ha de tener el contenedor docker \emph{RADI}, instalado en la máquina local.
+\item El código del frontend del servidor debe ser desarrollado en \emph{HTML}, \emph{CSS3} y \emph{JavaScript}.
+\item El código del backend se desarrollará en Python utilizando Django.
+\item No debe requerir instalaciones de software adicionales en el uso regular de \emph{Unibotics}, el usuario unicamente ha de tener el contenedor docker instalado en la máquina local.
 \end{itemize}
 
 \section{Metodología}
@@ -415,34 +416,31 @@ Para llevar a cabo este trabajo, se ha empleado una metodología basada en \emph
 
 Para la implantación de esta metodología se han establecido reuniones semanales. En dichas reuniones se ha comentado los cambios que se han introducido en el \emph{sprint} previo para proponer cambios, mejoras y fijar una serie de objetivos para la siguiente semana.
 
-%\section{Planificación temporal}
-%\label{sec:planificacion-temporal} 
-
-\section{Plan de trabajo y metodología}
-\label{sec:plan-de-trabajo}
-
-Para el seguimiento de los objetivos previamente mencionados, se ha seguido una serie de etapas que permiten el avance incremental en la implementación del trabajo.
-
-\begin{itemize}
-\item \textbf{Estudio de la plataforma Unibotics:} Como una primera toma de contacto es preciso el estudio de la infraestructura que se está empleando en la plataforma. Además, se ha realizado la puesta en funcionamiento del \emph{despliegue local} \footnote{Despliegue de un clon de la plataforma en un entorno local con el fin de realizar cambios y probar nuevas funcionalidades, previo a incorporar los cambios a la plataforma oficial}, el contenedor docker (\emph{RADI}) y la comprobación de que todos los ejercicios funcionan de manera correcta. También, se ha estudiadio el funcionamiento de las platillas empleadas por los ejercicios y la conexión con el \emph{RADI}.
-
-\item \textbf{Desarrollo de los juegos asíncronos:} Una vez entendidos los conceptos pricipales de la plataforma, se ha procedido al desarrollo de los juegos asíncronos. Se han diseñado nuevas plantillas para los nuevos ejercicios asícronos, y, añadido nuevos aspectos, como evaluadores automáticos.
-
-\item \textbf{Estudio de la tecnología WebRTC:} Una vez completada la parte de los juegos asíncronos, se procede al estudio de estas tecnologías que nos permiten la retransmision de audio y vídeo entre dos navegadores web. Se han desarrollado algunos pequeños programas de prueba, como un chat de texto y vídeo, para asentar los conceptos.
-
-\item \textbf{Desarrollo del juego síncrono:} Con los conceptos de WebRTC asentados, se ha procedido a diseñar en el webserver de \emph{Unibotics}, un sistema de señalización entre los usuarios, de manera que se pueda intercambiar la información necesaria para realizar la conexión WebRTC. Finalmente, en las plantillas del ejercicio, se incluye código \emph{JavaScript} que se encarga de establecer las conexiones RTC para cada extremo.
-\end{itemize}
-
-Con el fin de incorporar cambios en el código de la organización, se ha empleado la herramienta \emph{GitHub}. La metodología que se ha seguido para incorporar nuevos cambios a los diferentes repositorios es la siguiente. En primer lugar se crea una incidencia (\emph{issue}) el el repositorio correspondiente que describa el problema que se va a resolver. A continuación, se crea una rama a partir de la rama \emph{master} con el nombre de \emph{issue-XXX} donde se incorporarán todos los cambios mencionados en la \emph{issue} que se creó. Finalmente, una vez se han realizado todos los cambios y se ha verificado que funciona de manera correcta, se realiza un parche (\emph{Pull Request}), esto es, una solicitud de incorporación de los cambios a la rama principal. Los parches son revisados por otro compañero, que se encargará de hacer la pruebas pertinentes e incorporarla a la rama \emph{master}.
+El proyecto de \emph{Unibotics} es amplio y se apoya en varios repositorios software en GitHub. Con el fin de incorporar cambios en el código del proyecto relacionados con este TFG, se ha empleado la herramienta \emph{GitHub}. La metodología que se ha seguido para incorporar nuevos cambios a los diferentes repositorios es la siguiente. En primer lugar se crea una incidencia (\emph{issue}) en el repositorio correspondiente que describa el problema que se va a resolver. A continuación, se crea una rama a partir de la rama \emph{master} con el nombre de \emph{issue-XXX} donde se incorporarán todos los cambios mencionados en la incidencia que se creó. Finalmente, una vez se han realizado todos los cambios y se ha verificado que funciona de manera correcta, se realiza un parche (\emph{Pull Request}), esto es, una solicitud de incorporación de los cambios a la rama principal. Los parches son revisados por otro compañero, que se encargará de hacer la pruebas pertinentes e incorporarla a la rama \emph{master}.
 
 En este proyecto se ha trabajado con los siguientes repositorios:
 
 \begin{itemize}
 \item \textbf{unibotics-webserver:} aquí se encuentran los recursos del webserver Django.
-\item \textbf{unibotics-exercises:} este repositorio contiene las platillas de los ejercicios de la plataforma.
+\item \textbf{unibotics-exercises:} este repositorio contiene las plantillas de los ejercicios de la plataforma.
 \item \textbf{RoboticsAcademy:} este repositorio es una colección \emph{open-source} de algunos retos, que se han empleado para diseñar ejercicios para la plataforma de \emph{Unibotics}.
 \item \textbf{CustomRobots:} este repositorio contiene todos los robots empleados en las simulaciones.
 \item \textbf{noVNC:} se ha realizado un \emph{fork} del repositorio oficial puesto que para la versión del ejercició síncrono se necesitaba hacer algunas modificaciones para enviar el flujo de vídeo al extremo remoto.
+\end{itemize}
+
+\section{Plan de trabajo}
+\label{sec:plan-de-trabajo}
+
+Para el seguimiento de los objetivos previamente mencionados, se ha seguido una serie de etapas que permiten el avance incremental en la implementación del trabajo.
+
+\begin{itemize}
+\item \textbf{Estudio de la plataforma Unibotics:} Como una primera toma de contacto es preciso el estudio de la infraestructura técnica que se está empleando en la plataforma. Además, se ha realizado la puesta en funcionamiento del \emph{despliegue local} \footnote{Despliegue de un clon de la plataforma en un entorno local con el fin de realizar cambios y probar nuevas funcionalidades, previo a incorporar los cambios a la plataforma oficial}, el contenedor docker (\emph{RADI}) y la comprobación de que todos los ejercicios funcionan de manera correcta. También, se ha estudiado el funcionamiento de las plantillas empleadas por los ejercicios y la conexión con el \emph{RADI}.
+
+\item \textbf{Desarrollo de los juegos asíncronos:} Una vez entendidos los conceptos principales de la plataforma, se ha procedido al desarrollo de los juegos asíncronos. Se han diseñado nuevas plantillas web para los nuevos ejercicios asícronos, y, añadido nuevos aspectos, como evaluadores automáticos.
+
+\item \textbf{Estudio de la tecnología WebRTC:} Una vez completada la parte de los juegos asíncronos, se procede al estudio de estas tecnologías de videoconferencia que permiten la retransmision de audio y vídeo entre dos navegadores web. Se han desarrollado algunos pequeños programas de prueba, como un chat de texto y vídeo, para asentar los conceptos.
+
+\item \textbf{Desarrollo del juego síncrono:} Con los conceptos de WebRTC asentados, se ha procedido a diseñar en el webserver de \emph{Unibotics}, un sistema de señalización entre los usuarios, de manera que se pueda intercambiar la información necesaria para realizar la conexión WebRTC. Finalmente, en las plantillas del ejercicio, se incluye código \emph{JavaScript} que se encarga de establecer las conexiones RTC para cada extremo.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
