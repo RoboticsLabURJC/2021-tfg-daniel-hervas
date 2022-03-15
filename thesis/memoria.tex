@@ -1122,15 +1122,15 @@ Para realizar la carga de códigos, primero se obtiene el código del editor de 
 
 Para este juego, han sido implementados tres códigos diferentes que se corresponden con las tres dificultades proporcionadas por la plataforma, finalmente han sido cargados en el juego Follow Line de los correspondientes perfiles creados para la gestión de las dificultades. La dificultad se corresponderá con el patrón de movimiento que realiza el dron \emph{ratón}, es decir, a mayor dificultad, el \emph{ratón} realizará un patrón de movimiento más complejo.
 
-\subsection{Validación experimental}
+\section{Validación experimental}
 
-\subsubsection{Follow Line Game}
+\subsection{Follow Line Game}
 
 En primer lugar, el usuario ha de conectar el navegador con el contenedor docker RADI.
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=15cm]{img/fl_radi_connected.png}
+    \includegraphics[width=12cm]{img/fl_radi_connected.png}
     \caption{Juego Follow Line conectado con RADI.}
     \label{figura:evaluator_drone}
 \end{figure}
@@ -1139,15 +1139,45 @@ A continuación, una vez se ha conectado el navegador con RADI, se debe proceder
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=15cm]{img/fl_connection_established.png}
+    \includegraphics[width=12cm]{img/fl_connection_established.png}
     \caption{Juego Follow Line lanzado.}
+\end{figure}
+
+Una vez lanzado el ejercicio, se puede proceder a seleccionar un circuito y una dificultad, para previamente cargar el código e iniciar la sumulación. Además de abrir \emph{Gazebo} para visualizar el escenario de simulación y la consola. Y finalmente, iniciar la simulación del juego.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.8\textwidth}
+    \includegraphics[width=\textwidth]{img/fl_sim_1.png}
+    \caption{Evaluadores en la ejecución del juego Follow Line.}
+    \label{figura:robot_davinci}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.8\textwidth}
+    \includegraphics[width=\textwidth]{img/fl_sim_2.png}
+    \caption{Simulador en la ejecución del juego Follow Line.}
+    \label{figura:robot_atrias}
+  \end{minipage}
+\end{figure}
+
+\subsection{Drone Cat Mouse}
+
+En este ejercicio el proceso para iniciar la conexión con RADI es similar al del juego Follow Line. 
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=12cm]{img/dcm_conectado.png}
+    \caption{Drone Cat Mouse lanzado.}
     \label{figura:evaluator_drone}
 \end{figure}
 
-Con el ejercicio lanzado, se puede proceder a seleccionar un circuito y una dificultad para iniciar la simulación. Además de abrir \emph{Gazebo} para visualizar el escenario de simulación y la consola. Y finalmente, iniciar la simulación del juego.
+Una vez lanzado el ejercicio, el usuario debe proceder a la selección de la dificultad del dron ratón. A continuación, cargar el código en los robots. Y finalmente, abrir Gazebo, el valuador automático e iniciar la simulación pulsando el botón \emph{Play}.
 
-
-\subsubsection{Drone Cat Mouse}
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=12cm]{img/dcm_sim.png}
+    \caption{Simulacion y evaluador automático en Drone Cat Mouse.}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
