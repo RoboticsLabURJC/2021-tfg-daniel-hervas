@@ -186,7 +186,7 @@ Además, la pareja quizás no sea para siempre, pero tu madre sí.
 
 Con el paso del tiempo, la robótica está más ligada a la vida diaria, cada vez podemos encontrar más productos robóticos en el día a día, por ejemplo, aspiradoras, coches que pueden conducir autónomamente, brazos robóticos en industrias, etc. Es este auge el que genera la necesidad de más profesionales en este ámbito. Con el objetivo de formar más profesionales, surgen plataformas dedicadas a la enseñanza de la robótica, un ejemplo de estas es \emph{Unibotics}. Esta plataforma tiene el objetivo de enseñar algoritmos robóticos mediante el ejercicio de juegos y retos de diferentes tipos. El entorno que nos proporciona se trata de una serie de ejercicios de diferentes tipos (coches, drones, filtrado de imágenes, etc) junto con los que se proporciona una documentación para facilitar la resolución de los mismos, el lenguaje empleado para la resolución de los mismos es \emph{Python}.
 
-En este \emph{Trabajo de Fin de Grado}, se han querido ampliar los contenidos de la plataforma introduciento una serie de ejercicios más orientados al ámbito competitivo en local y multiusuario, en los que el usuario tiene la posibilidad de competir contra un robot proporcionado por la plataforma o, por otro lado, contra un amigo de manera síncrona. Primeramente, se han desarrollado una serie de ejercicios asíncronos que proporcionan al usuario las competiciones de manera local contra robots de distintas dificultades proporcionados por la plataforma. Por otro lado, gracias a la tecnología \emph{WebRTC} se ha desarrollado un ejercicio que permite al usuario hacer competiciones síncronas contra un amigo al que puede invitar por medio de una barra de búsqueda de usuarios. En este  ejercicio síncrono, el usuario invitado no necesitará ejecutar nada, pues únicamente lo ejecuta el \emph{host}, esto es posible, gracias a la conexión \emph{WebRTC} entre los dos \emph{peers}.
+En este \emph{Trabajo de Fin de Grado}, se han querido ampliar los contenidos de la plataforma introduciento una serie de ejercicios más orientados al ámbito competitivo en local y multiusuario, en los que el usuario tiene la posibilidad de competir contra un robot proporcionado por la plataforma o, por otro lado, contra un amigo de manera síncrona. Primeramente, se han desarrollado una serie de ejercicios asíncronos que proporcionan al usuario las competiciones de manera local contra robots de distintas dificultades proporcionados por la plataforma. Por otro lado, gracias a la tecnología \emph{WebRTC} se ha desarrollado un ejercicio que permite al usuario hacer competiciones síncronas contra un amigo al que puede invitar por medio de una barra de búsqueda de usuarios. En este  ejercicio síncrono, el usuario invitado no necesitará ejecutar nada, pues únicamente lo ejecuta el \emph{anfitrión}, esto es posible, gracias a la conexión \emph{WebRTC} entre los dos \emph{peers}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Resumen en inglés
@@ -405,7 +405,9 @@ La gamificación de la educación tiene una gran importancia, pues potencia las 
 
 Las diferentes tecnologías web permiten crear interfaces de usuario y establecer las comunicaciones con el servidor, además de implementar comportamientos de la web en el servidor. Se pueden distinguir en tecnologías \emph{backend} (del lado del servidor) y tecnologías \emph{frontend} (del lado del usuario).
 
-Una gran ventaja de estas tecnologías es que ofrecen la ausencia de la necesidad de instalar componentes de software, configuración y dependencias adicionales. Únicamente es necesario disponer de un navegador de internet y una conexión a internet, pues todos los archivos necesarios se servirán desde el lado del servidor.
+Una gran ventaja de estas tecnologías es que ofrecen la ausencia de la necesidad de instalar componentes de software, configuración y dependencias adicionales. Únicamente es necesario disponer de un navegador de internet y una conexión a internet, pues todos los archivos necesarios se servirán desde el lado del servidor. Además, tambien permiten una compatibilidad multiusuario, es decir, no es necesaria la instalación de software adicional ni de ningún sistema operativo en específico, pues es únicamente necesario un navegador web y una conexión a internet para el uso de una aplicación web.
+
+En la actualidad existen numerosas aplicaciones web de las que hacemos uso en el día a día, estas pueden ser, aplicaciones bancarias, la tienda de \emph{Amazon}, aplicaciones de videoconferencia como \emph{Google Hangouts}, tiendas online de productos de comida (\emph{Uber Eats}), e incluso aplicaciones de venta de productos de segunda mano (\emph{Wallapop}). A día de hoy un gran número de empresas proveen a sus usuarios de estas aplicaciones web, pues ofrecen una compatibilidad universal, y, además, del lado del usuario, este no tiene que instalar ninguna aplicación. 
 
 Estas tecnologías facilitan el uso al cliente, pues evitan que el usuario tenga que intalar actualizaciones, pues las actualizaciones se realizan en el lado del servidor. Esta ventaja elimina posibles fallos debidos a incompatibilidades entre las versiones, pues el servidor distribuye una única version para todos. También ofrecen la ventaja de aplicaciones web multiplataforma, únicamente es necesario el desarrollo en un único entorno (\emph{Windows}, \emph{Ubuntu}, \emph{MacOS}, etc), pues estas tecnologías son comunes a los navegadores de todos los sistemas. Únicamente es necesario conocer \emph{HTML}, \emph{CSS} y \emph{JavaScript}, el navegador será el encargado de interpretar dichos lenguajes.
 
@@ -1133,7 +1135,7 @@ En este capítulo se abardarán todos los detalles de los \emph{juegos síncrono
 \section{Objetivo}
 \label{sync_objective}
 
-En \emph{Unibotics}, se parte de los \emph{ejercicios asíncronos} en lo que únicamente pueden elegirse una serie de dificultades proporcionadas por la plataforma. Con el desarrollo los \emph{ejercicios síncronos} se han querido orientar los juegos hacia un modo más competitivo, de manera que el usuario pueda conectarse con sus amigos y realizar competiciones poniendo en ejecucción sus mejores códigos.
+En \emph{Unibotics}, se han desarrollado juegos asíncronos en los que se elige una de las dificultades proporcionadas por la plataforma. Con el desarrollo los \emph{ejercicios síncronos} se han querido orientar los juegos hacia un modo más competitivo, de manera que el usuario pueda conectarse con otros usuarios y realizar competiciones poniendo en ejecucción sus mejores códigos.
 
 \section{Follow Line Game Síncrono} 
 \label{sec:follow_line_game_sync}
@@ -1142,7 +1144,7 @@ En \emph{Unibotics}, se parte de los \emph{ejercicios asíncronos} en lo que ún
 
 El juego \emph{Follow Line Síncrono} parte de la plantilla básica que comparten todos los ejercicios. A esta plantilla se le han añadido una serie de extras, como son el chat de texto, la barra de búsqueda de usuarios y los botones de carga de código, del anfitrión y del invitado. Adicionalmente, se ha añadido un botón para ocultar el editor de código con el fin del que el usuario tenga únicamente la vista del chat de texto.
 
-Con respecto la pantalla del usuario invitado, una vez este acepta la invitación proveniente del usuario anfitrión, mediante código \emph{JavaScript}, se ha implementado un sistema que se encarga de ocultar todos los controles y elementos irrelevantes para este extremo de la conexión.
+Con respecto a la interfaz del usuario invitado, esta interfaz es ajustada cuando el usuario acepta la invitación proveniente de un anfitrión. Este ajuste se realiza mediante el lenguaje \emph{JavaScript}, en el que se ha implementado un script que se encarga de ocultar los elementos de la interfaz que no toman lugar en el extremo del invitado.
 %% AÑADIR CAPTURA DE LA PLANTILLA
 \begin{figure}[H]
 	\centering
@@ -1155,9 +1157,9 @@ Con respecto la pantalla del usuario invitado, una vez este acepta la invitació
 
 Para desarrollar este ejercicio, ha sido necesario implementar \emph{software} tanto en el lado del cliente como en el lado del servidor. Pues los usuarios participantes deben usar el servidor web de \emph{Unibotics} como servidor de señalización para el protocolo \emph{WebRTC}. Una vez ambos extremos se conocen entre sí, se inicia el tráfico \emph{WebRTC}.
 
-Una vez el usuario entra en el ejercicio, automáticamente el navegador se conecta a una ruta del servidor web por medio de \emph{WebSockets} generando una sala de juego. Esta ruta será por medio de la que se van a comunicar los extremos con el servidor de señalización.
+Una vez el usuario entra en el ejercicio, automáticamente el navegador se conecta a una ruta del servidor web por medio de \emph{WebSockets} generando una sala de juego. Esta ruta será el medio a través del cual se van a comunicar los extremos con el servidor de señalización.
 
-Debido a la complejidad de las subredes, ha sido necesaria la incorporación de un servidor \emph{TURN} (Transversal Using Relay NAT) que se encargue de hacer de retransmisor entre los dos extremos una vez se inicia la comunicación \emph{WebRTC}. En la mayoría de casos no es posible realizar una conexión \emph{WebRTC} directa entre los dos extremos (a menos que residan en una red local), esto es debido a que \emph{WebRTC} no es capaz de atravesar un NAT (Network Address Translation).
+Debido a la complejidad de las subredes, ha sido necesaria la incorporación de un servidor \emph{TURN} (Transversal Using Relay NAT) que se encargue de hacer de retransmisor entre los dos extremos una vez se inicia la comunicación \emph{WebRTC}. En la mayoría de casos no es posible realizar una conexión \emph{WebRTC} directa entre los dos extremos (a menos que residan en una red local). Esto es debido a que \emph{WebRTC} no es capaz de atravesar un NAT (Network Address Translation). Por lo que este servidor TURN, se encarga de retransmitir el tráfico de la conexión WebRTC en caso de que falle la conexión directa entre ambos extremos. TURN se encarga de resolver estas incompatibilidades y permite que cualquier dispositivo pueda establecer una conexión WebRTC. Este servicio implica un mayor consumo de ancho de banda y un aumento de la lantencia, pero en algunas ocasiones es la única solución eficaz para garantizar conexiones fructuosas con cualquier dispositivo.
 %% AÑADIR CAPTURA DE ARQUITECTURA
 
 \subsection{Elección de oponente}
@@ -1165,15 +1167,15 @@ Debido a la complejidad de las subredes, ha sido necesaria la incorporación de 
 
 Para proporcionar al usuario la elección de un contrincante, se ha implementado una barra de búsqueda de usuarios que permite al anfitrión, escribir el nombre del usuario que desea invitar.
 
-Una vez el usuario realiza la selección del contrincante, la consulta es enviada al servidor web por medio del \emph{WebSocket} de la sala de juego, y, este la reenviará al usuario invitado en caso de que se encuentre en línea y dentro del ejercicio.
+Una vez el usuario realiza la selección del contrincante, la consulta es enviada al servidor web por medio del \emph{WebSocket} de la sala de juego, y, este la reenviará al usuario invitado en caso de que se encuentre en línea y dentro del ejercicio. Por otra parte, en el caso de que el usuario al que se invita no esté disponible, ya sea porque no existe, o porque no se encuentra disponible dentro del ejercicio, el servidor web, responderá al navegador anfitrión con un mensaje de error, y se mostrará un cuadro de diálogo en la interfaz avisando al usuario.
 
-En el caso de que el invitado acepte la solicitud, el anfitrión comenzará con la negociación \emph{WebRTC}.
+En el caso de que el invitado acepte la solicitud, el anfitrión comenzará con la negociación \emph{WebRTC}. 
 
 \subsubsection{Barra de búsqueda}
 
-Para poder realizar la conexión entre dos usuarios, el anfitrión debe escribir el login del usuario que quiere invitar en la barra de búsqueda, de manera que se pueda hacer la consulta al servidor web. Se ha desarrollado código \emph{JavaScript} que se encarga de esperar a que se inserte un login y se pulse el botón "\emph{Enter}", y además, que se encargue de enviar la inserción al servidor web vía el \emph{WebSocket} establecido para la sala del juego.
+Para poder realizar la conexión entre dos usuarios, el anfitrión debe escribir el login del usuario que quiere invitar en la barra de búsqueda de usuario, de manera que se pueda hacer la consulta al servidor web. Se ha desarrollado código \emph{JavaScript} que se encarga de esperar a que se inserte el nombre de usuario y se pulse el botón "\emph{Enter}", y además, que se encargue de enviar la inserción al servidor web vía el \emph{WebSocket} establecido para la sala del juego.
 
-Una vez el servidor recibe este mensaje por el \emph{WebSocket}, este se encarga de extraer el login del usuario, y mediante el uso de un paquete instalado en el servidor \emph{Django}, llamado \emph{"Django-online-users"}, obtiene los usuarios que hay conectados actualmente, y comprueba si el usuario recibido se encuentra en línea. En el caso en que la búsqueda no sea satisfactoria, se envía un mensaje al usuario anfitrión indicando la imposibilidad de realizar la invitación. Si la búsqueda se realiza con éxito, se envía la invitación a dicho usuario por \emph{WebSocket}.
+Una vez el servidor recibe este mensaje por el \emph{WebSocket}, este se encarga de extraer el nombre del usuario, y mediante el uso de un paquete instalado en el servidor \emph{Django}, llamado \emph{"Django-online-users"}, obtiene los usuarios que hay conectados actualmente, y comprueba si el usuario recibido se encuentra en línea y dentro del juego Follow Line esperando la invitación. En el caso en que la búsqueda no sea satisfactoria, se envía un mensaje al usuario anfitrión indicando la imposibilidad de realizar la invitación. Si la búsqueda se realiza con éxito, se envía la invitación a dicho usuario por \emph{WebSocket}.
 
 En el lado del usuario receptor, el navegador recibirá la petición y la mostrará al usuario por medio de un menú de diálogo que le da la posibilidad de aceptar o rechazar la invitación.
 %% AÑADIR CAPTURA DE LA INVITACIÓN
@@ -1189,19 +1191,26 @@ Una vez aceptada, se iniciará la conexión \emph{WebRTC}. Y el usuario anfitri�
 
 \subsubsection{Sección de chat}
 
-Como se ha mencionado antes, la plantilla del juego contiene un chat por el que ambos contrincantes pueden comunicarse. Este chat se ha implementando usando una conexión \emph{WebRTC} y \emph{DataChannels} entre los navegadores, de manera que se reduce la carga de tráfico que atraviesa el servidor web, pues estos mensajes son enviados por medio del canal de datos \emph{peer-to-peer}.
+Como se ha mencionado antes, la plantilla del juego contiene un chat que permite la comunicación entre ambos usuarios. Este chat se ha implementando usando una conexión \emph{WebRTC} y \emph{DataChannels} entre los navegadores, de manera que se reduce la carga de tráfico que atraviesa el servidor web, pues estos mensajes son enviados por medio del canal de datos \emph{peer-to-peer}.
 
-Este sistema se ha desarrollado en la parte del navegador, mediante un \emph{script} en \emph{JavaScript} que contiene toda la configuración para realizar la creación de los \emph{DataChannels}. Además, se ha implementado una función de \emph{callback} (\emph{onDataChannelMessage}) que es ejecutada cuando se recibe un mensaje por el \emph{DataChannel}, esta se encarga de añadir el mensaje al chat.
+Este sistema se ha desarrollado en el lado del cliente, mediante un \emph{script} en \emph{JavaScript} que contiene toda la configuración para realizar la creación de los \emph{DataChannels}. Además, se ha implementado una función de \emph{callback} (\emph{onDataChannelMessage}) que es ejecutada cuando se recibe un mensaje por el \emph{DataChannel}, esta se encarga de añadir el mensaje al chat.
 
 \subsubsection{Transmisión de datos entre plantillas}
 
-Este \emph{DataChannel} es aprovechado para el paso de más información además de para el envío de los mensajes del chat. De manera que, una vez el anfitrión conecta el \emph{RADI} en su máquina local, por este data channel son enviados todos los datos relativos a la interfaz del usuario, es decir, la vista de pájaro, y el evaluador automático hacia el otro extremo. Adicionalmente, cuando el usuario invitado presione el botón \emph{Play} o el botón de carga de su código, estas órdenes serán enviadas al anfitrión por medio del canal de datos, que será quien las complete.
+Este \emph{DataChannel} es aprovechado para el paso de más información además de para el envío de los mensajes del chat. De manera que, una vez el anfitrión conecta el \emph{RADI} en su máquina local, por este \emph{DataChannel} son enviados todos los datos recibidos desde el contenedor docker RADI para que el navegador del usuario invitado los muestre en su interfaz, es decir, la vista de pájaro, y el evaluador automático. Adicionalmente, cuando el usuario invitado presione el botón \emph{Play} o el botón de carga de su código, estas órdenes serán enviadas al anfitrión por medio del canal de datos, que será quien las complete.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/transmision_datos.png}
+    \caption{Diagrama de transmisión de datos entre plantillas.}
+    \label{figura:diagrama_conexion_webrtc}
+\end{figure}
 
 \subsection{Carga flexible de código}
 
 Para proporcionar la libertad de la carga del código, se ha desarrollado un módulo \emph{software} en \emph{JavaScript} que se encarga de soportar la carga flexible del código.
 
-De esta manera, cada usuario debe cargar su código antes de iniciar la simulación. Con respecto al usuario invitado, se ha desarrollado un sistema que se encarga de avisar al usuario host de que este quiere cargar su código, mediante el \emph{DataChannel} establecido entre ambos. Una vez el host recibe este mensaje, se encarga de pedir el código al \emph{WebServer} y cargarlo en el coche correspondiente. En el lado de la carga de código del host, simplemente, al pulsar el botón de carga de código, se pedirá el código al servidor web y se cargará en el robot correspondiente.
+De esta manera, cada usuario debe cargar su código antes de iniciar la simulación. Con respecto al usuario invitado, se ha desarrollado un sistema que se encarga de avisar al usuario \emph{anfitrión} de que este quiere cargar su código, mediante el \emph{DataChannel} establecido entre ambos. Una vez el \emph{anfitrión} recibe este mensaje, se encarga de pedir el código al \emph{WebServer} y cargarlo en el coche correspondiente. En el lado de la carga de código del \emph{anfitrión}, simplemente, al pulsar el botón de carga de código, se pedirá el código al servidor web y se cargará en el robot correspondiente.
 
 Una vez se carga un código, el botón de carga correspondiente se colorea de verde, de manera que para el usuario es más intuitivo a la hora de comprobar el estado de su código.
 
@@ -1209,7 +1218,7 @@ Ambos navegadores sincronizan sus interfaces por medio del canal de datos establ
 
 \subsection{Ejecución compartida}
 
-Una vez se ha establecido la conexión \emph{WebRTC} entre los usuarios, es necesario realizar la carga de código en los robotos, así como mostrar el estado de carga de los códigos y proporcionar una serie de controles de la ejecución de la sumilación a los usuarios.
+Una vez se ha establecido la conexión \emph{WebRTC} entre los usuarios, es necesario realizar la carga de código en los robots, así como mostrar el estado de carga de los códigos y proporcionar una serie de controles de la ejecución de la sumilación a los usuarios.
 
 \subsubsection{Botones de control de la ejecución}
 
