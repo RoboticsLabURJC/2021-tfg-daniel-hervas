@@ -1360,7 +1360,24 @@ Además, en ambos casos, en el lado del navegador, ha sido necesaria la implemen
 
 \subsection{Validación experimental}
 
-La ejecución del ejercicio síncrono es similar a la de los ejercicios asíncronos. Para iniciar la conexión entre dos usuarios, uno de ellos ha de invitar al otro extremo. En el momento en que el extremo invitado acepta la invitación, se configura su interfaz y se establece la conexión WebRTC entre ambos extremos.
+La ejecución del ejercicio síncrono es similar a la de los ejercicios asíncronos. Para iniciar la conexión entre dos usuarios, uno de ellos ha de invitar al otro extremo. En el momento en que el extremo invitado acepta la invitación, se configura su interfaz y se establece la conexión WebRTC de datos entre ambos extremos. 
+
+% CAPTURAS DE LAS DOS INTERFACES
+
+A continuación, el usuario anfitrión, ha de lanzar la simulación pulsando el botón \emph{Launch} situado en la esquina superior izquierda de la pantalla, de manera que el RADI quede completamente preparado para la ejecución del ejercicio. Una vez se ha lanzado la simulación, el usuario anfitrión debe abrir el simulador Gazebo mediante el botón situado en la barra de control del ejercicio, de esta manera, se habilitará el botón para iniciar el flujo de vídeo (botón \emph{Start stream}). 
+
+% CAPTURA DE LAS PLANTILLAS CON EL BOTÓN HABILITADO
+
+Una vez pulsado este botón, se inicia la conexión WebRTC correspondiente con el flujo de vídeo (conexión llamada \emph{stream} en la figura \ref{figura:diagrama_conexion_webrtc}). El resultado de una conexión fructuosa habilitará un elemento de vídeo en la plantilla del usuario invitado, donde será mostrada la ventana del simulador \emph{Gazebo} que está siendo ejecutado en la máquina del anfitrión.
+
+% CAPTURA DE AMBAS PLANTILLAS CON EL STREAM FUNCIONANDO
+
+Finalmente, uno de los dos usuarios podrá iniciar la simulación, mediante el botón \emph{Play} situado en su barra de control del ejercicio.
+
+Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha elaborado un vídeo de manera que se tenga un ejemplo más ilustrativo \textbf{\url{https://www.youtube.com/watch?v=LOp2o6nixPg}}.
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
