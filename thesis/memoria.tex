@@ -1364,6 +1364,7 @@ La ejecución del ejercicio síncrono es similar a la de los ejercicios asíncro
 
 % CAPTURAS DE LAS DOS INTERFACES
 
+
 A continuación, el usuario anfitrión, ha de lanzar la simulación pulsando el botón \emph{Launch} situado en la esquina superior izquierda de la pantalla, de manera que el RADI quede completamente preparado para la ejecución del ejercicio. Una vez se ha lanzado la simulación, el usuario anfitrión debe abrir el simulador Gazebo mediante el botón situado en la barra de control del ejercicio, de esta manera, se habilitará el botón para iniciar el flujo de vídeo (botón \emph{Start stream}). 
 
 % CAPTURA DE LAS PLANTILLAS CON EL BOTÓN HABILITADO
@@ -1371,6 +1372,20 @@ A continuación, el usuario anfitrión, ha de lanzar la simulación pulsando el 
 Una vez pulsado este botón, se inicia la conexión WebRTC correspondiente con el flujo de vídeo (conexión llamada \emph{stream} en la figura \ref{figura:diagrama_conexion_webrtc}). El resultado de una conexión fructuosa habilitará un elemento de vídeo en la plantilla del usuario invitado, donde será mostrada la ventana del simulador \emph{Gazebo} que está siendo ejecutado en la máquina del anfitrión.
 
 % CAPTURA DE AMBAS PLANTILLAS CON EL STREAM FUNCIONANDO
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{img/host_gazebo.png}
+    \caption{Follow Line Game en usuario anfitrión.}
+    \label{figura:robot_davinci}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.9\textwidth}
+    \includegraphics[width=\textwidth]{img/inv_gazebo.png}
+    \caption{Follow Line Game en usuario invitado.}
+    \label{figura:robot_atrias}
+  \end{minipage}
+\end{figure}
 
 Finalmente, uno de los dos usuarios podrá iniciar la simulación, mediante el botón \emph{Play} situado en su barra de control del ejercicio.
 
