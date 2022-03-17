@@ -163,7 +163,7 @@ Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 202X
 \pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
 \begin{flushright}
 \textit{Dedicado a \\
-mi familia / mi abuelo / mi abuela}
+mi familia}
 \end{flushright}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,9 +184,9 @@ Además, la pareja quizás no sea para siempre, pero tu madre sí.
 \markboth{RESUMEN}{RESUMEN} % encabezado
 
 
-Con el paso del tiempo, la robótica está más ligada a la vida diaria, cada vez podemos encontrar más productos robóticos en el día a día, por ejemplo, aspiradoras, coches que pueden conducir autónomamente, brazos robóticos en industrias, etc. Es este auge el que genera la necesidad de más profesionales en este ámbito. Con el objetivo de formar más profesionales, surgen plataformas dedicadas a la enseñanza de la robótica, un ejemplo de estas es \emph{Unibotics}. Esta plataforma tiene el objetivo de enseñar algoritmos robóticos mediante el ejercicio de juegos y retos de diferentes tipos. El entorno que nos proporciona se trata de una serie de ejercicios de diferentes tipos (coches, drones, filtrado de imágenes, etc) junto con los que se proporciona una documentación para facilitar la resolución de los mismos, el lenguaje empleado para la resolución de los mismos es \emph{Python}.
+Con el paso del tiempo, la robótica está más ligada a la vida diaria, cada vez podemos encontrar más productos robóticos en el día a día, por ejemplo, aspiradoras, coches que pueden conducir autónomamente, brazos robóticos en industrias, etc. Es este auge el que genera la necesidad de más profesionales en este ámbito. Con el objetivo de formar más profesionales, surgen plataformas dedicadas a la enseñanza de la robótica, un ejemplo de estas es \emph{Unibotics}. Esta plataforma tiene el objetivo de enseñar algoritmos robóticos mediante el ejercicio de juegos y retos de diferentes tipos. El entorno que nos proporciona se trata de una serie de ejercicios de diferentes tipos (coches, drones, filtrado de imágenes, etc) junto con los que se proporciona una documentación para facilitar la resolución de los mismos. El lenguaje de programación empleado para la resolución de los mismos es \emph{Python}.
 
-En este \emph{Trabajo de Fin de Grado}, se han querido ampliar los contenidos de la plataforma introduciento una serie de ejercicios más orientados al ámbito competitivo en local y multiusuario, en los que el usuario tiene la posibilidad de competir contra un robot proporcionado por la plataforma o, por otro lado, contra un amigo de manera síncrona. Primeramente, se han desarrollado una serie de ejercicios asíncronos que proporcionan al usuario las competiciones de manera local contra robots de distintas dificultades proporcionados por la plataforma. Por otro lado, gracias a la tecnología \emph{WebRTC} se ha desarrollado un ejercicio que permite al usuario hacer competiciones síncronas contra un amigo al que puede invitar por medio de una barra de búsqueda de usuarios. En este  ejercicio síncrono, el usuario invitado no necesitará ejecutar nada, pues únicamente lo ejecuta el \emph{anfitrión}, esto es posible, gracias a la conexión \emph{WebRTC} entre los dos \emph{peers}.
+En este \emph{Trabajo de Fin de Grado}, se han ampliado los contenidos de la plataforma introduciento una serie de ejercicios más orientados al ámbito competitivo en local y multiusuario, en los que el usuario tiene la posibilidad de competir contra un robot proporcionado por la plataforma o, por otro lado, contra un amigo de manera síncrona. Primeramente, se han desarrollado una serie de ejercicios asíncronos que proporcionan al usuario las competiciones de manera local contra robots de distintas dificultades proporcionados por la plataforma. Por otro lado, gracias a la tecnología \emph{WebRTC} se ha desarrollado un ejercicio que permite al usuario hacer competiciones síncronas contra un usuario al que puede invitar por medio de una barra de búsqueda de usuarios. En este ejercicio síncrono, el usuario invitado no necesitará ejecutar nada, pues únicamente lo ejecuta el \emph{anfitrión}, esto es posible, gracias a la conexión \emph{WebRTC} entre los dos \emph{peers}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Resumen en inglés
@@ -195,10 +195,9 @@ En este \emph{Trabajo de Fin de Grado}, se han querido ampliar los contenidos de
 %\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el índice
 \markboth{SUMMARY}{SUMMARY} % encabezado
 
-Here comes a translation of the ``Resumen'' into English. 
-Please, double check it for correct grammar and spelling.
-As it is the translation of the ``Resumen'', which is supposed to be written at the end, this as well should be filled out just before submitting.
+Over the time, the robotics has been more present on the diary life, every time we can find more robotics protucts in the day to day life, for example, vacuum cleaners, autonomous cars, robotics arms in the industries, etc. Its this boom wich makes the necessity of having more qualified people in this sector. With the necessity of forming more professionals, new platforms are born with the objective of teaching robotics, an example of this platforms can be \emph{Unibotics}. \emph{Unibotics} has the goal of teaching robotic algorithms by doing a series of practical exercises of several types (cars, drones, image filtering, etc) also a documentation is provided along with these exercises, for helping the student to understand the objective of these. The programming languaje used for resolving in these exercises its Python.
 
+In this Thesis, there has been added some content to the platform by introducing a series of exercises oriented to a competitive experience both locally and multiuser. In this exercises, the user has the possibility of challenging with another robot provided by the platform (asynchronous games), or, by the other way, challenging another user by establishing a synchronous connection between both peers. Thanks to the WebRTC technology it has been developed an exercise wich allows the user to make synchonous competitions with another peer wich can invite by typing his username in a user searchbar. In this synchronous exercise, the invited user wont need to execute anything on his computer. The one which runs the exercise will be the host user, who also, from his navigator, will share the interface to the invited user by using a  WebRTC connection.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1433,46 +1432,41 @@ Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha
 \section{Consecución de objetivos}
 \label{sec:consecucion-objetivos}
 
-Esta sección es la sección espejo de las dos primeras del capítulo de objetivos, donde se planteaba el objetivo general y se elaboraban los específicos.
+El objetivo propuesto para este Trabajo de Fin de Grado es la gamificación de la plataforma de \emph{Unibotics} mediante la incorporación de una serie de juegos donde se involucran dos robots en el escenario y deben competir entre ellos. El objetivo final ha sido completado con éxito.
 
-Es aquí donde hay que debatir qué se ha conseguido y qué no. 
-Cuando algo no se ha conseguido, se ha de justificar, en términos de qué problemas se han encontrado y qué medidas se han tomado para mitigar esos problemas.
+El objetivo final de este Trabajo de Fin de Grado se ha subdividido en dos objetivos bien diferenciados, estos son, los \emph{ejercicios asíncronos} y los \emph{ejercicios síncronos}, los cuales cada uno tiene sus peculiaridades.
 
-Y si has llegado hasta aquí, siempre es bueno pasarle el corrector ortográfico, que las erratas quedan fatal en la memoria final.
-Para eso, en Linux tenemos aspell, que se ejecuta de la siguiente manera desde la línea de \emph{shell}:
+El primer subobjetivo, los \emph{juegos asíncronos} ha sido alcanzado satisfactoriamente. Para lograr este subobjetivo, ha sido necesaria la implementación de una serie de código. En el lado del navegador se han desarrolado plantillas para los ejercicios, evaluadores automáticos y manejadores para los selectores de dificultad, y para el modo de teleoperación y el selector de circuito proporcionados en el juego Follow Line asíncrono. Además, también ha sido necesario implementar código del lado del servidor, se han añadido una serie de usuarios con el prefijo \emph{botX} que contienen el código de las respectivas dificultades. Adicionalmente, se ha creado una nueva ruta en el servidor web que se encarga de devolver el código de los respectivos bots en función de la dificultad seleccionada y el juego en que se encuentra el usuario. Finalmente, en el contenedor RADI, fara el juego Follow Line, se ha desarrollado código que permite lanzar el ejercicio con el escenario Gazebo seleccionado en el selector de circuitos.
 
-\begin{verbatim}
-  aspell --lang=es_ES -c memoria.tex
-\end{verbatim}
+El segundo subobjetivo, el \emph{juego síncrono} ha sido alcanzado de manera exitosa. Para logar este subobjetivo, ha sido necesario implementar código en el servidor web y en el navegador. Gracias a la tecnología WebRTC ha sido posible realizar competiciones síncronas entre usuarios. Para lograr este objetivo, en el lado del navegador, ha sido necesaria la implementación de la plantilla web con sus respectivos manejadores. Adicionalmente, ha sido necesario elaborar una serie de scripts que se encargan de establecer las conexiones WebRTC entre los navegadores. En el lado del servidor, se ha requerido la implementación de un sistema de comprobación de invitaciones y un sistema de salas de juego empleando \emph{Django-Channels} y \emph{Django-online-users}. Además, también ha sido necesario implementar 
 
 \section{Aplicación de lo aprendido}
 \label{sec:aplicacion}
 
-Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado en el TFG/TFM. Una buena idea es poner las asignaturas más relacionadas y comentar en un párrafo los conocimientos y habilidades puestos en práctica.
-
-\begin{enumerate}
-  \item a
-  \item b
-\end{enumerate}
+En este Trabajo de Fin de Grado se han aplicado una serie conocimientos aprendidos durante la carrera. Estos conocimientos son lenguajes como \emph{JavaScript}, \emph{Python}, tecnologías \emph{Docker}, programación funcional, y, lo más importante, la capacidad de comprender y enfrentarse a nuevos retos.
 
 
 \section{Lecciones aprendidas}
 \label{sec:lecciones_aprendidas}
 
-Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
+En este Trabajo de Fin de Grado se han aprendido una serie de tecnologías que se recogen a continuación:
 
 \begin{enumerate}
-  \item Aquí viene uno.
-  \item Aquí viene otro.
+  \item \emph{HTML} y \emph{CSS}
+  \item \emph{JavaScript}
+  \item \emph{Python}
+  \item \emph{Django}
+  \item \emph{Django-channels}
+  \item \emph{Docker}
 \end{enumerate}
 
 
-\section{Trabajos futuros}
-\label{sec:trabajos_futuros}
+%\section{Trabajos futuros}
+%\label{sec:trabajos_futuros}
 
-Ningún proyecto ni software se termina, así que aquí vienen ideas y funcionalidades que estaría bien tener implementadas en el futuro.
+%Ningún proyecto ni software se termina, así que aquí vienen ideas y funcionalidades que estaría bien tener implementadas en el futuro.
 
-Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
+%Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1504,18 +1498,24 @@ Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
 	\url{https://developer.mozilla.org/es/docs/Web/JavaScript}	
 	
 	\bibitem{django} \textsc{Documentacion oficial de Django}
-	\url{https://docs.djangoproject.com}	
+	\url{https://docs.djangoproject.com}
+	
+	\bibitem{django-channels} \textsc{Documentacion oficial de Django-Channels}
+	\url{https://channels.readthedocs.io/en/stable/}
+	
+	\bibitem{docker} \textsc{Documentacion oficial de Docker}
+	\url{https://docs.docker.com/}
 	
 	\bibitem{webrtc} \textsc{Documentación oficial de WebRTC.}
 	\url{https://webrtc.org/}
 	
-	
-	\bibitem{TFM} \textsc{Pablo Moreno. Torneos de programación de robots
+	\bibitem{TFM-pablo} \textsc{Pablo Moreno. Torneos de programación de robots
 en una plataforma online. (2020)}
 	\url{https://gsyc.urjc.es/jmplaza/students/tfm-kibotics-torneos-pablo_moreno-2020.pdf}
 	
-	\bibitem{} \textsc{}
-	\url{}
+	\bibitem{TFG-alvaro} \textsc{Álvaro Paniagua. Simulador de robots con tecnologías web vr. (2018)}
+	\url{https://github.com/RoboticsLabURJC/2018-tfg-alvaro_paniagua}
+	
 \end{thebibliography}
 
 \end{document}
