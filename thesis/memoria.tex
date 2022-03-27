@@ -1694,11 +1694,13 @@ Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha
 \section{Conclusiones finales}
 \label{sec:consecucion-objetivos}
 
-El objetivo propuesto para este Trabajo de Fin de Grado es la gamificación de la plataforma de \emph{Unibotics} mediante la incorporación de una serie de juegos donde se involucran dos robots en el escenario y deben competir entre ellos. El objetivo final de este Trabajo de Fin de Grado se ha subdividido en dos objetivos bien diferenciados, estos son, los \emph{ejercicios asíncronos} y los \emph{ejercicios síncronos}, los cuales cada uno tiene sus peculiaridades.
+El objetivo propuesto para este Trabajo de Fin de Grado era la gamificación de la plataforma de \emph{Unibotics} mediante la incorporación de una serie de juegos donde se involucran dos robots en el escenario cada uno con su propio cerebro y deben competir entre ellos. Este objetivo general se ha subdividido en dos subobjetivos bien diferenciados: los \emph{ejercicios asíncronos} y los \emph{ejercicios síncronos}, los cuales cada uno tiene sus peculiaridades.
 
-El primer subobjetivo, en el que se encuentran los \emph{juegos asíncronos} ha sido alcanzado satisfactoriamente. En el lado del navegador se han desarrolado plantillas para los ejercicios, evaluadores automáticos y manejadores para los selectores de dificultad, y para el registro de las teclas de dirección del modo de teleoperación y el selector de circuito proporcionados en el juego Follow Line asíncrono. Además, también ha sido necesario implementar código del lado del servidor. Se han añadido una serie de usuarios con el prefijo \emph{botX} que contienen el código de las respectivas dificultades. Adicionalmente, se ha creado una nueva ruta en el servidor web que se encarga de devolver el código de los respectivos bots en función de la dificultad seleccionada y el juego en que se encuentra el usuario. Finalmente, p`ara el ejercicio Follow Line se ha diseñado, además de lo anterior, un código que permite lanzar el ejercicio con el escenario Gazebo seleccionado en el selector de circuitos.
+El primer subobjetivo, ha sido alcanzado satisfactoriamente. En el lado del navegador se han desarrollado plantillas web para los ejercicios, evaluadores automáticos y manejadores para los selectores de dificultad, y para el registro de las teclas de dirección del modo de teleoperación y el selector de circuito proporcionados en el juego Follow Line asíncrono. Además, también ha sido necesario implementar código del lado del servidor. Se han añadido una serie de usuarios con el prefijo \emph{botX} que contienen el código fuente de los cerebros de distintos niveles de dificultad. Adicionalmente, se ha creado un nuevo flujo en el servidor web que se encarga de devolver el código fuente de los respectivos bots en función de la dificultad seleccionada y el juego en que se encuentra el usuario. Finalmente, para el ejercicio Follow Line se ha diseñado, y programado el código que permite lanzar el ejercicio con el escenario Gazebo seleccionado en el selector de circuitos dentro de un conjunto de mundos posibles.
 
-El segundo subobjetivo, el \emph{juego síncrono} ha sido alcanzado de manera exitosa. Gracias a la tecnología WebRTC ha sido posible realizar competiciones síncronas entre usuarios. Para lograr este objetivo, en el lado del navegador, ha sido necesaria la implementación de la plantilla web con sus respectivos manejadores. Adicionalmente, ha sido necesario elaborar una serie de scripts que se encargan de establecer las conexiones WebRTC entre los navegadores. En el lado del servidor, se ha requerido la implementación de un sistema de comprobación de invitaciones y un sistema de salas de juego empleando \emph{Django-Channels} y \emph{Django-online-users}. Además, también ha sido necesario implementar un sistema de señalización en el servidor que se encarga de permitir la negociación de la conexión WebRTC por parte de los dos extremos.
+Dentro del primer subobetivo, se incluye también el juego del \emph{Gato-Ratón} con drones, alcanzado también de manera satisfactoria. Para el diseño de este juego, también ha sido necesario el diseño y la programación de plantillas web para el ejercicio. También, al igual que en el juego de \emph{Follow Line}, se hace uso de los \emph{bots}, a los que se les añade el código para las distintas dificultades de este juego. Dentro del RADI, ha sido necesario remodelar este ejercicio, con el objetivo de desvincular el cerebro del \emph{ratón} del controlador del \emph{gato}: Es decir, se han creado dos controladores diferentes, uno para el \emph{ratón} y otro para el \emph{gato}, en los que cada uno se encarga de comunicarse con su correspondiente dron, para cargar el cerebro. Como fruto de esta modificación en el RADI, ha sido necesaria la creación de dos \emph{WebSockets} más en el lado del navegador, que se encargan de comunicarse con el nuevo controlador para el \emph{ratón}.
+
+El segundo subobjetivo, el \emph{juego síncrono}, ha sido alcanzado de manera exitosa. Gracias a la tecnología WebRTC ha sido posible realizar competiciones síncronas entre usuarios. Para lograr este objetivo, en el lado del navegador ha sido necesaria la implementación de la plantilla web con sus respectivos manejadores. Adicionalmente, ha sido necesario elaborar una serie de scripts que se encargan de establecer las conexiones WebRTC entre los navegadores incluyendo una serie de escenarios de conectividad sencilla, con ambos participantes en la misma subred, como escenarios de conectividad complicada. Para estos últimos se ha preparato un servidor TURN que se encarga de resolver los problemas que generan las NAT. En el lado del servidor, se ha requerido la implementación de un sistema de comprobación de invitaciones y un sistema de salas de juego empleando \emph{Django-Channels} y \emph{Django-online-users}. Además, también ha sido necesario implementar un sistema de señalización en el servidor web que se encarga de permitir la negociación de la conexión WebRTC por parte de los dos extremos.
 
 %\section{Aplicación de lo aprendido}
 %\label{sec:aplicacion}
@@ -1707,37 +1709,27 @@ El segundo subobjetivo, el \emph{juego síncrono} ha sido alcanzado de manera ex
 \section{Competencias adquiridas}
 \label{sec:lecciones_aprendidas}
 
-En este Trabajo de Fin de Grado se han ampliado y adquirido conocimientos de una serie de tecnologías que se recogen a continuación:
+En este Trabajo de Fin de Grado se han ampliado y adquirido conocimientos de una serie de tecnologías que se recogen a continuación: \emph{HTML}, \emph{CSS}, \emph{JavaScript}, \emph{Python}, \emph{Django}, \emph{Django-channels}, \emph{Docker} y \emph{WebRTC}.
 
-\begin{enumerate}
-  \item \emph{HTML} y \emph{CSS}
-  \item \emph{JavaScript}
-  \item \emph{Python}
-  \item \emph{Django}
-  \item \emph{Django-channels}
-  \item \emph{Docker}
-  \item \emph{WebRTC}
-\end{enumerate}
-
-En este Trabajo de Fin de Grado se han aplicado una serie conocimientos aprendidos durante la carrera. Estos conocimientos son lenguajes como \emph{JavaScript}, \emph{Python}, tecnologías \emph{Docker}, programación funcional, y, lo más importante, la capacidad de comprender y enfrentarse a nuevos retos. Las asignaturas que han sido imprescendibles para la realización de este Trabajo de Fin de Grado son:
+Para realizar este Trabajo de Fin de Grado han sido necesarios una serie de conocimientos básicos en alguna tecnoloǵias. Por lo que las asignaturas que han sido imprescendibles para la realización de este TFG son:
 
 \begin{itemize}
-\item Fundamentos de la Programación, donde tuve un primer contacto en el mundo de la programación con el lenguaje "Pascal".
-\item Programación de Sistemas de Telecomunicación, en la cual se ampliaban los conocimientos básicos adquiridos en la asignatura de Fundamentos de la programación, con la elaboración de proyectos más complejos con el uso de punteros, en el lenguaje de programación "\nolinebreak Ada".
-\item Aplicaciones Telemáticas, en esta asignatura se aprendió el lenguaje JavaScript para desarrollar aplicaciones web.
-\item Arquitectura de Redes de Ordenadores, Sistemas Telemáticos y Ampliación de Sistemas Telematicos, en las cuales se adquirieron los conocimientos necesarios sobre el funcionamiento de las redes y cómo se comunican las máquinas entre sí por medio de datagramas siguiendo una serie de protocolos.
+\item \emph{Fundamentos de la Programación}, donde tuve un primer contacto en el mundo de la programación con el lenguaje Pascal.
+\item \emph{Programación de Sistemas de Telecomunicación}, en la cual se ampliaban los conocimientos básicos adquiridos en la asignatura de \emph{Fundamentos de la Programación}, con la elaboración de proyectos más complejos con el uso de punteros, en el lenguaje de programación Ada.
+\item \emph{Aplicaciones Telemáticas}, en esta asignatura se aprendió el lenguaje JavaScript para desarrollar aplicaciones web.
+\item \emph{Arquitectura de Redes de Ordenadores}, \emph{Sistemas Telemáticos} y \emph{Ampliación de Sistemas Telemáticos}, en las cuales se adquirieron los conocimientos necesarios sobre el funcionamiento de las redes y cómo se comunican las máquinas entre sí por medio de datagramas siguiendo una serie de protocolos.
 \end{itemize}
 
 
 \section{Trabajos futuros}
 \label{sec:trabajos_futuros}
 
-El trabajo desarrollado en este Trabajo de Fin de Grado a agregado una nueva funcionalidad en la plataforma consistente en la adición de juegos síncronos y asíncronos competitivos. Por otro lado, existen una serie de ideas que pueden ayudar a mejorar la experiencia en la plataforma, y que podría aumentar la atracción de los usuarios hacia esta. Algunas de estas posibles mejoras son:
+El trabajo desarrollado en este Trabajo de Fin de Grado ha agregado una nueva funcionalidad en la plataforma \emph{Unibotics} consistente en la adición de juegos síncronos y asíncronos competitivos. Por otro lado, existen una serie de ideas que pueden ayudar a mejorar la experiencia de usuario en la plataforma, y que podría aumentar la atracción de los nuevos usuarios hacia esta. Algunas de estas posibles mejoras son:
 
 \begin{itemize}
-\item \textbf{Desarrollo de un vídeo-chat}: En los juegos síncronos de manera que, además de comunicarse por el chat, los usuarios tengan la posibilidad de establecer un chat de vídeo mientras realizan la ejecución del ejercicio.
-\item \textbf{Torneos asíncronos}: Añadir la posibilidad a los usuarios de competir contra robots programados por otros usuarios (que decidan competir) de la plataforma. Con el fin de añadir una tabla de líderes del mes que muestre a los usuarios con más puntuación en el ranking.
-\item \textbf{Torneos síncronos compartidos}: Característica similar a la mencionada en el punto anterior pero en los juegos síncronos. De manera que se pueda hacer una competición en tiempo real en la que se vayan clasificando los usuarios hasta llegar a una final y haber un ganador. Así mismo, mientras se desarrolla un torneo, este sea retransmitido en alguna plataforma de contenido en streaming (YouTube, Twitch, etc).
+\item \textbf{Desarrollo de un vídeo-chat en los juegos síncronos}, de manera que, además de comunicarse por el chat, los usuarios tengan la posibilidad de establecer un chat de vídeo mientras realizan la ejecución del ejercicio.
+%\item \textbf{Torneos asíncronos}: Añadir la posibilidad a los usuarios de competir contra robots programados por otros usuarios (que decidan competir) de la plataforma. Con el fin de añadir una tabla de líderes del mes que muestre a los usuarios con más puntuación en el ranking.
+%\item \textbf{Torneos síncronos compartidos}: Característica similar a la mencionada en el punto anterior pero en los juegos síncronos. De manera que se pueda hacer una competición en tiempo real en la que se vayan clasificando los usuarios hasta llegar a una final y haber un ganador. Así mismo, mientras se desarrolla un torneo, este sea retransmitido en alguna plataforma de contenido en streaming (YouTube, Twitch, etc).
 \end{itemize}
 
 %Ningún proyecto ni software se termina, así que aquí vienen ideas y funcionalidades que estaría bien tener implementadas en el futuro.
