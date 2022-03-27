@@ -1448,21 +1448,39 @@ Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha
 \cleardoublepage
 \chapter{Juegos Compartidos Síncronos}
 
-En este capítulo se abardarán todos los detalles de los \emph{juegos síncronos}. En una primera parte hablando del diseño e implementación de las plantillas del usuario, para porsteriormente, dirigirnos a los aspectos más técnicos relacionados con las comunicaciones \emph{WebRTC} y el servidor web como servidor de señalización entre los usuarios.
+En \emph{Unibotics} se han desarrollado juegos asíncronos en los que se elige una de las dificultades proporcionadas por la plataforma. Con el desarrollo los \emph{ejercicios síncronos} se han querido orientar los juegos hacia un modo más directo y dinámico, de manera que el usuario pueda conectarse con otros usuarios y competir entre ellos poniendo en ejecución sus mejores códigos.
 
-\section{Objetivo}
-\label{sync_objective}
+En este capítulo se abordan todos los detalles de los \emph{juegos síncronos}. En una primera parte hablando del diseño e implementación de las plantillas del usuario, para posteriormente, dirigirnos a los aspectos más técnicos relacionados con las comunicaciones \emph{WebRTC} y el servidor web de \emph{Unibotics} como servidor de señalización entre los usuarios.
 
-En \emph{Unibotics}, se han desarrollado juegos asíncronos en los que se elige una de las dificultades proporcionadas por la plataforma. Con el desarrollo los \emph{ejercicios síncronos} se han querido orientar los juegos hacia un modo más competitivo, de manera que el usuario pueda conectarse con otros usuarios y realizar competiciones poniendo en ejecucción sus mejores códigos.
+Se ha desarrollado el juego del \emph{Sigue-Líneas} en esta modalidad síncrona.
+
+\section{Diseño de los juegos síncronos}
+\label{sync_design}
+
+Este juego síncrono se ha diseñado de manera que participarán dos usuarios en su ejecucción. Existen dos roles, el anfitrión y el invitado. 
+
+En función del rol, cada usuario tendrá una interfaz del ejercicio diferente, adaptada a sus funciones. El usuario anfitrión es el usuario que se encarga de la ejecución del ejercicio en su máquina local mediante el contenedor Docker (RADI), y se encarga de compartir el simulador Gazebo al usuario invitado via \emph{WebSockets} mediante un flujo multimedia. 
+
+La simulación también genera otros datos adicionales además de la visualización de Gazebo, estos son, los datos del evaluador automático y la vista de pájaro, que son compartidos via \emph{WebSockets} a traves de un canal de datos junto a los mensajes del chat. 
+
+Con el fin de finalizar la ejecución del ejercicio, se ha desarrollado una funcionalidad con la que el usuario puede poner fin a la conexión mediante un botón que hará que ambos navegadores se recarguen, quedando los dos usuarios listos para realizar otra conexión síncrona.
+
+Con respecto a la transmisión de los datos (stream, mensajes de chat, datos de la IU, botones Play/Reset pulsados por el invitado, botón reset pulsado por el anfitrión, finalización de la conexión por uno de los pares). Las conexiones entre los dos pares se realizan sin intermediarios en el caso de que exista una conexión sencilla entre ambos. En los casos en los que se dificulta la conexión, se emplea un servidor TURN que se encarga de retransmitir el tráfico que genera cada unos de los pares y enviarlo hacia el par opuesto. A continuación se incluye una imagen que ilustra el diseño del juego síncrono al completo:
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/diagrama_sincrono.png}
+    \caption{Diseño de juego síncrono.}
+\end{figure}
 
 \section{Follow Line Game Síncrono} 
 \label{sec:follow_line_game_sync}
 
 \subsection{Interfaz de usuario}
 
-El juego \emph{Follow Line Síncrono} parte de la plantilla básica que comparten todos los ejercicios. A esta plantilla se le han añadido una serie de extras, como son el chat de texto, la barra de búsqueda de usuarios y los botones de carga de código, del anfitrión y del invitado. Adicionalmente, se ha añadido un botón para ocultar el editor de código con el fin del que el usuario tenga únicamente la vista del chat de texto.
+El juego \emph{Follow Line Síncrono} parte de la plantilla básica que comparten todos los ejercicios. A esta plantilla se le han añadido una serie de extras, como el chat de texto, la barra de búsqueda de usuarios oponentes y los botones de carga de código, del anfitrión y del invitado. Adicionalmente, se ha añadido un botón para ocultar el editor de código con el fin del que el usuario tenga únicamente la vista del chat de texto.
 
-Con respecto a la interfaz del usuario invitado, esta interfaz es ajustada cuando el usuario acepta la invitación proveniente de un anfitrión. Este ajuste se realiza mediante el lenguaje \emph{JavaScript}, en el que se ha implementado un script que se encarga de ocultar los elementos de la interfaz que no toman lugar en el extremo del invitado.
+Con respecto a la interfaz del usuario invitado, esta interfaz se autoajusta cuando el usuario acepta la invitación proveniente de un anfitrión. Este ajuste se realiza mediante el lenguaje \emph{JavaScript}, en el que se ha implementado un script que se encarga de ocultar los elementos de la interfaz que no se quieren visualizar en el extremo del invitado.
 %% AÑADIR CAPTURA DE LA PLANTILLA
 \begin{figure}[H]
 	\centering
@@ -1473,27 +1491,27 @@ Con respecto a la interfaz del usuario invitado, esta interfaz es ajustada cuand
 
 \subsection{Sistema de salas de juego}
 
-Para desarrollar este ejercicio, ha sido necesario implementar \emph{software} tanto en el lado del cliente como en el lado del servidor. Pues los usuarios participantes deben usar el servidor web de \emph{Unibotics} como servidor de señalización para el protocolo \emph{WebRTC}. Una vez ambos extremos se conocen entre sí, se inicia el tráfico \emph{WebRTC}.
+Para desarrollar este ejercicio, ha sido necesario implementar \emph{software} tanto del lado del cliente como del lado del servidor. Los usuarios participantes deben usar el servidor web de \emph{Unibotics} como servidor de señalización para el protocolo \emph{WebRTC}. Una vez ambos extremos se conocen entre sí, se inicia el tráfico \emph{WebRTC} entre ellos.
 
-Una vez el usuario entra en el ejercicio, automáticamente el navegador se conecta a una ruta del servidor web por medio de \emph{WebSockets} generando una sala de juego. Esta ruta será el medio a través del cual se van a comunicar los extremos con el servidor de señalización.
+Una vez el usuario entra en el ejercicio, automáticamente el navegador se conecta a una ruta del servidor web por medio de \emph{WebSockets} generando una sala de juego. Esta ruta será el medio a través del cual se van a comunicar los dos extremos con el servidor de señalización.
 
-Debido a la complejidad de las subredes, ha sido necesaria la incorporación de un servidor \emph{TURN} (Transversal Using Relay NAT) que se encargue de hacer de retransmisor entre los dos extremos una vez se inicia la comunicación \emph{WebRTC}. En la mayoría de casos no es posible realizar una conexión \emph{WebRTC} directa entre los dos extremos (a menos que residan en una red local). Esto es debido a que \emph{WebRTC} no es capaz de atravesar un NAT (Network Address Translation). Por lo que este servidor TURN, se encarga de retransmitir el tráfico de la conexión WebRTC en caso de que falle la conexión directa entre ambos extremos. TURN se encarga de resolver estas incompatibilidades y permite que cualquier dispositivo pueda establecer una conexión WebRTC. Este servicio implica un mayor consumo de ancho de banda y un aumento de la lantencia, pero en algunas ocasiones es la única solución eficaz para garantizar conexiones fructuosas con cualquier dispositivo.
+Debido a la complejidad de las subredes, ha sido necesaria la incorporación de un servidor \emph{TURN} (\emph{Transversal Using Relay NAT}) que se encargue de hacer de retransmisor entre los dos extremos si la conectividad es difícil, una vez se inicia la comunicación \emph{WebRTC}. En la mayoría de casos no es posible realizar una conexión \emph{WebRTC} directa entre los dos extremos (a menos que residan en una red local). Esto es debido a que \emph{WebRTC} no es capaz de atravesar un NAT (\emph{Network Address Translation}). Este servidor TURN se encarga de retransmitir el tráfico de la conexión WebRTC en caso de que falle la conexión directa entre ambos extremos. TURN se encarga de resolver estas incompatibilidades y permite que cualquier dispositivo pueda establecer una conexión WebRTC. Este servicio implica un mayor consumo de ancho de banda y un aumento de la latencia, pero en algunas ocasiones es la única solución eficaz para garantizar conexiones fructuosas con cualquier dispositivo.
 %% AÑADIR CAPTURA DE ARQUITECTURA
 
 \subsection{Elección de oponente}
 \label{sec:follow_line_game_sync_oponente_chat}
 
-Para proporcionar al usuario la elección de un contrincante, se ha implementado una barra de búsqueda de usuarios que permite al anfitrión, escribir el nombre del usuario que desea invitar.
+Para proporcionar al usuario la elección de un contrincante, se ha implementado una barra de búsqueda de usuarios que permite al anfitrión escribir el nombre del usuario que desea invitar.
 
-Una vez el usuario realiza la selección del contrincante, la consulta es enviada al servidor web por medio del \emph{WebSocket} de la sala de juego, y, este la reenviará al usuario invitado en caso de que se encuentre en línea y dentro del ejercicio. Por otra parte, en el caso de que el usuario al que se invita no esté disponible, ya sea porque no existe, o porque no se encuentra disponible dentro del ejercicio, el servidor web, responderá al navegador anfitrión con un mensaje de error, y se mostrará un cuadro de diálogo en la interfaz avisando al usuario.
+Una vez el usuario realiza la selección del contrincante, la consulta es enviada al servidor web por medio del \emph{WebSocket} de la sala de juego, y este la reenviará al usuario invitado en caso de que se encuentre en línea y dentro del mismo ejercicio. Por otra parte, en el caso de que el usuario al que se invita no esté disponible, ya sea porque no existe, o porque no se encuentra disponible dentro del mismo ejercicio, el servidor web, responderá al navegador anfitrión con un mensaje de error, y se mostrará un cuadro de diálogo en la interfaz avisándole.
 
 En el caso de que el invitado acepte la solicitud, el anfitrión comenzará con la negociación \emph{WebRTC}. 
 
 \subsubsection{Barra de búsqueda}
 
-Para poder realizar la conexión entre dos usuarios, el anfitrión debe escribir el login del usuario que quiere invitar en la barra de búsqueda de usuario, de manera que se pueda hacer la consulta al servidor web. Se ha desarrollado código \emph{JavaScript} que se encarga de esperar a que se inserte el nombre de usuario y se pulse el botón "\emph{Enter}", y además, que se encargue de enviar la inserción al servidor web vía el \emph{WebSocket} establecido para la sala del juego.
+Para realizar la conexión entre dos usuarios, el anfitrión debe escribir el login del usuario que quiere invitar en la barra de búsqueda de usuario, de manera que se pueda hacer la consulta al servidor web. Se ha desarrollado código \emph{JavaScript} que se encarga de esperar a que se inserte el nombre de usuario y se pulse el botón "\emph{Enter}", y además, que se encargue de enviar la inserción al servidor web vía el \emph{WebSocket} establecido para la sala del juego.
 
-Una vez el servidor recibe este mensaje por el \emph{WebSocket}, este se encarga de extraer el nombre del usuario, y mediante el uso de un paquete instalado en el servidor \emph{Django}, llamado \emph{"Django-online-users"}, obtiene los usuarios que hay conectados actualmente, y comprueba si el usuario recibido se encuentra en línea y dentro del juego Follow Line esperando la invitación. En el caso en que la búsqueda no sea satisfactoria, se envía un mensaje al usuario anfitrión indicando la imposibilidad de realizar la invitación. Si la búsqueda se realiza con éxito, se envía la invitación a dicho usuario por \emph{WebSocket}.
+Una vez el servidor recibe este mensaje por el \emph{WebSocket}, se encarga de extraer el nombre del usuario, y mediante el uso de un paquete instalado en el servidor \emph{Django}, llamado \emph{"Django-online-users"}, obtiene los usuarios que hay conectados actualmente, y comprueba si el usuario recibido se encuentra en línea y dentro del juego Follow Line esperando la invitación. En el caso en que la búsqueda no sea satisfactoria, se envía un mensaje al usuario anfitrión indicando la imposibilidad de realizar la invitación. Si la búsqueda se realiza con éxito, se envía la invitación a dicho usuario por \emph{WebSocket}.
 
 En el lado del usuario receptor, el navegador recibirá la petición y la mostrará al usuario por medio de un menú de diálogo que le da la posibilidad de aceptar o rechazar la invitación.
 %% AÑADIR CAPTURA DE LA INVITACIÓN
@@ -1509,13 +1527,13 @@ Una vez aceptada, se iniciará la conexión \emph{WebRTC}. Y el usuario anfitri�
 
 \subsubsection{Sección de chat}
 
-Como se ha mencionado antes, la plantilla del juego contiene un chat que permite la comunicación entre ambos usuarios. Este chat se ha implementando usando una conexión \emph{WebRTC} y \emph{DataChannels} entre los navegadores, de manera que se reduce la carga de tráfico que atraviesa el servidor web, pues estos mensajes son enviados por medio del canal de datos \emph{peer-to-peer}.
+Como se ha mencionado antes, la plantilla del juego contiene un chat que permite la comunicación vía texto entre ambos usuarios. Este chat se ha implementando usando una conexión \emph{WebRTC} y \emph{DataChannels} entre los navegadores, de manera que se reduce la carga de tráfico que atraviesa el servidor web, pues estos mensajes son enviados por medio del canal de datos \emph{peer-to-peer}.
 
-Este sistema se ha desarrollado en el lado del cliente, mediante un \emph{script} en \emph{JavaScript} que contiene toda la configuración para realizar la creación de los \emph{DataChannels}. Además, se ha implementado una función de \emph{callback} (\emph{onDataChannelMessage}) que es ejecutada cuando se recibe un mensaje por el \emph{DataChannel}, esta se encarga de añadir el mensaje al chat.
+Este sistema se ha desarrollado en el lado del cliente, mediante un \emph{script} en \emph{JavaScript} que contiene toda la configuración para realizar la creación de los \emph{DataChannels}. Además, se ha implementado una función de \emph{callback} (\emph{onDataChannelMessage}) que es ejecutada cuando se recibe un mensaje por el \emph{DataChannel}: esta se encarga de añadir el mensaje al chat.
 
 \subsubsection{Transmisión de datos entre plantillas}
 
-Este \emph{DataChannel} es aprovechado para el paso de más información además de para el envío de los mensajes del chat. De manera que, una vez el anfitrión conecta el \emph{RADI} en su máquina local, por este \emph{DataChannel} son enviados todos los datos recibidos desde el contenedor docker RADI para que el navegador del usuario invitado los muestre en su interfaz, es decir, la vista de pájaro, y el evaluador automático. Adicionalmente, cuando el usuario invitado presione el botón \emph{Play} o el botón de carga de su código, estas órdenes serán enviadas al anfitrión por medio del canal de datos, que será quien las complete.
+Este \emph{DataChannel} es aprovechado para el paso de más información además de para el envío de los mensajes del chat. De manera que una vez el anfitrión conecta el \emph{RADI} en su máquina local, por este \emph{DataChannel} son enviados todos los datos recibidos desde el contenedor docker RADI para que el navegador del usuario invitado también los muestre en su interfaz gráfica, es decir, la vista de pájaro, y el evaluador automático. Adicionalmente, cuando el usuario invitado presione el botón \emph{Play} o el botón de carga de su código, estas órdenes serán enviadas al anfitrión por medio del canal de datos, que será quien las complete.
 
 \begin{figure}[H]
 	\centering
@@ -1524,93 +1542,27 @@ Este \emph{DataChannel} es aprovechado para el paso de más información además
     \label{figura:diagrama_conexion_webrtc}
 \end{figure}
 
-\subsection{Carga flexible de código}
-
-Para proporcionar la libertad de la carga del código, se ha desarrollado un módulo \emph{software} en \emph{JavaScript} que se encarga de soportar la carga flexible del código.
-
-De esta manera, cada usuario debe cargar su código antes de iniciar la simulación. Con respecto al usuario invitado, se ha desarrollado un sistema que se encarga de avisar al usuario \emph{anfitrión} de que este quiere cargar su código, mediante el \emph{DataChannel} establecido entre ambos. Una vez el \emph{anfitrión} recibe este mensaje, se encarga de pedir el código al \emph{WebServer} y cargarlo en el coche correspondiente. En el lado de la carga de código del \emph{anfitrión}, simplemente, al pulsar el botón de carga de código, se pedirá el código al servidor web y se cargará en el robot correspondiente.
-
-Una vez se carga un código, el botón de carga correspondiente se colorea de verde, de manera que para el usuario es más intuitivo a la hora de comprobar el estado de su código.
-
-Ambos navegadores sincronizan sus interfaces por medio del canal de datos establecido entre los navegadores, enviando mensajes de control que una vez son interpretados, se aplican los cambios a la IU.
-
-\subsection{Ejecución compartida}
-
-Una vez se ha establecido la conexión \emph{WebRTC} entre los usuarios, es necesario realizar la carga de código en los robots, así como mostrar el estado de carga de los códigos y proporcionar una serie de controles de la ejecución de la sumilación a los usuarios.
-
-\subsubsection{Botones de control de la ejecución}
-
-En ambas interfaces, se encuentran serie de elementos de control de la simulación en común. Estos son:
-
-\begin{itemize}
-\item \textbf{Botón \emph{Play}:} ambos usuarios tendrán la posibilidad de iniciar la ejecución del ejercicio una vez se han cargado los códigos en los robots.
-
-\item \textbf{Botón \emph{Reset}:} botón que proporciona a ambos extremos realizar un reseteo del escenario.
-\end{itemize}
-
-%% AÑADIR IMAGEN DE LOS BOTONES
-  \begin{figure}[H]
-    \includegraphics[width=15cm]{img/host_sync_control_bar.png}
-    \caption{Barra de control del usuario anfitrión.}
-    \label{figura:host_sync_control_bar}
-  \end{figure}
-  \begin{figure}[H]
-    \includegraphics[width=15cm]{img/guest_sync_control_bar.png}
-    \caption{Barra de control del usuario invitado.}
-    \label{figura:guest_sync_control_bar}
-  \end{figure}
-
-
-Una vez cargados ambos códigos, se habilitará el botón \emph{Play} en ambos extremos. Desde el lado del usuario \emph{invitado}, se ha elaborado un sistema que se encarga de enviar las órdenes al usuario \emph{anfitrión} cuando algún botón es pulsado. Una vez el \emph{emisor} recibe una órden, este se encarga de procesarla y ejecutar las órdenes. De esta manera, ambos usuarios pueden controlar la ejecución de la simulación de manera individual.
-
-\subsubsection{Botones de carga de código}
-
-De manera que los usuarios puedan conocer el estado de carga de sus códigos, se ha implementado un sistema que guarda el estado de carga y realiza una serie de ajustes visuales. Los indicadores de carga son los siguientes:
-
-\begin{itemize}
-\item \textbf{Botón de carga de código del anfitrión:} se encuentra únicamente en la plantilla del usuario \emph{emisor}, este elemento es un botón que inicialmente tiene un color rojo, mostrando un estado que representa que no hay ningún código cargado, una vez se carga el código, este botón cambia a un color verde.
-\item \textbf{Botón de carga de código del invitado:} se encuentra ambas interfaces, este elemento es un botón que inicialmente tiene un color rojo, mostrando un estado que representa que no hay ningún código cargado, una vez se carga el código, este botón cambia a un color verde en ambos extremos. Este botón no puede ser pulsado en el lado del \emph{emisor}.
-\end{itemize}
-
-%% AÑADIR IMAGEN DE LOS BOTONES EN EL HOST Y EL GUEST
-\begin{figure}[H]
-  \centering
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth]{img/host_code_buttons.png}
-    \caption{Botones de control de código del anfitrión.}
-    \label{figura:robot_davinci}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth]{img/guest_code_buttons.png}
-    \caption{Botones de control de código del invitado.}
-    \label{figura:robot_atrias}
-  \end{minipage}
-\end{figure}
-
-El establecimiento de los estados se realiza mediante mensajes vía \emph{WebSockets} entre ambos usuarios. En la plantilla del \emph{anfitrión} es donde se almacenan todas las variables relativas al estado de los códigos, el extremo \emph{invitado} únicamente recibe órdenes vía \emph{WebSockets} para ajustar su interfaz.
-
 \subsection{Transmisión de vídeo y datos vía WebRTC}
 
-Una vez elegido el oponente, y aceptada la invitación, ha sido necesario el desarrollo de las fases descritas en la sección \ref{subsec:establecimiento_conexion} de manera que se pueda negociar una conexión entre los dos extremos.
+Una vez elegido el oponente y aceptada la invitación, ha sido necesario el desarrollo de las fases descritas en la sección \ref{subsec:establecimiento_conexion} de manera que se pueda negociar una conexión entre los dos extremos.
 
 Dependiendo del extremo de la conexión que sea el usuario (\emph{caller} o \emph{callee}), necesita realizar unos pasos u otros, por lo que para cada extremo se necesita un código diferente, este código se ha recogido en un fichero llamado \emph{"rtc\_stream.js"}.
 
-En primer lugar, se ha creado una función llamada \emph{startLocalStream}, que se encarga de realiazar la conexión desde el lado el anfritrión. Estos son los primeros 6 pasos detallados en la sección \ref{subsec:establecimiento_conexion}.
+En primer lugar, se ha creado una función llamada \emph{startLocalStream}, que se encarga de realizar la conexión desde el lado del anfitrión. Estos son los primeros 6 pasos detallados en la sección \ref{subsec:establecimiento_conexion}.
 
-Desde el lado del usuario invitado, se ejecutará una función llamada \emph{startRemoteStream}, que, una vez se reciba desde el servidor web la oferta enviada por el anfitrión mediante \emph{WebSockets}, se encargará de realizar los pasos 7-11 descritos en la sección \ref{subsec:establecimiento_conexion}.
+Desde el lado del usuario invitado, se ejecutará una función llamada \emph{startRemoteStream}, que una vez se reciba desde el servidor web la oferta enviada por el anfitrión mediante \emph{WebSockets}, se encargará de realizar los pasos 7-11 descritos en la sección \ref{subsec:establecimiento_conexion}.
 
-Finalmente, en el lado el anfitrión se recibirá desde el servidor web, la respuesta del otro extremo. Una vez recibida la respuesta, se almacena el \emph{SDP} \footnote{\url{https://es.wikipedia.org/wiki/Session_Description_Protocol}} (Session Decription Protocol) del extremo remoto. Una vez establecida la descripción del otro extremo, ambos \emph{peers} tienen la identificación del otro, por lo que puede iniciarse una comunicación \emph{WebRTC}.
+Finalmente, en el lado del anfitrión se recibirá desde el servidor web la respuesta del otro extremo. Una vez recibida la respuesta, se almacena el \emph{SDP} \footnote{\url{https://es.wikipedia.org/wiki/Session_Description_Protocol}} (\emph{Session Decription Protocol}) del extremo remoto. Una vez establecida la descripción del otro extremo, ambos pares tienen la identificación del otro, por lo que puede iniciarse una comunicación \emph{WebRTC}.
 
-Para realizar el envío de sus candidatos, cada \emph{peer} debe enviarlos al servidor de señalización (haciendo uso de la función \emph{onIceCandidate}, como respuesta al callback \emph{icecandidate}) para que este los reenvíe al otro \emph{peer}. En primer lugar, en el extremo remoto, se reciben los candidatos, este debe almacenar los candidatos (función \emph{remotePeer.setRemoteDescription(offer)} que establece como descripción remota los candidatos recibidos por parámetro en la función \emph{startRemoteStream}), y, responder con su oferta. Finalmente, en el extremo local, se reciben los candidatos del \emph{peer} remoto, y se establece el SDP del usuario invitado, una vez realizado este paso, ambos extremos tienen el SDP del extremo remoto, por lo que pueden iniciar la elección del mejor candidato ICE, y, posteriormente el establecimiento de la conexión \emph{WebRTC}.
+Para realizar el envío de sus candidatos, cada par debe enviarlos al servidor de señalización (haciendo uso de la función \emph{onIceCandidate}, como respuesta al callback \emph{icecandidate}) para que este los reenvíe al otro \emph{peer}. En primer lugar, en el extremo remoto se reciben los candidatos. Este debe almacenar los candidatos (la función \emph{remotePeer.setRemoteDescription(offer)} establece la descripción de los candidatos remotos recibidos por parámetro en la función \emph{startRemoteStream}), y responder con su oferta. Finalmente, en el extremo local, se reciben los candidatos del par remoto, y se establece el SDP del usuario invitado, una vez realizado este paso, ambos extremos tienen el SDP del extremo remoto, por lo que pueden iniciar la elección del mejor candidato ICE, y, posteriormente el establecimiento de la conexión \emph{WebRTC} entre ellos dos.
 
-De esta manera, gracias a este sistema, se permite que los usuarios tengan una conexión directa entre ellos, y únicamente un usuario ejecute el simulador, puesto que el elemento \emph{HTML} que contiene el vídeo del simulador es retransmitido al otro extremo haciendo uso de la conexión entre \emph{peers}.
+De esta manera, gracias a este sistema, se permite que los usuarios tengan una conexión directa entre ellos, y únicamente un usuario ejecute el simulador, puesto que el elemento \emph{HTML} que contiene el vídeo del simulador es retransmitido al otro extremo haciendo uso de la conexión entre pares.
 
-Para soportar el intercambio de cantidatos ICE, entre los extremos, se ha implementado en el servidor web \emph{Django} un sistema de señalización entre usuarios basado en salas usando \emph{Django-channels} \footnote{\url{https://channels.readthedocs.io/en/stable/}}. Ha sido necesario implementar un objeto (\emph{StreamConsumer}) en el fichero "\emph{consumers.py}" que contiene la funcionalidad necesaria para el soporte de grupos, y el reenvío de mensajes al extremo remoto.
+Para soportar el intercambio de cantidatos ICE entre los extremos, se ha implementado en el servidor web \emph{Django} un sistema de señalización entre usuarios basado en salas usando \emph{Django-channels} \footnote{\url{https://channels.readthedocs.io/en/stable/}}. Ha sido necesario implementar un objeto (\emph{StreamConsumer}) en el fichero \emph{consumers.py} que contiene la funcionalidad necesaria para el soporte de grupos, y el reenvío de mensajes al extremo remoto.
 
-De igual manera, en el lado del canal de datos, la implementación del establecimiento de los candidatos ICE es similar al sistema implementado para la tranmisión de vídeo, únicamente ha sido necesario cambiar la parte del \emph{streaming} por el establecimiento de un canal de datos, por el que viaja todo lo relativo a la IU y a mensajes del chat. En el lado del servidor, también ha sido necesario implementar un consumidor específico para la sala en el fichero "\emph{consumers.py}".
+De igual manera, en el lado del canal de datos, la implementación del establecimiento de los candidatos ICE es similar al sistema implementado para la tranmisión de vídeo, únicamente ha sido necesario cambiar la parte del \emph{streaming} por una parte con el establecimiento de un canal de datos, por el que viaja todo lo relativo a la IU y a los mensajes del chat entre los dos pares, y en conexiones complicadas atravesando un servidor TURN. En el lado del servidor, también ha sido necesario implementar un consumidor específico para la sala en el fichero "\emph{consumers.py}".
 
-Además, en ambos casos, en el lado del navegador, ha sido necesaria la implementación de un software para la gestión de los mensajes ente sockets, tanto para el \emph{WebSocket} de vídeo, como para el de datos. Este sistema se encarga de ejecutar la distintas fases del establecimiento de candidatos, como iniciar la conexión, añadir la descripción SDP remota una vez recibida, y señalizar al extremo remoto. Esta lógica se agrupa en dos ficheros, \emph{"ws\_stream.js"} para el vídeo y \emph{"ws\_room.js"} para el canal de datos.
+Además, en ambos casos, en el lado del navegador ha sido necesaria la implementación de un software para la gestión de los mensajes ente sockets, tanto para el \emph{WebSocket} de vídeo, como para el de datos. Este sistema se encarga de ejecutar la distintas fases del establecimiento de candidatos, como iniciar la conexión, añadir la descripción SDP remota una vez recibida, y señalizar al extremo remoto. Esta lógica se agrupa en dos ficheros, \emph{"ws\_stream.js"} para el vídeo y \emph{"ws\_room.js"} para el canal de datos.
 
 \begin{figure}[H]
 	\centering
@@ -1619,29 +1571,105 @@ Además, en ambos casos, en el lado del navegador, ha sido necesaria la implemen
     \label{figura:diagrama_conexion_webrtc}
 \end{figure}
 
-\subsection{Validación experimental}
+\subsection{Servidor TURN}
 
-La ejecución del ejercicio síncrono es similar a la de los ejercicios asíncronos. Para iniciar la conexión entre dos usuarios, uno de ellos ha de invitar al otro extremo. En el momento en que el extremo invitado acepta la invitación, se configura su interfaz y se establece la conexión WebRTC de datos entre ambos extremos. 
+En los casos en los que la conexión entre los pares no es posible porque la topología de la red no lo permite, se emplea un servidor de retransmisión TURN. El cometido de este servidor es retransmitir el tráfico de un par al otro y viceversa.
 
-% CAPTURAS DE LAS DOS INTERFACES
+Para el despliegue de este servidor, se ha empleado una herramienta de código abierto ya existente, llamada \emph{Coturn} \footnote{\url{https://github.com/coturn/coturn}}. Los desarrolladores de esta herramienta, proveen una imagen Docker para desplegar el servidor de una manera sencilla.
 
+Para desplegar este servidor se ha descargado la imagen Docker de \emph{Coturn} en una máquina de \emph{testing} de la universidad. A continuación, se ha utilizado el siguiente comando para el despliegue de contenedor: 
 
-A continuación, el usuario anfitrión, ha de lanzar la simulación pulsando el botón \emph{Launch} situado en la esquina superior izquierda de la pantalla, de manera que el RADI quede completamente preparado para la ejecución del ejercicio. Una vez se ha lanzado la simulación, el usuario anfitrión debe abrir el simulador Gazebo mediante el botón situado en la barra de control del ejercicio, de esta manera, se habilitará el botón para iniciar el flujo de vídeo (botón \emph{Start stream}). 
+\begin{lstlisting}
+sudo docker run -d --network=host coturn/coturn -n --log-file=stdout --listening-port=puerto --listening-ip=ip_maquina --relay-ip=ip_maquina --user=usuario:contrasenia --lt-cred-mech --verbose --realm=dominio_web
+\end{lstlisting}
 
-% CAPTURA DE LAS PLANTILLAS CON EL BOTÓN HABILITADO
+Mediante este comando se establece la ip del servidor, el puerto, los credenciales de acceso y el dominio (realm) para el que está sirviendo este servidor.
 
-Una vez pulsado este botón, se inicia la conexión WebRTC correspondiente con el flujo de vídeo (conexión llamada \emph{stream} en la figura \ref{figura:diagrama_conexion_webrtc}). El resultado de una conexión fructuosa habilitará un elemento de vídeo en la plantilla del usuario invitado, donde será mostrada la ventana del simulador \emph{Gazebo} que está siendo ejecutado en la máquina del anfitrión.
+\subsection{Carga flexible de código}
 
-% CAPTURA DE AMBAS PLANTILLAS CON EL STREAM FUNCIONANDO
+Para proporcionar la libertad de la carga del código fuente de uno y otro participante en sendos robots en el simulador, se ha desarrollado un módulo \emph{software} en \emph{JavaScript} que se encarga de soportar la carga flexible del código.
+
+De esta manera, el código fuente de cada usuario debe cargarse en su robot respectivo antes de iniciar la simulación. Con respecto al usuario invitado, se ha desarrollado un sistema que se encarga de avisar al usuario \emph{anfitrión} de que quiere cargar su código, mediante el \emph{DataChannel} establecido entre ambos. Una vez el \emph{anfitrión} recibe este mensaje, se encarga de pedir el código al \emph{WebServer} de \emph{Unibotics} y cargarlo en el coche correspondiente. En el lado de la carga de código del \emph{anfitrión}, simplemente, al pulsar el botón de carga de código, se pedirá el código al servidor web y se cargará en el robot correspondiente de modo similar a como se explicó en el capítulo anterior.
+
+Una vez se carga un código, el botón de carga correspondiente se colorea de verde, de manera que para el usuario es más intuitivo a la hora de comprobar la situación de su código fuente.
+
+Ambos navegadores sincronizan sus interfaces gráficas por medio del canal de datos establecido entre los navegadores enviando mensajes de control, que una vez son interpretados se aplican los cambios a la IU.
+
+\subsection{Ejecución compartida}
+
+Una vez se ha establecido la conexión \emph{WebRTC} entre los usuarios, y se ha cargado el código fuente en los robots, es necesario mostrar el estado de carga de los códigos y proporcionar una serie de controles de la ejecución de la simulación a los usuarios.
+
+\subsubsection{Botones de control de la ejecución}
+
+En ambas interfaces se encuentra una serie de elementos de control de la simulación en común. Estos son:
+
+\begin{itemize}
+\item \textbf{Botón \emph{Play}:} ambos usuarios tendrán la posibilidad de iniciar la ejecución del ejercicio una vez se han cargado los códigos en los robots.
+
+\item \textbf{Botón \emph{Reset}:} botón que permite a ambos extremos realizar un reseteo del escenario compartido.
+\end{itemize}
+
+%% AÑADIR IMAGEN DE LOS BOTONES
+  \begin{figure}[H]
+  	\centering
+    \includegraphics[width=10cm]{img/host_sync_control_bar.png}
+    \caption{Barra de control del usuario anfitrión.}
+    \label{figura:host_sync_control_bar}
+  \end{figure}
+  \begin{figure}[H]
+  	\centering
+    \includegraphics[width=10cm]{img/guest_sync_control_bar.png}
+    \caption{Barra de control del usuario invitado.}
+    \label{figura:guest_sync_control_bar}
+  \end{figure}
+
+Una vez cargados ambos códigos, se habilitará el botón \emph{Play} en ambos extremos. Desde el lado del usuario \emph{invitado}, se ha elaborado un sistema que se encarga de enviar las órdenes al usuario \emph{anfitrión} cuando algún botón es pulsado. Una vez el \emph{emisor} recibe una órden, este se encarga de procesarla y ejecutar las órdenes. De esta manera, ambos usuarios pueden controlar de manera individual la ejecución de la simulación compartida.
+
+\subsubsection{Botones de carga de código}
+
+Para que los usuarios puedan conocer el estado de carga de sus códigos, se ha implementado un sistema que guarda el estado de carga y realiza una serie de ajustes visuales. Los indicadores de carga son los siguientes:
+
+\begin{itemize}
+\item \textbf{Botón de carga de código del anfitrión:} se encuentra únicamente en la plantilla del usuario \emph{emisor}, este elemento es un botón que inicialmente tiene un color rojo, mostrando un estado que representa que no hay ningún código cargado. Una vez se carga el código, este botón cambia a un color verde.
+\item \textbf{Botón de carga de código del invitado:} se encuentra ambas interfaces, este elemento es un botón que inicialmente tiene un color rojo, mostrando un estado que representa que no hay ningún código cargado. Una vez se carga el código, este botón cambia a un color verde en ambos extremos. Este botón no puede ser pulsado en el lado del \emph{emisor}.
+\end{itemize}
+
+El establecimiento de los estados se realiza mediante mensajes vía \emph{WebSockets} entre ambos usuarios. En la plantilla del \emph{anfitrión} es donde se almacenan todas las variables relativas al estado de los códigos, el extremo \emph{invitado} únicamente recibe órdenes vía \emph{WebSockets} para actualizar su interfaz gráfica.
+
+%% AÑADIR IMAGEN DE LOS BOTONES EN EL HOST Y EL GUEST
 \begin{figure}[H]
   \centering
-  \begin{minipage}[b]{0.9\textwidth}
+  \begin{minipage}[b]{0.3\textwidth}
+  	\centering
+    \includegraphics[width=\textwidth]{img/host_code_buttons.png}
+    \caption{Botones de control de código del anfitrión.}
+    \label{figura:robot_davinci}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.3\textwidth}
+  	\centering
+    \includegraphics[width=\textwidth]{img/guest_code_buttons.png}
+    \caption{Botones de control de código del invitado.}
+    \label{figura:robot_atrias}
+  \end{minipage}
+\end{figure}
+
+
+\subsection{Validación experimental}
+La ejecución del ejercicio síncrono es similar a la de los ejercicios asíncronos. Para iniciar la conexión entre dos usuarios, uno de ellos ha de invitar al otro extremo. En el momento en que el extremo invitado acepta la invitación, se configura su interfaz y se establece la conexión WebRTC de datos entre ambos extremos. 
+
+A continuación, el usuario anfitrión ha de lanzar la simulación pulsando el botón \emph{Launch} situado en la esquina superior izquierda de la pantalla, de manera que el RADI quede completamente preparado para la ejecución del ejercicio. Una vez se ha lanzado la simulación, el usuario anfitrión debe abrir el simulador Gazebo mediante el botón situado en la barra de control del ejercicio, de esta manera se habilitará el botón para iniciar el flujo de vídeo (botón \emph{Start stream}). 
+
+Una vez pulsado este botón, se inicia la conexión WebRTC correspondiente con el flujo de vídeo (conexión llamada \emph{stream} en la Figura \ref{figura:diagrama_conexion_webrtc}). El resultado de una conexión fructuosa habilitará un elemento de vídeo en la plantilla del usuario invitado, donde será mostrada la ventana del simulador \emph{Gazebo} que está siendo ejecutado en la máquina del anfitrión.
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{img/host_gazebo.png}
     \caption{Follow Line Game en usuario anfitrión.}
     \label{figura:robot_davinci}
   \end{minipage}
   \hfill
-  \begin{minipage}[b]{0.9\textwidth}
+  \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{img/inv_gazebo.png}
     \caption{Follow Line Game en usuario invitado.}
     \label{figura:robot_atrias}
@@ -1650,7 +1678,7 @@ Una vez pulsado este botón, se inicia la conexión WebRTC correspondiente con e
 
 Finalmente, uno de los dos usuarios podrá iniciar la simulación, mediante el botón \emph{Play} situado en su barra de control del ejercicio.
 
-Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha elaborado un vídeo de manera que se tenga un ejemplo más ilustrativo \textbf{\url{https://youtu.be/TC1fUieU1wI}}.
+Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha elaborado un vídeo de manera que se tenga un ejemplo ilustrativo \textbf{\url{https://youtu.be/TC1fUieU1wI}}.
 
 
 
