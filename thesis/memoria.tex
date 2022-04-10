@@ -798,59 +798,59 @@ La arquitectura de la plataforma es muy similar a la de RoboticsAcademy, está f
 \cleardoublepage
 \chapter{Juegos Asíncronos}
 
-En este capítulo se expondrán los \emph{juegos asícronos} desarrollados para la plataforma de \textit{Unibotics}. Se han desarrollado un total de dos juegos asíncronos, de los que se hablará desde el diseño de las plantillas de la interfaz de usuario, hasta la comunicación con el servidor y el contenedor docker donde es ejecutado el juego. Para llevar a cabo el desarrollo de estos juegos, se ha partido de las versiones ya existentes de dos ejercicios individuales dentro de la plataforma.
+En este capítulo se expondrán los \emph{juegos asícronos} desarrollados para la plataforma de \textit{Unibotics}. Se han desarrollado dos juegos asíncronos, de los que se hablará desde el diseño de las plantillas de la interfaz de usuario, hasta la comunicación con el servidor y el contenedor docker donde es ejecutado el juego, para llevar a cabo el desarrollo de estos juegos, se ha partido de las versiones ya existentes de dos ejercicios individuales dentro de la plataforma.
 
-\section{Diseño de los juegos}
+\section{Diseño de los juegos asíncronos}
 \label{sec:async_infraestructura}
 
-Para la realización de los siguientes ejercicios, se ha trabajado sobre la infraestructura inicial en la que opera Unibotics. Ha sido necesario realizar algunas modificaciones de cara a la implementación de los ejercicios. 
+Para la realización de los siguientes ejercicios, se ha trabajado sobre la infraestructura inicial en la que opera Unibotics. Ha sido necesario realizar algunas modificaciones de cara a la implementación de los ejercicios, además de añadir nuevas partes. 
 
-Para llevar a cabo la implementación de los juegos asíncronos, se han desarrollado los siguientes aspectos:
+Se han desarrollado las siguientes funcionalidades:
 
 \begin{itemize}
-\item Interfaz de usuario
+\item Interfaz de usuario modificado
 \item Evaluadores automáticos
 \item Escenarios con dos robots
-\item Carga en caliente de código fuente del cerebro de los robots
+\item Carga en caliente de código fuente del cerebro de los dos robots
 \item Oponentes automáticos: modelos 3D y cerebros
-\item \emph{WebSockets} empleados en la comunicación
+\item \emph{WebSockets} adicionales empleados en la comunicación
 \end{itemize}
 
 %\subsection{Interfaz de usuario}
 
-Ha sido necesario hacer una remodelación de las interfaces de usuario en la página web para incorporar el selector de dificultades, el evaluador automático y de algunos botones y selectores específicos de cada ejercicio.
+Ha sido necesario hacer una remodelación de las interfaces de usuario en la página web para incorporar el selector de oponentes automáticos, el evaluador automático y de algunos botones y selectores específicos de cada ejercicio.
 
 %\subsection{Evaluadores automáticos}
 
-Adicionalmente, para cada ejercicio se ha implementado un evaluador automático haciendo uso de \emph{JavaScript}, con el objetivo de que el usuario que está ejecutando la simulación pueda obtener retroalimentación de cómo está funcionando su robot.
+Para cada ejercicio se ha implementado un evaluador automático haciendo uso de \emph{JavaScript}, con el objetivo de que el usuario que está ejecutando la simulación pueda obtener retroalimentación de cómo está funcionando su robot.
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=15cm]{img/diseño_juegos_asincronos.png}
+    \includegraphics[width=18cm]{img/diseño_juegos_asincronos.png}
     \caption{Diseño de arquitectura de los juegos asíncronos.}
     \label{figura:arquitectura_async}
 \end{figure}
 
 %\subsection{Escenarios con dos robots}
 
-Para poder implementar los juegos, ha sido necesario realizar un primer estudio sobre aquellos retos en los que tendría sentido implementar una competición.  Para implementar dicha competición, es necesario que dos robots puedan actuar simultáneamente en el mismo escenario, y, además que estos puedan realizar algún tipo de duelo. Con este motivo, han sido seleccionados los juegos Follow Line y Drone Cat Mouse para la implementación de un escenario competitivo, donde el usuario tendrá el objetivo de programar un robot para que compita tratando de alcanzar a otro robot dentro de un circuito, o, retar al usuario a que un drone programado por él o ella siga de manera fructuosa un robot objetivo.
+Para poder implementar los juegos, ha sido necesario realizar primero un estudio sobre aquellos retos en los que tendría sentido implementar una competición.  Para implementar dicha competición es necesario que dos robots puedan actuar simultáneamente en el mismo escenario, y además, que estos puedan realizar algún tipo de duelo. Con este motivo, han sido seleccionados los juegos Follow Line y Drone Cat Mouse para la implementación de un escenario competitivo. En este escenario el usuario tendrá el objetivo de programar un robot para que compita tratando de alcanzar a otro robot dentro de un circuito, o, retar al usuario a que un drone programado por él o ella siga de manera fructuosa a otro drone objetivo.
 
 %\subsection{Carga de código en los robots}
 
-Con la incorporación de un segundo robot al escenario simulado, es necesario hacer una modificación en la arquitectura existente del RADI, pues, en un primer lugar, solo había un robot, pero ahora, habiendo un segundo, ha sido necesario añadir un controlador para este, que se carga en caliente con el código fuente del cerebro de ese robot. Por este motivo, los \emph{WebSockets} del escenario serán duplicados puesto que cada robot ha de comunicarse con el navegador web y viceversa. Además, ha sido neceraria la implementación de una nueva interfaz en el servidor web, que escucha peticiones de códigos fuente. Por medio de esta interfaz, el navegador se encargará de hacer las consultas para pedir el código fuente correspondiente. En el lado del servidor web, al recibir una petición en esta interfaz, este se encargará de pedir el código al almacenamiento persistente en S3 (AWS) y enviárselo al navegador web para que se cargue en el robot simulado adecuado.
+Con la incorporación de un segundo robot al escenario simulado es necesario hacer una modificación en la arquitectura existente del RADI, pues, en un primer lugar, solo había un robot. Ahora, habiendo un segundo, ha sido necesario añadir un controlador para este, que se carga en caliente con el código fuente del cerebro de ese robot. Por este motivo, los \emph{WebSockets} del escenario serán duplicados, puesto que cada robot ha de comunicarse con el navegador web y viceversa. Además, ha sido necesaria la implementación de una nueva interfaz en el servidor web, que escucha peticiones de códigos fuente. Por medio de esta interfaz, el navegador se encargará de hacer las consultas para pedir el código fuente correspondiente. En el lado del servidor web, al recibir una petición en esta interfaz, este se encargará de pedir el código al almacenamiento persistente en S3 (AWS) y enviárselo al navegador web para que se cargue en el robot simulado adecuado.
 
 %\subsection{Oponentes automáticos}
 
-En los juegos asíncronos, el usuario tiene la posibilidad de escoger una dificultad a la que quiera enfrentarse, para que esto sea posible, ha sido necesario implementar una serie de códigos fuente correspondientes a cada dificultad. Se han creado tres usuarios en la base de datos de \emph{Unibotics} (bot1, bot2, bot3) a los que se asocian los respectivos códigos para cada ejercicio. Una vez un usuario selecciona una dificultad, al cargar el código en los robots, este código se pedirá al servidor web, que este a su vez lo pedirá a AWS (Amazon Web Services), y lo devolverá al navegador. Finalmente, desde el navegador, será enviado al robot correspondiente por medio de su \emph{WebSocket} de código.
+En los juegos asíncronos, el usuario tiene la posibilidad de escoger el oponente automático con el nivel de dificultad a la que quiera enfrentarse. Para que esto sea posible, ha sido necesario implementar una serie de códigos fuente correspondientes a cada nivel de dificultad. Se han creado tres usuarios en la base de datos de \emph{Unibotics} (bot1, bot2, bot3) a los que se asocian los respectivos códigos para cada ejercicio. Una vez un usuario selecciona una dificultad, al cargar el código en los robots, este código se pedirá al servidor web, que este a su vez lo pedirá a AWS (Amazon Web Services), y lo devolverá al navegador. Finalmente, desde el navegador, será enviado al robot correspondiente por medio de su \emph{WebSocket} de código como se muestra en la figura \ref{figura:arquitectura_async}.
 
 %\subsection{WebSockets empleados en la comunicación}
 
-Cada uno de los ejercicios que se han desarrollado emplea una serie de conexiones con el contenedor docker (RADI) con el fin de realizar el intercambio de información entre la interfaz de usuario y el contenedor docker (RADI) donde se ejecuta la simulación. Estos WebSockets son:
+Cada uno de los ejercicios que se han desarrollado emplea una serie de conexiones con el contenedor docker (RADI) con el fin de intercambiar información entre la interfaz de usuario y el contenedor docker (RADI) donde se ejecuta la simulación. Estos WebSockets son:
 
 \begin{itemize}
-\item \emph{WebSocket} maestro: entre el navegador web y el manager. Empleado para el control de la ejecución del ejercicio, emplea un protocolo de mensajes propio de RADI, sirve para lanzar los ejercicios, reanudar la simulación, parar la simulación, etc.
+\item \emph{WebSocket} maestro: entre el navegador web y el manager. Empleado para el control de la ejecución del ejercicio, utiliza un protocolo de mensajes propio de RADI, sirve para lanzar los ejercicios, reanudar la simulación, parar la simulación, etc.
 \item \emph{WebSockets} de código: se emplea uno para cada robot del escenario, este canal es empleado para el envío del código fuente Python a los robots que están dentro del simulador desde el lado del navegador.
-\item \emph{WebSockets} de interfaz: se emplea uno para cada robot del escenario, este canal es empeado para la recepción de datos sensoriales, utilizados para mostrar los datos en la interfaz del usuario, como por ejemplo la posición de los robots, y para la frecuencia de simulación, etc.
+\item \emph{WebSockets} de interfaz: se emplea uno para cada robot del escenario, este canal es usado para la recepción de datos sensoriales, utilizados para mostrar los datos en la interfaz del usuario, como por ejemplo la posición de los robots, y para la frecuencia de simulación, etc.
 \end{itemize}
 
 \section{Juego del Sigue Líneas} 
@@ -877,21 +877,21 @@ Volviendo a la parte específica para este ejercicio, encontramos una segunda ba
     \caption{Barra de control de la simulación.}
 \end{figure}
 
-Bajo las barras de control del ejercicio, se tiene una pantalla que está dividida en dos secciones. La sección izquierda contiene el selector de circuito, el selector de dificultad y el editor de código. En la sección derecha se encuentra toda la información que se recibe del escenario, esto es, las localizaciones de los coches y sus cámaras, el evaluador automático, el simulador Gazebo y la consola del contenedor.
+Bajo las barras de control del ejercicio, se tiene una pantalla que está dividida en dos secciones. La sección izquierda contiene el selector de circuito, el selector de oponente y el editor de código. En la sección derecha se encuentra toda la información que se recibe del escenario, esto es, las localizaciones de los coches y sus cámaras, el evaluador automático, el simulador Gazebo y la consola del contenedor.
 
 
 \begin{figure}[H]
 	\centering
     \includegraphics[width=15cm]{img/follow_line_game.png}
-    \caption{Plantilla del juego Follow Line.}
+    \caption{Plantilla del juego Follow Line. Selector de dificultad explicado con más detalle en \ref{subsec:follow_line_game_difficulty_selector}}
 \end{figure}
 
 \subsection{Evaluador automático}
 \label{follow_line_game_evaluator}
 
-Este evaluador consiste en mostrar en tiempo real las distancias que hay entre los dos coches, con el fin de que el usuario pueda competir contra la el bot automático. A lo largo de cada circuito se han establecido una serie de puntos de control, que sirven para saber en qué lugar se encuentran los robots, y, con esta información calcular la distancia que le queda a cada robot para alcanzar al adversario. Estos \emph{checkpoionts} son almacenados en una serie de \emph{arrays}, y, en función del circuito que haya seleccionado el usuario se emplerá el correspondiente.
+Este evaluador consiste en mostrar en tiempo real las distancias que hay entre los dos coches, con el fin de que el usuario pueda competir contra el bot automático. A lo largo de cada circuito se han establecido una serie de puntos de control, que sirven para saber en qué lugar se encuentran los robots, y, con esta información calcular la distancia que le queda a cada robot para alcanzar al adversario. Estos \emph{checkpoionts} son almacenados en una serie de \emph{arrays}, y, en función del circuito que haya seleccionado el usuario se emplerá el correspondiente.
 
-La información de posición se está recibiendo con una determinada frecuencia en el tiempo a través del WebSocket \emph{ws\_gui}, este se encarga de actualizar las variables en la página web que contienen las posiciones de los robots. Se ha desarrollado código JavaScript que se encarga de utilizar los valores que contienen estas variables de posición y calcula el checkpoint más cercano a la posición de cada robot y construye los caminos (\emph{paths}) desde un robot hasta el otro. Una vez se obtienen los paths, se calcula la distancia total de estos y se muestra en la interfaz del usuario.
+La información de posición de los robots se está recibiendo con una determinada frecuencia en el tiempo a través del WebSocket \emph{ws\_gui}, este se encarga de actualizar las variables en la página web que contienen las posiciones de los robots. Se ha desarrollado código JavaScript que se encarga de utilizar los valores que contienen estas variables de posición y calcula el checkpoint más cercano a la posición de cada robot y construye los caminos (\emph{paths}) desde un robot hasta el otro. Una vez se obtienen los paths, se calcula la distancia total de estos y se muestra en la interfaz del usuario.
 
 \begin{figure}[H]
 	\centering
@@ -900,14 +900,14 @@ La información de posición se está recibiendo con una determinada frecuencia 
     \label{figura:keyhandler}
 \end{figure}
 
-\subsection{Robot adversario}
-\label{follow_line_game_adversario}
+\subsection{Robots adversarios: modelo 3D y cerebros}
+\label{follow_line_game_adversarios}
 
-Ha sido necesario añadir un nuevo modelo de robot para que el usuario pueda diferenciar entre su robot y el adversiario. Para ello simplemente se ha integrado un coche con el mismo modelo que el coche del usuario pero modificando el color. De esta forma, el coche del usuario será rojo y el del adversario verde. Esta modificación se ha llevado a cabo usando \emph{Blender} \footnote{\url{https://www.blender.org/}} para modificar el color de las texturas, se ha llamado \emph{f1\_guest}, y, ha sido  incluido en el repositorio de la organización \emph{CustomRobots}.
+Ha sido necesario añadir un nuevo modelo de robot para que el usuario pueda diferenciar entre su robot y el adversario. Para ello simplemente se ha integrado un coche con el mismo modelo que el coche del usuario pero modificando el color. De esta forma, el coche del usuario rojo y el del adversario verde. Esta modificación se ha llevado a cabo usando \emph{Blender} \footnote{\url{https://www.blender.org/}} para modificar el color de las texturas, se ha llamado \emph{f1\_guest}, y ha sido  incluido en el repositorio de la organización \emph{CustomRobots}.
 
 Una vez creado el nuevo modelo, se ha añadido a los ficheros de declaración de los escenarios de Gazebo, incluyendo el nuevo modelo en una posición inicial del circuito en la que ambos coches se encuentran a la misma distancia entre sí. Los ficheros empleados para la configuración del escenario tienen la siguiente forma:
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
 <?xml version="1.0" ?>
 <sdf version="1.5">
   <world name="default">
@@ -942,142 +942,9 @@ Una vez creado el nuevo modelo, se ha añadido a los ficheros de declaración de
 </sdf>
 \end{lstlisting}
 
-\subsection{Carga de código del cerebro del robot}
-\label{follow_line_game_code_load}
-
-Una vez se ha establecido la conexión de \emph{RADI} con el navegador, se puede proceder a la carga del código. Esta carga se realiza mediante un botón \emph{Load in robot}, que una vez pulsado, se encarga de habilitar el botón \emph{Play} después de haber realizado una comprobación exitosa del código del usuario.
-
-Cuando el usuario procede a realizar la carga del código en los respectivos robots, el código que ha desarrollado el usuario
-se obtiene del editor de código situado en la parte izquierda de la pantalla. Para realizar la carga de código de uno de los bots, se ha desarrollado un script en \emph{JavaScript} que se encarga de realizar una solicitud al servidor web, pidiendo el código correspondiente con la dificultad seleccionada.
-
-Para que el servidor web pueda proporcionar el código de cada dificultad al navegador web solicitante, se han creado una serie de usuarios instrumentales con el prefijo de \emph{bot}, que contienen el código correspondiente a cada dificultad. También ha sido necesaria la creación de una nueva ruta (\emph{endpoint}) en el servidor web. Desde el lado del servidor web, cuando se recibe una solicitud en dicha interfaz, este se encarga de determinar cuál es la dificultad y el ejercicio del que se está solicitando por medio de los datos aportados en la propia cadena de búsqueda.
-
-Finalmente, una vez se tienen ambos códigos fuente, estos se envían cada uno por el \emph{WebSocket} de código que se corresponde con cada robot del escenario, de manera que el código será recibido en el contenedor docker (RADI), procesado, e insertado en el cerebro de cada robot dentro del simulador. 
-
-\subsubsection{Inicio del juego}
-\label{subsec:follow_line_game_inicio}
-
-Para iniciar el juego es necesario realizar previamente la conexión con el contenedor Docker (\emph{RADI}) donde se va a llevar a cabo toda la ejecución del ejercicio. Una vez realizada esta conexión, se deberá seleccionar el circuito concreto en el que el usuario quiere jugar, seleccionar la dificultad del oponente, y, pulsar el botón \emph{Load in robot}, una vez se hayan cargado los respectivos códigos, se podrá proceder pulsando el botón \emph{Play} para comenzar la ejecución.
-
-Con respecto a las versiones iniciales del reto \emph{Follow Line} de Unibotics, ha sido necesaria la programación dentro del contenedor RADI, de la infraestructura que lanza la simulación del ejercicio con el circuito seleccionado por el usuario.
-
-Para implementar esta característica, dentro del fichero \emph{manager.py} (encargado del lanzamiento de los ejercicios, comprobar el código mediante PyLint, noVNC, etc), se ha añadido una variable con ámbito global dentro del fichero \emph{manager.py} que contiene una lista con todos los ejercicios que implementan la funcionalidad de cambio de circuito. De manera que, cuando el contenedor docker recibe una orden de lanzar un ejercicio, previamente al lanzamiento se comprueba si el ejercicio a lanzar implementa dicha funcionalidad, y, si es así, se obtiene el nombre del circuito seleccionado de los datos que se han recibido por este canal de comunicación (el \emph{WebSocket maestro entre el RADI y el navegador}). Una vez obtenido el nombre del circuito que desea lanzar el usuario, se procede a arrancar la simulación Gazebo con el escenario correspondiente al circuito seleccionado.
-
-Finalmente, se lanzará este proceso (además de algunos otros como noVNC para mostrar GZClient y la consola), y se avisará al \emph{Front End} que la conexión está lista.
-
-\subsubsection{Selección de circuito}
-\label{subsec:follow_line_game_circuito}
-
-El usuario podrá elegir mediante un desplegable en la página web uno de los circuitos disponibles para realizar la ejecución del juego, estos circuitos son \emph{Default}, \emph{Montmelo}, \emph{Montreal} y \emph{Nürbugring}. 
-
-\begin{figure}[H]
-	\centering
-    \includegraphics[width=15cm]{img/circuit_selector.png}
-    \caption{Selector de circuitos.}
-    \label{figura:circuit_selector}
-\end{figure}
-
-El circuito \emph{Default} será el escenario por defecto en el que comenzará la simulación, si el usuario selecciona otro, se le comunicará al contenedor Docker, y este se encargará de volver a lanzar la simulación con el escenario seleccionado. Esta comunicación se realiza por medio de WebSockets.
-
-\begin{figure}[H]
-	\centering
-    \includegraphics[width=5cm]{img/select_circuit_code.png}
-    \caption{Cambio de circuito.}
-    \label{figura:circuit_change_code}
-\end{figure}
-
-Como se puede apreciar en la Figura \ref{figura:circuit_change_code}, el código del selector de circuitos se encarga de matar la simulación en curso e iniciar la nueva simulación con el circuito que se obtiene del selector.
-
-\subsection{Selección de dificultad}
-\label{subsec:follow_line_game_circuito}
-
-El selector de circuitos brinda al usuario un total de tres dificultades diferentes, \emph{Easy}, \emph{Medium} y \emph{Hard}, adicionalmente, el usuario también podrá seleccionar una cuarta dificultad, llamada \emph{Teleoperate} que consiste en que podrá teleoperar el coche del oponente con las teclas de dirección.
-
-\begin{figure}[H]
-	\centering
-    \includegraphics[width=10cm]{img/difficulty_selector.png}
-    \caption{Selector de dificultad.}
-    \label{figura:difficulty_selector}
-\end{figure}
-
-\subsubsection{Modo teleoperado}
-\label{follow_line_game_mode_teleoperado}
-
-En este juego se ha considerado el extra de implementar un modo de teleoperación manual para ambos vehículos, para brindar al usuario la posibilidad de probar su código ante diversas situaciones y pueda desarrollar un código más robusto, también con el objetivo de que pueda controlar alguno de los dos vehículos en el caso de que se haya quedado atascado. El usuario podrá controlar su vehículo, mediante el botón de teleoperación situado en la barra superior, y el coche oponente seleccionando la dificultar \emph{Teleoperate}, como se ha mencionado antes.
-
-\begin{figure}[H]
-  \centering
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth,height=\textwidth]{img/teleoperate_off.png}
-    \caption{Teleoperación apagada.}
-    \label{figura:stun}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth,height=\textwidth]{img/teleoperate_on.png}
-    \caption{Teleoperación encendida.}
-    \label{figura:turn}
-  \end{minipage}
-\end{figure}
-
-Como se puede apreciar en las Figuras \ref{figura:stun} y \ref{figura:turn}, el botón de teleoperación del vehículo del usuario, cambiará de color en función de si la teleoperación está encendida o apagada.
-
-\subsubsection{Implementación del botón de teleoperación}
-\label{follow_line_game_mode_teleoperado_impl}
-
-La teleoperación se ha implementado mediante código JavaScript un \emph{listener} para el botón de teleoperación, que se encarga de comprobar si se puede activar el modo, es decir, no se está teleoperando el otro vehículo, cambiar la imagen del botón de teleoperación y añadir el \emph{handler} correspondiente a los eventos \emph{keyup} y \emph{keydown}.
-
-\begin{figure}[H]
-	\centering
-    \includegraphics[width=17cm]{img/teleop_mode_code.png}
-    \caption{Listener del botón de teleoperación.}
-    \label{figura:difficulty_selector}
-\end{figure}
-
-El handler que se le asigna a los eventos \emph{keyup} y \emph{keydown} se encarga de determinar cual es la tecla que se ha soltado o pulsado, y, si es una de las flechas de dirección establece un valor constante a la variable de velocidad o giro.
-
-\begin{lstlisting}[basicstyle=\tiny]
-function keyHandler(event) { // Right (39), Left (37), Down (40), Up (38)
-		if((typeof(websocket_gui) !== 'undefined' && (typeof(websocket_code) !== 'undefined'))){
-			let cmd = "#tele";
-
-			// Prevent using arrow keys to scroll page
-			if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
-				event.preventDefault();
-			}
-
-			if(event.keyCode == 39) {
-				//console.log('Right');
-				w = (event.type == 'keydown')?-1:0;
-			}else if(event.keyCode == 37) {
-				//console.log('Left');
-				w = (event.type == 'keydown')?1:0;
-			}else if(event.keyCode == 40) {
-				//console.log('Down');
-				v = (event.type == 'keydown')?-2:0;
-			}else if(event.keyCode == 38) {
-				//console.log('Up');
-				v = (event.type == 'keydown')?2:0;
-			}
-			console.log('v: ', v, 'w: ', w);
-		}
-}
-\end{lstlisting}
-
-%\begin{figure}[H]
-%	\centering
-%    \includegraphics[width=10cm]{img/keyhandler.png}
-%    \caption{Key Handler.}
-%    \label{figura:keyhandler}
-%\end{figure}
-
-Como se puede apreciar en la Figura \ref{figura:difficulty_selector}, los valores de velocidad son asignados a las correspondientes variables de velocidad o de giro. Los valores de estas variables son enviados al contenedor Docker mediante el websocket por el que viaja el código desde el navegador al contenedor.
-
-\subsection{Oponentes automáticos}
-
 Para este juego, han sido implementados tres códigos diferentes que se corresponden con las tres dificultades proporcionadas por la plataforma, finalmente han sido cargados en el juego Follow Line de los correspondientes perfiles creados para la gestión de las dificultades. La dificultad se corresponde con la velocidad que alcanzará el robot adversario, a mayor dificultad, mayor velocidad.
 
-\begin{lstlisting}[basicstyle=\tiny]
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
 from GUI import GUI
 from HAL import HAL
 import cv2
@@ -1175,45 +1042,234 @@ while True:
     prev_e = e
 \end{lstlisting}
 
+\subsection{Carga de código del cerebro del robot}
+\label{follow_line_game_code_load}
+
+Una vez se ha establecido la conexión de \emph{RADI} con el navegador, se puede proceder a la carga del código. Esta carga se realiza mediante un botón \emph{Load in robot}, que una vez pulsado, se encarga de habilitar el botón \emph{Play} después de haber realizado una comprobación exitosa del código del usuario.
+
+Cuando el usuario procede a realizar la carga del código en los respectivos robots, el código que ha desarrollado el usuario
+se obtiene del editor de código situado en la parte izquierda de la pantalla. Para realizar la carga de código de uno de los bots, se ha desarrollado un script en \emph{JavaScript} que se encarga de realizar una solicitud al servidor web, pidiendo el código correspondiente con la dificultad seleccionada.
+
+Para que el servidor web pueda proporcionar el código de cada dificultad al navegador web solicitante, se han creado una serie de usuarios instrumentales con el prefijo de \emph{bot}, que contienen el código correspondiente a cada dificultad. También ha sido necesaria la creación de una nueva ruta (\emph{endpoint}) en el servidor web. Desde el lado del servidor web, cuando se recibe una solicitud en dicha interfaz, este se encarga de determinar cuál es la dificultad y el ejercicio del que se está solicitando por medio de los datos aportados en la propia cadena de búsqueda.
+
+Finalmente, una vez se tienen ambos códigos fuente, estos se envían cada uno por el \emph{WebSocket} de código que se corresponde con cada robot del escenario, de manera que el código será recibido en el contenedor docker (RADI), procesado, e insertado en el cerebro de cada robot dentro del simulador. 
+
+\subsubsection{Inicio del juego}
+\label{subsec:follow_line_game_inicio}
+
+Para iniciar el juego es necesario realizar previamente la conexión con el contenedor Docker (\emph{RADI}) donde se va a llevar a cabo toda la ejecución del ejercicio. Una vez realizada esta conexión, se deberá seleccionar el circuito concreto en el que el usuario quiere jugar, seleccionar la dificultad del oponente, y, pulsar el botón \emph{Load in robot}, una vez se hayan cargado los respectivos códigos, se podrá proceder pulsando el botón \emph{Play} para comenzar la ejecución.
+
+Con respecto a las versiones iniciales del reto \emph{Follow Line} de Unibotics, ha sido necesaria la programación dentro del contenedor RADI, de la infraestructura que lanza la simulación del ejercicio con el circuito seleccionado por el usuario.
+
+Para implementar esta característica, dentro del fichero \emph{manager.py} (encargado del lanzamiento de los ejercicios, comprobar el código mediante PyLint, noVNC, etc), se ha añadido una variable con ámbito global dentro del fichero \emph{manager.py} que contiene una lista con todos los ejercicios que implementan la funcionalidad de cambio de circuito. De manera que, cuando el contenedor docker recibe una orden de lanzar un ejercicio, previamente al lanzamiento se comprueba si el ejercicio a lanzar implementa dicha funcionalidad, y, si es así, se obtiene el nombre del circuito seleccionado de los datos que se han recibido por este canal de comunicación (el \emph{WebSocket maestro entre el RADI y el navegador}). Una vez obtenido el nombre del circuito que desea lanzar el usuario, se procede a arrancar la simulación Gazebo con el escenario correspondiente al circuito seleccionado.
+
+Finalmente, se lanzará este proceso (además de algunos otros como noVNC para mostrar GZClient y la consola), y se avisará al \emph{Front End} que la conexión está lista.
+
+\subsubsection{Selección de circuito}
+\label{subsec:follow_line_game_circuito}
+
+El usuario podrá elegir mediante un desplegable en la página web uno de los circuitos disponibles para realizar la ejecución del juego, estos circuitos son \emph{Default}, \emph{Montmelo}, \emph{Montreal} y \emph{Nürbugring}. 
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=15cm]{img/circuit_selector.png}
+    \caption{Selector de circuitos.}
+    \label{figura:circuit_selector}
+\end{figure}
+
+%\begin{figure}[H]
+%	\centering
+%    \includegraphics[width=15cm]{img/difficulty_selector_html.png}
+%    \caption{Código HTML para la implementación del selector de dificultad.}
+%    \label{figura:circuit_selector}
+%\end{figure}
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+<label for="difficulty_selector">Difficulty: </label>
+<select class="form-control" style="margin-bottom: 10px;" name="difficulty_selector" id="difficulty_selector">
+	<option value="none">--- Select a difficulty ---</option>
+	<option value="bot1">Easy</option>
+	<option value="bot2">Medium</option>
+	<option value="bot3">Hard</option>
+	<option value="tele">Teleoperate</option>
+</select>
+\end{lstlisting}
+
+
+El circuito \emph{Default} será el escenario por defecto en el que comenzará la simulación, si el usuario selecciona otro, se le comunicará al contenedor Docker, y este se encargará de volver a lanzar la simulación con el escenario seleccionado. Esta comunicación se realiza por medio de WebSockets.
+
+%\begin{figure}[H]
+%	\centering
+%    \includegraphics[width=5cm]{img/select_circuit_code.png}
+%    \caption{Cambio de circuito.}
+%    \label{figura:circuit_change_code}
+%\end{figure}
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+// Set variable to toggle gazebo
+gazeboToggle = true;
+// Kill actual sim
+startSim(2)
+// StartSim
+swapping = true;
+startSim(1, circuit, "{{websocket_address}}","{{server}}", "{{user.username}}");
+connectionUpdate({connection: 'exercise', command: 'swap'}, '*');
+firstCodeSent = false;
+\end{lstlisting}
+
+Como se puede apreciar en la Figura \ref{figura:circuit_change_code}, el código del selector de circuitos se encarga de matar la simulación en curso e iniciar la nueva simulación con el circuito que se obtiene del selector.
+
+\subsection{Selección de oponente automático}
+\label{subsec:follow_line_game_difficulty_selector}
+
+El selector de circuitos brinda al usuario un total de tres oponentes automáticos de dificultades diferentes, \emph{Easy}, \emph{Medium} y \emph{Hard}. Adicionalmente, el usuario también podrá seleccionar una cuarta opción, llamada \emph{Teleoperate} que consiste en que podrá teleoperar el coche del oponente con las teclas de dirección.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=10cm]{img/difficulty_selector.png}
+    \caption{Selector de dificultad.}
+    \label{figura:difficulty_selector}
+\end{figure}
+
+\subsubsection{Modo teleoperado}
+\label{follow_line_game_mode_teleoperado}
+
+En este juego se ha considerado el extra de implementar un modo de teleoperación manual para ambos vehículos, para brindar al usuario la posibilidad de probar su código ante diversas situaciones y pueda desarrollar un código más robusto, también con el objetivo de que pueda controlar alguno de los dos vehículos en el caso de que se haya quedado atascado. El usuario podrá controlar su vehículo, mediante el botón de teleoperación situado en la barra superior, y el coche oponente seleccionando la dificultar \emph{Teleoperate}, como se ha mencionado antes.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth,height=\textwidth]{img/teleoperate_off.png}
+    \caption{Teleoperación apagada.}
+    \label{figura:stun}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth,height=\textwidth]{img/teleoperate_on.png}
+    \caption{Teleoperación encendida.}
+    \label{figura:turn}
+  \end{minipage}
+\end{figure}
+
+Como se puede apreciar en las Figuras \ref{figura:stun} y \ref{figura:turn}, el botón de teleoperación del vehículo del usuario, cambiará de color en función de si la teleoperación está encendida o apagada.
+
+\subsubsection{Implementación del botón de teleoperación}
+\label{follow_line_game_mode_teleoperado_impl}
+
+La teleoperación se ha implementado mediante código JavaScript, con un \emph{listener} para el botón de teleoperación, que se encarga de comprobar si se puede activar el modo, es decir, no se está teleoperando el otro vehículo, cambiar la imagen del botón de teleoperación y añadir el \emph{handler} correspondiente a los eventos \emph{keyup} y \emph{keydown}. A continuación se adjunta un fragmento del código empleado para desarrollar el \emph{listener} del botón de teleoperación:
+
+%\begin{figure}[H]
+%	\centering
+%    \includegraphics[width=17cm]{img/teleop_mode_code.png}
+%    \caption{Listener del botón de teleoperación.}
+%    \label{figura:difficulty_selector}
+%\end{figure}
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+teleop_btn.addEventListener('click', function(){
+			// If variable is false, activate teleoperate mode
+			if(!teleop_mode){
+				if (running == false) {
+					resumeSimulation();
+					running == true;
+				}
+				// Activate mode
+				teleop_mode = true;
+				teleop_btn.style.background = '#BEBEBE';
+				teleop_img.src = "{% static 'unibotics-exercises/static/assets/exercises/follow_line/img/joystick_on.svg' %}";
+				document.addEventListener('keydown', keyHandler, false);
+				document.addEventListener('keyup', keyHandler, false);
+				return;
+			}
+
+			// Else, turn of teleop mode and remove event listeners
+			teleop_mode = false;
+			submitCode();
+			teleop_btn.style.background = 'transparent';
+			teleop_img.src = "{% static 'unibotics-exercises/static/assets/exercises/follow_line/img/joystick_off.svg' %}";
+			document.removeEventListener('keydown', keyHandler, false);
+			document.removeEventListener('keyup', keyHandler, false);
+			return;
+		});
+\end{lstlisting}
+
+El \emph{handler} que se le asigna a los eventos \emph{keyup} y \emph{keydown} se encarga de determinar cual es la tecla que se ha soltado o pulsado, y, si es una de las flechas de dirección establece un valor constante a la variable de velocidad o giro.
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+function keyHandler(event) { // Right (39), Left (37), Down (40), Up (38)
+		if((typeof(websocket_gui) !== 'undefined' && (typeof(websocket_code) !== 'undefined'))){
+			let cmd = "#tele";
+
+			// Prevent using arrow keys to scroll page
+			if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+				event.preventDefault();
+			}
+
+			if(event.keyCode == 39) {
+				//console.log('Right');
+				w = (event.type == 'keydown')?-1:0;
+			}else if(event.keyCode == 37) {
+				//console.log('Left');
+				w = (event.type == 'keydown')?1:0;
+			}else if(event.keyCode == 40) {
+				//console.log('Down');
+				v = (event.type == 'keydown')?-2:0;
+			}else if(event.keyCode == 38) {
+				//console.log('Up');
+				v = (event.type == 'keydown')?2:0;
+			}
+			console.log('v: ', v, 'w: ', w);
+		}
+}
+\end{lstlisting}
+
+%\begin{figure}[H]
+%	\centering
+%    \includegraphics[width=10cm]{img/keyhandler.png}
+%    \caption{Key Handler.}
+%    \label{figura:keyhandler}
+%\end{figure}
+
+Como se puede apreciar en la Figura \ref{figura:difficulty_selector}, los valores de velocidad son asignados a las correspondientes variables de velocidad o de giro. Los valores de estas variables son enviados al contenedor Docker mediante el websocket por el que viaja el código desde el navegador al contenedor.
+
 \subsection{Validación experimental}
+
+En esta sección se describen detalles sobre la ejecución típica del ejercicio, entrando en detalle en todos los pasos que el usuario debe realizar previamente detallados en las secciones anteriores. Con esto se valida el buen funcionamiento del software desarrollado.
 
 En primer lugar, el usuario ha de conectar el navegador con el contenedor docker RADI.
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=10cm]{img/fl_radi_connected_rect.png}
+    \includegraphics[width=\textwidth]{img/fl_radi_connected_rect.png}
     \caption{Juego Follow Line conectado con RADI.}
     \label{figura:evaluator_drone}
 \end{figure}
 
-A continuación, una vez se ha conectado el navegador con RADI, se debe proceder a lanzar el ejercicio mediante el botón Launch de la parte superior izquierda de la pantalla.
+A continuación, una vez se ha conectado el navegador con RADI, se debe lanzar el ejercicio mediante el botón Launch de la parte superior izquierda de la pantalla.
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=10cm]{img/fl_connection_established_rect.png}
+    \includegraphics[width=\textwidth]{img/fl_connection_established_rect.png}
     \caption{Juego Follow Line lanzado.}
 \end{figure}
 
-Una vez lanzado el ejercicio, se puede proceder a seleccionar un circuito y una dificultad, para previamente cargar el código e iniciar la sumulación. Además de abrir \emph{Gazebo} para visualizar el escenario de simulación y la consola. Y finalmente, iniciar la simulación del juego.
+Una vez lanzado el ejercicio, se puede proceder a seleccionar un circuito y un oponente automático, para luego cargar el código fuente del robot propio e iniciar la simulación. También se abre \emph{Gazebo} para visualizar el escenario de simulación y la consola. Y finalmente, iniciar la ejecución del juego.
 
 \begin{figure}[H]
-  \centering
-  \begin{minipage}[b]{0.7\textwidth}
+	\centering
     \includegraphics[width=\textwidth]{img/fl_sim_1_rect.png}
     \caption{Evaluadores en la ejecución del juego Follow Line.}
-    \label{figura:robot_davinci}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.7\textwidth}
-    \includegraphics[width=\textwidth]{img/fl_sim_2.png}
-    \caption{Simulador en la ejecución del juego Follow Line.}
-    \label{figura:robot_atrias}
-  \end{minipage}
 \end{figure}
 
-Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha elaborado un vídeo de manera que se tenga un ejemplo más ilustrativo \textbf{\url{https://www.youtube.com/watch?v=3nWpbP-5lRc}}.
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=\textwidth]{img/fl_sim_2.png}
+    \caption{Simulador en la ejecución del juego Follow Line.}
+\end{figure}
 
-\section{Juego del Gato Ratón Drones} 
+Con el objetivo de una mejor comprensión del funcionamiento del juego se ha elaborado un vídeo con un ejemplo más ilustrativo. Está accesible en YouTube en el enlace \textbf{\url{https://www.youtube.com/watch?v=3nWpbP-5lRc}}.
+
+\section{Juego del Gato Ratón con Drones} 
 \label{sec:drone_cat_mouse_game}
 
 En esta sección se expondrán las distintas partes de la implementación del juego Drone Cat Mouse describiendo cada uno de los puntos del diseño e incluyendo su validación experimental.
@@ -1228,25 +1284,23 @@ Bajo el navbar, a mano izquierda se encuentra el editor de código, y a mano der
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=15cm]{img/drone_cat_mouse.png}
+    \includegraphics[width=\textwidth]{img/drone_cat_mouse.png}
     \caption{Plantilla Drone Cat Mouse.}
     \label{figura:keyhandler}
 \end{figure}
 
 Por otro lado, la plataforma Unibotics contaba con una versión del reto \emph{Drone Cat Mouse} con una arquitectura en la que, internamente, el \emph{ratón} era instanciado dentro del controlador del robot que se correspondía con el \emph{gato}, y éste se controlaba desde el propio objeto del \emph{gato}.
 
-En la versión desarrollada para este trabajo se han introducido algunos cambios. En primer lugar, se han desacoplado los controladores para los robots, de manera que ahora cada uno es independiente del otro. Esto da lugar a la necesidad de tener dos \emph{WebSockets para cada robot}. 
+En la versión desarrollada para este trabajo se han introducido algunos cambios. En primer lugar, se han desacoplado los controladores para los robots, de manera que ahora cada uno es independiente del otro. Esto da lugar a la necesidad de tener dos \emph{WebSockets para cada robot}. Inicialmente se tenían únicamente dos \emph{WebSockets} para comunicarse con el \emph{gato}, y este, se encargaba de trasladar la información al \emph{ratón}. Ahora hay dos \emph{ws\_code} y \emph{ws\_gui} para el \emph{gato} y el \emph{ratón} respectivamente.
 
-Inicialmente se tenían únicamente dos \emph{WebSockets} para comunicarse con el \emph{gato}, y este, se encargaba de trasladar la información al \emph{ratón}. Ahora hay dos \emph{ws\_code} y \emph{ws\_gui} para el \emph{gato} y el \emph{ratón} respectivamente.
-
-En la versión inicial del ejercicio, el código del ratón se encontraba almacenado dentro del \emph{RADI}. Actualmente esto se ha cambiado, de manera que el código del \emph{ratón} se pide al \emph{webserver} especificando el ejercicio y la dificultad seleccionada. De esta manera, en la versión actual del ejercicio, el ratón recibirá el código que debe ejecutar vía su \emph{WebSocket} de código, mientras que en la versión inicial, el ratón recibía una orden con la dificultad a ejecutar, y, finalmente, éste buscaba el código a ejecutar dentro del contenedor RADI. Este cambio se ha realizado con el fin de seguir el mismo paradigma que con los usuarios, el código fuente de los bots y ratones se recibe desde el \emph{webserver}. Una vez recibido el código, este es enviado al \emph{ratón} por medio del \emph{WebSocket} correspondiente.
+En la versión inicial del ejercicio, el código del ratón se encontraba almacenado dentro del \emph{RADI}. Actualmente esto se ha cambiado, de manera que el código del \emph{ratón} se pide al \emph{webserver} especificando el ejercicio y la dificultad seleccionada. De esta manera, en la versión actual del ejercicio, el ratón recibirá el código que debe ejecutar vía su \emph{WebSocket} de código, mientras que en la versión inicial, el ratón recibía una orden con la dificultad a ejecutar, y, finalmente, éste buscaba el código a ejecutar dentro del contenedor RADI. Este cambio se ha realizado con el fin de seguir el mismo paradigma que con los usuarios, el código fuente de los bots y ratones se recibe desde el \emph{webserver}. Una vez recibido el código, éste es enviado al \emph{ratón} por medio del \emph{WebSocket} correspondiente.
 
 \subsection{Evaluador automático}
 \label{drone_cat_mouse_evaluator}
 
 En una versión inicial, la plataforma no disponía del \emph{Juego Drone Cat Mouse}, sino, del \emph{Reto Drone Cat Mouse}, es decir, este ejercicio inicialmente no incorporaba un evaluador automático que proporcionase un desafío para el usuario, por lo que se decidió incluir este evaluador para dar lugar al \emph{Juego Drone Cat Mouse}. 
 
-Este evaluador automático consiste en una gráfica que muestra la distancia 3D medida entre el tiempo. La gráfica se genera con una librería de \emph{JavaScript} llamada \emph{Plotly} \footnote{\url{https://plotly.com/javascript/}}, en la cual se muestra la distancia en el eje vertical y el tiempo en el eje horizontal.
+Este evaluador automático consiste en una gráfica que muestra la distancia 3D medida entre el gato y el ratón en el tiempo. La gráfica se genera con una librería de \emph{JavaScript} llamada \emph{Plotly} \footnote{\url{https://plotly.com/javascript/}}, en la cual se muestra la distancia en el eje vertical y el tiempo en el eje horizontal.
 
 \begin{figure}[H]
 	\centering
@@ -1255,9 +1309,9 @@ Este evaluador automático consiste en una gráfica que muestra la distancia 3D 
     \label{figura:evaluator_drone}
 \end{figure}
 
-A continuación, se adjunta la parte principal del código fuente diseñado para la implementación del evaluador automático.
+A continuación, se adjunta la parte principal del código fuente diseñado para la implementación de este evaluador automático.
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
 function startevaluate() {
     // reset score and dist
     score = 0.0;
@@ -1356,9 +1410,9 @@ function startevaluate() {
 
 \subsection{Robots adversarios: modelo 3D y cerebros}
 
-El modelo 3D empleado para el robot \emph{ratón} se corresponde con el mismo modelo que el del \emph{gato}. Adicionalmente, para diferenciarlos, el color del modelo del \emph{ratón} se establece al rojo. Siendo los colores de los modelos negro (\emph{gato} y rojo \emph{ratón})
+El modelo 3D empleado para el robot \emph{ratón} se corresponde con el mismo modelo que el del \emph{gato}. Adicionalmente, para diferenciarlos, el color del modelo del \emph{ratón} se establece al rojo. Siendo los colores de los modelos negro (\emph{gato}) y rojo (\emph{ratón})
 
-Para este juego, han sido implementados tres códigos diferentes que se corresponden con las tres dificultades proporcionadas por la plataforma, finalmente han sido cargados en el juego Gato-Ratón de los correspondientes perfiles creados para la gestión de las dificultades. La dificultad se corresponderá con el patrón de movimiento que realiza el dron \emph{ratón}, es decir, a mayor dificultad, el \emph{ratón} realizará un patrón de movimiento más complejo.
+Para este juego, han sido implementados tres códigos diferentes que se corresponden con los tres oponentes automáticos con sendas dificultades crecientes proporcionadas por la plataforma. Han sido cargados en el juego Gato-Ratón de los correspondientes perfiles creados para la gestión de los oponentes. La dificultad se corresponderá con el patrón de movimiento que realiza el dron \emph{ratón}, es decir, a mayor dificultad, el \emph{ratón} realizará un patrón de movimiento más complejo.
 
 \begin{lstlisting}
 def path1(t):
@@ -1387,14 +1441,14 @@ while True:
     HAL.set_cmd_vel(vx, vy, vz, yaw)
 \end{lstlisting}
 
-El código anterior se corresponde con la dificultad más sencilla de los bots proporcionados para el ejercicio Gato-Ratón. En este código se puede apreciar como en cada una de las iteraciones, se está generando una velocidad aleatoria en el \emph{eje x} de la simulación. En esta dificultad, el \emph{ratón} únicamente se desplazará a lo largo del \emph{eje x} con distintas velocidades.
+El código anterior se corresponde con la dificultad más sencilla de los bots proporcionados para el ejercicio Gato-Ratón. En este código se puede apreciar cómo en cada una de las iteraciones, se está generando una velocidad aleatoria en el \emph{eje x} de la simulación. En esta dificultad, el \emph{ratón} únicamente se desplazará a lo largo del \emph{eje x} con distintas velocidades.
 
-\subsubsection{Carga del código fuente}
+\subsection{Carga del código del cerebro del robot}
 \label{drone_cat_mouse_code_load}
 
 La versión del juego de la que se parte contenía únicamente un controlador para el robot en el que se cargaba el código del usuario (\emph{gato}), y éste era el encargado de dar las órdenes al otro robot (\emph{ratón}) para cargar el código, pararse, etc.
 
-Puesto que los ejercicios asíncronos han sido pensados desde el punto de vista de tener dos robots bien diferenciados en el escenario, los controladores de los robots se han reimplementado. De manera que, el robot \emph{gato} tiene su propio controlador y ya no da órdenes al \emph{ratón}. Se ha desacoplado la dependencia entre los robots. Para llevar a cabo esto, ha sido necesario replicar el controlador del \emph{gato} para hacerlo funcionar con el \emph{ratón}. Al hacer este desacoplamiento han aparecido dos \emph{WebSockets} adicionales, que se corresponden el robot \emph{ratón}. 
+Puesto que los ejercicios asíncronos han sido pensados desde el punto de vista de tener dos robots bien diferenciados en el escenario, los controladores de los robots se han reimplementado. De manera que, el robot \emph{gato} tiene su propio controlador y ya no da órdenes al \emph{ratón}. Se ha desacoplado la dependencia entre ambos robots. Para llevar a cabo esto, ha sido necesario replicar el controlador del \emph{gato} para hacerlo funcionar también con el \emph{ratón}. Al hacer este desacoplamiento han aparecido dos \emph{WebSockets} adicionales, que se corresponden el robot \emph{ratón}. 
 
 De esta manera, cada robot tendrá sus \emph{WebSockets} separados, y actuará independientemente del otro robot. Además, las cargas de código se harán para cada robot por medio de su \emph{WebSocket} de código.
 
@@ -1405,40 +1459,39 @@ La carga de código se realiza de manera similar al ejercicio anterior. Una vez 
 
 De igual manera que en el juego \emph{Follow Line}, primeramente hay que realizar la conexión con \emph{RADI}, que se encargará de lanzar el proceso del juego, y, una vez se haya establecido la conexión con los \emph{WebSockets}, se avisa al \emph{Front End} de manera que el usuario quede notificado. Posteriormente, puede elegirse la dificultad del ratón, cargar el código del usuario, mostrar \emph{Gazebo} y la consola,  y reanudar la simulación.
 
-\subsubsection{Selección de dificultad}
+\subsection{Selección de dificultad}
 \label{drone_cat_mouse_difficulty}
 
-El selector de dificultad del \emph{ratón} está situado en la mitad superior derecha de la interfaz del usuario junto a los botones de control del mismo. El usuario debe seleccionar primeramente la dificultad deseada mediante el desplegable situado en la mitad derecha de la pantalla. Y, a continuación, pulsar el botón \emph{Load in robot} para proceder a la carga de los códigos.
+El selector de dificultad del \emph{ratón} al que se va a enfrentar el drone gato está situado en la mitad superior derecha de la interfaz del usuario junto a los botones de control del mismo. El usuario debe seleccionar primeramente la dificultad deseada mediante el desplegable situado en la mitad derecha de la pantalla. Y, a continuación, pulsar el botón \emph{Load in robot} para proceder a la carga de los códigos.
 
 Para realizar la carga de códigos, primero se obtiene el código del editor de texto situado en la mitad izquierda de la plantilla y se envía por el \emph{WebSocket} empleado para comunicarse con el \emph{gato}. A continuación, mediante una peticón HTTP al \emph{WebServer}, se solicita el código del ratón (en función de la dificultad), y finalmente se envía por el \emph{WebSocket} definido para la comunicación  \emph{RADI}-\emph{Ratón}.
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=15cm]{img/drone_cat_mouse_difficulty.png}
+    \includegraphics[width=\textwidth]{img/drone_cat_mouse_difficulty.png}
     \caption{Selector de dificultad Drone Cat Mouse.}
     \label{figura:evaluator_drone}
 \end{figure}
 
 \subsection{Validación experimental}
-
 En este ejercicio el proceso para iniciar la conexión con RADI es similar al del juego Follow Line. 
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=12cm]{img/dcm_conectado.png}
+    \includegraphics[width=\textwidth]{img/dcm_conectado.png}
     \caption{Drone Cat Mouse lanzado.}
     \label{figura:evaluator_drone}
 \end{figure}
 
-Una vez lanzado el ejercicio, el usuario debe proceder a la selección de la dificultad del dron ratón. A continuación, cargar el código en los robots. Y finalmente, abrir Gazebo, el valuador automático e iniciar la simulación pulsando el botón \emph{Play}.
+Una vez lanzado el ejercicio, el usuario debe proceder a la selección de la dificultad del dron ratón. A continuación, cargar el código en los robots. Y finalmente, abrir el visor Gazebo, el evaluador automático e iniciar la simulación pulsando el botón \emph{Play}.
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=12cm]{img/dcm_sim.png}
+    \includegraphics[width=\textwidth]{img/dcm_sim.png}
     \caption{Simulación y evaluador automático en Drone Cat Mouse.}
 \end{figure}
 
-Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha elaborado un vídeo de manera que se tenga un ejemplo más ilustrativo \textbf{\url{https://www.youtube.com/watch?v=sXqZvsV5lzc&t=24s}}.
+Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha elaborado un vídeo de manera que se tenga un ejemplo más ilustrativo. Está disponible en YouTube en el enlace \textbf{\url{https://www.youtube.com/watch?v=sXqZvsV5lzc}}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1448,7 +1501,7 @@ Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha
 \cleardoublepage
 \chapter{Juegos Compartidos Síncronos}
 
-En \emph{Unibotics} se han desarrollado juegos asíncronos en los que se elige una de las dificultades proporcionadas por la plataforma, sin embargo, en estos juegos no se explota la posibilidad de que dos usuarios reales puedan contrastar sus códigos con el de otros usuarios. Con el desarrollo los \emph{ejercicios síncronos} se han querido orientar los juegos hacia un modo más directo y dinámico, de manera que el usuario pueda conectarse con otros usuarios y competir entre ellos poniendo en ejecución sus mejores códigos.
+En \emph{Unibotics} se han desarrollado juegos asíncronos en los que se elige competir con uno de los advesarios automáticos, bots, proporcionados por la plataforma, sin embargo, en estos juegos no se explota la posibilidad de que dos usuarios reales puedan contrastar sus códigos con el de otros usuarios. Con el desarrollo los \emph{ejercicios síncronos} se han querido orientar los juegos hacia un modo más directo y dinámico, de manera que el usuario pueda conectarse con otros usuarios y competir entre ellos poniendo en ejecución sus mejores códigos.
 
 En este capítulo se abordan todos los detalles de los \emph{juegos síncronos}. En una primera parte se detalla el diseño e implementación de las plantillas del usuario, para posteriormente, dirigirnos a los aspectos relacionados con las comunicaciones \emph{WebRTC} y el servidor web de \emph{Unibotics} como servidor de señalización entre los usuarios. En esta modalidad síncrona se ha desarrollado el juego del \emph{Sigue-Líneas}.
 
@@ -1457,18 +1510,19 @@ En este capítulo se abordan todos los detalles de los \emph{juegos síncronos}.
 
 Se trata de un juego síncrono en el que participan dos usuarios de manera simultánea en un ejercicio. A continuación, se hablará del rol de cada uno de los usuarios, el anfitrión y el invitado.
 
-En función del rol, cada usuario tendrá una interfaz del ejercicio diferente, adaptada a sus funciones. El usuario anfitrión es el usuario que se encarga de la ejecución del ejercicio en su máquina local mediante el contenedor Docker (RADI), y se encarga de compartir el simulador Gazebo al usuario invitado via \emph{WebSockets} mediante un flujo multimedia. 
+En función del rol, cada usuario tendrá una interfaz del ejercicio diferente, adaptada a sus funciones. El usuario anfitrión es el usuario que se encarga de la ejecución del ejercicio en su máquina local mediante el contenedor Docker (RADI), y se encarga de compartir el simulador Gazebo al usuario invitado vía \emph{WebSockets} mediante un flujo multimedia. 
 
-La simulación también genera otros datos adicionales además de la visualización de Gazebo, estos son, los datos del evaluador automático y la vista de pájaro, que son compartidos via \emph{WebSockets} a traves de un canal (\emph{DataChannel}) junto a los mensajes del chat. 
+La simulación también genera otros datos adicionales además de la visualización de Gazebo, estos son, los datos del evaluador automático y la vista de pájaro, que son compartidos via \emph{WebSockets} a través de un canal (\emph{DataChannel}) junto a los mensajes del chat. 
 
-Con el fin de finalizar la ejecución del ejercicio, se ha desarrollado una funcionalidad con la que ambos usuarios pueden poner fin a la conexión mediante un botón de finalización de conexión. Este botón hará que ambos navegadores vuelvan a cargar la página del ejercicio, quedando los dos usuarios listos para realizar otra conexión síncrona.
+Con objeto de finalizar la ejecución del ejercicio, se ha desarrollado una funcionalidad con la que ambos usuarios pueden terminar a la conexión mediante un botón de finalización de conexión. Este botón hará que ambos navegadores vuelvan a cargar la página del ejercicio, quedando los dos usuarios listos para realizar otra conexión síncrona.
 
-Con respecto a la transmisión de los datos (stream, mensajes de chat, datos de la IU, botones Play/Reset pulsados por el invitado, botón reset pulsado por el anfitrión, finalización de la conexión por uno de los pares), las conexiones entre los dos pares se realizan sin intermediarios en el caso de que exista una conexión favorable (como una red local, en la que no intervienen NATs que dificulten la conexión entre los pares) entre ambos. En los casos en los que se dificulta la conexión, se emplea un servidor TURN que se encarga de retransmitir el tráfico que genera cada unos de los extremos y enviarlo hacia el par opuesto. A continuación se incluye una imagen que ilustra el diseño del juego síncrono al completo:
+Con respecto a la transmisión de los datos (flujo multimedia, mensajes de chat, datos de la IU, botones Play/Reset pulsados por el invitado, botón reset pulsado por el anfitrión, finalización de la conexión por uno de los pares), las conexiones entre los dos pares se realizan sin intermediarios en el caso de que exista una conexión favorable (como una red local, en la que no intervienen NATs que dificulten la conexión entre los pares) entre ambos. En los casos en los que se dificulta la conexión, se emplea un servidor TURN que se encarga de retransmitir el tráfico que genera cada unos de los extremos y enviarlo hacia el par opuesto. A continuación se incluye una imagen (figura \ref{figure:disenio_juego_sincrono}) que ilustra el diseño del juego síncrono al completo:
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=15cm]{img/diagrama_sincrono.png}
+    \includegraphics[width=18.5cm]{img/diagrama_sincrono.png}
     \caption{Diseño de juego síncrono.}
+    \label{figure:disenio_juego_sincrono}
 \end{figure}
 
 \section{Follow Line Game Síncrono} 
@@ -1476,7 +1530,7 @@ Con respecto a la transmisión de los datos (stream, mensajes de chat, datos de 
 
 \subsection{Interfaz de usuario}
 
-El juego \emph{Follow Line Síncrono} parte de la plantilla básica que comparten todos los ejercicios. A esta plantilla se le han añadido una serie de extras, como el chat de texto, la barra de búsqueda de usuarios oponentes y los botones de carga de código, del anfitrión y del invitado. Adicionalmente, se ha añadido un botón para ocultar el editor de código con el fin del que el usuario tenga únicamente la vista del chat de texto.
+El juego \emph{Follow Line Síncrono} parte de la plantilla básica que comparten todos los ejercicios "monorrobot" de \emph{Unibotics}. A esta plantilla se le han añadido una serie de extras, como el chat de texto, la barra de búsqueda de usuarios oponentes y los botones de carga de código fuente, del anfitrión y del invitado. Adicionalmente, se ha añadido un botón para ocultar el editor de código con el fin del que el usuario tenga únicamente la vista del chat de texto.
 
 Con respecto a la interfaz del usuario invitado, esta interfaz se autoajusta cuando el usuario acepta la invitación proveniente de un anfitrión. Este ajuste se realiza mediante el lenguaje \emph{JavaScript}, en el que se ha implementado código que se encarga de ocultar los elementos de la interfaz que no se quieren visualizar en el extremo del invitado.
 %% AÑADIR CAPTURA DE LA PLANTILLA
@@ -1493,7 +1547,7 @@ Para desarrollar este ejercicio, ha sido necesario implementar \emph{software} t
 
 Una vez el usuario entra en el ejercicio, automáticamente el navegador se conecta a una ruta del servidor web por medio de \emph{WebSockets} generando una sala de juego. Esta ruta será el medio a través del cual se van a comunicar los dos extremos con el servidor de señalización.
 
-Debido a la complejidad de las subredes, ha sido necesaria la incorporación de un servidor \emph{TURN} (\emph{Transversal Using Relay NAT}) que se encargue de hacer de retransmisor entre los dos extremos si no es posible establecer la conexión una vez se inicia la comunicación \emph{WebRTC}. En la mayoría de casos no es posible realizar una conexión \emph{WebRTC} directa entre los dos extremos (a menos que residan en una red local). Esto es debido a que \emph{WebRTC} no es capaz de atravesar un NAT (\emph{Network Address Translation}). Este servidor TURN se encarga de retransmitir el tráfico de la conexión WebRTC en caso de que falle la conexión directa entre ambos extremos. TURN se encarga de resolver estas incompatibilidades y permite que cualquier dispositivo pueda establecer una conexión WebRTC. Este servicio implica un mayor consumo de ancho de banda y un aumento de la latencia, pero en algunas ocasiones es la única solución eficaz para garantizar conexiones fructuosas entre cualquier dispositivo.
+Debido a la complejidad de las subredes, ha sido necesaria la incorporación de un servidor \emph{TURN} (\emph{Transversal Using Relay NAT}) que se encargue de hacer de retransmisor entre los dos extremos si no es posible establecer la conexión directa una vez se inicia la comunicación \emph{WebRTC}. En la mayoría de casos no es posible realizar una conexión \emph{WebRTC} directa entre los dos extremos (a menos que residan en una red local). Esto es debido a que \emph{WebRTC} no es capaz de atravesar un NAT (\emph{Network Address Translation}). Este servidor TURN se encarga de retransmitir el tráfico de la conexión WebRTC en caso de que falle la conexión directa entre ambos extremos. TURN se encarga de resolver estas incompatibilidades y permite que cualquier dispositivo pueda establecer una conexión WebRTC. Este servicio implica un mayor consumo de ancho de banda y un aumento de la latencia, pero en algunas ocasiones es la única solución eficaz para garantizar conexiones fructuosas entre cualquier dispositivo.
 %% AÑADIR CAPTURA DE ARQUITECTURA
 
 \subsection{Elección de oponente}
@@ -1501,13 +1555,13 @@ Debido a la complejidad de las subredes, ha sido necesaria la incorporación de 
 
 Para proporcionar al usuario la elección de un contrincante, se ha implementado una barra de búsqueda de usuarios que permite al anfitrión escribir el nombre del usuario que desea invitar.
 
-Una vez el usuario realiza la selección del contrincante, la consulta es enviada al servidor web por medio del \emph{WebSocket} de la sala de juego, y este la reenviará al usuario invitado en caso de que se encuentre en línea y dentro del mismo ejercicio. Por otra parte, en el caso de que el usuario al que se invita no esté disponible, ya sea porque no existe, o porque no se encuentra disponible dentro del mismo ejercicio, el servidor web, responderá al navegador anfitrión con un mensaje de error, y se mostrará un cuadro de diálogo en la interfaz avisándole.
+Una vez el usuario realiza la selección del contrincante, una petición es enviada al servidor web por medio del \emph{WebSocket} de la sala de juego, y este la reenviará al usuario invitado en caso de que se encuentre en línea y dentro del mismo ejercicio. Por otra parte, en el caso de que el usuario al que se invita no esté disponible, ya sea porque no existe, o porque no se encuentra disponible dentro del mismo ejercicio, el servidor web responderá al navegador anfitrión con un mensaje de error, y se mostrará un cuadro de diálogo en la interfaz avisándole.
 
 En el caso de que el invitado acepte la solicitud, el anfitrión comenzará con la negociación \emph{WebRTC}. 
 
 \subsubsection{Barra de búsqueda}
 
-Para realizar la conexión entre dos usuarios, el anfitrión debe escribir el login del usuario que quiere invitar en la barra de búsqueda de usuario, de manera que se pueda hacer la consulta al servidor web. Se ha desarrollado código \emph{JavaScript} que se encarga de esperar a que se inserte el nombre de usuario y se pulse el botón "\emph{Enter}", y además, que se encargue de enviar la inserción al servidor web vía el \emph{WebSocket} establecido para la sala del juego.
+Para realizar la conexión entre dos usuarios, el anfitrión debe escribir el login del usuario que quiere invitar en la barra de búsqueda de usuario, de manera que se pueda hacer la consulta al servidor web. Se ha desarrollado código \emph{JavaScript} que se encarga de esperar a que se inserte el nombre de usuario y se pulse el botón "\emph{Enter}", y además, que se encargue de enviar lo insertado al servidor web vía el \emph{WebSocket} establecido para la sala del juego.
 
 Una vez el servidor recibe este mensaje por el \emph{WebSocket}, se encarga de extraer el nombre del usuario, y mediante el uso de un paquete instalado en el servidor \emph{Django}, llamado \emph{"Django-online-users"}, obtiene los usuarios que hay conectados actualmente, y comprueba si el usuario recibido se encuentra en línea y dentro del juego Follow Line esperando la invitación. En el caso en que la búsqueda no sea satisfactoria, se envía un mensaje al usuario anfitrión indicando la imposibilidad de realizar la invitación. Si la búsqueda se realiza con éxito, se envía la invitación a dicho usuario por \emph{WebSocket}.
 
@@ -1552,7 +1606,7 @@ Desde el lado del usuario invitado, se ejecutará una función llamada \emph{sta
 
 Finalmente, en el lado del anfitrión se recibirá desde el servidor web la respuesta del otro extremo. Una vez recibida la respuesta, se almacena el \emph{SDP} \footnote{\url{https://es.wikipedia.org/wiki/Session_Description_Protocol}} (\emph{Session Decription Protocol}) del extremo remoto. Una vez establecida la descripción del otro extremo, ambos pares tienen la identificación del otro, por lo que puede iniciarse una comunicación \emph{WebRTC}.
 
-Para realizar el envío de sus candidatos, cada par debe enviarlos al servidor de señalización (haciendo uso de la función \emph{onIceCandidate}, como respuesta al callback \emph{icecandidate}) para que este los reenvíe al otro par. En primer lugar, en el extremo remoto se reciben los candidatos. Este debe almacenar los candidatos (la función \emph{remotePeer.setRemoteDescription(offer)} establece la descripción de los candidatos remotos recibidos por parámetro en la función \emph{startRemoteStream}), y responder con su oferta. Finalmente, en el extremo local, se reciben los candidatos del par remoto, y se establece el SDP del usuario invitado, una vez realizado este paso, ambos extremos tienen el SDP del extremo remoto, por lo que pueden iniciar la elección del mejor candidato ICE, y, posteriormente el establecimiento de la conexión \emph{WebRTC} entre ellos dos.
+Para realizar el envío de sus candidatos, cada par debe enviarlos al servidor de señalización (haciendo uso de la función \emph{onIceCandidate}, como respuesta al \emph{callback} \emph{icecandidate}) para que este los reenvíe al otro par. En primer lugar, en el extremo remoto se reciben los candidatos. Este debe almacenar los candidatos (la función \emph{remotePeer.setRemoteDescription(offer)} establece la descripción de los candidatos remotos recibidos por parámetro en la función \emph{startRemoteStream}), y responder con su oferta. Finalmente, en el extremo local, se reciben los candidatos del par remoto y se establece el SDP del usuario invitado. Una vez realizado este paso, ambos extremos tienen el SDP del extremo remoto, por lo que pueden iniciar la elección del mejor candidato ICE, y, posteriormente el establecimiento de la conexión \emph{WebRTC} entre ellos dos.
 
 Gracias a este sistema, se permite que los usuarios tengan una conexión directa entre ellos, y únicamente un usuario ejecute el simulador, puesto que el elemento \emph{HTML} que contiene el vídeo del simulador es retransmitido al otro extremo haciendo uso de la conexión entre pares.
 
@@ -1566,8 +1620,8 @@ Además, en ambos casos, en el lado del navegador ha sido necesaria la implement
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=15cm]{img/diagrama_conexion_webrtc.png}
-    \caption{Diagrama de conexión WebRTC establecida.}
+    \includegraphics[width=16cm]{img/diagrama_conexion_webrtc.png}
+    \caption{Diagrama de conexión WebRTC establecida con una conexión multimedia y un \emph{DataChannel}.}
     \label{figura:diagrama_conexion_webrtc}
 \end{figure}
 
@@ -1575,21 +1629,21 @@ Además, en ambos casos, en el lado del navegador ha sido necesaria la implement
 
 En los casos en los que la conexión entre los pares no es posible porque la topología de la red no lo permite, se emplea un servidor de retransmisión TURN. El cometido de este servidor es retransmitir el tráfico de un par al otro y viceversa.
 
-Para el despliegue de este servidor, se ha empleado una herramienta de código abierto ya existente, llamada \emph{Coturn} \footnote{\url{https://github.com/coturn/coturn}}. Los desarrolladores de esta herramienta, proveen una imagen Docker para desplegar el servidor de una manera sencilla.
+Para el despliegue de este servidor, se ha empleado una herramienta de código abierto ya existente, llamada \emph{Coturn} \footnote{\url{https://github.com/coturn/coturn}}. Los desarrolladores de esta herramienta proveen una imagen Docker para desplegar el servidor de una manera sencilla.
 
 Para desplegar este servidor se ha descargado la imagen Docker de \emph{Coturn} en una máquina de \emph{testing} de la universidad. A continuación, se ha utilizado el siguiente comando para el despliegue de contenedor: 
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
 sudo docker run -d --network=host coturn/coturn -n --log-file=stdout --listening-port=puerto --listening-ip=ip_maquina --relay-ip=ip_maquina --user=usuario:contrasenia --lt-cred-mech --verbose --realm=dominio_web
 \end{lstlisting}
 
-Mediante este comando se establece la ip del servidor, el puerto, los credenciales de acceso y el dominio (realm) para el que está sirviendo este servidor.
+Mediante este comando se establece la IP del servidor, el puerto, las credenciales de acceso y el dominio (realm) para el que está sirviendo este servidor.
 
 \subsection{Carga flexible de código}
 
 Para proporcionar la libertad de la carga (es decir, que cada usuario pueda cargar su código cuando desee) del código fuente de uno y otro participante en sendos robots en el simulador, se ha desarrollado un módulo \emph{software} en \emph{JavaScript} que se encarga de soportar la carga flexible del código.
 
-De esta manera, el código fuente de cada usuario debe cargarse en su robot respectivo antes de iniciar la simulación. Con respecto al usuario invitado, se ha desarrollado un sistema que se encarga de avisar al usuario \emph{anfitrión} de que quiere cargar su código, mediante el \emph{DataChannel} establecido entre ambos. Una vez el \emph{anfitrión} recibe este mensaje, se encarga de pedir el código al \emph{WebServer} de \emph{Unibotics} y cargarlo en el coche correspondiente. En el lado de la carga de código del \emph{anfitrión}, simplemente, al pulsar el botón de carga de código, se pedirá el código al servidor web y se cargará en el robot correspondiente de modo similar a como se explicó en el capítulo anterior.
+De esta manera, el código fuente de cada usuario debe cargarse en su robot respectivo antes de iniciar la simulación compartida. Con respecto al usuario invitado, se ha desarrollado un sistema que se encarga de avisar al usuario \emph{anfitrión} de que quiere cargar su código, mediante el \emph{DataChannel} establecido entre ambos. Una vez el \emph{anfitrión} recibe este mensaje, se encarga de pedir el código al \emph{WebServer} de \emph{Unibotics} y cargarlo en el coche correspondiente. En el lado de la carga de código del \emph{anfitrión}, simplemente, al pulsar el botón de carga de código, se pedirá el código al servidor web y se cargará en el robot correspondiente de modo similar a como se explicó en el capítulo anterior.
 
 Una vez se carga un código, el botón de carga correspondiente se colorea de verde, de manera que para el usuario es más intuitivo a la hora de comprobar la situación de su código fuente.
 
@@ -1631,7 +1685,7 @@ Para que los usuarios puedan conocer el estado de carga de sus códigos, se ha i
 
 \begin{itemize}
 \item \textbf{Botón de carga de código del anfitrión:} se encuentra únicamente en la plantilla del usuario anfitrión, este elemento es un botón que inicialmente tiene un color rojo, mostrando un estado que representa que no hay ningún código cargado. Una vez se carga el código, este botón cambia a un color verde.
-\item \textbf{Botón de carga de código del invitado:} se encuentra ambas interfaces, este elemento es un botón que inicialmente tiene un color rojo, mostrando un estado que representa que no hay ningún código cargado. Una vez se carga el código, este botón cambia a un color verde en ambos extremos. Este botón no puede ser pulsado en el lado del \emph{emisor}.
+\item \textbf{Botón de carga de código del invitado:} se encuentra ambas interfaces, este elemento es un botón que inicialmente tiene un color rojo, mostrando un estado que representa que no hay ningún código cargado. Una vez se carga el código, este botón cambia a un color verde en ambos extremos. Este botón no puede ser pulsado en el lado del anfitrión.
 \end{itemize}
 
 El establecimiento de los estados se realiza mediante mensajes vía \emph{WebSockets} entre ambos usuarios. En la plantilla del \emph{anfitrión} es donde se almacenan todas las variables relativas al estado de los códigos, el extremo \emph{invitado} únicamente recibe órdenes vía \emph{WebSockets} para actualizar su interfaz gráfica.
@@ -1661,27 +1715,21 @@ La ejecución del ejercicio síncrono es similar a la de los ejercicios asíncro
 A continuación, el usuario anfitrión ha de lanzar la simulación pulsando el botón \emph{Launch} situado en la esquina superior izquierda de la pantalla, de manera que el RADI quede completamente preparado para la ejecución del ejercicio. Una vez se ha lanzado la simulación, el usuario anfitrión debe abrir el simulador Gazebo mediante el botón situado en la barra de control del ejercicio, de esta manera se habilitará el botón para iniciar el flujo de vídeo (botón \emph{Start stream}). 
 
 Una vez pulsado este botón, se inicia la conexión WebRTC correspondiente con el flujo de vídeo (conexión llamada \emph{stream} en la Figura \ref{figura:diagrama_conexion_webrtc}). El resultado de una conexión fructuosa habilitará un elemento de vídeo en la plantilla del usuario invitado, donde será mostrada la ventana del simulador \emph{Gazebo} que está siendo ejecutado en la máquina del anfitrión.
-\begin{figure}[H]
-  \centering
-  \begin{minipage}[b]{0.6\textwidth}
+
+  \begin{figure}[H]
+  	\centering
     \includegraphics[width=\textwidth]{img/host_gazebo.png}
     \caption{Follow Line Game en usuario anfitrión.}
-    \label{figura:robot_davinci}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.6\textwidth}
+  \end{figure}
+  \begin{figure}[H]
+  	\centering
     \includegraphics[width=\textwidth]{img/inv_gazebo.png}
     \caption{Follow Line Game en usuario invitado.}
-    \label{figura:robot_atrias}
-  \end{minipage}
-\end{figure}
+  \end{figure}
 
 Finalmente, uno de los dos usuarios podrá iniciar la simulación, mediante el botón \emph{Play} situado en su barra de control del ejercicio.
 
-Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha elaborado un vídeo ilustrativo \textbf{\url{https://youtu.be/TC1fUieU1wI}}.
-
-
-
+Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha elaborado un vídeo ilustrativo que está disponible en YouTube (\textbf{\url{https://youtu.be/TC1fUieU1wI}}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
