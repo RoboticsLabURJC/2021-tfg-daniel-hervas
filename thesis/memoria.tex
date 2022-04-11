@@ -815,15 +815,101 @@ La herramienta \emph{noVNC} \footnote{https://novnc.com/info.html} es un proyect
 \section{RoboticsAcademy}
 \label{section:roboticsacademy}
 
+RoboticsAcademy tiene el objetivo de ser una herramienta para la enseñanza de la robótica. Se enfoca en la práctica desde el minuto 1. Es una plataforma web para la programación de robots, en la que se muestran juntos en el navegador, el editor de código y la interfaz del ejercicio.
+
 RoboticsAcademy \footnote{\url{https://github.com/jderobot/RoboticsAcademy}} es una plataforma offline de código abierto proporcionada por JdeRobot \footnote{\url{https://github.com/jderobot}}. Esta plataforma ofrece una colección de ejercicios para aprender robótica de una manera práctica. La herramienta principal empleada es un simulador \emph{Gazebo}, el entorno que permite visualizar la ejecución de los ejercicios.
 
 %\subsection{Arquitectura}
 
 Esta plataforma emplea un servidor \emph{Django} para servir los contenidos, este servidor está contenido dentro del contenedor docker RADI que proporciona. Cada ejercicio se comunica con diferentes componentes del contenedor vía \emph{WebSockets}.
 
+Una gran ventaja que proporciona RoboticsAcademy es que ofrece un contenedor Docker con todas la dependencias pre-instaladas, de manera que el usuario únicamente requiere la descarga de esta imagen, es decir, no necesita ninguna instalación adicional ni ninguna configuración, únicamente se necesita un navegador web (y la imagen Docker). Este contenedor ofrece la ventaja de ser multiplataforma. Además, esta plataforma está orientado a un amplio público, pues se encuentra totalmente en inglés.
+
 El contenedor docker RADI (Robotics Academy Docker Image) incluye un conjunto de ejercicios que hacen uso de \emph{Gazebo} en su simulación. Para comunicarse con este contenedor desde el lado del navegador web, se accede mediante un \emph{WebSocket} en el puerto 8765, empleando un protocolo de comunicación específico RAMP (Robotics Academy Manager Protocol). Mediante esta conexión se mandan las órdenes relativas a la ejecución de los ejercicios. Cada ejercicio abrirá una serie de \emph{WebSockets} adicionales necesarios para que los complementos del ejercicio puedan intercambiar información.
 
 Cada ejercicio está compuesto por una plantilla que muestra el navegador web llamada \emph{exercise.html} y un archivo Python llamado \emph{exercise.py}. El \emph{exercise.py} se ejecuta dentro del contenedor docker RADI, mientras que el \emph{exercise.html} lo muestra el navegador. Ambos se comunican vía \emph{WebSockets} de manera bidireccional.
+
+RoboticsAcademy se enfoca en una enseñanza de ámbito de grado, máster y doctorado. Poniendo un gran peso en la programación en lenguaje Python ofreciendo una colección de retos.
+
+Los contenidos ofrecidos son diversos. Desde escenarios con robots móviles: Construcción de mapas, Autolocalización de robots y Control visual.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/control_visual}
+	\caption{Control visual.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/auto_loc}
+	\caption{Autolocalización de robots.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/cruce}
+	\caption{Negociar un cruce.}
+\end{figure}
+
+Escenarios de conducción autónoma: Navegación local y global, Esquivar obstáculos, Negociar un cruce, Autoaparcamiento y Teletaxi.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/obstacle}
+	\caption{Esquivar obstáculos.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/nav_global}
+	\caption{Navegación global.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/cruce}
+	\caption{Negociar un cruce.}
+\end{figure}
+
+Escenarios de Drones: Rescate de personas, Entrega de paquetes e Inspección de torre eléctrica.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/drones_rescate}
+	\caption{Rescate de personas.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/torre1}
+	\caption{Inspección de torre eléctrica.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/torre2}
+	\caption{Entrega de paquetes.}
+\end{figure}
+
+Retos de visión artificial: Filtro de color, Flujo óptico y Reconstrucción en 3D.
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth,height=60mm]{img/filtro_color}
+    \caption{Fitro de color.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+  \includegraphics[width=\textwidth,height=60mm]{img/r3d2}
+    \includegraphics[width=\textwidth,height=60mm]{img/r3d}
+    \caption{Reconstrucción 3D.}
+  \end{minipage}
+\end{figure}
+
+Retos de aprendizaje automático: DeepLearning sobre imágenes, Clasificación de números y Detección de personas en imagen.
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth,height=60mm]{img/dl_imagenes}
+    \caption{Clasificación de números.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth,height=60mm]{img/deteccion_personas}
+    \caption{Detección de personas en una imagen.}
+  \end{minipage}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
