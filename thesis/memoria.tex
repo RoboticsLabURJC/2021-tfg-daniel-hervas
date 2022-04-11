@@ -1928,22 +1928,19 @@ Con el objetivo de una mejor comprensión del funcionamiento del ejercicio se ha
 
 El objetivo propuesto para este Trabajo de Fin de Grado era la gamificación de la plataforma de \emph{Unibotics} mediante la incorporación de una serie de juegos competitivos donde se involucran dos robots en el escenario cada uno con su propio cerebro. Este objetivo general se ha subdividido en dos subobjetivos bien diferenciados: los \emph{ejercicios asíncronos} y los \emph{ejercicios síncronos}.
 
-El primer subobjetivo, ha sido alcanzado satisfactoriamente. En el lado del navegador se han desarrollado plantillas web para los ejercicios, evaluadores automáticos y manejadores para los selectores de dificultad. Y para el registro de las teclas de dirección del modo de teleoperación y el selector de circuito proporcionados en el juego Follow Line asíncrono. Además, también ha sido necesario implementar código del lado del servidor. Se han añadido una serie de usuarios con el prefijo \emph{botX} que contienen el código fuente de los cerebros de distintos niveles de dificultad. Adicionalmente, se ha creado un nuevo flujo en el servidor web que se encarga de devolver el código fuente de los respectivos bots en función de la dificultad seleccionada y el juego en que se encuentra el usuario. Finalmente, para el ejercicio Follow Line se ha diseñado, y programado el código que permite lanzar el ejercicio con el escenario Gazebo seleccionado en el selector de circuitos dentro de un conjunto de mundos posibles.
+El primer subobjetivo ha sido alcanzado satisfactoriamente. En el lado del navegador se han desarrollado plantillas web para los ejercicios, evaluadores automáticos y manejadores para los selectores de oponentes automáticos. Y para el registro de las teclas de dirección del modo de teleoperación y el selector de circuito proporcionados en el juego Follow Line asíncrono. Además, también ha sido necesario implementar código del lado del servidor. Se han añadido una serie de usuarios con el prefijo \emph{botX} que contienen el código fuente de los cerebros de distintos niveles de dificultad. Adicionalmente, se ha creado un nuevo flujo en el servidor web que se encarga de devolver el código fuente de los respectivos bots en función del oponente seleccionado y el juego en que se encuentra el usuario. Finalmente, para el ejercicio Follow Line se ha diseñado, y programado el código que permite lanzar el ejercicio con el escenario Gazebo elegido en el selector de circuitos dentro de un conjunto de mundos posibles.
 
-Dentro del primer subobetivo, se incluye también el juego del \emph{Gato-Ratón} con drones, alcanzado también de manera satisfactoria. Para el diseño de este juego, también ha sido necesario el diseño y la programación de plantillas web para el ejercicio. También, al igual que en el juego de \emph{Follow Line}, se hace uso de los bots, a los que se les añade el código para las distintas dificultades de este juego. Dentro del RADI, ha sido necesario remodelar este ejercicio, con el objetivo de desvincular el cerebro del \emph{ratón} del controlador del \emph{gato}: Es decir, se han creado dos controladores diferentes, uno para el \emph{ratón} y otro para el \emph{gato}. Cada uno se encarga de comunicarse con su correspondiente dron, para cargar el cerebro. Como fruto de esta modificación en el RADI, ha sido necesaria la creación de dos \emph{WebSockets} más en el lado del navegador, que se encargan de comunicarse con el nuevo controlador para el \emph{ratón}.
+Dentro del primer subobjetivo, se incluye también el juego del \emph{Gato-Ratón} con drones, programado también de manera satisfactoria. Para el diseño de este juego ha sido necesario el diseño y la programación de plantillas web para el ejercicio. También, al igual que en el juego de \emph{Follow Line}, se hace uso de los bots, a los que se les añade el código para las distintas dificultades de este juego. Dentro del RADI, ha sido necesario remodelar este ejercicio, con el objetivo de desvincular su cerebro del \emph{ratón} del controlador del \emph{gato}: Es decir, se han creado dos controladores diferentes, uno para el \emph{ratón} y otro para el \emph{gato}. Cada uno se encarga de comunicarse con su correspondiente dron, para cargar el cerebro. Como fruto de esta modificación en el RADI, ha sido necesaria la creación de dos \emph{WebSockets} más en el lado del navegador, que se encargan de comunicarse con el nuevo controlador para el \emph{ratón}.
 
-El segundo subobjetivo, el \emph{juego síncrono}, ha sido alcanzado de manera exitosa. Gracias a la tecnología WebRTC ha sido posible realizar competiciones síncronas entre usuarios. Para lograr este objetivo, en el lado del navegador ha sido necesaria la implementación de la plantilla web con sus respectivos manejadores. Adicionalmente, ha sido necesario elaborar una serie de scripts que se encargan de establecer las conexiones WebRTC entre los navegadores incluyendo una serie de escenarios de conectividad sencilla, con ambos participantes en la misma subred, como escenarios de conectividad complicada. Para estos últimos se ha preparato un servidor TURN que se encarga de resolver los problemas que generan las NAT. En el lado del servidor, se ha requerido la implementación de un sistema de comprobación de invitaciones y un sistema de salas de juego empleando \emph{Django-Channels} y \emph{Django-online-users}. Además, también ha sido necesario implementar un sistema de señalización en el servidor web que se encarga de permitir la negociación de la conexión WebRTC por parte de los dos extremos.
-
+El segundo subobjetivo, el \emph{juego síncrono}, ha sido alcanzado de manera exitosa. Gracias a la tecnología WebRTC ha sido posible realizar competiciones síncronas entre usuarios simultáneos. Para lograr este objetivo, en el lado del navegador ha sido necesaria la implementación de la plantilla web con sus respectivos manejadores. Adicionalmente, ha sido necesario elaborar una serie de scripts que se encargan de establecer las conexiones WebRTC entre los navegadores incluyendo tanto escenarios de conectividad sencilla, con ambos participantes en la misma subred, como escenarios de conectividad complicada. Para estos últimos se ha preparato un servidor TURN que se encarga de resolver los problemas que generan las NAT. En el lado del servidor, se ha requerido la implementación de un sistema de comprobación de invitaciones y un sistema de salas de juego empleando \emph{Django-Channels} y \emph{Django-online-users}. Además, también ha sido necesario implementar un sistema de señalización en el servidor web que se encarga de permitir la negociación de la conexión WebRTC por parte de los dos extremos.
 %\section{Aplicación de lo aprendido}
 %\label{sec:aplicacion}
-
-
 \section{Competencias adquiridas}
 \label{sec:lecciones_aprendidas}
 
 En este Trabajo de Fin de Grado se han ampliado y adquirido conocimientos de una serie de tecnologías que se recogen a continuación: \emph{HTML}, \emph{CSS}, \emph{JavaScript}, \emph{Python}, \emph{Django}, \emph{Django-channels}, \emph{Docker} y \emph{WebRTC}.
 
-Para realizar este Trabajo de Fin de Grado han sido necesarios una serie de conocimientos básicos en alguna tecnoloǵias. Por lo que las asignaturas que han sido imprescendibles para la realización de este TFG son:
+Para realizar este Trabajo de Fin de Grado han sido necesarios una serie de conocimientos básicos en algunas tecnologías. Por lo que las asignaturas que han sido imprescendibles para la realización de este TFG son:
 
 \begin{itemize}
 \item \emph{Fundamentos de la Programación}, donde tuve un primer contacto en el mundo de la programación con el lenguaje Pascal.
@@ -1956,14 +1953,14 @@ Para realizar este Trabajo de Fin de Grado han sido necesarios una serie de cono
 \section{Trabajos futuros}
 \label{sec:trabajos_futuros}
 
-El trabajo desarrollado en este Trabajo de Fin de Grado ha agregado una nueva funcionalidad en la plataforma \emph{Unibotics} consistente en la adición de juegos síncronos y asíncronos competitivos. Por otro lado, existen una serie de ideas que pueden ayudar a mejorar la experiencia de usuario en la plataforma, y que podría aumentar la atracción de los nuevos usuarios hacia esta. Algunas de estas posibles mejoras son:
+El trabajo desarrollado en este Trabajo de Fin de Grado ha agregado una nueva funcionalidad en la plataforma \emph{Unibotics} consistente en juegos síncronos y asíncronos competitivos. Por otro lado, existen una serie de ideas que pueden ayudar a mejorar la experiencia de usuario en la plataforma, y que podría aumentar la atracción de los nuevos usuarios hacia esta. Algunas de estas posibles mejoras son:
 
 \begin{itemize}
-\item \textbf{Desarrollo de un vídeo-chat en los juegos síncronos}, de manera que, además de comunicarse por el chat, los usuarios tengan la posibilidad de establecer un chat de vídeo mientras realizan la ejecución del ejercicio.
+\item \emph{Desarrollo de un vídeo-chat en los juegos síncronos}, de manera que, además de comunicarse por el chat, los usuarios tengan la posibilidad de establecer un chat de vídeo mientras realizan la ejecución del ejercicio.
 %\item \textbf{Torneos asíncronos}: Añadir la posibilidad a los usuarios de competir contra robots programados por otros usuarios (que decidan competir) de la plataforma. Con el fin de añadir una tabla de líderes del mes que muestre a los usuarios con más puntuación en el ranking.
 %\item \textbf{Torneos síncronos compartidos}: Característica similar a la mencionada en el punto anterior pero en los juegos síncronos. De manera que se pueda hacer una competición en tiempo real en la que se vayan clasificando los usuarios hasta llegar a una final y haber un ganador. Así mismo, mientras se desarrolla un torneo, este sea retransmitido en alguna plataforma de contenido en streaming (YouTube, Twitch, etc).
 
-\item \textbf{Implementación del trabajo realizado en este TFG en otros ejercicios}, con el objetivo de dar una visión más competitiva a la plataforma. Y generar más atracción mediante el desarrollo de más juegos en los que puedan intervenir varios usuarios.
+\item \emph{Implementación del trabajo realizado en este TFG en otros ejercicios de Unibotics}, con el objetivo de dar una visión más competitiva a la plataforma. Y generar más atracción mediante el desarrollo de más juegos en los que puedan intervenir varios usuarios.
 \end{itemize}
 
 %Ningún proyecto ni software se termina, así que aquí vienen ideas y funcionalidades que estaría bien tener implementadas en el futuro.
@@ -2017,6 +2014,12 @@ en una plataforma online. (2020)}
 	
 	\bibitem{TFG-alvaro} \textsc{Álvaro Paniagua. Simulador de robots con tecnologías web vr. (2018)}
 	\url{https://github.com/RoboticsLabURJC/2018-tfg-alvaro_paniagua}
+	
+	\bibitem{A ROS-based open web platform for
+Intelligent Robotics education.} \textsc{David Roldán, Sakshay Mahna José M. Cañas
+International Conference on Robotics in Education (RiE-2021), pp 243-255,
+Advances in Intelligent Systems and Computing, vol 1359. Springer, 2022.}
+	\url{https://gsyc.urjc.es/jmplaza/papers/rie2021-unibotics-draft.pdf}
 	
 \end{thebibliography}
 
