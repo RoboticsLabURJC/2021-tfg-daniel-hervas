@@ -230,22 +230,23 @@ In this Thesis, there has been added some content to the platform by introducing
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 
-El TFG que será descrito a continuación se ha desarrollado en la plataforma web \textit{Unibotics} de la asociación \textit{JdeRobot}\footnote{\url{https://jderobot.github.io}}, orientada al aprendizaje de robótica de estudiantes universitarios. El principal motivo de este proyecto es la introducción de técnicas de \emph{gamificación} para los diferentes ejercicios contenidos la plataforma, así como añadir nuevos.
-
-En este capítulo se introducirá el contexto en el que se desarrolla el trabajo, así como los motivos relevantes para a llevarlo a cabo. Puesto que el campo de la robótica es muy amplio, en concreto, este TFG se centra en el marco de la robótica educativa, destinada a la enzeñanza de la misma, buscando fomentar el desarrollo y la lógica a edades tempranas. Esta manera de enseñanza consiste en la metodología \emph{learning-by-doing}, un sistema que facilita a los niños el aprendizaje aspectos científicos y matemáticos, y también ayuda en el incremento del pensamiento lógico y creativo de los mismos.
-
-Existen diversas formas de iniciación a la robótica, estas son, mediante libros o juguetes. Realizando talleres de programación. También existen plataformas para la iniciación a la robótica, como por ejemplo, \emph{Lightbot Jr} \footnote{\url{https://lightbot.com/}}, \emph{Scratch Jr} \footnote{\url{https://www.scratchjr.org/}}, \emph{Kibotics} \footnote{\url{https://kibotics.org/}}, etc.
-
 \section{Robótica}
 \label{sec:robotica}
 
+El TFG que será descrito a continuación se ha desarrollado en la plataforma web \textit{Unibotics} de la asociación \textit{JdeRobot}\footnote{\url{https://jderobot.github.io}}, orientada al aprendizaje de robótica de estudiantes universitarios. La principal motivación de este proyecto es la introducción de técnicas de \emph{gamificación} en los diferentes ejercicios contenidos la plataforma.
+
+En este capítulo se introducirá el contexto en el que se encuadra el trabajo, así como los motivos relevantes para a llevarlo a cabo. Puesto que el campo de la robótica es muy amplio, este TFG en concreto, se centra en el marco de la robótica educativa, en el ámbito de la ingeniería.
+
+\subsection{Aplicaciones robóticas}
+\label{sec:apps_roboticas}
+
 % HARDWARE
 
-Los avances en computación de las últimas décadas han sido el impulso que ha permitido la creación de máquinas con comportamientos muy cercanos a los de los seres humanos. La robótica está muy relacionada no solo con la rama de la ingeniería, si no que involucra conocimientos de matemáticas y física imprescindibles en el desarrollo de estas máquinas. Uno de los objetivos principales de la robótica es facilitar tareas de la vida diaria al ser humano, incluso, en algunas ocasiones, sustituir al ser humano.
+Los avances en tecnología de las últimas décadas han impulsado la creación de máquinas con comportamientos muy cercanos a los de los seres humanos. La robótica está muy relacionada no solo con la ingeniería, si no que involucra conocimientos de matemáticas y física imprescindibles en el desarrollo de estas máquinas. Uno de los objetivos principales de la robótica es facilitar tareas de la vida diaria al ser humano, incluso, en algunas ocasiones, sustituir al ser humano.
 
-En 1950 la robótica experimenta un gran desarrollo. Esto se debe a los grandes avances en relación a la potencia y complejidad computacional. El acoplamiento mecánico empezó a sustituirse por sistemas eléctricos. Debido al gran desarrollo que sufre la robótica, surgen los primeros sistemas de control automático consistentes en máquinas de estado secuencial. Al final de esta década, las máquinas secuenciales acaban dando lugar al concepto de autómata finito no determinista \footnote{\url{https://es.wikipedia.org/wiki/Aut\%C3\%B3mata_finito_no_determinista}}.
+En la década de 1950 la robótica experimenta un gran desarrollo. Esto se debe a los grandes avances en relación a la potencia computacional y su complejidad. El acoplamiento mecánico empezó a sustituirse por sistemas eléctricos. Debido al gran desarrollo que experimenta la robótica, surgen los primeros sistemas de control automático consistentes en máquinas de estado secuencial. Al final de esta década, las máquinas secuenciales acaban dando lugar al concepto de autómata finito no determinista \footnote{\url{https://es.wikipedia.org/wiki/Aut\%C3\%B3mata_finito_no_determinista}}.
 
-La motivación que existe en la robótica de facilitar algunas tareas que realizan los seres humanos en su día a día viene dada por algunos casos en los que las personas realizan trabajos muy repetitivos (p.e. cadena de montaje), trabajos peligrosos (p.e. desactivación de una bomba). Entre estos motivos, la robótica, además, surge con el objetivo de mejorar la calidad de vida de las personas, por ejemplo, con el objetivo de monitorizar personas mayores que viven solas con el objetivo de avisar a un médico si se requiere (\emph{Misty II} \footnote{\url{https://isocial.cat/es/innovacio/misty-ii-robot-para-mejorar-la-calidad-de-vida-de-las-persones-mayoresque-viven-solas-millorar-la-qualitat-de-vida-de-persones-grans-que-viuen-soles/}}).
+Una motivación que existe en la robótica es facilitar algunas tareas que realizan los seres humanos en su día a día viene dada por algunos casos en los que las personas realizan trabajos muy repetitivos (p.e. cadena de montaje), trabajos peligrosos (p.e. desactivación de una bomba). La robótica, además, surge con el objetivo de mejorar la calidad de vida de las personas, por ejemplo, con el objetivo de monitorizar personas mayores que viven solas con el objetivo de avisar a un médico si se requiere (\emph{Misty II} \footnote{\url{https://isocial.cat/es/innovacio/misty-ii-robot-para-mejorar-la-calidad-de-vida-de-las-persones-mayoresque-viven-solas-millorar-la-qualitat-de-vida-de-persones-grans-que-viuen-soles/}}).
 
 % SOFTWARE
 
@@ -253,7 +254,7 @@ Estas máquinas requieren de un \emph{software} que proporcione la capacidad de 
 
 % EJEMPLOS
 
-Un claro ejemplo de este gran impluso es la implementación de robots en la industria automovilística, capaces de realizar tareas repetitivas, y que conllevan un gran riesgo para las personas (Figura 1.1).
+Un claro ejemplo de este gran impluso es la utilización de robots en la industria automovilística, capaces de realizar tareas repetitivas, y que conllevan un gran riesgo para las personas (Figura 1.1).
 
 
 \begin{figure}[H]
@@ -263,16 +264,41 @@ Un claro ejemplo de este gran impluso es la implementación de robots en la indu
     \label{figura:brazo_robotico}
 \end{figure}
 
-En la actualidad cada vez son más populares los coches autónomos. Es un campo muy amplio que cuenta con un gran número de posibilidades. Alguna de estas posibilidades serían los coches con conducción autónoma de \textit{Tesla}  (Figura 1.2) o los coches con aparcamiento autónomo que están desarrollando un gran número de compañías en la actualidad, aspiradoras autónomas, inspección con drones, etc.
+En la actualidad cada vez son más populares los coches autónomos. Es un campo muy amplio que cuenta con un gran número de posibilidades. Un buen ejemplo son los coches con conducción autónoma de \textit{Tesla}  (Figura 1.2) o los coches con aparcamiento autónomo que están desarrollando un gran número de compañías en la actualidad, aspiradoras autónomas, inspección con drones, etc.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{\textwidth}
+  	\centering
+    \includegraphics[width=0.8\textwidth]{img/coche}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/tesla.jpg}
+  \end{minipage}
+  \caption{Coche autónomo.}
+\end{figure}
+
+Las aspiradoras autónomas representan un gran ejemplo de autonomía robótica. Estas están presentes cada vez en más hogares facilitando la limpieza a las personas.
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=8cm, keepaspectratio]{img/coche}
-    \caption{Coche autónomo.}
-    \label{figura:coche_autonomo}
+    \includegraphics[width=8cm, keepaspectratio]{img/ipack.jpeg}
+    \caption{iPack de iRobot.}
+    \label{figura:aspiradora_autonoma}
 \end{figure}
 
-Otro campo de la aplicación de la robótica es la medicina, donde existen robots capaces de filtrar las vibraciones naturales del humano para proporcionarle una gran precisión y seguridad, un claro ejemplo es el robot DaVinci (Figura 1.3). Adicionalmente, hay robots capaces de mantener una estabilidad la estabilidad necesaria para caminar sobre dos piernas robóticas, como es el robot ATRIAS (Figura 1.4).
+Adicionalmente, los drones de inspección destacan en gran medida en el campo de la robótica, pues facilitan el acceso y la supervisión de lugares peligrosos sin la necesidad de que acceda una persona.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=8cm, keepaspectratio]{img/inpeccion_drones.jpg}
+    \caption{Inspección con drones.}
+    \label{figura:inspeccion_drones´}
+\end{figure}
+
+Otro campo la aplicación de la robótica es la medicina, donde existen robots capaces de filtrar las vibraciones naturales del humano para proporcionarle una gran precisión y seguridad. Un claro ejemplo es el robot DaVinci (Figura 1.3). Adicionalmente, hay robots capaces de mantener la estabilidad necesaria para caminar sobre dos piernas robóticas, como es el robot ATRIAS (Figura 1.4).
 
 \begin{figure}[H]
   \centering
@@ -283,8 +309,8 @@ Otro campo de la aplicación de la robótica es la medicina, donde existen robot
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth]{img/atrias}
-    \caption{Robot ATRIAS.}
+    \includegraphics[width=\textwidth]{img/spot_bd.png}
+    \caption{Robot SPOT de Boston Dynamics.}
     \label{figura:robot_atrias}
   \end{minipage}
 \end{figure}
@@ -298,30 +324,39 @@ En el ámbito militar, existen robots capaces de sustituir a una persona a la ho
     \label{figura:coche_autonomo}
 \end{figure}
 
-\section{Componentes robóticas}
-\label{subsec:componentes roboticas}
+Por último, en el ámbito de la logística es muy útil la robótica pues existen robot capaces de mover grandes cargas, o incluso, de ordenar el inventario de un almacén de manera rápida, eficaz y autónoma.
 
-Todo robot está formado por dos componentes: el \textit{software}, encargado de proporcionar la inteligencia al robot, el más importante, y, el \textit{hardware} encargado de proporcionar la estructura física del robot.
-
-Con al gran auge de la robótica han surgido numerosas plataformas que proporcionan herramientas que simplifican el desarrollo de software robótico, esto son los denominados \textit{middlewares} robóticos.
-
-Durante el desarrollo de software robótico es preciso realizar una serie de pruebas para comprobar el funcionamiento del código y depurar errores, por lo que se necesitan simuladores que nos proporcionen un entorno cercano a la realidad previa al ensamblado del robot.
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=8cm]{img/Robot-Kiva-de-Amazon.jpg}
+    \caption{Robot Kiva de Amazon.}
+    \label{figura:coche_autonomo}
+\end{figure}
 
 \subsection{Middlewares robóticos}
 \label{subsec:middlewares}
 
-Un \textit{middleware} robótico es un \textit{framework} que proporciona una serie de herramientas que facilitan el desarrollo de software para robots. Proporciona los servicios necesarios para soportar y simplificar aplicaciones complejas y distribuidas. Para el control de los sensores y actuadores de los robots, los \textit{middlewares} proporcionan \textit{drivers}, APIs, bibiliotecas con funcionalidad ya resuelta y reutilizables, etc.
+Todo robot está formado por dos componentes: el \textit{software}, encargado de proporcionar la inteligencia al robot, el más importante, y, el \textit{hardware} encargado de proporcionar la estructura física del robot.
 
-\emph{OpenRDK} es un proyecto de código abierto para el desarrollo de módulos poco acoplados. Proporciona una gestión de concurrencia, comunicación entre procesos y una técnica de enlace que permite el diseño de sistemas conceptuales de puertos de datos de entrada / salida. También proporciona módulos para realizar conexiones con simuladores robóticos y controladores de robots genéricos. También existen algunos otros \emph{middlewares} como \emph{Micro} y \emph{Orca}.
+Con el gran auge de la robótica han surgido numerosas plataformas que proporcionan herramientas que simplifican el desarrollo de software robótico, esto son los denominados \textit{middlewares} robóticos.
+
+Durante el desarrollo de software robótico es preciso realizar una serie de pruebas para comprobar el funcionamiento del código y depurar errores, por lo que se necesitan simuladores que nos proporcionen un entorno cercano a la realidad previa al ensamblado del robot.
+
+%\subsection{Middlewares robóticos}
+%\label{subsec:middlewares}
+
+Un \textit{middleware} robótico es un \textit{framework} que proporciona una serie de herramientas que facilitan el desarrollo de software para robots. Proporciona los servicios necesarios para soportar y simplificar aplicaciones complejas y distribuidas. Para el manejo de los sensores y actuadores de los robots, los \textit{middlewares} proporcionan \textit{drivers}, APIs, bibiliotecas con funcionalidad ya resuelta y reutilizables, etc.
+
+\emph{OpenRDK} \footnote{\url{http://openrdk.sourceforge.net/}} es un proyecto de código abierto para el desarrollo de módulos poco acoplados. Proporciona una gestión de concurrencia, comunicación entre procesos y una técnica de enlace que permite el diseño de sistemas conceptuales de puertos de datos de entrada / salida. También proporciona módulos para realizar conexiones con simuladores robóticos y controladores de robots genéricos. También existen algunos otros \emph{middlewares} como \emph{Micro} y \emph{Orca}.
 
 El \textit{middleware} robótico más generalizado es ROS\footnote{\url{https://www.ros.org/}}
- (\textit{Robotics Operating System}). \textit{Robotics Operating System} fue desarrollado en 2007 por el Laboratorio de Inteligencia Artificial de Stanford para dar soporte a sus proyectos. A pesar de no ser un sistema operativo, ROS proporciona servicios como la abstracción \textit{hardware}, mecanismos de comunicación entre prosesos, el control de dispositivos de bajo nivel y el mantenimiento de paquetes. \textit{Robotics Operating System} fue desarrollado para sistemas UNIX, aunque en la actualidad está siendo adaptado para su funcionamiento en sistemas operativos como Fedora, Mac OS X, Arch, Gentoo, OpenSUSE, Slackware, Debian o Microsoft Windows.
+ (\textit{Robot Operating System}). \textit{Robot Operating System} fue desarrollado en 2007 por el Laboratorio de Inteligencia Artificial de Stanford para dar soporte a sus proyectos. A pesar de no ser un sistema operativo, ROS proporciona servicios como la abstracción \textit{hardware}, mecanismos de comunicación entre prosesos, el control de dispositivos de bajo nivel y el mantenimiento de paquetes. \textit{Robot Operating System} fue desarrollado para sistemas UNIX, aunque en la actualidad está siendo adaptado para su funcionamiento en sistemas operativos como Fedora, Mac OS X, Arch, Gentoo, OpenSUSE, Slackware, Debian o Microsoft Windows.
  
 Para transmitir información, ROS emplea un sistema de comunicación unidireccional llamado ROS \emph{Topics} \footnote{\url{http://wiki.ros.org/Topics}} (temas). Estos \emph{Topics} se comportan como buses sobre los cuales los nodos intercambian mensajes, además, son de publicación anónima.
 
-Los \emph{Topics} tienen como objetivo una comunicación unidireccional de transmisión. Los nodos que necesitan hacer llamadas de procedimiento remoto que esperan una respuesta, deben emplear un servicio dedicado a ello.
+Los \emph{Topics} tienen como objetivo una comunicación unidireccional de transmisión. Los nodos que necesitan hacer llamadas de procedimiento remoto que esperan una respuesta, deben emplear un \emph{Servicio} dedicado a ello.
 
-Los ROS \emph{Nodes} \footnote{\url{http://wiki.ros.org/Nodes}} (nodos) son procesos que realizan cálculos. Los nodos se comunican entre sí mediante el uso de temas, servicios RPC (Remote Procedure Call) y un servidor de parámetros. Un sistema de control de un robot, generalmente está compuesto de un gran número de nodos, por ejemplo, un nodo controla un sensor láser, mientras que otro nodo controla los motores de las ruedas del robot.
+Los ROS \emph{Nodes} \footnote{\url{http://wiki.ros.org/Nodes}} (nodos) son procesos que realizan cálculos. Los nodos se comunican entre sí mediante el uso de temas, servicios RPC (Remote Procedure Call) y un servidor de parámetros. El sistema de control de un robot generalmente está compuesto de un gran número de nodos, por ejemplo, un nodo controla un sensor láser, mientras que otro nodo controla los motores de las ruedas del robot.
 
 Este \emph{middleware} ofrece una serie de herramientas \footnote{\url{http://wiki.ros.org/Tools}} para facilitarnos la visualización de la información que genera la aplicación robótica. Algunas de estas herramientas son las siguientes:
 \nolinebreak
@@ -337,48 +372,82 @@ Además, también ofrece un amplio conjunto de \emph{drivers} que facilitan la i
 \begin{itemize}
 \itemsep 0em
 \item \textbf{Cámara} \footnote{\url{http://wiki.ros.org/cv_camera}}: captura la imagen de la cámara y la publica en un tema llamado "\emph{sensor\_msgs\\/Image}"
-\item \textbf{Motores} \footnote{\url{http://wiki.ros.org/Motor\%20Controller\%20Drivers}}: se encarga de publicar información relativa a los motores del robot, es decir, mensajes sobre la odometría y la posición del robot en distintos temas con la información de velocidad que recibe del tema "\emph{sensor\_msgs\\/Twist}"
+\item \textbf{Motores} \footnote{\url{http://wiki.ros.org/Motor\%20Controller\%20Drivers}}: se encarga de publicar información relativa a los motores del robot, es decir, mensajes sobre la odometría y la posición del robot en distintos temas con la información de velocidad que recibe del tema \emph{sensor\_msgs/Twist}. Además, este \emph{driver} también se encarga de recibir comandos de movimiento para los motores.
 
 \end{itemize}
 
 \subsection{Simuladores robóticos}
 \label{subsec:simuladores}
 
-Los simuladores robóticos surgen con la necesidad de realizar pruebas durante el desarrollo del \textit{software} para la detección y depuración de posibles errores antes de llevarlo a un robot real debido al gran coste que suponen. En la actualidad, existen numerosos simuladores robóticos.
+Los simuladores robóticos surgen de la necesidad de realizar pruebas durante el desarrollo del \textit{software} para la detección y depuración de posibles errores antes de llevarlo a un robot real debido al gran coste que suponen. En la actualidad, existen numerosos simuladores robóticos.
 
-Uno de los simuladores más utilizados en la actualidad es \textit{Gazebo}\footnote{\url{http://gazebosim.org/}}. Su popularidad se debe a su robusto motor de físicas, sus gráficos de alta calidad y su amplio catálogo de robots y escenarios. Es una herramienta de código abierto integrada con ROS, por lo que permite ejecutar \textit{software} robótico en un escenario simulado (Figura 1.6).
+Uno de los simuladores más utilizados en la actualidad es \textit{Gazebo}\footnote{\url{http://gazebosim.org/}}. Su popularidad se debe a su robusto motor de físicas, sus gráficos de alta calidad y su amplio catálogo de robots y escenarios. Es una herramienta de código abierto integrada con ROS, por lo que permite ejecutar \textit{software} robótico con \emph{Topics} y \emph{Servicios} en un escenario simulado (Figura 1.6).
 
 \begin{figure}[H]
-	\centering
+  \centering
+  \begin{minipage}[b]{\textwidth}
+  \centering
     \includegraphics[width=\textwidth]{img/gazebo}
     \caption{Simulador Gazebo.}
-    \label{figura:simulador_gazebo}
+    \label{figura:gazebosim}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{\textwidth}
+  \centering
+    \includegraphics[width=\textwidth]{img/waymo.jpeg}
+    \caption{\emph{SimulationCity} de \emph{Waymo}.}
+    \label{figura:robot_atrias}
+  \end{minipage}
 \end{figure}
 
 \emph{CoppeliaSim} \footnote{\url{https://coppeliarobotics.com/}}. Se trata de un simulador robótico con un entorno de desarrollo integrado. se basa en una arquitectura de control distribuido: cada objeto/modelo se puede controlar individualmente a través de un script integrado, un complemento, un nodo ROS, un cliente API remoto o una solución personalizada. Los controladores pueden escribirse en  C/C++, Python, Java, Lua, Matlab u Octave.
 
-\emph{Waymo} \footnote{\url{https://es.wikipedia.org/wiki/Waymo}} (Poryecto de vehículo autónomo de Google). Es una tecnología que permite a un vehículo moverse de forma autónoma por una ciudad y por carretera, detectando señales de tráfico, vehículos y demás objetos de la vía.
+Simulador de \emph{Waymo} \footnote{\url{https://es.wikipedia.org/wiki/Waymo}} (Proyecto de vehículo autónomo de Google). Es una tecnología que permite a un vehículo moverse de forma autónoma por una ciudad y por carretera, detectando señales de tráfico, vehículos y demás objetos de la vía. Para que la simulación sea una herramienta eficaz, se debe representar fielmente el entorno que rodea al vehículo, de manera que se proporcione información precisa sobre el rendimiento del sistema. Lo que sucede en la simulación debe predecir lo que sucede en el mundo real para una correcta eficiencia del sistema. \emph{Waymo} busca minimizar las diferencias entre el mundo real y el mundo simulado. Para asegurar un realismo estadístico del modelo, este simulador debe crear condiciones realistas para la inteligencia autónoma. Para garantizar que el entorno simulado es lo más fiel posible al mundo real, los entornos simulados de  \emph{Waymo} están siendo constantemente alimentados con nueva información recolectada en las numerosas ciudades en las que conducen.
+
+\emph{Webots} \footnote{\url{https://cyberbotics.com/}}. Es un simulador de código abierto multiplataforma empleado para simular robots. Proporciona un entorno completo de desarrollo para modelar, programar y simular. Hace uso de ODE \footnote{\url{https://es.wikipedia.org/w/index.php?title=Open_Dynamics_Engine&action=edit&redlink=1}} (\emph{Open Dynamics Engine}) para la detección de colisiones y simulación de dinámica de cuerpo rígido. Tabién incluye una gran cantidad de sensores y actuadores de uso frecuente en el mundo de la robótica. El control de los robots puede ser escrito en C++, Java, Python, Matlab y ROS.
 
 \emph{Carla} \footnote{\url{https://carla.org/}}. Es un sistema que se ha desarrollado desde cero para apoyar el desarrollo, entrenamiento y la validación de sistemas de conducción autónomos. \emph{Carla} provee su código, protocolos, sets de configuraciones de escenarios (zona urbana, edificios, veículos, etc) como fuente abierta. La plataforma admite un gran número de sensores, condiciones ambientales, un control completo de los actuadores, generación de terreno y mucho más.
 
-\section{Robótica educativa}
-\label{sec:robotica educativa}
+Esta manera de enseñanza consiste en la metodología \emph{learning-by-doing}, un sistema que facilita a los niños el aprendizaje aspectos científicos y matemáticos, y también ayuda en el incremento del pensamiento lógico y creativo de los mismos.
+
+Existen diversas formas de iniciación a la robótica, estas son, mediante libros o juguetes. Realizando talleres de programación. También existen plataformas para la iniciación a la robótica, como por ejemplo, \emph{Lightbot Jr} \footnote{\url{https://lightbot.com/}}, \emph{Scratch Jr} \footnote{\url{https://www.scratchjr.org/}}, \emph{Kibotics} \footnote{\url{https://kibotics.org/}}, etc.
+
+\section{Educación en robótica}
+\label{sec:educacion_robotica}
 
 La robótica educativa proporciona a los estudiantes la infraestructura para la construcción y programación de un robot, pero, además de la enseñanza robótica,
 estos entornos van más allá, ofrenciendo la capacidad para el alumno de adquirir un pensamiento lógico. También, contribuye en la adquisición de una mentalidad resolutiva y al enriquecimiento de la cultura científica de los alumnos. Este método de educación con la robótica como objeto de enseñanza se denomina el método STEAM (Science, Technology, Engineering, Arts and Matemathics).
 
-Como se ha comentado, para llevar a cabo este método de educación es necesaria una infraestructura, como alguna plataforma cuyo objetivo sea el de la enseñanza de la robótica, algunas de estas plataformas son las siguientes:
+\subsection{Niveles preuniversitarios}
+
+Como se ha comentado, para llevar a cabo este método de educación es necesaria una infraestructura, como alguna plataforma cuyo objetivo sea el de la enseñanza de la robótica, algunas de estas plataformas para niveles preuniversitarios son las siguientes:
 
 \begin{itemize}
-\item \textbf{Robocode}: es un juego de programación en \emph{Java} o \emph{.NET}, cuyo objetivo es programar la lógica de un robot que es un tanque de batalla, para combatir contra otros tanques. Esta plataforma ofrece una comunidad que incluye uuna Wiki y un grupo de google. Además, ha realizado una competición propia \footnote{\url{https://gamesfleadh.ie/robocode/}}.
-\item \textbf{OpenRoberta}: es un proyecto alemán que busca animar a los niños a programar mediante el uso de robots como \emph{Lego Mindstorms} y otros sistemas \emph{hardware} programables como \emph{Arduino}. Ofrece una plataforma en la nube llamada Open Roberta Lab, cuyo objetivo es simplificar los conceptos de programación la enseñanza de la programación en las escuelas. Es una plataforma gratuita y no requiere de instalaciones adicionales.
+\item \textbf{Robocode} \footnote{\url{https://gamesfleadh.ie/robocode/}}: es un juego de programación en \emph{Java} o \emph{.NET}, cuyo objetivo es programar la lógica de un robot que es un tanque de batalla, para combatir contra otros tanques. Esta plataforma ofrece una comunidad que incluye uuna Wiki y un grupo de google. Además, ha realizado una competición propia.
+\item \textbf{OpenRoberta} \footnote{\url{https://lab.open-roberta.org/}} es un proyecto alemán que busca animar a los niños a programar mediante el uso de robots como \emph{Lego Mindstorms} y otros sistemas \emph{hardware} programables como \emph{Arduino}. Ofrece una plataforma en la nube llamada Open Roberta Lab, cuyo objetivo es simplificar los conceptos de programación la enseñanza de la programación en las escuelas. Es una plataforma gratuita y no requiere de instalaciones adicionales.
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=10cm]{img/roberta.png}
+    \caption{Plataforma OpenRoberta.}
+\end{figure}
+
 \item \textbf{CodeCombat}: ofrece un aprendizaje basado en juegos, tiene el objetivo de que los estudiantes aprendan mientras juegan. Los estudiantes aprenderán \emph{JavaScript}, \emph{Python}, \emph{HTML} y \emph{CoffeeScript}, además de aprender los fundamentos de la informática. El contenido se divide en 11 unidades: tres unidades de desarrollo de juegos, dos unidades de desarrollo web y seis unidades de informática.
-\item \textbf{Gearsbot}: un entorno de programación de robots mediante bloques, que además también ofrece la posibilidad de programar la lógica en \emph{Python}, usa un simulador web que emplea la tecnología \emph{WebGL} \footnote{\url{https://es.wikipedia.org/wiki/WebGL}} para renderizar gráficos.
-\item \textbf{Riders.ai}: una plataforma de programación de robots que ofrece la posibilidad de realizar competiciones idividuales como en grupos. Es accesible desde cualquier lado del mundo. También ofrece al usuario una capa de abstracción sobre los sensores, localización y diferentes partes del robot. En su plataforma online, proporciona una serie de cursos de iniciación a la robótica, además, ofrece un sistema de ligas en las que han de resolverse una serie de ejercicios, como forma de competición entre los usuarios. Esta plataforma está orientada a las competiciones, para empezar a aprender, el usuario ha de unirse a una competición y empezar a resolver los problemas de las misma, finalmente, obtendrá una puntuación en un ranking.
-\item \textbf{TheConstruct}: ofrece un entorno de programación de robots que pueden moverse por la Luna, Marte y más planetas. No requiere la instalación de ROS. Ofrece un gran extra que le diferencia de los demás, esto es, brinda la posibilidad al usuario de poder ejecutar su código en robots reales de forma remota, y, también proveen certificados al completar diferentes cursos. La plataforma ofrece numerosos cursos de ROS, creación de robots, algoritmos robóticos, etc. Está orientada al aprendizaje mediante la práctica y no requiere ninguna instalación adicional. También ofrece una comunidad con la que los usuarios pueden interactuar.
+\item \textbf{Gearsbot} \footnote{\url{https://gears.aposteriori.com.sg/}} un entorno de programación de robots mediante bloques, que además también ofrece la posibilidad de programar la lógica en \emph{Python}, usa un simulador web que emplea la tecnología \emph{WebGL} \footnote{\url{https://es.wikipedia.org/wiki/WebGL}} para renderizar gráficos.
 \end{itemize}
 
-Dentro de la robótica educativa, es preciso enfatizar la plataforma \textit{Unibotics} en la que se desarrolla el presente proyecto. Esta plataforma es un proyecto internacional que ofrece material para la enseñanza de robótica en las aulas. \textit{Unibotics} proporciona una infraestructura software en conjunto a una colección de ejercicios, cada uno con el material teórico correspondiente para su resolución. No requiere de ninguna instalación adicional. También ofrece una foro por el cual los usuarios pueden preguntar dudas, mostrar sus resultados y notificar acerca de bugs. De esta manera, se ofrece la posibilidad de aprender robótica con la necesiad de únicamente una conexión a internet.
+\subsection{Niveles universitarios}
+
+En el campo de la ingeniería, existen una serie de plataformas cuyo objetivo es proporcionar conocimientos robóticos, a partir de ejercicios más complejos y situaciones más realistas. Algunos ejemplos de estas plataformas son:
+
+\begin{itemize}
+\item \textbf{Riders.ai}: una plataforma de programación de robots que ofrece la posibilidad de realizar competiciones individuales como en grupos. Es accesible desde cualquier lado del mundo. También ofrece al usuario una capa de abstracción sobre los sensores, localización y diferentes partes del robot. En su plataforma online, proporciona una serie de cursos de iniciación a la robótica, además, ofrece un sistema de ligas en las que han de resolverse una serie de ejercicios, como forma de competición entre los usuarios. Esta plataforma está orientada a las competiciones, para empezar a aprender, el usuario ha de unirse a una competición y empezar a resolver los problemas de las misma, finalmente, obtendrá una puntuación en un ranking.
+\item \textbf{TheConstruct}: ofrece un entorno de programación de robots que pueden moverse por la Luna, Marte y más planetas. No requiere la instalación de ROS. Ofrece un gran extra que le diferencia de los demás, brinda la posibilidad al usuario de poder ejecutar su código en robots reales de forma remota, y, también proveen certificados al completar diferentes cursos. La plataforma ofrece numerosos cursos de ROS, creación de robots, algoritmos robóticos, etc. Está orientada al aprendizaje mediante la práctica y no requiere ninguna instalación adicional. También ofrece una comunidad con la que los usuarios pueden interactuar.
+\end{itemize}
+
+Además de plataformas online dedicadas a la enseñanza de la robótica universitaria, también existen grados, másteres y programas de doctorado en robótica.
+
+Dentro de la educación robótica, es preciso enfatizar la plataforma \textit{Unibotics} en la que se desarrolla el presente proyecto. Esta plataforma es un proyecto internacional que ofrece material para la enseñanza de robótica en las aulas universitarias de ingeniería. \textit{Unibotics} proporciona una infraestructura software en conjunto a una colección de ejercicios, cada uno con el material teórico correspondiente para su resolución. No requiere de ninguna instalación adicional. También ofrece una foro por el cual los usuarios pueden preguntar dudas, mostrar sus resultados y notificar acerca de bugs. De esta manera, se ofrece la posibilidad de aprender robótica con la necesidad de únicamente una conexión a internet.
 
 \begin{figure}[H]
   \centering
@@ -390,12 +459,12 @@ Dentro de la robótica educativa, es preciso enfatizar la plataforma \textit{Uni
   \hfill
   \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth,height=45mm]{img/pagina_principal_unibotics.png}
-    \caption{Página pricipal de Unibotics.}
+    \caption{Página principal de Unibotics.}
     \label{figura:turn}
   \end{minipage}
 \end{figure}
 
-Esta plataforma permite el aprendizaje de la robótica mediante una serie de ejercicios que se muestran a través de una interfaz web. Ofrece un amplio rango de ejercicios con robots de todo tipo, como coches, drones y aspiradoras, con distintos tipos de sensores como sensores de proximidad láser, cámaras, diversos motores y sensores de navegación.
+Esta plataforma permite el aprendizaje de la robótica mediante una serie de retos que se muestran a través de una interfaz web. Ofrece un amplio rango de ejercicios con robots de todo tipo, como coches, drones y aspiradoras, con distintos tipos de sensores como sensores de proximidad láser, cámaras, diversos motores y sensores de navegación.
 
 La gamificación de la educación tiene una gran importancia, pues potencia las capacidades de los estudiantes, además, aumenta la concentración y la motivación. De manera que hace que los estudiantes puedan alcanzar un nivel de conocimiento superior con la unión de actividades lúdicas y aprendizaje.
 
@@ -404,33 +473,35 @@ La gamificación de la educación tiene una gran importancia, pues potencia las 
 
 Las diferentes tecnologías web permiten crear interfaces de usuario y establecer las comunicaciones con el servidor, además de implementar comportamientos de la web en el servidor. Se pueden distinguir en tecnologías \emph{backend} (del lado del servidor) y tecnologías \emph{frontend} (del lado del usuario).
 
-Una gran ventaja de estas tecnologías es que ofrecen la ausencia de la necesidad de instalar componentes de software, configuración y dependencias adicionales. Únicamente es necesario disponer de un navegador de internet y una conexión a internet, pues todos los archivos necesarios se servirán desde el lado del servidor. Además, tambien permiten una compatibilidad multiusuario, es decir, no es necesaria la instalación de software adicional ni de ningún sistema operativo en específico, pues es únicamente necesario un navegador web y una conexión a internet para el uso de una aplicación web.
+Una gran ventaja de estas tecnologías es que ofrecen la ausencia de la necesidad de instalar componentes de software, configuración y dependencias adicionales. Únicamente es necesario disponer de un navegador de internet y una conexión a internet, pues todos los archivos necesarios se servirán desde el lado del servidor en el momento de acceder. Además, también permiten una compatibilidad multiplataforma, es decir, no es necesaria la instalación de software adicional ni de ningún sistema operativo en específico, pues es únicamente necesario un navegador web y una conexión a internet para el uso de una aplicación web.
 
-En la actualidad existen numerosas aplicaciones web de las que hacemos uso en el día a día, estas pueden ser, aplicaciones bancarias, la tienda de \emph{Amazon}, aplicaciones de videoconferencia como \emph{Google Hangouts}, tiendas online de productos de comida (\emph{Uber Eats}), e incluso aplicaciones de venta de productos de segunda mano (\emph{Wallapop}). A día de hoy un gran número de empresas proveen a sus usuarios de estas aplicaciones web, pues ofrecen una compatibilidad universal, y, además, del lado del usuario, este no tiene que instalar ninguna aplicación. 
+En la actualidad existen numerosas aplicaciones web de las que hacemos uso en el día a día, estas pueden ser, aplicaciones bancarias, la tienda de \emph{Amazon}, aplicaciones de videoconferencia como \emph{Google Meet}, tiendas online de productos de comida (\emph{Uber Eats}), e incluso aplicaciones de venta de productos de segunda mano (\emph{Wallapop}). A día de hoy un gran número de empresas proveen a sus usuarios de estas aplicaciones web, pues ofrecen una compatibilidad universal, y, además, del lado del usuario, este no tiene que instalar ninguna aplicación. 
 
-Estas tecnologías facilitan el uso al cliente, pues evitan que el usuario tenga que intalar actualizaciones, pues las actualizaciones se realizan en el lado del servidor. Esta ventaja elimina posibles fallos debidos a incompatibilidades entre las versiones, pues el servidor distribuye una única version para todos. También ofrecen la ventaja de aplicaciones web multiplataforma, únicamente es necesario el desarrollo en un único entorno (\emph{Windows}, \emph{Ubuntu}, \emph{MacOS}, etc), pues estas tecnologías son comunes a los navegadores de todos los sistemas. Únicamente es necesario conocer \emph{HTML}, \emph{CSS} y \emph{JavaScript}, el navegador será el encargado de interpretar dichos lenguajes.
+Estas tecnologías facilitan el uso al cliente, pues evitan que el usuario tenga que instalar actualizaciones, pues las actualizaciones se realizan en el lado del servidor. Esta ventaja elimina posibles fallos debidos a incompatibilidades entre las versiones, pues el servidor distribuye una única version para todos. También ofrecen la ventaja de multiplataforma, únicamente es necesario el desarrollo en un único entorno (\emph{Windows}, \emph{Ubuntu}, \emph{MacOS}, etc), pues estas tecnologías son comunes a los navegadores de todos los sistemas. Únicamente es necesario conocer \emph{HTML}, \emph{CSS} y \emph{JavaScript}, el navegador será el encargado de interpretar dichos lenguajes.
 
-Las aplicaciones web dependen de una conexión entre el usuario y el servidor, por lo que, una de las desventajas que estas es la latencia que esta conexión pueda generar. Estas tecnologías siempre son algo más lentas que otros lenguajes compilados como \emph{C\#} puesto que el navegador no realiza ninguna compilación, si no que interpreta el código línea a línea.
+Las aplicaciones web dependen de una conexión entre el usuario y el servidor, por lo que, una de las desventajas es la latencia que esta conexión pueda generar. Estas tecnologías siempre son algo más lentas que otros lenguajes compilados como \emph{C\#} puesto que el navegador no realiza ninguna compilación, si no que interpreta el código línea a línea.
 
-En el lado del servidor, existen diversos \emph{frameworks} que facilitan la vida al desarrollador. Algunos ejemplos de ellos serían, \emph{Express} para el lenguaje \emph{JavaScript} y \emph{Django} escrito en \emph{Python}.
+En el lado del servidor, existen diversos \emph{frameworks} que facilitan la vida al desarrollador. Algunos ejemplos de ellos serían \emph{Express}, para el lenguaje \emph{JavaScript}, y \emph{Django}, escrito en \emph{Python}.
+
+En el lado del navegador, destacan las novedades de HTML5. Que incorpora nuevas etiquetas de caracter semático (\emph{header}, \emph{footer}, etc), nuevos controles para los formularios que únicamente eran posibles antes con JavaScript o CSS, ya no es necesario el uso de comillas dobles en los atributos, no es necesario el cierre de etiquetas vacías, se puede dibujar con etiquetas como \emph{canvas}. Adicionalment, WebRTC tiene gran importancia en las aplicaicones web, pues permite incorporar videoconferencia a los navegadores web. Este protocolo es de código abierto desarrollado por Mozilla que permite establecer conexiones \emph{peer-to-peer} entre dos navegadores sin necesidad de utilizar \emph{plugins} ni \emph{software} adicional más allá del propio navegador web utilizando APIs de JavaScript.
 
 El desarrollo de tecnologías web está sujeto a un gran crecimiento. Cada vez las aplicaciones web son más potentes y eficientes, de manera que cada vez son más los desarrolladores que optan por este modelo de desarrollo.
 
-Las tecnologías web ofrecen la posibilidad de que varios usuarios puedan programar robots y ejecutarlos en el mismo escenario, hacer competiciones tanto síncronas como asíncronas, algo que resultaría muy complejo si se realizase en local. \emph{WebRTC} nos ofrece esta posibilidad, pues es una herramienta de código abierto que proporciona conexiones en tiempo real entre \emph{peers} mediante un API.
+%Las tecnologías web ofrecen la posibilidad de que varios usuarios puedan programar robots y ejecutarlos en el mismo escenario, hacer competiciones tanto síncronas como asíncronas, algo que resultaría muy complejo si se realizase en local. \emph{WebRTC} nos ofrece esta posibilidad, pues es una herramienta de código abierto que proporciona conexiones en tiempo real entre \emph{peers} mediante un API.
 
 \section{Estructura del documento}
 
-En esta sección se va a hacer un breve resúmen de los contenidos de cada capítulo, también se mencionará como están estructurados.
+En esta sección hace un breve resumen de los contenidos de cada capítulo, también se mencionará cómo están estructurados.
 
-En el capítulo 2, Objetivos, se explica cuál es el propósito o los propósitos de este trabajo. También se mencionará la planificación temporal que se ha llevado a cabo durante el trabajo. Y finalmente, se mencionará la heramienta empleada para realizar un control de versiones.
+En el capítulo 2, Objetivos, se explica cuál es el propósito o los propósitos de este trabajo. También se mencionará la planificación temporal que se ha llevado a cabo durante el trabajo. Y finalmente, se mencionará la herramienta empleada para realizar un control de versiones.
 
 Posteriormente, en el capítulo 3, Herramientas, se habla exclusivamente sobre las herramientas y tecnologías utilizadas. Serán descritas indicando sus ventajas, inconvenientes y áreas de uso.
 
-A continuación, en el capítulo 4, Juegos Asíncronos, se explicará cómo se ha realizado el diseño de los mismos, tanto para la IU como para la infraestructura interna.
+A continuación, en el capítulo 4, Juegos Asíncronos, se explicará cómo se ha realizado el diseño de los mismos, tanto para la interfaz de usuario como para la infraestructura interna.
 
-Seguidamente, en el capítulo 5, Juegos Síncronos, de igual manera que en la sección anterior, se explicará como se ha desarrollado la infraestructura necesaria para elaborar el ejercicio.
+Seguidamente, en el capítulo 5, Juegos Síncronos, de igual manera que en la sección anterior, se explicará cómo se ha desarrollado la infraestructura necesaria para elaborar este tipo de ejercicio.
 
-Finalmente, en el capítulo 6, tenemos los experimentos realizados y sus resultados, además, en el capítulo 7, se encuentran las conclusiones obtenidas de haber realizado este trabajo, y, en último lugar la bibliografía que contiene todos los contenidos empleados para el desarrollo del trabajo.
+Finalmente, en el capítulo 6, se encuentran las conclusiones obtenidas de haber realizado este trabajo, y, en último lugar la bibliografía que contiene todas las referencias empleadas para el desarrollo del trabajo.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -504,14 +575,14 @@ Para el seguimiento de los objetivos previamente mencionados, se ha seguido una 
 \chapter{Herramientas} 
 \label{chap:herramientas}
 
-En este capítulo se hará una breve presentación de todas las herramientas empleadas para el desarrollo del presente TFG. Estas tecnologías se pueden englobar en cuatro grupos, las tecnologías Front-End dedicadas a la presentación y a la interfaz de usuario (JavaScript, HTML y CSS), tecnologías Back-End dedicadas al servidor (Django), tecnologías WebRTC que serán las utilizadas en la retransmisión del vídeo en los juegos síncronos, y, por último, tecnologías dedicadas al control de versiones (GitHub). 
+En este capítulo se hará una breve presentación de todas las herramientas empleadas para el desarrollo del presente TFG. Estas tecnologías se pueden englobar en cuatro grupos, las tecnologías Front-End dedicadas a la presentación y a la interfaz de usuario (JavaScript, HTML y CSS), tecnologías Back-End dedicadas al servidor (Django), tecnologías WebRTC que serán las utilizadas en la retransmisión del vídeo en los juegos síncronos, y, por último, tecnologías de educación en robótica que han servido como base. 
 
-Estas herramientas son estandarizadas por medio de W3C \footnote{\url{https://www.w3.org}} (World Wide Web Consortium). Además, la versión de HTML empleada para realizar este trabajo es \emph{HTML5}, pues es la versión establecida por W3C como lenguaje de hipertexto de la World Wide Web.
+Estas herramientas web son estandarizadas por medio de W3C \footnote{\url{https://www.w3.org}} (World Wide Web Consortium). Además, la versión de HTML empleada para realizar este trabajo es \emph{HTML5}, pues es la versión establecida por W3C como lenguaje de hipertexto de la World Wide Web.
 
 \section{Lenguaje JavaScript}
 \label{sec:javascript}
 
-Su estándar se denomina \textit{ECMAScript}\footnote{\url{https://es.wikipedia.org/wiki/ECMAScript}}. Se trata de un lenguaje de programación interpretado, basado en \textit{Java} y \textit{C}. Fue creado para aplicaciones web del lado del cliente. Es interpretado en el navegador web y permite mejoras en la interfaz de usuario, además de páginas web dinámicas. También puede usarse en el lado del servidor utilizando \textit{Node.js}, un entorno de ejecucción de JavaScript construido con el motor \textit{JavaScript V8}.
+Su estándar se denomina \textit{ECMAScript}\footnote{\url{https://es.wikipedia.org/wiki/ECMAScript}}. Se trata de un lenguaje de programación interpretado, basado en \textit{Java} y \textit{C}. Fue creado para el lado del cliente de aplicaciones web. Es interpretado en el navegador web y permite mejoras en la interfaz de usuario, además de páginas web dinámicas. También puede usarse en el lado del servidor utilizando \textit{Node.js}, un entorno de ejecución de JavaScript construido con el motor \textit{JavaScript V8}.
 
 En este proyecto se ha empleado JavaScript en el lado de la interfaz de usuario. La lógica de las plantillas que usan los ejercicios ha sido programada usando \textit{ECMAScript-6}, es decir, se ha empleado para los controladores de los botones de la interfaz, para comunicaciones entre la interfaz de usuario con determinados sevicios, y, además, para todos los extras añadidos a los ejercicios base de los que se parten. Sus principales características son:
 
@@ -530,12 +601,12 @@ En este proyecto se ha empleado JavaScript en el lado de la interfaz de usuario.
 	\item Es un lenguaje orientado a objetos, ya que utiliza clases y objetos como estructuras.
 \end{itemize}
 
-Adicionalmente, en este Trabajo de Fin de Grado, junto con \textit{ES-6} se ha empleado una librería llamada \textit{jQuery} que permite agregar dinamismo a un sitio web permitiendo interactuar con los elementos HTML, manipular el DOM, manejar eventos, diseñar animaciones y agregar interacción con la técnica \textit{AJAX}\footnote{\url{https://developer.mozilla.org/es/docs/Web/Guide/AJAX}} (\textit{Asynchronous JavaScript and XML}).
-
 \subsection{Librería jQuery}
 \label{subsec:javascript}
 
-\textit{jQuery} \footnote{\url{https://jquery.com/}} es una librería multiplataforma desarrollada en JavaScript, inicalmente desarrollada por John Resig. Esta librería permite simplificar en gran medida la interacción con los documentos HTML y sus estilos, manipular el DOM, manejar eventos, crear animaciones, y agregar la integración de la técnica \textit{AJAX} (\textit{Asynchronous JavaScript and XML}). La versión utilizada en este proyecto es \emph{jQuery 3.3.1}.
+Adicionalmente, en este Trabajo de Fin de Grado, junto con \textit{ES-6} se ha empleado una librería llamada \textit{jQuery} \footnote{\url{https://jquery.com/}} que permite agregar dinamismo a un sitio web permitiendo interactuar con los elementos HTML, manipular el DOM, manejar eventos, diseñar animaciones y agregar interacción con la técnica \textit{AJAX}\footnote{\url{https://developer.mozilla.org/es/docs/Web/Guide/AJAX}} (\textit{Asynchronous JavaScript and XML}).
+
+\textit{jQuery} es una librería multiplataforma desarrollada en JavaScript, inicalmente desarrollada por John Resig. Esta librería permite simplificar en gran medida la interacción con los documentos HTML y sus estilos, manipular el DOM, manejar eventos, crear animaciones, y agregar la integración de la técnica \textit{AJAX} (\textit{Asynchronous JavaScript and XML}). La versión utilizada en este proyecto es \emph{jQuery 3.3.1}.
 
 Gracias a esta librería, es posible diseñar una interfaz gráfica elaborada sin necesidad de tener amplios conocimientos de CSS.
 \section{Lenguaje HTML}
@@ -570,9 +641,9 @@ Con la incorporación de \textit{HTML-5} se han introducido diversas novedades y
 \section{Hojas de estilo CSS}
 \label{sec:css}
 
-CSS \footnote{\url{https://developer.mozilla.org/es/docs/Web/CSS}} o \textit{Cascading StyleSheet} es un lenguaje empleado para dar formato y estilo a un documento de texto, comunmente, las instrucciones se agrupan en archivos con extensión \textbf{*.css}. Lo que permite que para una página web se puedan almacenar estilos por separado dependiendo del fin de cada uno. Además, la posibilidad de agrupar las instrucciones en varios archivos hace posible la importación en cada documento únicamente las instrucciones de las que se va a hacer uso.
+CSS \footnote{\url{https://developer.mozilla.org/es/docs/Web/CSS}} o \textit{Cascading StyleSheet} es un lenguaje empleado para dar formato y estilo a un documento de texto, comunmente, las instrucciones se agrupan en archivos con extensión \emph{*.css}. Lo que permite que para una página web se puedan almacenar estilos por separado dependiendo del fin de cada uno. Además, la posibilidad de agrupar las instrucciones en varios archivos hace posible la importación en cada documento únicamente las instrucciones de las que se va a hacer uso.
 
-Al poder almacenar las instrucciones ficheros separados, esto ofrece una gran ventaja, es decir, la separación de la estructura del documento (HTML) de su representación (CSS). También es posible añadir instrucciones CSS en la cabecera de un documento HTML mediante la etiqueta \textit{style}, pero  no se considera una buena práctica.
+Al poder almacenar las instrucciones ficheros separados, esto ofrece una gran ventaja, la separación de la estructura del documento (HTML) de su representación (CSS). También es posible añadir instrucciones CSS en la cabecera de un documento HTML mediante la etiqueta \textit{style}, pero  no se considera una buena práctica.
 
 A continuación se muestra un ejemplo del uso de este lenguaje.
 
@@ -583,23 +654,23 @@ A continuación se muestra un ejemplo del uso de este lenguaje.
     \label{figura:nocss_vs_css}
 \end{figure}
 
-Como se puede apreciar en la imagen 3.2, hay un gran salto de no usar CSS a usarlo en los documentos HTML. Este lenguaje permite diseñar barras de navegación, menús desplegables, barras de búsqueda, botones, sub-apartados, etcétera, personalizados al estilo que se le quiera dar a la página, y con una apariencia muy diferente a los elementos que ofrece HTML por defecto.
+Como se puede apreciar en la Figura \ref{figura:nocss_vs_css}, hay un gran salto de no usar CSS a usarlo en los documentos HTML. Este lenguaje permite diseñar barras de navegación, menús desplegables, barras de búsqueda, botones, sub-apartados, etcétera, personalizados al estilo que se le quiera dar a la página, y con una apariencia muy diferente a los elementos que ofrece HTML por defecto.
 
 CSS también permite la creación de páginas web responsivas, esto es, que los elementos se coloquen de una manera u otra para ofrecer una mejor disposición de los elementos dependiendo del tamaño la pantalla del usuario. Es decir, un teléfono móvil no tiene una pantalla de las mismas dimensiones que un ordenador, por lo que en el caso de una pantalla de un teléfono, con una web responsiva los elementos se colocarían de determinada manera para que sea más cómoda la experiencia del usuario, y, por ejemplo, que el usuario no tenga que hacer desplazamientos horizontales para ver el contenido, o que los botones y la fuente se adapten tomando un mayor tamaño de manera que sean legibles.
 
 \section{Django para servidores web}
 \label{sec:django}
 
-Django \footnote{\url{https://es.wikipedia.org/wiki/Django_(framework)}} \cite{django} es un entorno de alto nivel basado en el lenguaje Python que facilita el desarrollo de sitios web seguros y sostenibles, en este proyecto en particular, se ha empleado \emph{Django 2.2}. Fue lanzado como un \emph{framework} web genérico en 2005, bajo una licencia de código abierto. Django se encarga de las complicaciones del desarrollo web (como puede ser la seguridad, la autenticación de usuarios, expresiones regulares predefinidas para validaciones de campos como correos´), para que el usuario pueda centrarse en escribir su aplicación.
+Django \footnote{\url{https://es.wikipedia.org/wiki/Django_(framework)}} \cite{django} es un entorno de alto nivel basado en el lenguaje Python que facilita el desarrollo de sitios web seguros y sostenibles, en este proyecto en particular se ha empleado \emph{Django 2.2}. Fue lanzado como un \emph{framework} web genérico en 2005, bajo una licencia de código abierto. Django se encarga de las complicaciones del desarrollo web (como puede ser la seguridad, la autenticación de usuarios, expresiones regulares predefinidas para validaciones de campos como correos), para que el usuario pueda centrarse en escribir su aplicación.
 
 El objetivo de Django es la creación sencilla de sitios web complejos, poniendo énfasis en la reutilización, la conectividad y la extensibilidad de componentes, el desarrollo rápido y el principio de no repetir código (\textit{Don't Repeat Yourself}).
 
-Algunas de las carácterística de Django son:
+Algunas de las características de Django son:
 
 \begin{itemize}
 \item Un mapeador objeto-relacional, es capaz de convertir datos entre un sistema de tipos utilizado en un lenguaje de programación orientado a objetos y la utilización de una base de datos relacional. Permite realizar accesos a las bases de datos utilizando los filtros del lenguaje Python, no es necesario utilizar el lenguaje SQL de consultas a bases de datos. Django traduce automáticamente de Python a peticiones SQL.
 
-\item Aplicaciones incorporables en cualquier página gestionada con Django.
+%\item Aplicaciones incorporables en cualquier página gestionada con Django.
 
 \item Una API de base de datos robusta y genérica. Soporta MySQL, SQLite, Postgre, y demás sistemas de bases de datos y a las que el programador del sitio web accede con el uso de Python.
 
@@ -627,7 +698,7 @@ El API de WebRTC tiene una serie de interfaces principales que son clave en el d
 \begin{itemize}
 \item \textbf{RTCPeerConnection} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/RTCPeerConnection}} representa una conexión entre una máquina local y un par remoto. Esta interfaz provee métodos para: conectar un equipo remoto, mantener y monitorizar esa conexión y cerrar la conexión.
 
-\item \textbf{RTCDataChannel} \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel}} representa el canal que puede ser empleado para la transmisión de datos de baja lantencia (pues está basado en el protocolo UDP) entre pares (\textit{Peer to Peer}).
+\item \textbf{RTCDataChannel} \footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel}} representa el canal que puede ser empleado para la transmisión de datos de baja latencia (pues está basado en el protocolo UDP) entre pares (\textit{Peer to Peer}).
 
 \item \textbf{MediaDevices} \footnote{\url{https://developer.mozilla.org/es/docs/Web/API/MediaDevices}} proporciona el acceso desde el navegador web a los dispositivos multimedia conectados, como webcams y micrófonos, y, también para compartir la pantalla. Ofrece un método \textit{getUserMedia()}, que, con el permiso del usuario, enciende la cámara, obtiene la imagen de la pantalla, el audio del micrófono, y, proporciona un \textit{MediaStream} que contiene pistas de vídeo y/o de audio del dispositivo.
 
@@ -638,11 +709,11 @@ El API de WebRTC tiene una serie de interfaces principales que son clave en el d
 \label{subsec:protocolos}
 
 \begin{itemize}
-\item \textbf{ICE} \footnote{\url{https://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment}} (\textit{Interactive Connectivity Establishment}). Es una técnica empleada para permitir que un navegador web se conecte con otro/s navegador/es web mediante conexiones entre pares. Debe poder pasar por un \textit{firewall}, dirección IP pública, y, transmitir los datos a través de otro servidor, si el \textit{router} no permite las conexiones directas entre pares. Para lograr esta serie de casos, se emplean servidores STUN y TURN. Previo al establecimiento de una conexión ICE, es necesario realizar una señalización, que sirve para que ambos pares negocien un tipo de conexión. Para poder realizar una negociación satisfactoria, es necesario un servidor intermedio (servidor de señalización) que se encarge de comunicar ambos extremos durante el proceso de señalización.
+\item \textbf{ICE} \footnote{\url{https://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment}} (\textit{Interactive Connectivity Establishment}). Es una técnica empleada para permitir que un navegador web se conecte con otro/s navegador/es web mediante conexiones entre pares. Debe poder pasar por un \textit{firewall}, dirección IP pública, y, transmitir los datos a través de otro servidor, si el \textit{router} no permite las conexiones directas entre pares. Para lograr esta serie de casos, se emplean servidores STUN y TURN. Previo al establecimiento de una conexión ICE, es necesario realizar una señalización, que sirve para que ambos pares negocien un tipo de conexión. Para realizar una negociación satisfactoria, es necesario un servidor intermedio (servidor de señalización) que se encarge de comunicar ambos extremos durante el proceso de señalización.
 
-\item \textbf{NAT} \footnote{\url{https://en.wikipedia.org/wiki/Nat}} (\textit{Network Address Translation}). Es empleado por el \textit{router} para asignar una dirección IP pública. El \textit{router} tiene acceso a la dirección pública de cada dispositivo y cada dispositivo conectado a este, tendrá una dirección IP privada. Las solucitudes se traducen de la IP privada a la IP pública con un puerto único. Desde el exterior de una red privada todos los dispositivos tienen la misma IP pública, de manera que el router se encarga de entregar el mensaje al dispositivo que corresponda, esto permite ahorrar direcciones IP, pero complica la comunicación directa entre dispositivos que se encuentren detras de sus respectivos NATs. Algunos \textit{enrutadores} tienen restricciones sobre quién puede conectarse a su red. Esto puede dar lugar a que aunque tengamos un única dirección IP pública encontrada por el servidor STUN, no se pueda establecer una conexión. Ante este caso, se debe recurrir a un servidor TURN.
+\item \textbf{NAT} \footnote{\url{https://en.wikipedia.org/wiki/Nat}} (\textit{Network Address Translation}). Es empleado por el \textit{router} para asignar una dirección IP pública. El \textit{router} tiene acceso a la dirección pública de cada dispositivo y cada dispositivo conectado a este, tendrá una dirección IP privada. Las solicitudes se traducen de la IP privada a la IP pública con un puerto único. Desde el exterior de una red privada todos los dispositivos tienen la misma IP pública, de manera que el router se encarga de entregar el mensaje al dispositivo que corresponda. Esto permite ahorrar direcciones IP, pero complica la comunicación directa entre dispositivos que se encuentren detrás de sus respectivos NATs. Algunos \textit{enrutadores} tienen restricciones sobre quién puede conectarse a su red. Esto puede dar lugar a que aunque tengamos un única dirección IP pública encontrada por el servidor STUN, no se pueda establecer una conexión. Ante este caso, se debe recurrir a un servidor TURN.
 
-\item \textbf{STUN} \footnote{\url{https://en.wikipedia.org/wiki/STUN}} (\textit{Session Transversal Utilities for NAT}). Es un protocolo de descubrimiento de IP pública, para determinar cualquier restricción en el \textit{enrutador} que impida una conexión directa con un par. El cliente enviará una solicitud STUN en Internet que responderá con la dirección pública del cliente y si el cliente esta accesible detrás del NAT del enrutador.
+\item \textbf{STUN} \footnote{\url{https://en.wikipedia.org/wiki/STUN}} (\textit{Session Traversal Utilities for NAT}). Es un protocolo de descubrimiento de IP pública, para determinar cualquier restricción en el \textit{enrutador} que impida una conexión directa con un par. El cliente enviará una solicitud STUN en Internet que responderá con la dirección pública del cliente y si el cliente está accesible detrás del NAT del enrutador.
 
 \item \textbf{TURN} \footnote{\url{https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT}} (\textit{Transversal Using Relays around NAT}). Algunos router emplean una técnica llamada \textit{NAT simétrica}. Esto es, el \textit{enrutador} sólo acepta conexiones de pares a los que se haya conectado previamente. TURN está destinado a aludir esta resticción de NAT simétrica. Consiste en establecer una conexión con un servidor TURN que retransmite todo el tráfico que se le envía, de una máquina a otra. Este intercambio es gestionado usando ICE.
 
@@ -664,18 +735,18 @@ El proceso de \textit{Offer}/\textit{Answer} es realizado cuando se establece un
   \end{minipage}
 \end{figure}
 
-\item \textbf{SDP} (\textit{Session Description Protocol}) \footnote{\url{https://en.wikipedia.org/wiki/Session_Description_Protocol}}. Es un protocolo empleado para describir una sesión de comunicación multimedia con el fin de anuncio o ode invitación. Su uso predominante se encuentra en el soporte de aplicaciones que utilizan retransmisiones multimedia, como voice over IP (VoIP) y vídeo conferencias.
+\item \textbf{SDP} (\textit{Session Description Protocol}) \footnote{\url{https://en.wikipedia.org/wiki/Session_Description_Protocol}}. Es un protocolo empleado para describir una sesión de comunicación multimedia con el fin de anuncio o de invitación. Su uso predominante se encuentra en el soporte de aplicaciones que utilizan retransmisiones multimedia, como voice over IP (VoIP) y videoconferencias.
 
 \end{itemize}
 
 \subsection{Establecimiento de la conexión en WebRTC}
 \label{subsec:establecimiento_conexion}
 
-El protocolo WebRTC se encarga de establecer conexiones entre pares, pero desafortunadamente, una conexión WebRTC no se puede establecer sin un servidor intermedio. Este servidor podríamos llamarlo \textbf{servidor de señalización}, empleado en el intercambio de información previo al establecimiento de la conexión WebRTC.
+El protocolo WebRTC se encarga de establecer conexiones entre pares, pero desafortunadamente, una conexión WebRTC no se puede establecer sin un servidor intermedio. Este servidor podríamos llamarlo \emph{servidor de señalización}, empleado en el intercambio de información previo al establecimiento de la conexión WebRTC.
 
 La información que necesitamos intercambiar es una oferta (\textit{Offer}) y una respuesta (\textit{Answer}) que contienen el \textit{Session Description Protocol} mencionado anteriormente en \ref{subsec:protocolos}.
 
-El \textit{Peer A} que inicia la conexión va a crear una oferta. Esta oferta será enviada al par B mediante el servidor intermedio seleccionado. El par B recibirá esta oferta desde el servidor de señalización y creará una respuesta que enviará haciendo uso del mismo intermediario al par A.
+El par A que inicia la conexión va a crear una oferta. Esta oferta será enviada al par B mediante el servidor intermedio seleccionado. El par B recibirá esta oferta desde el servidor de señalización y creará una respuesta que enviará haciendo uso del mismo intermediario al par A.
 
 \begin{enumerate}
 \item Extremo A captura los medios locales mediante \textit{MediaDevices.getUserMedia}
@@ -714,7 +785,6 @@ Además de intercambiarse la información sobre los elementos multimedia, los pa
 	\centering
     \includegraphics[width=10cm]{img/ice_diagram.png}
     \caption{Diagrama de intercambio de candidatos ICE.}
-    \label{figura:nocss_vs_css}
 \end{figure}
 
 \section{Control de versiones}
@@ -722,7 +792,7 @@ Además de intercambiarse la información sobre los elementos multimedia, los pa
 
 En todo desarrollo de aplicaciones software es necesaria una herramienta de control de versiones que facilite la gestión del código fuente. Estas herramientas realizan un control de todas las modificaciones, de manera que si se comete un error en un determinado instante, se puede volver a una versión anterior del código fuente de la aplicación. La herramienta empleada para el control de versiones en este proyecto es \emph{GitHub}.
 
-Esta herramienta permite clonar cualquier repositorio en nuestra máquina local y mantenerlo actualizado frente a cambios que se hagan en el extremo remoto, además simplifica el ciclo de desarrollo en proyectos grandes, con varios colaboradores, pues se mantiene un código común (que los desarrolladores pueden sincronizar) con la incorporación de modificaciones por parte de los distintos colaboradores. También podemos contribuir en este código realizando parches (\emph{Pull Requests}). Es una herramienta muy potente, lo que le hace ser una de las herramientas de control de versiones más utilizadas internacionalmente por la comunidad de desarrolladores.
+Esta herramienta permite clonar cualquier repositorio en nuestra máquina local y mantenerlo actualizado frente a cambios que se hagan en el extremo remoto. Además simplifica el ciclo de desarrollo en proyectos grandes, con varios colaboradores, pues se mantiene un código común (que los desarrolladores pueden sincronizar) con la incorporación de modificaciones por parte de los distintos colaboradores. También podemos contribuir en este código realizando parches (\emph{Pull Requests}). Es una herramienta muy potente, lo que le hace ser una de las herramientas de control de versiones más utilizadas internacionalmente por la comunidad de desarrolladores.
 
 \emph{GitHub} proporciona un interfaz gráfico que permite, de manera gráfica, ver la actividad de un repositorio, lo que permite saber si un proyecto tiene una gran cantidad de desarrolladores.
 
@@ -733,8 +803,8 @@ Esta herramienta permite clonar cualquier repositorio en nuestra máquina local 
     \label{figura:simulador_gazebo}
 \end{figure}
 
-\subsection{noVNC}
-\label{subsection:novnc}
+\section{noVNC}
+\label{section:novnc}
 
 La herramienta \emph{noVNC} \footnote{https://novnc.com/info.html} es un proyecto de código abierto con un gran número de usuarios, desarrolladores y contribuidores. Esta herramienta ofrece un cliente web VNC construido sobre \emph{JavaScript} y empleando \emph{HTML5}, \emph{WebSockets} y \emph{Canvas}, que funciona en la gran mayoría de navegadores modernos de manera fluida. Incluye un servidor VNC que debe de ejecutarse en la máquina desde la que se quiere compartir el contenido multimedia, y, finalmente desde el cliente web VNC conectarse a este servidor que proporciona el contenido multimedia que será mostrado en el cliente web mediante un elemento \emph{canvas}.
 
@@ -745,13 +815,13 @@ La herramienta \emph{noVNC} \footnote{https://novnc.com/info.html} es un proyect
 \section{RoboticsAcademy}
 \label{section:roboticsacademy}
 
-RoboticsAcademy \footnote{\url{https://github.com/jderobot/RoboticsAcademy}} es una plataforma de código abierto proporcionada por JdeRobot \footnote{\url{https://github.com/jderobot}}. Esta plataforma ofrece una colección de ejercicios para aprender robótica de una manera práctica. La herramienta principal empleada es un simulador \emph{Gazebo}, el entorno que nos permite visualizar la ejecución de los ejercicios.
+RoboticsAcademy \footnote{\url{https://github.com/jderobot/RoboticsAcademy}} es una plataforma offline de código abierto proporcionada por JdeRobot \footnote{\url{https://github.com/jderobot}}. Esta plataforma ofrece una colección de ejercicios para aprender robótica de una manera práctica. La herramienta principal empleada es un simulador \emph{Gazebo}, el entorno que permite visualizar la ejecución de los ejercicios.
 
-\subsection{Arquitectura}
+%\subsection{Arquitectura}
 
 Esta plataforma emplea un servidor \emph{Django} para servir los contenidos, este servidor está contenido dentro del contenedor docker RADI que proporciona. Cada ejercicio se comunica con diferentes componentes del contenedor vía \emph{WebSockets}.
 
-El contenedor docker RADI (Robotics Academy Docker Image) incluye un conjunto de ejercicios que hacen uso de \emph{Gazebo} en su simulación. Para comunicarse con este contenedor desde el lado del navegador web, se accede mediante un \emph{WebSocket} en el puerto 8765, empleando un protocolo de comunicación específico RAMP (Robotics Academy Manager Protocol), mediante esta conexión se mandan las órdenes relativas a la ejecución de los ejercicios. Cada ejercicio abrirá una serie de \emph{WebSockets} adicionales necesarios para que los complementos del ejercicio puedan intercambiar información.
+El contenedor docker RADI (Robotics Academy Docker Image) incluye un conjunto de ejercicios que hacen uso de \emph{Gazebo} en su simulación. Para comunicarse con este contenedor desde el lado del navegador web, se accede mediante un \emph{WebSocket} en el puerto 8765, empleando un protocolo de comunicación específico RAMP (Robotics Academy Manager Protocol). Mediante esta conexión se mandan las órdenes relativas a la ejecución de los ejercicios. Cada ejercicio abrirá una serie de \emph{WebSockets} adicionales necesarios para que los complementos del ejercicio puedan intercambiar información.
 
 Cada ejercicio está compuesto por una plantilla que muestra el navegador web llamada \emph{exercise.html} y un archivo Python llamado \emph{exercise.py}. El \emph{exercise.py} se ejecuta dentro del contenedor docker RADI, mientras que el \emph{exercise.html} lo muestra el navegador. Ambos se comunican vía \emph{WebSockets} de manera bidireccional.
 
@@ -762,7 +832,7 @@ Cada ejercicio está compuesto por una plantilla que muestra el navegador web ll
 \section{Unibotics}
 \label{section:unibotics}
 
-\emph{Unibotics} \footnote{\url{https://unibotics.org/}} es una plataforma que, al igual que RoboticsAcademy, se centra en el aprendizaje de la robótica de manera práctica. Esta plataforma hace uso del RADI de RoboticsAcademy para la ejecucción de los ejercicios, pero no hace uso del servidor local \emph{Django} que contiene el mismo, sino, que ofrece una web en a la que los usuarios pueden acceder desde su navegador, esta plataforma no es de código abierto.
+\emph{Unibotics} \footnote{\url{https://unibotics.org/}} es una plataforma online que, al igual que RoboticsAcademy, se centra en el aprendizaje de la robótica de manera práctica. Esta plataforma hace uso del RADI de RoboticsAcademy para la ejecucción de los ejercicios, pero no hace uso del servidor local \emph{Django} que contiene el mismo, sino, que ofrece una web en a la que los usuarios pueden acceder desde su navegador, esta plataforma no es de código abierto.
 
 %% IMAGEN DEL RETO FOLLOW LINE
 \begin{figure}[H]
@@ -772,12 +842,12 @@ Cada ejercicio está compuesto por una plantilla que muestra el navegador web ll
     \label{figura:unibotics_architecture}
 \end{figure}
 
-La arquitectura de la plataforma es muy similar a la de RoboticsAcademy, está formada por tres componentes, un \emph{Webserver}, el \emph{navegador} del usuario y el \emph{RADI} (contenedor Docker donde se ejecutan los ejercicios). A continuación, una descripción del trabajo que realiza cada componente:
+La arquitectura de la plataforma \emph{Unibotics} es muy similar a la de RoboticsAcademy, está formada por tres componentes, un \emph{Webserver}, el \emph{navegador} del usuario y el \emph{RADI} (contenedor Docker donde se ejecutan los ejercicios).
 
 \begin{itemize}
-\item \textbf{Webserver:} este componente se encarga de proporcionar al navegador del usuario, los componentes del \emph{Front End} que van a ser  necesarios para llevar a cabo la ejecución del ejercicio en cuestión. Proporciona las plantillas \textbf{HTML} y el código \textbf{JavaScript}. También se encarga de almacenar y traer el código del usuario desde \textbf{AWS} (\emph{Amazon Web Services} \footnote{\url{https://es.wikipedia.org/wiki/Amazon_Web_Services}}), con el fin de tener una persistencia del código del mismo.
+\item \textbf{Webserver:} este componente se encarga de proporcionar al navegador del usuario, los componentes del \emph{Front End} que van a ser  necesarios para llevar a cabo la ejecución del ejercicio en cuestión. Proporciona las plantillas \textbf{HTML} y el código \textbf{JavaScript}. También se encarga de almacenar y traer el código fuente del usuario para cada ejercicio desde \textbf{AWS} (\emph{Amazon Web Services} \footnote{\url{https://es.wikipedia.org/wiki/Amazon_Web_Services}}), con el fin de tener una persistencia del código del mismo.
 
-\item \textbf{Navegador:} ejecuta en la máquina del usuario, es el encargado de comunicarse con el RADI y mostrar toda la información relacionada con la simulación al usuario. Este componente muestra las plantillas de los ejercicios recibidas desde el Webserver al usuario. Mediante \emph{listeners} (escritos en \textbf{JavaScript}) sobre distintos elementos de la plantilla proporciona los controles sobre la ejecución del ejercicio (Play, Reset, Load Code, Gazebo, etc.). Además de proporcionar los controles sobre el ejercicio, también debe de transmitir estas órdenes al contenedor donde se aloja el ejercicio, de manera que durante el establecimiento de la conexión con este, en el caso de los juegos con dos vehículos, se establecen cinco WebSockets. Estos son, un máster, por el que se envían los comandos relacionados con el lanzamiento del ejercicio y Gazebo, y un dos WebSockets por cada vehículo, el primero \emph{ws\_code}, empleado para el envío del código al contenedor, se encarga de interactuar con el cerebro del robot, y, por útlimo, \emph{ws\_gui} cuya función es mostrar toda la información relativa a la interfaz de usuario (mapa al estilo f1, autoevaluador, imágenes de las cámaras), es decir, recibe toda la información del robot.
+\item \textbf{Navegador:} ejecuta en la máquina del usuario, es el encargado de comunicarse con el RADI y mostrar toda la información relacionada con la simulación al usuario. Este componente muestra las plantillas de los ejercicios recibidas desde el Webserver al usuario. Mediante \emph{listeners} (escritos en \textbf{JavaScript}) sobre distintos elementos de la plantilla proporciona los controles sobre la ejecución del ejercicio (Play, Reset, Load Code, Gazebo, etc.). Además de proporcionar los controles sobre el ejercicio, también transmite estas órdenes al contenedor donde se aloja el ejercicio, de manera que durante el establecimiento de la conexión con este, se establecen tres WebSockets. Estos son; un máster, por el que se envían los comandos relacionados con el lanzamiento del ejercicio y Gazebo; un \emph{ws\_code}, empleado para el envío del código al contenedor, se encarga de interactuar con el cerebro del robot, y, por útlimo, \emph{ws\_gui} cuya función es mostrar toda la información relativa a la interfaz de usuario (mapa al estilo f1, autoevaluador, imágenes de las cámaras), es decir, recibe toda la información del robot.
 
 \item \textbf{RADI:} es uno de los componentes con más peso, pues es donde se ejecuta la simulación. Este ofrece una serie de elementos,  \emph{ws\_manager}, \emph{ws\_code} y \emph{ws\_gui} mencionados anteriormentes, y adicionalmente, ofrece la visualización de Gazebo mediante \emph{GZClient \footnote{\url{http://manpages.ubuntu.com/manpages/bionic/man1/gzclient.1.html}}} y de la consola del contenedor, ambos por medio de un servidor \emph{noVNC \footnote{\url{https://novnc.com/info.html}}} alojado localmente en el contenedor, al cual se conectará el navegador para mostrar dichos elementos.
 \end{itemize}
