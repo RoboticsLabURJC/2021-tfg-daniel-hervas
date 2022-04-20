@@ -280,7 +280,7 @@ En la actualidad cada vez son más populares los coches autónomos. Es un campo 
   \caption{Coche autónomo.}
 \end{figure}
 
-Las aspiradoras autónomas \footnote{\url{https://gsyc.urjc.es/jmplaza/robotica/robotica.servicio/limpieza.pdf}} representan un gran ejemplo de autonomía robótica. Estas están presentes cada vez en más hogares facilitando la limpieza a las personas. A día de hoy, alrededor de un 15\% de las aspiradoras que se venden son rbóticas. Existen diversos tipos de aspiradoras robóticas, tanto para aspirar suelos, fregar suelos, y también incluso para limpiar ventanas. Estas aspiradoras se pueden dividir en modelos económicos, que son más sencillos en cuanto a la tecnología que emplean para el barrido y la navegación. Estos modelos más accesibles, empleam sensores de contacto, odometría y navegación pseudoaleatoria, también pueden detectar escalones. Por otro lado, existen aspiradoras de gama superior que disponen de autolocalización visual que les permite realizar barridos sistemáticos en lugar de pseudoaleatorios. Estas últimas tambien tienen la posibilidad de volver a la estación de carga.
+Las aspiradoras autónomas \footnote{\url{https://gsyc.urjc.es/jmplaza/robotica/robotica.servicio/limpieza.pdf}} representan un gran ejemplo de tecnología robótica. Estas están presentes cada vez en más hogares facilitando a las personas la limpieza de sus casas. A día de hoy, alrededor de un 15\% de las aspiradoras que se venden son robóticas. Existen diversos tipos de aspiradoras robóticas, tanto para aspirar suelos, fregar suelos, y también incluso para limpiar ventanas. Estas aspiradoras se pueden dividir en modelos económicos, y modelos de gama alta. Estos modelos más accesibles, emplean sensores de contacto, odometría y navegación pseudoaleatoria, también pueden detectar escalones. Por otro lado, existen aspiradoras de gama superior que disponen de autolocalización visual que les permite realizar barridos sistemáticos en lugar de pseudoaleatorios. Estas últimas tambien tienen la posibilidad de volver a la estación de carga.
 
 \begin{figure}[H]
 	\centering
@@ -289,7 +289,7 @@ Las aspiradoras autónomas \footnote{\url{https://gsyc.urjc.es/jmplaza/robotica/
     \label{figura:aspiradora_autonoma}
 \end{figure}
 
-Adicionalmente, los drones de inspección \footnote{\url{https://gsyc.urjc.es/jmplaza/robotica/robotica.servicio/campo.pdf}} destacan en gran medida en el campo de la robótica, pues facilitan el acceso y la supervisión de lugares peligrosos sin la necesidad de que acceda una persona. Estas tecnologías también permiten medir volúmenes y hacer cartografía 3D con el fin de representar topografías de terrenos. Los drones de inspección son muy relevantes en el sector agrícola, ya que además de poder realizar una representación de la orografía del terreno, permiten monitorizar, cosechar y controlar los campos de manera que aumente la eficiencia en los cultivos.
+Adicionalmente, los drones de inspección \footnote{\url{https://gsyc.urjc.es/jmplaza/robotica/robotica.servicio/campo.pdf}} destacan en gran medida en el campo de la robótica, pues facilitan el acceso y la supervisión de lugares peligrosos sin la necesidad de que acceda una persona. Estas tecnologías permiten medir volúmenes y hacer cartografía 3D con el fin de representar topografías de terrenos. Los drones de inspección son muy relevantes en el sector agrícola, ya que además de poder realizar una representación de la orografía del terreno, permiten monitorizar, cosechar y controlar los campos de manera que aumente la eficiencia en los cultivos.
 
 \begin{figure}[H]
 	\centering
@@ -298,7 +298,7 @@ Adicionalmente, los drones de inspección \footnote{\url{https://gsyc.urjc.es/jm
     \label{figura:inspeccion_drones´}
 \end{figure}
 
-Otro campo la aplicación de la robótica es la medicina, donde existen robots capaces de filtrar las vibraciones naturales del humano para proporcionarle una gran precisión y seguridad. Un claro ejemplo es el robot DaVinci (Figura 1.3). Adicionalmente, hay robots capaces de mantener la estabilidad necesaria para caminar sobre dos piernas robóticas, como es el robot SPOT (Figura \ref{figura:robot_spot}).
+Otro campo la aplicación de la robótica es la medicina, donde existen robots capaces de filtrar las vibraciones naturales del cirujano para proporcionarle una gran precisión y seguridad. Un claro ejemplo es el robot DaVinci (Figura 1.3). Adicionalmente, hay robots capaces de mantener la estabilidad necesaria para caminar sobre patas robóticas, como es el robot SPOT (Figura \ref{figura:robot_spot}).
 
 \begin{figure}[H]
   \centering
@@ -336,9 +336,7 @@ Por último, en el ámbito de la logística es muy útil la robótica pues exist
 \subsection{Middlewares robóticos}
 \label{subsec:middlewares}
 
-Todo robot está formado por dos componentes: el \textit{hardware} encargado de proporcionar la estructura física del robot, y el \textit{software}, encargado de proporcionar la inteligencia al robot.
-
-Con el gran auge de la robótica han surgido numerosas plataformas que proporcionan herramientas que simplifican el desarrollo de software robótico, estos son los denominados \textit{middlewares} robóticos.
+Todo robot está formado por dos componentes: el \textit{hardware} encargado de proporcionar la estructura física del robot, y el \textit{software}, encargado de proporcionar la inteligencia al robot. Con el gran auge de la robótica han surgido numerosas plataformas que proporcionan herramientas que simplifican el desarrollo de software robótico, estos son los denominados \textit{middlewares} robóticos.
 
 %\subsection{Middlewares robóticos}
 %\label{subsec:middlewares}
@@ -352,7 +350,7 @@ El \textit{middleware} robótico más generalizado es ROS\footnote{\url{https://
  
 Para transmitir información, ROS emplea un sistema de comunicación unidireccional asíncrona llamado ROS \emph{Topics} \footnote{\url{http://wiki.ros.org/Topics}} (temas). Estos \emph{Topics} se comportan como buses sobre los cuales los nodos intercambian mensajes, además, son de publicación anónima.
 
-Los \emph{Topics} tienen como objetivo una comunicación unidireccional de transmisión. Los nodos que necesitan hacer llamadas de procedimiento remoto que esperan una respuesta, deben emplear un \emph{Servicio} dedicado a ello.
+Los \emph{Topics} tienen como objetivo una comunicación unidireccional asíncrona de transmisión. Los nodos que necesitan hacer llamadas de procedimiento remoto que esperan una respuesta, deben emplear un \emph{Servicio} dedicado a ello.
 
 Los ROS \emph{Nodes} \footnote{\url{http://wiki.ros.org/Nodes}} (nodos) son procesos que realizan cálculos. Los nodos se comunican entre sí mediante el uso de temas, servicios RPC (\emph{Remote Procedure Call}) y un servidor de parámetros. El sistema de control de un robot generalmente está compuesto de un gran número de nodos. Por ejemplo, un nodo controla un sensor láser, mientras que otro nodo controla los motores de las ruedas del robot.
 
@@ -400,7 +398,7 @@ Uno de los simuladores más utilizados en la actualidad es \textit{Gazebo}\footn
 
 Otro simulador interesante es \emph{CoppeliaSim} \footnote{\url{https://coppeliarobotics.com/}}. Se trata de un simulador robótico con un entorno de desarrollo integrado. se basa en una arquitectura de control distribuido: cada objeto/modelo se puede controlar individualmente a través de un script integrado, un complemento, un nodo ROS, un cliente API remoto o una solución personalizada. Los controladores pueden escribirse en  C/C++, Python, Java, Lua, Matlab u Octave.
 
-Otro simulador interesante es el creado y utilizado por \emph{Waymo} \footnote{\url{https://es.wikipedia.org/wiki/Waymo}} (Proyecto de vehículo autónomo de Google). \emph{Waymo} incorporae tecnología que permite a un vehículo moverse de forma autónoma por una ciudad y por carretera, detectando señales de tráfico, vehículos y demás objetos de la vía. Para que la simulación sea una herramienta eficaz, debe representar fielmente el entorno que rodea al vehículo, de manera que se proporcione información precisa sobre el rendimiento del sistema. Lo que sucede en la simulación debe predecir lo que sucede en el mundo real para que el simulador sea útil. \emph{Waymo} busca minimizar las diferencias entre el mundo real y el mundo simulado. Para asegurar un realismo estadístico del modelo, este simulador recrea condiciones realistas para la inteligencia autónoma. Para garantizar que el entorno simulado es lo más fiel posible al mundo real, los entornos simulados de  \emph{Waymo} están siendo constantemente alimentados con nueva información recolectada en las numerosas ciudades en las que conducen.
+Otro simulador interesante es el creado y utilizado por \emph{Waymo} \footnote{\url{https://es.wikipedia.org/wiki/Waymo}} (Proyecto de vehículo autónomo de Google). \emph{Waymo} incorpora tecnología que permite a un vehículo moverse de forma autónoma por una ciudad y por carretera, detectando señales de tráfico, vehículos y demás objetos de la vía. Para que la simulación sea una herramienta eficaz, debe representar fielmente el entorno que rodea al vehículo, de manera que se proporcione información precisa sobre el rendimiento del sistema. Lo que sucede en la simulación debe predecir lo que sucede en el mundo real para que el simulador sea útil. \emph{Waymo} busca minimizar las diferencias entre el mundo real y el mundo simulado. Para asegurar un realismo estadístico del modelo, este simulador recrea condiciones realistas para la inteligencia autónoma. Para garantizar que el entorno simulado es lo más fiel posible al mundo real, los entornos simulados de  \emph{Waymo} están siendo constantemente alimentados con nueva información recolectada en las numerosas ciudades en las que conducen.
 
 El simulador \emph{Webots} \footnote{\url{https://cyberbotics.com/}}. Es un simulador de código abierto multiplataforma empleado en educación e investigación. Proporciona un entorno completo de desarrollo para modelar, programar y simular. Hace uso de ODE \footnote{\url{https://es.wikipedia.org/w/index.php?title=Open_Dynamics_Engine&action=edit&redlink=1}} (\emph{Open Dynamics Engine}) para la detección de colisiones y simulación de dinámica de cuerpo rígido. También incluye una gran cantidad de sensores y actuadores de uso frecuente en el mundo de la robótica. El control de los robots puede ser escrito en C++, Java, Python, Matlab y ROS.
 
@@ -411,16 +409,16 @@ El simulador \emph{Carla} \footnote{\url{https://carla.org/}} es un sistema que 
 \section{Educación en robótica}
 \label{sec:educacion_robotica}
 
-La Robótica con con su gran auge en la actualidad hace que aparezcan cada vez más plataformas, cursos y programas de enseñanza de la misma, tanto para niveles de iniciación como para los más avanzados. En las secciones posteriores se mencionarán ambos niveles en más detalle.
+La Robótica con su gran auge en la actualidad hace que aparezcan cada vez más plataformas, cursos y programas de enseñanza de la misma, tanto para niveles de iniciación como para los más avanzados. En las secciones posteriores se mencionarán ambos niveles en más detalle.
 
 \subsection{Niveles preuniversitarios}
 
 La robótica educativa proporciona a los estudiantes la infraestructura para la construcción y programación de un robot, pero, además de la enseñanza robótica,
-estos entornos van más allá, ofrenciendo la capacidad para el alumno de adquirir un pensamiento lógico. También, contribuye en la adquisición de una mentalidad resolutiva y al enriquecimiento de la cultura científica de los alumnos. Este método de educación con la robótica como objeto de enseñanza se denomina el método STEAM (Science, Technology, Engineering, Arts and Matemathics).
+estos entornos van más allá, ofreciendo la capacidad para el alumno de adquirir un pensamiento lógico. También, contribuye en la adquisición de una mentalidad resolutiva y al enriquecimiento de la cultura científica de los alumnos. Este método de educación con la robótica como objeto de enseñanza se denomina el método STEAM (Science, Technology, Engineering, Arts and Matemathics).
 
 Esta manera de enseñanza consiste en la metodología \emph{learning-by-doing}, un sistema que facilita a los niños el aprendizaje de aspectos científicos y matemáticos, y también ayuda en el incremento del pensamiento lógico y creativo de los mismos.
 
-Existen diversas formas de iniciación a la robótica, estas son, mediante libros o juguetes. Realizando talleres de programación. También existen plataformas para la iniciación a la robótica, como por ejemplo, \emph{Lightbot Jr} \footnote{\url{https://lightbot.com/}}, \emph{Scratch Jr} \footnote{\url{https://www.scratchjr.org/}}, \emph{Kibotics} \footnote{\url{https://kibotics.org/}}, etc.
+Existen diversas formas de iniciación a la robótica, estas son, mediante libros o juguetes, realizando talleres de programación. También existen plataformas para la iniciación a la robótica, como por ejemplo, \emph{Lightbot Jr} \footnote{\url{https://lightbot.com/}}, \emph{Scratch Jr} \footnote{\url{https://www.scratchjr.org/}}, \emph{Kibotics} \footnote{\url{https://kibotics.org/}}, etc.
 
 Como se ha comentado, para llevar a cabo este método de educación es necesaria una infraestructura. Algunas de las plataformas para enseñar robótica en niveles preuniversitarios son las siguientes:
 
@@ -445,16 +443,16 @@ En el campo de la ingeniería, también existen una serie de plataformas cuyo ob
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=10cm]{img/ridersai.png}
-    \caption{Plataforma OpenRoberta.}
+    \includegraphics[width=15cm]{img/ridersai.png}
+    \caption{Plataforma Riders.ai.}
 \end{figure}
 
 \item \textbf{TheConstruct}: ofrece un entorno de programación de robots que pueden moverse por la Luna, Marte y más planetas. No requiere la instalación de ROS. Ofrece un gran extra que le diferencia de los demás, brinda la posibilidad al usuario de poder ejecutar su código en robots reales de forma remota, y, también proveen certificados al completar diferentes cursos. La plataforma ofrece numerosos cursos de ROS, creación de robots, algoritmos robóticos, etc. Está orientada al aprendizaje mediante la práctica y no requiere ninguna instalación adicional. También ofrece una comunidad con la que los usuarios pueden interactuar.
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=10cm]{img/construct.png}
-    \caption{Plataforma OpenRoberta.}
+    \includegraphics[width=15cm]{img/construct.png}
+    \caption{Plataforma TheConstruct.}
 \end{figure}
 
 \end{itemize}
